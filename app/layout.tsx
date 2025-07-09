@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Tarkov Kappa",
-  description: "Creado por Rodolpho Alvim",
+  description: "Planilha para itens encontrados do Kappa",
   generator: "Rodolpho-Alvim",
 };
 
