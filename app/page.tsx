@@ -16,12 +16,19 @@ import type { UserProgress, CustomItems, DeletedItems } from "@/types/quest-data
 
 export default function KappaQuestTracker() {
   const [userProgress, setUserProgress] = useLocalStorage<UserProgress>("kappa-quest-progress-v4", {})
-  const [customItems, setCustomItems] = useLocalStorage<CustomItems>("kappa-custom-items-v2", {
+  const [customItems, setCustomItems] = useLocalStorage<CustomItems>("kappa-custom-items-v6", {
     mainItems: [],
-    secondaryItems: [],
+    samples: [],
+    recompensasQuests: [],
+    trocaItens: [],
     streamerItems: [],
     craftsItems: [],
-    hideoutItems: [],
+    hideoutImportante: [],
+    barterGunsmith: [],
+    barterChaves: [],
+    dorm206: [],
+    portableBunkhouse: [],
+    dorm303: [],
   })
   const [deletedItems, setDeletedItems] = useLocalStorage<DeletedItems>("kappa-deleted-items-v1", {})
   const [searchTerm, setSearchTerm] = useState("")
@@ -54,7 +61,20 @@ export default function KappaQuestTracker() {
       },
     )
 
-    const sections = ["main-items", "secondary-items", "streamer-items", "crafts-items", "hideout-items"]
+    const sections = [
+      "main-items",
+      "samples",
+      "recompensas-quests",
+      "troca-itens",
+      "streamer-items",
+      "crafts-items",
+      "hideout-importante",
+      "barter-gunsmith",
+      "barter-chaves",
+      "dorm206",
+      "portable-bunkhouse",
+      "dorm303",
+    ]
     sections.forEach((id) => {
       const element = document.getElementById(id)
       if (element) observer.observe(element)
@@ -69,10 +89,17 @@ export default function KappaQuestTracker() {
 
     return {
       mainItems: filterDeleted([...FIXED_ITEMS.mainItems, ...customItems.mainItems]),
-      secondaryItems: filterDeleted([...FIXED_ITEMS.secondaryItems, ...customItems.secondaryItems]),
+      samples: filterDeleted([...FIXED_ITEMS.samples, ...customItems.samples]),
+      recompensasQuests: filterDeleted([...FIXED_ITEMS.recompensasQuests, ...customItems.recompensasQuests]),
+      trocaItens: filterDeleted([...FIXED_ITEMS.trocaItens, ...customItems.trocaItens]),
       streamerItems: filterDeleted([...FIXED_ITEMS.streamerItems, ...customItems.streamerItems]),
       craftsItems: filterDeleted([...FIXED_ITEMS.craftsItems, ...customItems.craftsItems]),
-      hideoutItems: filterDeleted([...FIXED_ITEMS.hideoutItems, ...customItems.hideoutItems]),
+      hideoutImportante: filterDeleted([...FIXED_ITEMS.hideoutImportante, ...customItems.hideoutImportante]),
+      barterGunsmith: filterDeleted([...FIXED_ITEMS.barterGunsmith, ...customItems.barterGunsmith]),
+      barterChaves: filterDeleted([...FIXED_ITEMS.barterChaves, ...customItems.barterChaves]),
+      dorm206: filterDeleted([...FIXED_ITEMS.dorm206, ...customItems.dorm206]),
+      portableBunkhouse: filterDeleted([...FIXED_ITEMS.portableBunkhouse, ...customItems.portableBunkhouse]),
+      dorm303: filterDeleted([...FIXED_ITEMS.dorm303, ...customItems.dorm303]),
     }
   }
 
@@ -117,14 +144,17 @@ export default function KappaQuestTracker() {
       id: newId,
       item: "Novo Item",
       isCustom: true,
+      qtdE: "",
+      qtdR: "",
     }
 
-    if (section === "mainItems" || section === "secondaryItems" || section === "streamerItems") {
-      newItem = { ...newItem, qtdE: "", qtdR: "", fir: "" }
-    } else if (section === "craftsItems") {
-      newItem = { ...newItem, qtdE: "", qtdR: "" }
-    } else if (section === "hideoutItems") {
-      newItem = { ...newItem, e: "", qtdR: "" }
+    if (
+      section === "mainItems" ||
+      section === "samples" ||
+      section === "recompensasQuests" ||
+      section === "streamerItems"
+    ) {
+      newItem = { ...newItem, fir: "" }
     }
 
     setCustomItems((prev) => ({
@@ -159,7 +189,7 @@ export default function KappaQuestTracker() {
       customItems: customItems,
       deletedItems: deletedItems,
       exportDate: new Date().toISOString(),
-      version: "v5",
+      version: "v9",
     }
     const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" })
     const url = URL.createObjectURL(blob)
@@ -194,10 +224,17 @@ export default function KappaQuestTracker() {
       setUserProgress({})
       setCustomItems({
         mainItems: [],
-        secondaryItems: [],
+        samples: [],
+        recompensasQuests: [],
+        trocaItens: [],
         streamerItems: [],
         craftsItems: [],
-        hideoutItems: [],
+        hideoutImportante: [],
+        barterGunsmith: [],
+        barterChaves: [],
+        dorm206: [],
+        portableBunkhouse: [],
+        dorm303: [],
       })
       setDeletedItems({})
       alert("Tudo foi resetado!")
@@ -221,12 +258,28 @@ export default function KappaQuestTracker() {
       totalCount: allItems.mainItems.length,
     },
     {
-      id: "secondary-items",
-      title: "Itens Secundários",
-      icon: "📦",
+      id: "samples",
+      title: "Samples",
+      icon: "💉",
       color: "bg-gradient-to-r from-green-500 to-green-600",
-      completedCount: allItems.secondaryItems.filter((item) => userProgress[item.id]?.completed).length,
-      totalCount: allItems.secondaryItems.length,
+      completedCount: allItems.samples.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.samples.length,
+    },
+    {
+      id: "recompensas-quests",
+      title: "Recompensas de Quests",
+      icon: "🏆",
+      color: "bg-gradient-to-r from-amber-500 to-amber-600",
+      completedCount: allItems.recompensasQuests.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.recompensasQuests.length,
+    },
+    {
+      id: "troca-itens",
+      title: "Troca Itens",
+      icon: "🔄",
+      color: "bg-gradient-to-r from-cyan-500 to-cyan-600",
+      completedCount: allItems.trocaItens.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.trocaItens.length,
     },
     {
       id: "streamer-items",
@@ -245,12 +298,52 @@ export default function KappaQuestTracker() {
       totalCount: allItems.craftsItems.length,
     },
     {
-      id: "hideout-items",
+      id: "hideout-importante",
       title: "Hideout Importante",
       icon: "🏠",
       color: "bg-gradient-to-r from-red-500 to-red-600",
-      completedCount: allItems.hideoutItems.filter((item) => userProgress[item.id]?.completed).length,
-      totalCount: allItems.hideoutItems.length,
+      completedCount: allItems.hideoutImportante.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.hideoutImportante.length,
+    },
+    {
+      id: "barter-gunsmith",
+      title: "Barter Gunsmith",
+      icon: "🔫",
+      color: "bg-gradient-to-r from-gray-500 to-gray-600",
+      completedCount: allItems.barterGunsmith.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.barterGunsmith.length,
+    },
+    {
+      id: "barter-chaves",
+      title: "Barter Chaves",
+      icon: "🗝️",
+      color: "bg-gradient-to-r from-yellow-500 to-yellow-600",
+      completedCount: allItems.barterChaves.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.barterChaves.length,
+    },
+    {
+      id: "dorm206",
+      title: "DORM 206",
+      icon: "🏢",
+      color: "bg-gradient-to-r from-indigo-500 to-indigo-600",
+      completedCount: allItems.dorm206.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.dorm206.length,
+    },
+    {
+      id: "portable-bunkhouse",
+      title: "Portable Bunkhouse",
+      icon: "🏕️",
+      color: "bg-gradient-to-r from-teal-500 to-teal-600",
+      completedCount: allItems.portableBunkhouse.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.portableBunkhouse.length,
+    },
+    {
+      id: "dorm303",
+      title: "DORM 303",
+      icon: "🏢",
+      color: "bg-gradient-to-r from-pink-500 to-pink-600",
+      completedCount: allItems.dorm303.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.dorm303.length,
     },
   ]
 
@@ -319,7 +412,7 @@ export default function KappaQuestTracker() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-8 pr-80">
+      <div className="max-w-[1400px] mx-auto px-6 py-8 pr-80">
         {/* Dashboard de Estatísticas */}
         <StatsDashboard
           totalItems={totalItems}
@@ -375,7 +468,7 @@ export default function KappaQuestTracker() {
         </div>
 
         {/* Seções */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8">
           <div id="main-items">
             <SectionCard
               title="Itens Principais"
@@ -391,18 +484,48 @@ export default function KappaQuestTracker() {
             />
           </div>
 
-          <div id="secondary-items">
+          <div id="samples">
             <SectionCard
-              title="Itens Secundários"
-              items={getFilteredItems(allItems.secondaryItems)}
-              sectionType="secondary"
+              title="Samples"
+              items={getFilteredItems(allItems.samples)}
+              sectionType="samples"
               userProgress={userProgress}
               onProgressUpdate={updateProgress}
               onItemUpdate={updateCustomItem}
               onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("secondaryItems")}
+              onAddItem={() => addNewItem("samples")}
               color="bg-gradient-to-r from-green-500 to-green-600"
-              icon="📦"
+              icon="💉"
+            />
+          </div>
+
+          <div id="recompensas-quests">
+            <SectionCard
+              title="Recompensas de Quests"
+              items={getFilteredItems(allItems.recompensasQuests)}
+              sectionType="recompensas-quests"
+              userProgress={userProgress}
+              onProgressUpdate={updateProgress}
+              onItemUpdate={updateCustomItem}
+              onDeleteItem={deleteItem}
+              onAddItem={() => addNewItem("recompensasQuests")}
+              color="bg-gradient-to-r from-amber-500 to-amber-600"
+              icon="🏆"
+            />
+          </div>
+
+          <div id="troca-itens">
+            <SectionCard
+              title="Troca Itens"
+              items={getFilteredItems(allItems.trocaItens)}
+              sectionType="troca-itens"
+              userProgress={userProgress}
+              onProgressUpdate={updateProgress}
+              onItemUpdate={updateCustomItem}
+              onDeleteItem={deleteItem}
+              onAddItem={() => addNewItem("trocaItens")}
+              color="bg-gradient-to-r from-cyan-500 to-cyan-600"
+              icon="🔄"
             />
           </div>
 
@@ -436,18 +559,94 @@ export default function KappaQuestTracker() {
             />
           </div>
 
-          <div id="hideout-items" className="lg:col-span-2">
+          <div id="hideout-importante">
             <SectionCard
               title="Hideout Importante"
-              items={getFilteredItems(allItems.hideoutItems)}
+              subtitle="LAVATÓRIO 2 (PENTE 6)"
+              items={getFilteredItems(allItems.hideoutImportante)}
               sectionType="hideout"
               userProgress={userProgress}
               onProgressUpdate={updateProgress}
               onItemUpdate={updateCustomItem}
               onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("hideoutItems")}
+              onAddItem={() => addNewItem("hideoutImportante")}
               color="bg-gradient-to-r from-red-500 to-red-600"
               icon="🏠"
+            />
+          </div>
+
+          <div id="barter-gunsmith">
+            <SectionCard
+              title="Barter Gunsmith"
+              items={getFilteredItems(allItems.barterGunsmith)}
+              sectionType="barter-gunsmith"
+              userProgress={userProgress}
+              onProgressUpdate={updateProgress}
+              onItemUpdate={updateCustomItem}
+              onDeleteItem={deleteItem}
+              onAddItem={() => addNewItem("barterGunsmith")}
+              color="bg-gradient-to-r from-gray-500 to-gray-600"
+              icon="🔫"
+            />
+          </div>
+
+          <div id="barter-chaves">
+            <SectionCard
+              title="Barter Chaves"
+              items={getFilteredItems(allItems.barterChaves)}
+              sectionType="barter-chaves"
+              userProgress={userProgress}
+              onProgressUpdate={updateProgress}
+              onItemUpdate={updateCustomItem}
+              onDeleteItem={deleteItem}
+              onAddItem={() => addNewItem("barterChaves")}
+              color="bg-gradient-to-r from-yellow-500 to-yellow-600"
+              icon="🗝️"
+            />
+          </div>
+
+          <div id="dorm206">
+            <SectionCard
+              title="DORM 206"
+              items={getFilteredItems(allItems.dorm206)}
+              sectionType="dorm206"
+              userProgress={userProgress}
+              onProgressUpdate={updateProgress}
+              onItemUpdate={updateCustomItem}
+              onDeleteItem={deleteItem}
+              onAddItem={() => addNewItem("dorm206")}
+              color="bg-gradient-to-r from-indigo-500 to-indigo-600"
+              icon="🏢"
+            />
+          </div>
+
+          <div id="portable-bunkhouse">
+            <SectionCard
+              title="Portable Bunkhouse"
+              items={getFilteredItems(allItems.portableBunkhouse)}
+              sectionType="portable-bunkhouse"
+              userProgress={userProgress}
+              onProgressUpdate={updateProgress}
+              onItemUpdate={updateCustomItem}
+              onDeleteItem={deleteItem}
+              onAddItem={() => addNewItem("portableBunkhouse")}
+              color="bg-gradient-to-r from-teal-500 to-teal-600"
+              icon="🏕️"
+            />
+          </div>
+
+          <div id="dorm303">
+            <SectionCard
+              title="DORM 303"
+              items={getFilteredItems(allItems.dorm303)}
+              sectionType="dorm303"
+              userProgress={userProgress}
+              onProgressUpdate={updateProgress}
+              onItemUpdate={updateCustomItem}
+              onDeleteItem={deleteItem}
+              onAddItem={() => addNewItem("dorm303")}
+              color="bg-gradient-to-r from-pink-500 to-pink-600"
+              icon="🏢"
             />
           </div>
         </div>

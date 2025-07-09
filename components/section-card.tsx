@@ -10,6 +10,7 @@ import type { QuestItem, StreamerItem, CraftItem, HideoutItem, UserProgress } fr
 
 interface SectionCardProps {
   title: string
+  subtitle?: string
   items: (QuestItem | StreamerItem | CraftItem | HideoutItem)[]
   sectionType: "main" | "secondary" | "streamer" | "craft" | "hideout"
   userProgress: UserProgress
@@ -23,6 +24,7 @@ interface SectionCardProps {
 
 export function SectionCard({
   title,
+  subtitle,
   items,
   sectionType,
   userProgress,
@@ -45,10 +47,15 @@ export function SectionCard({
     <Card className="shadow-lg border-0 overflow-hidden">
       <CardHeader className={`${color} text-white p-4`}>
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-1">
             <span className="text-2xl">{icon}</span>
-            <div>
-              <CardTitle className="text-lg font-bold">{title}</CardTitle>
+            <div className="flex-1">
+              <div className="flex items-center gap-4">
+                <CardTitle className="text-lg font-bold">{title}</CardTitle>
+                {subtitle && (
+                  <span className="text-sm font-medium opacity-90 bg-white/20 px-2 py-1 rounded">{subtitle}</span>
+                )}
+              </div>
               <div className="flex items-center gap-2 mt-1">
                 <Badge variant="secondary" className="bg-white/20 text-white border-0">
                   {completedCount}/{totalCount}

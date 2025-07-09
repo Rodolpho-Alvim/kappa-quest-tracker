@@ -8,6 +8,35 @@ export interface QuestItem {
   isDeleted?: boolean
 }
 
+export interface SampleItem {
+  id: string
+  item: string
+  qtdE: string | number
+  qtdR: string | number
+  fir: "Yes" | "No" | ""
+  isCustom?: boolean
+  isDeleted?: boolean
+}
+
+export interface RecompensaItem {
+  id: string
+  item: string
+  qtdE: string | number
+  qtdR: string | number
+  fir: "Yes" | "No" | ""
+  isCustom?: boolean
+  isDeleted?: boolean
+}
+
+export interface TrocaItem {
+  id: string
+  item: string
+  qtdE: string | number
+  qtdR: string | number
+  isCustom?: boolean
+  isDeleted?: boolean
+}
+
 export interface StreamerItem {
   id: string
   item: string
@@ -30,10 +59,11 @@ export interface CraftItem {
 export interface HideoutItem {
   id: string
   item: string
-  e: string | number
+  qtdE: string | number
   qtdR: string | number
   isCustom?: boolean
   isDeleted?: boolean
+  isReference?: boolean
 }
 
 export interface UserProgress {
@@ -41,7 +71,6 @@ export interface UserProgress {
     qtdE?: string | number
     qtdR?: string | number
     fir?: "Yes" | "No" | ""
-    e?: string | number
     completed?: boolean
     lastUpdated: number
   }
@@ -49,10 +78,17 @@ export interface UserProgress {
 
 export interface CustomItems {
   mainItems: QuestItem[]
-  secondaryItems: QuestItem[]
+  samples: SampleItem[]
+  recompensasQuests: RecompensaItem[]
+  trocaItens: TrocaItem[]
   streamerItems: StreamerItem[]
   craftsItems: CraftItem[]
-  hideoutItems: HideoutItem[]
+  hideoutImportante: HideoutItem[]
+  barterGunsmith: HideoutItem[]
+  barterChaves: HideoutItem[]
+  dorm206: HideoutItem[]
+  portableBunkhouse: HideoutItem[]
+  dorm303: HideoutItem[]
 }
 
 export interface DeletedItems {
