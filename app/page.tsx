@@ -1,49 +1,78 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import { useLocalStorage } from "@/hooks/use-local-storage"
-import { FIXED_ITEMS } from "@/data/fixed-items"
-import { SectionCard } from "@/components/section-card"
-import { StatsDashboard } from "@/components/stats-dashboard"
-import { NavigationSidebar } from "@/components/navigation-sidebar"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Download, Upload, RotateCcw, Search, Settings, RefreshCw, Package } from "lucide-react"
-import type { UserProgress, CustomItems, DeletedItems } from "@/types/quest-data"
+import { NavigationSidebar } from "@/components/navigation-sidebar";
+import { SectionCard } from "@/components/section-card";
+import { StatsDashboard } from "@/components/stats-dashboard";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { FIXED_ITEMS } from "@/data/fixed-items";
+import { useLocalStorage } from "@/hooks/use-local-storage";
+import type {
+  CustomItems,
+  DeletedItems,
+  UserProgress,
+} from "@/types/quest-data";
+import {
+  Download,
+  RefreshCw,
+  RotateCcw,
+  Search,
+  Settings,
+  Upload,
+} from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function KappaQuestTracker() {
-  const [userProgress, setUserProgress] = useLocalStorage<UserProgress>("kappa-quest-progress-v4", {})
-  const [customItems, setCustomItems] = useLocalStorage<CustomItems>("kappa-custom-items-v6", {
-    mainItems: [],
-    samples: [],
-    recompensasQuests: [],
-    trocaItens: [],
-    streamerItems: [],
-    craftsItems: [],
-    hideoutImportante: [],
-    barterGunsmith: [],
-    barterChaves: [],
-    dorm206: [],
-    portableBunkhouse: [],
-    dorm303: [],
-  })
-  const [deletedItems, setDeletedItems] = useLocalStorage<DeletedItems>("kappa-deleted-items-v1", {})
-  const [searchTerm, setSearchTerm] = useState("")
-  const [lastSaved, setLastSaved] = useState<Date | null>(null)
-  const [activeSection, setActiveSection] = useState<string | null>(null)
+  const [userProgress, setUserProgress] = useLocalStorage<UserProgress>(
+    "kappa-quest-progress-v4",
+    {}
+  );
+  const [customItems, setCustomItems] = useLocalStorage<CustomItems>(
+    "kappa-custom-items-v6",
+    {
+      mainItems: [],
+      samples: [],
+      recompensasQuests: [],
+      trocaItens: [],
+      streamerItems: [],
+      craftsItems: [],
+      hideoutImportante: [],
+      barterGunsmith: [],
+      barterChaves: [],
+      dorm206: [],
+      portableBunkhouse: [],
+      dorm303: [],
+    }
+  );
+  const [deletedItems, setDeletedItems] = useLocalStorage<DeletedItems>(
+    "kappa-deleted-items-v1",
+    {}
+  );
+  const [searchTerm, setSearchTerm] = useState("");
+  const [lastSaved, setLastSaved] = useState<Date | undefined>(undefined);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   // Auto-save
   useEffect(() => {
     if (
       Object.keys(userProgress).length > 0 ||
-      Object.keys(customItems).some((key) => customItems[key as keyof CustomItems].length > 0)
+      Object.keys(customItems).some(
+        (key) => customItems[key as keyof CustomItems].length > 0
+      )
     ) {
-      setLastSaved(new Date())
+      setLastSaved(new Date());
     }
-  }, [userProgress, customItems, deletedItems])
+  }, [userProgress, customItems, deletedItems]);
 
   // Intersection Observer para detectar seção ativa
   useEffect(() => {
@@ -51,15 +80,15 @@ export default function KappaQuestTracker() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
+            setActiveSection(entry.target.id);
           }
-        })
+        });
       },
       {
         threshold: 0.3,
         rootMargin: "-20% 0px -20% 0px",
-      },
-    )
+      }
+    );
 
     const sections = [
       "main-items",
@@ -74,42 +103,72 @@ export default function KappaQuestTracker() {
       "dorm206",
       "portable-bunkhouse",
       "dorm303",
-    ]
+    ];
     sections.forEach((id) => {
-      const element = document.getElementById(id)
-      if (element) observer.observe(element)
-    })
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   // Combinar itens fixos com customizados, excluindo deletados
   const getAllItems = () => {
-    const filterDeleted = (items: any[]) => items.filter((item) => !deletedItems[item.id])
+    const filterDeleted = (items: any[]) =>
+      items.filter((item) => !deletedItems[item.id]);
 
     return {
-      mainItems: filterDeleted([...FIXED_ITEMS.mainItems, ...customItems.mainItems]),
+      mainItems: filterDeleted([
+        ...FIXED_ITEMS.mainItems,
+        ...customItems.mainItems,
+      ]),
       samples: filterDeleted([...FIXED_ITEMS.samples, ...customItems.samples]),
-      recompensasQuests: filterDeleted([...FIXED_ITEMS.recompensasQuests, ...customItems.recompensasQuests]),
-      trocaItens: filterDeleted([...FIXED_ITEMS.trocaItens, ...customItems.trocaItens]),
-      streamerItems: filterDeleted([...FIXED_ITEMS.streamerItems, ...customItems.streamerItems]),
-      craftsItems: filterDeleted([...FIXED_ITEMS.craftsItems, ...customItems.craftsItems]),
-      hideoutImportante: filterDeleted([...FIXED_ITEMS.hideoutImportante, ...customItems.hideoutImportante]),
-      barterGunsmith: filterDeleted([...FIXED_ITEMS.barterGunsmith, ...customItems.barterGunsmith]),
-      barterChaves: filterDeleted([...FIXED_ITEMS.barterChaves, ...customItems.barterChaves]),
+      recompensasQuests: filterDeleted([
+        ...FIXED_ITEMS.recompensasQuests,
+        ...customItems.recompensasQuests,
+      ]),
+      trocaItens: filterDeleted([
+        ...FIXED_ITEMS.trocaItens,
+        ...customItems.trocaItens,
+      ]),
+      streamerItems: filterDeleted([
+        ...FIXED_ITEMS.streamerItems,
+        ...customItems.streamerItems,
+      ]),
+      craftsItems: filterDeleted([
+        ...FIXED_ITEMS.craftsItems,
+        ...customItems.craftsItems,
+      ]),
+      hideoutImportante: filterDeleted([
+        ...FIXED_ITEMS.hideoutImportante,
+        ...customItems.hideoutImportante,
+      ]),
+      barterGunsmith: filterDeleted([
+        ...FIXED_ITEMS.barterGunsmith,
+        ...customItems.barterGunsmith,
+      ]),
+      barterChaves: filterDeleted([
+        ...FIXED_ITEMS.barterChaves,
+        ...customItems.barterChaves,
+      ]),
       dorm206: filterDeleted([...FIXED_ITEMS.dorm206, ...customItems.dorm206]),
-      portableBunkhouse: filterDeleted([...FIXED_ITEMS.portableBunkhouse, ...customItems.portableBunkhouse]),
+      portableBunkhouse: filterDeleted([
+        ...FIXED_ITEMS.portableBunkhouse,
+        ...customItems.portableBunkhouse,
+      ]),
       dorm303: filterDeleted([...FIXED_ITEMS.dorm303, ...customItems.dorm303]),
-    }
-  }
+    };
+  };
 
-  const allItems = getAllItems()
+  const allItems = getAllItems();
 
   // Filtrar por busca
   const getFilteredItems = (items: any[]) => {
-    if (!searchTerm) return items
-    return items.filter((item) => item.item.toLowerCase().includes(searchTerm.toLowerCase()))
-  }
+    if (!searchTerm) return items;
+    return items.filter((item) =>
+      item.item.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
 
   const updateProgress = (itemId: string, field: string, value: any) => {
     setUserProgress((prev) => ({
@@ -119,34 +178,40 @@ export default function KappaQuestTracker() {
         [field]: value,
         lastUpdated: Date.now(),
       },
-    }))
-  }
+    }));
+  };
 
   const updateCustomItem = (itemId: string, field: string, value: any) => {
     const updateSection = (section: keyof CustomItems) => {
       setCustomItems((prev) => ({
         ...prev,
-        [section]: prev[section].map((item) => (item.id === itemId ? { ...item, [field]: value } : item)),
-      }))
-    }
+        [section]: prev[section].map((item) =>
+          item.id === itemId ? { ...item, [field]: value } : item
+        ),
+      }));
+    };
 
     // Encontrar em qual seção está o item
     Object.keys(customItems).forEach((section) => {
-      if (customItems[section as keyof CustomItems].some((item) => item.id === itemId)) {
-        updateSection(section as keyof CustomItems)
+      if (
+        customItems[section as keyof CustomItems].some(
+          (item) => item.id === itemId
+        )
+      ) {
+        updateSection(section as keyof CustomItems);
       }
-    })
-  }
+    });
+  };
 
   const addNewItem = (section: keyof CustomItems) => {
-    const newId = `custom-${section}-${Date.now()}`
+    const newId = `custom-${section}-${Date.now()}`;
     let newItem: any = {
       id: newId,
       item: "Novo Item",
       isCustom: true,
       qtdE: "",
       qtdR: "",
-    }
+    };
 
     if (
       section === "mainItems" ||
@@ -154,34 +219,38 @@ export default function KappaQuestTracker() {
       section === "recompensasQuests" ||
       section === "streamerItems"
     ) {
-      newItem = { ...newItem, fir: "" }
+      newItem = { ...newItem, fir: "" };
     }
 
     setCustomItems((prev) => ({
       ...prev,
       [section]: [...prev[section], newItem],
-    }))
-  }
+    }));
+  };
 
   const deleteItem = (itemId: string) => {
     if (confirm("Tem certeza que deseja deletar este item?")) {
-      setDeletedItems((prev) => ({ ...prev, [itemId]: true }))
+      setDeletedItems((prev) => ({ ...prev, [itemId]: true }));
 
       // Remover do progresso
       setUserProgress((prev) => {
-        const newProgress = { ...prev }
-        delete newProgress[itemId]
-        return newProgress
-      })
+        const newProgress = { ...prev };
+        delete newProgress[itemId];
+        return newProgress;
+      });
     }
-  }
+  };
 
   const restoreDefaults = () => {
-    if (confirm("Tem certeza que deseja restaurar todos os itens padrão? Isso não afetará seu progresso.")) {
-      setDeletedItems({})
-      alert("Itens padrão restaurados!")
+    if (
+      confirm(
+        "Tem certeza que deseja restaurar todos os itens padrão? Isso não afetará seu progresso."
+      )
+    ) {
+      setDeletedItems({});
+      alert("Itens padrão restaurados!");
     }
-  }
+  };
 
   const handleExport = () => {
     const exportData = {
@@ -190,38 +259,46 @@ export default function KappaQuestTracker() {
       deletedItems: deletedItems,
       exportDate: new Date().toISOString(),
       version: "v9",
-    }
-    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = `kappa-progress-${new Date().toISOString().split("T")[0]}.json`
-    a.click()
-    URL.revokeObjectURL(url)
-  }
+    };
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `kappa-progress-${
+      new Date().toISOString().split("T")[0]
+    }.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
+    const file = event.target.files?.[0];
+    if (!file) return;
 
-    const reader = new FileReader()
+    const reader = new FileReader();
     reader.onload = (e) => {
       try {
-        const data = JSON.parse(e.target?.result as string)
-        if (data.progress) setUserProgress(data.progress)
-        if (data.customItems) setCustomItems(data.customItems)
-        if (data.deletedItems) setDeletedItems(data.deletedItems)
-        alert("Dados importados com sucesso!")
+        const data = JSON.parse(e.target?.result as string);
+        if (data.progress) setUserProgress(data.progress);
+        if (data.customItems) setCustomItems(data.customItems);
+        if (data.deletedItems) setDeletedItems(data.deletedItems);
+        alert("Dados importados com sucesso!");
       } catch (error) {
-        alert("Erro ao importar dados")
+        alert("Erro ao importar dados");
       }
-    }
-    reader.readAsText(file)
-  }
+    };
+    reader.readAsText(file);
+  };
 
   const handleReset = () => {
-    if (confirm("Tem certeza que deseja resetar TUDO? Esta ação não pode ser desfeita.")) {
-      setUserProgress({})
+    if (
+      confirm(
+        "Tem certeza que deseja resetar TUDO? Esta ação não pode ser desfeita."
+      )
+    ) {
+      setUserProgress({});
       setCustomItems({
         mainItems: [],
         samples: [],
@@ -235,17 +312,17 @@ export default function KappaQuestTracker() {
         dorm206: [],
         portableBunkhouse: [],
         dorm303: [],
-      })
-      setDeletedItems({})
-      alert("Tudo foi resetado!")
+      });
+      setDeletedItems({});
+      alert("Tudo foi resetado!");
     }
-  }
+  };
 
   // Calcular estatísticas
-  const totalItems = Object.values(allItems).flat().length
+  const totalItems = Object.values(allItems).flat().length;
   const completedItems = Object.values(allItems)
     .flat()
-    .filter((item) => userProgress[item.id]?.completed).length
+    .filter((item) => userProgress[item.id]?.completed).length;
 
   // Dados para a sidebar de navegação
   const navigationSections = [
@@ -254,7 +331,9 @@ export default function KappaQuestTracker() {
       title: "Itens Principais",
       icon: "🎯",
       color: "bg-gradient-to-r from-blue-500 to-blue-600",
-      completedCount: allItems.mainItems.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.mainItems.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.mainItems.length,
     },
     {
@@ -262,7 +341,9 @@ export default function KappaQuestTracker() {
       title: "Samples",
       icon: "💉",
       color: "bg-gradient-to-r from-green-500 to-green-600",
-      completedCount: allItems.samples.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.samples.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.samples.length,
     },
     {
@@ -270,7 +351,9 @@ export default function KappaQuestTracker() {
       title: "Recompensas de Quests",
       icon: "🏆",
       color: "bg-gradient-to-r from-amber-500 to-amber-600",
-      completedCount: allItems.recompensasQuests.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.recompensasQuests.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.recompensasQuests.length,
     },
     {
@@ -278,7 +361,9 @@ export default function KappaQuestTracker() {
       title: "Troca Itens",
       icon: "🔄",
       color: "bg-gradient-to-r from-cyan-500 to-cyan-600",
-      completedCount: allItems.trocaItens.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.trocaItens.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.trocaItens.length,
     },
     {
@@ -286,7 +371,9 @@ export default function KappaQuestTracker() {
       title: "Streamer Items",
       icon: "⭐",
       color: "bg-gradient-to-r from-purple-500 to-purple-600",
-      completedCount: allItems.streamerItems.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.streamerItems.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.streamerItems.length,
     },
     {
@@ -294,7 +381,9 @@ export default function KappaQuestTracker() {
       title: "Crafts Prováveis",
       icon: "🔧",
       color: "bg-gradient-to-r from-orange-500 to-orange-600",
-      completedCount: allItems.craftsItems.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.craftsItems.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.craftsItems.length,
     },
     {
@@ -302,7 +391,9 @@ export default function KappaQuestTracker() {
       title: "Hideout Importante",
       icon: "🏠",
       color: "bg-gradient-to-r from-red-500 to-red-600",
-      completedCount: allItems.hideoutImportante.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.hideoutImportante.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.hideoutImportante.length,
     },
     {
@@ -310,7 +401,9 @@ export default function KappaQuestTracker() {
       title: "Barter Gunsmith",
       icon: "🔫",
       color: "bg-gradient-to-r from-gray-500 to-gray-600",
-      completedCount: allItems.barterGunsmith.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.barterGunsmith.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.barterGunsmith.length,
     },
     {
@@ -318,7 +411,9 @@ export default function KappaQuestTracker() {
       title: "Barter Chaves",
       icon: "🗝️",
       color: "bg-gradient-to-r from-yellow-500 to-yellow-600",
-      completedCount: allItems.barterChaves.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.barterChaves.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.barterChaves.length,
     },
     {
@@ -326,7 +421,9 @@ export default function KappaQuestTracker() {
       title: "DORM 206",
       icon: "🏢",
       color: "bg-gradient-to-r from-indigo-500 to-indigo-600",
-      completedCount: allItems.dorm206.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.dorm206.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.dorm206.length,
     },
     {
@@ -334,7 +431,9 @@ export default function KappaQuestTracker() {
       title: "Portable Bunkhouse",
       icon: "🏕️",
       color: "bg-gradient-to-r from-teal-500 to-teal-600",
-      completedCount: allItems.portableBunkhouse.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.portableBunkhouse.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.portableBunkhouse.length,
     },
     {
@@ -342,10 +441,12 @@ export default function KappaQuestTracker() {
       title: "DORM 303",
       icon: "🏢",
       color: "bg-gradient-to-r from-pink-500 to-pink-600",
-      completedCount: allItems.dorm303.filter((item) => userProgress[item.id]?.completed).length,
+      completedCount: allItems.dorm303.filter(
+        (item) => userProgress[item.id]?.completed
+      ).length,
       totalCount: allItems.dorm303.length,
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -361,12 +462,21 @@ export default function KappaQuestTracker() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 p-3 rounded-lg">
-                <Package className="h-8 w-8 text-white" />
-              </div>
+              <Image
+                src="/images/kappa-container.jpg"
+                alt="Kappa Container"
+                width={100}
+                height={100}
+                className="rounded-lg shadow-md border border-yellow-400 bg-white"
+                priority
+              />
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">Kappa Quest Tracker</h1>
-                <p className="text-gray-600">Escape from Tarkov - Container Kappa Progress</p>
+                <h1 className="text-3xl font-bold text-gray-900">
+                  Kappa Quest Tracker
+                </h1>
+                <p className="text-gray-600">
+                  Escape from Tarkov - Container Kappa Progress
+                </p>
               </div>
             </div>
 
@@ -388,19 +498,36 @@ export default function KappaQuestTracker() {
                       Exportar Progresso
                     </Button>
                     <label className="cursor-pointer">
-                      <Button variant="outline" className="w-full bg-transparent" asChild>
+                      <Button
+                        variant="outline"
+                        className="w-full bg-transparent"
+                        asChild
+                      >
                         <span>
                           <Upload className="h-4 w-4 mr-2" />
                           Importar Progresso
                         </span>
                       </Button>
-                      <input type="file" accept=".json" onChange={handleImport} className="hidden" />
+                      <input
+                        type="file"
+                        accept=".json"
+                        onChange={handleImport}
+                        className="hidden"
+                      />
                     </label>
-                    <Button onClick={restoreDefaults} variant="outline" className="w-full bg-transparent">
+                    <Button
+                      onClick={restoreDefaults}
+                      variant="outline"
+                      className="w-full bg-transparent"
+                    >
                       <RefreshCw className="h-4 w-4 mr-2" />
                       Restaurar Itens Padrão
                     </Button>
-                    <Button onClick={handleReset} variant="destructive" className="w-full">
+                    <Button
+                      onClick={handleReset}
+                      variant="destructive"
+                      className="w-full"
+                    >
                       <RotateCcw className="h-4 w-4 mr-2" />
                       Reset Completo
                     </Button>
@@ -428,28 +555,38 @@ export default function KappaQuestTracker() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
             <div className="space-y-2">
-              <h3 className="font-medium text-blue-600">📊 Qtd. E (Quantidade Encontrada)</h3>
+              <h3 className="font-medium text-blue-600">
+                📊 Qtd. E (Quantidade Encontrada)
+              </h3>
               <p className="text-gray-600">
-                Quantos itens você já possui no seu stash ou encontrou. Atualize conforme coleta os itens.
+                Quantos itens você já possui no seu stash ou encontrou. Atualize
+                conforme coleta os itens.
               </p>
             </div>
             <div className="space-y-2">
-              <h3 className="font-medium text-green-600">🎯 Qtd. R (Quantidade Requerida)</h3>
+              <h3 className="font-medium text-green-600">
+                🎯 Qtd. R (Quantidade Requerida)
+              </h3>
               <p className="text-gray-600">
-                Quantos itens você precisa para completar a quest ou objetivo. Alguns podem ter requisitos específicos.
+                Quantos itens você precisa para completar a quest ou objetivo.
+                Alguns podem ter requisitos específicos.
               </p>
             </div>
             <div className="space-y-2">
-              <h3 className="font-medium text-purple-600">🔍 FIR (Found in Raid)</h3>
+              <h3 className="font-medium text-purple-600">
+                🔍 FIR (Found in Raid)
+              </h3>
               <p className="text-gray-600">
-                Se o item precisa ter status "Found in Raid" (encontrado na raid) para ser válido na quest.
+                Se o item precisa ter status "Found in Raid" (encontrado na
+                raid) para ser válido na quest.
               </p>
             </div>
           </div>
           <div className="mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
             <p className="text-sm text-yellow-800">
-              <strong>💡 Dica:</strong> Marque o checkbox quando tiver coletado todos os itens necessários para aquela
-              entrada. Use a busca para encontrar itens específicos rapidamente.
+              <strong>💡 Dica:</strong> Marque o checkbox quando tiver coletado
+              todos os itens necessários para aquela entrada. Use a busca para
+              encontrar itens específicos rapidamente.
             </p>
           </div>
         </div>
@@ -652,5 +789,5 @@ export default function KappaQuestTracker() {
         </div>
       </div>
     </div>
-  )
+  );
 }

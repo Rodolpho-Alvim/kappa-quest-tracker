@@ -36,9 +36,9 @@ export function NavigationSidebar({
   };
 
   return (
-    <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
-      <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0 p-1 max-w-xs ">
-        <div className="space-y-0.5">
+    <div className="fixed right-0 top-[55%] transform -translate-y-1/2 z-50">
+      <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0 p-2 max-w-xs">
+        <div className="space-y-2">
           <div className="text-xs font-semibold text-gray-600 px-2 py-1">
             📋 Navegação Rápida
           </div>
@@ -59,7 +59,7 @@ export function NavigationSidebar({
                 size="sm"
                 onClick={() => scrollToSection(section.id)}
                 className={`
-                  w-full justify-start text-left p-3 h-auto
+                  w-full justify-start text-left p-1 h-auto
                   ${
                     isActive
                       ? "bg-blue-500 text-white shadow-md"
