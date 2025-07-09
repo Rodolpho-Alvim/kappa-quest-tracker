@@ -7,6 +7,7 @@ import { useLocalStorage } from "@/hooks/use-local-storage"
 import { FIXED_ITEMS } from "@/data/fixed-items"
 import { SectionCard } from "@/components/section-card"
 import { StatsDashboard } from "@/components/stats-dashboard"
+import { NavigationSidebar } from "@/components/navigation-sidebar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
@@ -25,6 +26,7 @@ export default function KappaQuestTracker() {
   const [deletedItems, setDeletedItems] = useLocalStorage<DeletedItems>("kappa-deleted-items-v1", {})
   const [searchTerm, setSearchTerm] = useState("")
   const [lastSaved, setLastSaved] = useState<Date | null>(null)
+  const [activeSection, setActiveSection] = useState<string | null>(null)
 
   // Auto-save
   useEffect(() => {
@@ -35,6 +37,31 @@ export default function KappaQuestTracker() {
       setLastSaved(new Date())
     }
   }, [userProgress, customItems, deletedItems])
+
+  // Intersection Observer para detectar seção ativa
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "-20% 0px -20% 0px",
+      },
+    )
+
+    const sections = ["main-items", "secondary-items", "streamer-items", "crafts-items", "hideout-items"]
+    sections.forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   // Combinar itens fixos com customizados, excluindo deletados
   const getAllItems = () => {
@@ -183,8 +210,59 @@ export default function KappaQuestTracker() {
     .flat()
     .filter((item) => userProgress[item.id]?.completed).length
 
+  // Dados para a sidebar de navegação
+  const navigationSections = [
+    {
+      id: "main-items",
+      title: "Itens Principais",
+      icon: "🎯",
+      color: "bg-gradient-to-r from-blue-500 to-blue-600",
+      completedCount: allItems.mainItems.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.mainItems.length,
+    },
+    {
+      id: "secondary-items",
+      title: "Itens Secundários",
+      icon: "📦",
+      color: "bg-gradient-to-r from-green-500 to-green-600",
+      completedCount: allItems.secondaryItems.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.secondaryItems.length,
+    },
+    {
+      id: "streamer-items",
+      title: "Streamer Items",
+      icon: "⭐",
+      color: "bg-gradient-to-r from-purple-500 to-purple-600",
+      completedCount: allItems.streamerItems.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.streamerItems.length,
+    },
+    {
+      id: "crafts-items",
+      title: "Crafts Prováveis",
+      icon: "🔧",
+      color: "bg-gradient-to-r from-orange-500 to-orange-600",
+      completedCount: allItems.craftsItems.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.craftsItems.length,
+    },
+    {
+      id: "hideout-items",
+      title: "Hideout Importante",
+      icon: "🏠",
+      color: "bg-gradient-to-r from-red-500 to-red-600",
+      completedCount: allItems.hideoutItems.filter((item) => userProgress[item.id]?.completed).length,
+      totalCount: allItems.hideoutItems.length,
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Navigation Sidebar */}
+      <NavigationSidebar
+        sections={navigationSections}
+        activeSection={activeSection}
+        onSectionClick={setActiveSection}
+      />
+
       {/* Header */}
       <div className="bg-white shadow-lg border-b">
         <div className="max-w-7xl mx-auto px-6 py-4">
@@ -241,7 +319,7 @@ export default function KappaQuestTracker() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="max-w-7xl mx-auto px-6 py-8 pr-80">
         {/* Dashboard de Estatísticas */}
         <StatsDashboard
           totalItems={totalItems}
@@ -298,59 +376,67 @@ export default function KappaQuestTracker() {
 
         {/* Seções */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <SectionCard
-            title="Itens Principais"
-            items={getFilteredItems(allItems.mainItems)}
-            sectionType="main"
-            userProgress={userProgress}
-            onProgressUpdate={updateProgress}
-            onItemUpdate={updateCustomItem}
-            onDeleteItem={deleteItem}
-            onAddItem={() => addNewItem("mainItems")}
-            color="bg-gradient-to-r from-blue-500 to-blue-600"
-            icon="🎯"
-          />
+          <div id="main-items">
+            <SectionCard
+              title="Itens Principais"
+              items={getFilteredItems(allItems.mainItems)}
+              sectionType="main"
+              userProgress={userProgress}
+              onProgressUpdate={updateProgress}
+              onItemUpdate={updateCustomItem}
+              onDeleteItem={deleteItem}
+              onAddItem={() => addNewItem("mainItems")}
+              color="bg-gradient-to-r from-blue-500 to-blue-600"
+              icon="🎯"
+            />
+          </div>
 
-          <SectionCard
-            title="Itens Secundários"
-            items={getFilteredItems(allItems.secondaryItems)}
-            sectionType="secondary"
-            userProgress={userProgress}
-            onProgressUpdate={updateProgress}
-            onItemUpdate={updateCustomItem}
-            onDeleteItem={deleteItem}
-            onAddItem={() => addNewItem("secondaryItems")}
-            color="bg-gradient-to-r from-green-500 to-green-600"
-            icon="📦"
-          />
+          <div id="secondary-items">
+            <SectionCard
+              title="Itens Secundários"
+              items={getFilteredItems(allItems.secondaryItems)}
+              sectionType="secondary"
+              userProgress={userProgress}
+              onProgressUpdate={updateProgress}
+              onItemUpdate={updateCustomItem}
+              onDeleteItem={deleteItem}
+              onAddItem={() => addNewItem("secondaryItems")}
+              color="bg-gradient-to-r from-green-500 to-green-600"
+              icon="📦"
+            />
+          </div>
 
-          <SectionCard
-            title="Streamer Items"
-            items={getFilteredItems(allItems.streamerItems)}
-            sectionType="streamer"
-            userProgress={userProgress}
-            onProgressUpdate={updateProgress}
-            onItemUpdate={updateCustomItem}
-            onDeleteItem={deleteItem}
-            onAddItem={() => addNewItem("streamerItems")}
-            color="bg-gradient-to-r from-purple-500 to-purple-600"
-            icon="⭐"
-          />
+          <div id="streamer-items">
+            <SectionCard
+              title="Streamer Items"
+              items={getFilteredItems(allItems.streamerItems)}
+              sectionType="streamer"
+              userProgress={userProgress}
+              onProgressUpdate={updateProgress}
+              onItemUpdate={updateCustomItem}
+              onDeleteItem={deleteItem}
+              onAddItem={() => addNewItem("streamerItems")}
+              color="bg-gradient-to-r from-purple-500 to-purple-600"
+              icon="⭐"
+            />
+          </div>
 
-          <SectionCard
-            title="Crafts Prováveis"
-            items={getFilteredItems(allItems.craftsItems)}
-            sectionType="craft"
-            userProgress={userProgress}
-            onProgressUpdate={updateProgress}
-            onItemUpdate={updateCustomItem}
-            onDeleteItem={deleteItem}
-            onAddItem={() => addNewItem("craftsItems")}
-            color="bg-gradient-to-r from-orange-500 to-orange-600"
-            icon="🔧"
-          />
+          <div id="crafts-items">
+            <SectionCard
+              title="Crafts Prováveis"
+              items={getFilteredItems(allItems.craftsItems)}
+              sectionType="craft"
+              userProgress={userProgress}
+              onProgressUpdate={updateProgress}
+              onItemUpdate={updateCustomItem}
+              onDeleteItem={deleteItem}
+              onAddItem={() => addNewItem("craftsItems")}
+              color="bg-gradient-to-r from-orange-500 to-orange-600"
+              icon="🔧"
+            />
+          </div>
 
-          <div className="lg:col-span-2">
+          <div id="hideout-items" className="lg:col-span-2">
             <SectionCard
               title="Hideout Importante"
               items={getFilteredItems(allItems.hideoutItems)}
