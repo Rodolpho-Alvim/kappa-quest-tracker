@@ -632,7 +632,9 @@ export default function KappaQuestTracker() {
 
         {/* Seções */}
         <div className="grid grid-cols-1 gap-8">
-          {sortedSectionConfigs.map(renderSection)}
+          {sortedSectionConfigs
+            .filter((config) => getFilteredItems(config.items).length > 0)
+            .map(renderSection)}
         </div>
       </div>
     </div>
