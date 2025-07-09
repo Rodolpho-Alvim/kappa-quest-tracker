@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { FIXED_ITEMS } from "@/data/fixed-items";
 import { useLocalStorage } from "@/hooks/use-local-storage";
+import { useSectionOrder } from "@/hooks/use-section-order";
 import type {
   CustomItems,
   DeletedItems,
@@ -61,6 +62,8 @@ export default function KappaQuestTracker() {
   const [searchTerm, setSearchTerm] = useState("");
   const [lastSaved, setLastSaved] = useState<Date | undefined>(undefined);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const sectionOrderHook = useSectionOrder();
+  const { getSectionOrder, setFullSectionOrder, resetOrder } = sectionOrderHook;
 
   // Auto-save
   useEffect(() => {
@@ -90,20 +93,7 @@ export default function KappaQuestTracker() {
       }
     );
 
-    const sections = [
-      "main-items",
-      "samples",
-      "recompensas-quests",
-      "troca-itens",
-      "streamer-items",
-      "crafts-items",
-      "hideout-importante",
-      "barter-gunsmith",
-      "barter-chaves",
-      "dorm206",
-      "portable-bunkhouse",
-      "dorm303",
-    ];
+    const sections = sectionConfigs.map((config) => config.id);
     sections.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
@@ -169,6 +159,142 @@ export default function KappaQuestTracker() {
       item.item.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
+
+  // Configuração das seções
+  const sectionConfigs = [
+    {
+      id: "main-items",
+      title: "Itens Principais",
+      sectionType: "main" as const,
+      color: "bg-gradient-to-r from-blue-500 to-blue-600",
+      icon: "🎯",
+      items: allItems.mainItems,
+      addItemKey: "mainItems" as keyof CustomItems,
+    },
+    {
+      id: "samples",
+      title: "Samples",
+      sectionType: "samples" as const,
+      color: "bg-gradient-to-r from-green-500 to-green-600",
+      icon: "💉",
+      items: allItems.samples,
+      addItemKey: "samples" as keyof CustomItems,
+    },
+    {
+      id: "recompensas-quests",
+      title: "Recompensas de Quests",
+      sectionType: "recompensas-quests" as const,
+      color: "bg-gradient-to-r from-amber-500 to-amber-600",
+      icon: "🏆",
+      items: allItems.recompensasQuests,
+      addItemKey: "recompensasQuests" as keyof CustomItems,
+    },
+    {
+      id: "troca-itens",
+      title: "Troca Itens",
+      sectionType: "troca-itens" as const,
+      color: "bg-gradient-to-r from-cyan-500 to-cyan-600",
+      icon: "🔄",
+      items: allItems.trocaItens,
+      addItemKey: "trocaItens" as keyof CustomItems,
+    },
+    {
+      id: "streamer-items",
+      title: "Streamer Items",
+      sectionType: "streamer" as const,
+      color: "bg-gradient-to-r from-purple-500 to-purple-600",
+      icon: "⭐",
+      items: allItems.streamerItems,
+      addItemKey: "streamerItems" as keyof CustomItems,
+    },
+    {
+      id: "crafts-items",
+      title: "Crafts Prováveis",
+      sectionType: "craft" as const,
+      color: "bg-gradient-to-r from-orange-500 to-orange-600",
+      icon: "🔧",
+      items: allItems.craftsItems,
+      addItemKey: "craftsItems" as keyof CustomItems,
+    },
+    {
+      id: "hideout-importante",
+      title: "Hideout Importante",
+      subtitle: "LAVATÓRIO 2 (PENTE 6)",
+      sectionType: "hideout" as const,
+      color: "bg-gradient-to-r from-red-500 to-red-600",
+      icon: "🏠",
+      items: allItems.hideoutImportante,
+      addItemKey: "hideoutImportante" as keyof CustomItems,
+    },
+    {
+      id: "barter-gunsmith",
+      title: "Barter Gunsmith",
+      sectionType: "barter-gunsmith" as const,
+      color: "bg-gradient-to-r from-gray-500 to-gray-600",
+      icon: "🔫",
+      items: allItems.barterGunsmith,
+      addItemKey: "barterGunsmith" as keyof CustomItems,
+    },
+    {
+      id: "barter-chaves",
+      title: "Barter Chaves",
+      sectionType: "barter-chaves" as const,
+      color: "bg-gradient-to-r from-yellow-500 to-yellow-600",
+      icon: "🗝️",
+      items: allItems.barterChaves,
+      addItemKey: "barterChaves" as keyof CustomItems,
+    },
+    {
+      id: "dorm206",
+      title: "DORM 206",
+      sectionType: "dorm206" as const,
+      color: "bg-gradient-to-r from-indigo-500 to-indigo-600",
+      icon: "🏢",
+      items: allItems.dorm206,
+      addItemKey: "dorm206" as keyof CustomItems,
+    },
+    {
+      id: "portable-bunkhouse",
+      title: "Portable Bunkhouse",
+      sectionType: "portable-bunkhouse" as const,
+      color: "bg-gradient-to-r from-teal-500 to-teal-600",
+      icon: "🏕️",
+      items: allItems.portableBunkhouse,
+      addItemKey: "portableBunkhouse" as keyof CustomItems,
+    },
+    {
+      id: "dorm303",
+      title: "DORM 303",
+      sectionType: "dorm303" as const,
+      color: "bg-gradient-to-r from-pink-500 to-pink-600",
+      icon: "🏢",
+      items: allItems.dorm303,
+      addItemKey: "dorm303" as keyof CustomItems,
+    },
+  ];
+
+  // Ordenar as seções conforme a ordem salva
+  const sortedSectionConfigs = [...sectionConfigs].sort((a, b) => {
+    return getSectionOrder(a.id) - getSectionOrder(b.id);
+  });
+
+  const renderSection = (config: (typeof sectionConfigs)[0]) => (
+    <div key={config.id} id={config.id}>
+      <SectionCard
+        title={config.title}
+        subtitle={config.subtitle}
+        items={getFilteredItems(config.items)}
+        sectionType={config.sectionType}
+        userProgress={userProgress}
+        onProgressUpdate={updateProgress}
+        onItemUpdate={updateCustomItem}
+        onDeleteItem={deleteItem}
+        onAddItem={() => addNewItem(config.addItemKey)}
+        color={config.color}
+        icon={config.icon}
+      />
+    </div>
+  );
 
   const updateProgress = (itemId: string, field: string, value: any) => {
     setUserProgress((prev) => ({
@@ -325,136 +451,36 @@ export default function KappaQuestTracker() {
     .filter((item) => userProgress[item.id]?.completed).length;
 
   // Dados para a sidebar de navegação
-  const navigationSections = [
-    {
-      id: "main-items",
-      title: "Itens Principais",
-      icon: "🎯",
-      color: "bg-gradient-to-r from-blue-500 to-blue-600",
-      completedCount: allItems.mainItems.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.mainItems.length,
-    },
-    {
-      id: "samples",
-      title: "Samples",
-      icon: "💉",
-      color: "bg-gradient-to-r from-green-500 to-green-600",
-      completedCount: allItems.samples.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.samples.length,
-    },
-    {
-      id: "recompensas-quests",
-      title: "Recompensas de Quests",
-      icon: "🏆",
-      color: "bg-gradient-to-r from-amber-500 to-amber-600",
-      completedCount: allItems.recompensasQuests.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.recompensasQuests.length,
-    },
-    {
-      id: "troca-itens",
-      title: "Troca Itens",
-      icon: "🔄",
-      color: "bg-gradient-to-r from-cyan-500 to-cyan-600",
-      completedCount: allItems.trocaItens.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.trocaItens.length,
-    },
-    {
-      id: "streamer-items",
-      title: "Streamer Items",
-      icon: "⭐",
-      color: "bg-gradient-to-r from-purple-500 to-purple-600",
-      completedCount: allItems.streamerItems.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.streamerItems.length,
-    },
-    {
-      id: "crafts-items",
-      title: "Crafts Prováveis",
-      icon: "🔧",
-      color: "bg-gradient-to-r from-orange-500 to-orange-600",
-      completedCount: allItems.craftsItems.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.craftsItems.length,
-    },
-    {
-      id: "hideout-importante",
-      title: "Hideout Importante",
-      icon: "🏠",
-      color: "bg-gradient-to-r from-red-500 to-red-600",
-      completedCount: allItems.hideoutImportante.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.hideoutImportante.length,
-    },
-    {
-      id: "barter-gunsmith",
-      title: "Barter Gunsmith",
-      icon: "🔫",
-      color: "bg-gradient-to-r from-gray-500 to-gray-600",
-      completedCount: allItems.barterGunsmith.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.barterGunsmith.length,
-    },
-    {
-      id: "barter-chaves",
-      title: "Barter Chaves",
-      icon: "🗝️",
-      color: "bg-gradient-to-r from-yellow-500 to-yellow-600",
-      completedCount: allItems.barterChaves.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.barterChaves.length,
-    },
-    {
-      id: "dorm206",
-      title: "DORM 206",
-      icon: "🏢",
-      color: "bg-gradient-to-r from-indigo-500 to-indigo-600",
-      completedCount: allItems.dorm206.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.dorm206.length,
-    },
-    {
-      id: "portable-bunkhouse",
-      title: "Portable Bunkhouse",
-      icon: "🏕️",
-      color: "bg-gradient-to-r from-teal-500 to-teal-600",
-      completedCount: allItems.portableBunkhouse.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.portableBunkhouse.length,
-    },
-    {
-      id: "dorm303",
-      title: "DORM 303",
-      icon: "🏢",
-      color: "bg-gradient-to-r from-pink-500 to-pink-600",
-      completedCount: allItems.dorm303.filter(
-        (item) => userProgress[item.id]?.completed
-      ).length,
-      totalCount: allItems.dorm303.length,
-    },
-  ];
+  const navigationSections = sortedSectionConfigs.map((config) => ({
+    id: config.id,
+    title: config.title,
+    icon: config.icon,
+    color: config.color,
+    completedCount: config.items.filter(
+      (item) => userProgress[item.id]?.completed
+    ).length,
+    totalCount: config.items.length,
+  }));
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Navigation Sidebar */}
       <NavigationSidebar
-        sections={navigationSections}
+        sections={sortedSectionConfigs.map((config) => ({
+          id: config.id,
+          title: config.title,
+          icon: config.icon,
+          color: config.color,
+          completedCount: config.items.filter(
+            (item) => userProgress[item.id]?.completed
+          ).length,
+          totalCount: config.items.length,
+        }))}
         activeSection={activeSection}
         onSectionClick={setActiveSection}
+        getSectionOrder={getSectionOrder}
+        setFullSectionOrder={setFullSectionOrder}
+        resetOrder={resetOrder}
       />
 
       {/* Header */}
@@ -606,186 +632,7 @@ export default function KappaQuestTracker() {
 
         {/* Seções */}
         <div className="grid grid-cols-1 gap-8">
-          <div id="main-items">
-            <SectionCard
-              title="Itens Principais"
-              items={getFilteredItems(allItems.mainItems)}
-              sectionType="main"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("mainItems")}
-              color="bg-gradient-to-r from-blue-500 to-blue-600"
-              icon="🎯"
-            />
-          </div>
-
-          <div id="samples">
-            <SectionCard
-              title="Samples"
-              items={getFilteredItems(allItems.samples)}
-              sectionType="samples"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("samples")}
-              color="bg-gradient-to-r from-green-500 to-green-600"
-              icon="💉"
-            />
-          </div>
-
-          <div id="recompensas-quests">
-            <SectionCard
-              title="Recompensas de Quests"
-              items={getFilteredItems(allItems.recompensasQuests)}
-              sectionType="recompensas-quests"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("recompensasQuests")}
-              color="bg-gradient-to-r from-amber-500 to-amber-600"
-              icon="🏆"
-            />
-          </div>
-
-          <div id="troca-itens">
-            <SectionCard
-              title="Troca Itens"
-              items={getFilteredItems(allItems.trocaItens)}
-              sectionType="troca-itens"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("trocaItens")}
-              color="bg-gradient-to-r from-cyan-500 to-cyan-600"
-              icon="🔄"
-            />
-          </div>
-
-          <div id="streamer-items">
-            <SectionCard
-              title="Streamer Items"
-              items={getFilteredItems(allItems.streamerItems)}
-              sectionType="streamer"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("streamerItems")}
-              color="bg-gradient-to-r from-purple-500 to-purple-600"
-              icon="⭐"
-            />
-          </div>
-
-          <div id="crafts-items">
-            <SectionCard
-              title="Crafts Prováveis"
-              items={getFilteredItems(allItems.craftsItems)}
-              sectionType="craft"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("craftsItems")}
-              color="bg-gradient-to-r from-orange-500 to-orange-600"
-              icon="🔧"
-            />
-          </div>
-
-          <div id="hideout-importante">
-            <SectionCard
-              title="Hideout Importante"
-              subtitle="LAVATÓRIO 2 (PENTE 6)"
-              items={getFilteredItems(allItems.hideoutImportante)}
-              sectionType="hideout"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("hideoutImportante")}
-              color="bg-gradient-to-r from-red-500 to-red-600"
-              icon="🏠"
-            />
-          </div>
-
-          <div id="barter-gunsmith">
-            <SectionCard
-              title="Barter Gunsmith"
-              items={getFilteredItems(allItems.barterGunsmith)}
-              sectionType="barter-gunsmith"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("barterGunsmith")}
-              color="bg-gradient-to-r from-gray-500 to-gray-600"
-              icon="🔫"
-            />
-          </div>
-
-          <div id="barter-chaves">
-            <SectionCard
-              title="Barter Chaves"
-              items={getFilteredItems(allItems.barterChaves)}
-              sectionType="barter-chaves"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("barterChaves")}
-              color="bg-gradient-to-r from-yellow-500 to-yellow-600"
-              icon="🗝️"
-            />
-          </div>
-
-          <div id="dorm206">
-            <SectionCard
-              title="DORM 206"
-              items={getFilteredItems(allItems.dorm206)}
-              sectionType="dorm206"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("dorm206")}
-              color="bg-gradient-to-r from-indigo-500 to-indigo-600"
-              icon="🏢"
-            />
-          </div>
-
-          <div id="portable-bunkhouse">
-            <SectionCard
-              title="Portable Bunkhouse"
-              items={getFilteredItems(allItems.portableBunkhouse)}
-              sectionType="portable-bunkhouse"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("portableBunkhouse")}
-              color="bg-gradient-to-r from-teal-500 to-teal-600"
-              icon="🏕️"
-            />
-          </div>
-
-          <div id="dorm303">
-            <SectionCard
-              title="DORM 303"
-              items={getFilteredItems(allItems.dorm303)}
-              sectionType="dorm303"
-              userProgress={userProgress}
-              onProgressUpdate={updateProgress}
-              onItemUpdate={updateCustomItem}
-              onDeleteItem={deleteItem}
-              onAddItem={() => addNewItem("dorm303")}
-              color="bg-gradient-to-r from-pink-500 to-pink-600"
-              icon="🏢"
-            />
-          </div>
+          {sortedSectionConfigs.map(renderSection)}
         </div>
       </div>
     </div>

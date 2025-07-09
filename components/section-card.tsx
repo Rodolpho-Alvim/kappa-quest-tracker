@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useSectionOrder } from "@/hooks/use-section-order";
 import type {
   CraftItem,
   HideoutItem,
@@ -18,7 +19,19 @@ interface SectionCardProps {
   title: string;
   subtitle?: string;
   items: (QuestItem | StreamerItem | CraftItem | HideoutItem)[];
-  sectionType: "main" | "secondary" | "streamer" | "craft" | "hideout";
+  sectionType:
+    | "main"
+    | "samples"
+    | "recompensas-quests"
+    | "troca-itens"
+    | "streamer"
+    | "craft"
+    | "hideout"
+    | "barter-gunsmith"
+    | "barter-chaves"
+    | "dorm206"
+    | "portable-bunkhouse"
+    | "dorm303";
   userProgress: UserProgress;
   onProgressUpdate: (itemId: string, field: string, value: any) => void;
   onItemUpdate: (itemId: string, field: string, value: any) => void;
@@ -43,6 +56,8 @@ export function SectionCard({
 }: SectionCardProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [showCompleted, setShowCompleted] = useState(true);
+
+  const { getSectionOrder } = useSectionOrder();
 
   const completedCount = items.filter(
     (item) => userProgress[item.id]?.completed
