@@ -1,8 +1,8 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { ChevronRight } from "lucide-react";
 
 interface NavigationSidebarProps {
@@ -36,8 +36,8 @@ export function NavigationSidebar({
   };
 
   return (
-    <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50">
-      <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0 p-1 max-w-xs max-h-[00px] overflow-auto">
+    <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
+      <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0 p-1 max-w-xs ">
         <div className="space-y-0.5">
           <div className="text-xs font-semibold text-gray-600 px-2 py-1">
             📋 Navegação Rápida
