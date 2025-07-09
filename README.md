@@ -1,4 +1,4 @@
-# 🎯 Kappa Quest Tracker
+# kappa-quest-tracker
 
 Escape from Tarkov - Container Kappa Progress Tracker
 
@@ -23,3 +23,4 @@ Escape from Tarkov - Container Kappa Progress Tracker
 ```bash
 npm install
 npm run dev
+```
