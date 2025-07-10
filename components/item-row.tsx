@@ -43,7 +43,8 @@ interface ItemRowProps {
     | "barter-chaves"
     | "dorm206"
     | "portable-bunkhouse"
-    | "dorm303";
+    | "dorm303"
+    | "chavesQuests";
   userProgress?: UserProgress[string];
   onProgressUpdate: (itemId: string, field: string, value: any) => void;
   onItemUpdate: (itemId: string, field: string, value: any) => void;
@@ -211,6 +212,43 @@ export function ItemRow({
               title="Quantidade necessária para completar a quest"
             />
           </div>
+
+          {/* Coluna Barter apenas para chavesQuests, logo após Qtd. R */}
+          {sectionType === "chavesQuests" && (
+            <div className="flex flex-col items-center min-w-[70px]">
+              <label className="text-xs text-gray-500 mb-1" title="Barter">
+                Barter
+              </label>
+              <Select
+                value={
+                  getValue("barter", "-") === "Yes"
+                    ? "Yes"
+                    : getValue("barter", "-") === "No"
+                    ? "No"
+                    : "-"
+                }
+                onValueChange={(value) =>
+                  onProgressUpdate(
+                    item.id,
+                    "barter",
+                    value === "-" ? "" : value
+                  )
+                }
+              >
+                <SelectTrigger
+                  className="w-16 h-8 text-xs"
+                  title="Pode ser trocado?"
+                >
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="-">-</SelectItem>
+                  <SelectItem value="Yes">Sim</SelectItem>
+                  <SelectItem value="No">Não</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          )}
 
           {/* FIR - Found in Raid (apenas para seções que têm) */}
           {(sectionType === "main" ||

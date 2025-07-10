@@ -31,7 +31,8 @@ interface SectionCardProps {
     | "barter-chaves"
     | "dorm206"
     | "portable-bunkhouse"
-    | "dorm303";
+    | "dorm303"
+    | "chavesQuests";
   userProgress: UserProgress;
   onProgressUpdate: (itemId: string, field: string, value: any) => void;
   onItemUpdate: (itemId: string, field: string, value: any) => void;

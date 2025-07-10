@@ -93,6 +93,7 @@ export default function KappaQuestTracker() {
       dorm206: [],
       portableBunkhouse: [],
       dorm303: [],
+      chavesQuests: [],
     }
   );
   const [deletedItems, setDeletedItems] = useLocalStorage<DeletedItems>(
@@ -179,6 +180,10 @@ export default function KappaQuestTracker() {
         ...FIXED_ITEMS.streamerItems,
         ...customItems.streamerItems,
       ]),
+      chavesQuests: filterDeleted([
+        ...FIXED_ITEMS.chavesQuests,
+        ...((customItems.chavesQuests ?? []) as any[]),
+      ]),
       craftsItems: filterDeleted([
         ...FIXED_ITEMS.craftsItems,
         ...customItems.craftsItems,
@@ -251,6 +256,16 @@ export default function KappaQuestTracker() {
       icon: "⭐",
       items: allItems.streamerItems,
       addItemKey: "streamerItems" as keyof CustomItems,
+    },
+    // NOVA SEÇÃO: Chaves de Quests
+    {
+      id: "chavesQuests",
+      title: "Chaves de Quests",
+      sectionType: "chavesQuests",
+      color: "bg-gradient-to-r from-lime-500 to-lime-600",
+      icon: "🔑",
+      items: allItems.chavesQuests,
+      addItemKey: "chavesQuests" as keyof CustomItems,
     },
     {
       id: "crafts-items",
@@ -493,6 +508,7 @@ export default function KappaQuestTracker() {
         dorm206: [],
         portableBunkhouse: [],
         dorm303: [],
+        chavesQuests: [],
       });
       setDeletedItems({});
       alert("Tudo foi resetado!");
