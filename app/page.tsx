@@ -445,10 +445,14 @@ export default function KappaQuestTracker() {
   };
 
   // Calcular estatísticas
-  const totalItems = Object.values(allItems).flat().length;
+  const totalItems = Object.values(allItems)
+    .flat()
+    .filter((item) => !(item as any).isReference).length;
   const completedItems = Object.values(allItems)
     .flat()
-    .filter((item) => userProgress[item.id]?.completed).length;
+    .filter(
+      (item) => userProgress[item.id]?.completed && !(item as any).isReference
+    ).length;
 
   // Dados para a sidebar de navegação
   const navigationSections = sortedSectionConfigs.map((config) => ({
