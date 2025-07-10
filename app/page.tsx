@@ -6,7 +6,6 @@ import { AvisoBanner } from "@/components/AvisoBanner";
 import { Footer } from "@/components/Footer";
 import { HeaderBar } from "@/components/HeaderBar";
 import { HelpSection } from "@/components/HelpSection";
-import { NavigationSidebar } from "@/components/navigation-sidebar";
 import { SearchBar } from "@/components/SearchBar";
 import { SectionCard } from "@/components/section-card";
 import { SectionList } from "@/components/SectionList";
@@ -20,7 +19,12 @@ import type {
   DeletedItems,
   UserProgress,
 } from "@/types/quest-data";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+const NavigationSidebar = dynamic(
+  () => import("@/components/navigation-sidebar"),
+  { ssr: false }
+);
 // Adicionar import para ícone de menu
 import { Sheet, SheetOverlay, SheetPortal } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";

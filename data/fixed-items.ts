@@ -507,6 +507,7 @@ export const FIXED_ITEMS = {
   ],
 
   chavesQuests: [
+    { id: "cha-33", item: "Customs", qtdE: "", qtdR: "", isReference: true },
     { id: "cha-1", item: "Unknown", qtdE: "", qtdR: "1", barter: "No" },
     { id: "cha-2", item: "Dorms 206", qtdE: "", qtdR: "1", barter: "Yes" },
     { id: "cha-3", item: "Tarcone", qtdE: "", qtdR: "1", barter: "Yes" },

@@ -131,14 +131,14 @@ function SortableSectionItem({
   );
 }
 
-export function NavigationSidebar({
+const NavigationSidebar = ({
   sections,
   activeSection,
   onSectionClick,
   getSectionOrder,
   setFullSectionOrder,
   resetOrder,
-}: NavigationSidebarProps) {
+}: NavigationSidebarProps) => {
   // use as funções recebidas via props, não chame o hook de novo!
 
   // Garante que todas as seções tenham uma ordem inicial baseada na ordem do array original
@@ -224,4 +224,6 @@ export function NavigationSidebar({
       </div>
     </div>
   );
-}
+};
+
+export default NavigationSidebar;
