@@ -94,7 +94,7 @@ export const HelpSection: React.FC<HelpSectionProps> = ({
       </div>
       <div className="mt-4 p-4 bg-secondary rounded-lg border border-yellow-200 text-secondary-foreground">
         <p className="text-sm text-secondary-foreground">
-          <strong>💡 Dica:</strong>Use a busca para encontrar itens específicos
+          <strong>💡 Dica:</strong> Use a busca para encontrar itens específicos
           rapidamente.
         </p>
       </div>
