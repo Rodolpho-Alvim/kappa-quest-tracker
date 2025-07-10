@@ -94,9 +94,8 @@ export const HelpSection: React.FC<HelpSectionProps> = ({
       </div>
       <div className="mt-4 p-4 bg-secondary rounded-lg border border-yellow-200 text-secondary-foreground">
         <p className="text-sm text-secondary-foreground">
-          <strong>💡 Dica:</strong> Marque o checkbox quando tiver coletado
-          todos os itens necessários para aquela entrada. Use a busca para
-          encontrar itens específicos rapidamente.
+          <strong>💡 Dica:</strong>Use a busca para encontrar itens específicos
+          rapidamente.
         </p>
       </div>
       <div className="my-8 flex justify-center">
