@@ -1,6 +1,6 @@
 "use client";
 
-import type React from "react";
+import * as React from "react";
 
 import { AvisoBanner } from "@/components/AvisoBanner";
 import { Footer } from "@/components/Footer";
@@ -21,6 +21,57 @@ import type {
   UserProgress,
 } from "@/types/quest-data";
 import { useEffect, useState } from "react";
+// Adicionar import para ícone de menu
+import { Sheet, SheetOverlay, SheetPortal } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+
+// SheetContent sem botão de fechar
+import { cn } from "@/lib/utils";
+import * as SheetPrimitive from "@radix-ui/react-dialog";
+import { cva, type VariantProps } from "class-variance-authority";
+
+const sheetVariants = cva(
+  "fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
+  {
+    variants: {
+      side: {
+        top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+        bottom:
+          "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+        right:
+          "inset-y-0 right-0 h-full w-3/4  border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+      },
+    },
+    defaultVariants: {
+      side: "right",
+    },
+  }
+);
+
+interface SheetContentNoCloseProps
+  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
+    VariantProps<typeof sheetVariants> {
+  children: React.ReactNode;
+  side?: "top" | "bottom" | "left" | "right";
+  className?: string;
+}
+const SheetContentNoClose = React.forwardRef<
+  HTMLDivElement,
+  SheetContentNoCloseProps
+>(({ side = "right", className, children, ...props }, ref) => (
+  <SheetPortal>
+    <SheetOverlay />
+    <SheetPrimitive.Content
+      ref={ref}
+      className={cn(sheetVariants({ side }), className)}
+      {...props}
+    >
+      {children}
+    </SheetPrimitive.Content>
+  </SheetPortal>
+));
+SheetContentNoClose.displayName = "SheetContentNoClose";
 
 export default function KappaQuestTracker() {
   const [userProgress, setUserProgress] = useLocalStorage<UserProgress>(
@@ -55,6 +106,18 @@ export default function KappaQuestTracker() {
   const { getSectionOrder, setFullSectionOrder, resetOrder } = sectionOrderHook;
   const [showAviso, setShowAviso] = useState(true);
   const [showHelp, setShowHelp] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Função para detectar mobile
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  // Atualizar ao redimensionar
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) setSidebarOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Auto-save
   useEffect(() => {
@@ -486,40 +549,92 @@ export default function KappaQuestTracker() {
   }));
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Navigation Sidebar */}
-      <NavigationSidebar
-        sections={sortedSectionConfigs.map((config) => ({
-          id: config.id,
-          title: config.title,
-          icon: config.icon,
-          color: config.color,
-          completedCount: config.items.filter((item) => {
-            if ((item as any).isReference) return false;
-            const qtdE = Number(
-              userProgress[item.id]?.qtdE ?? (item as any).qtdE ?? 0
-            );
-            const qtdR = Number(
-              userProgress[item.id]?.qtdR ?? (item as any).qtdR ?? 0
-            );
-            const firRequired =
-              (item as any).fir === "Yes" ||
-              userProgress[item.id]?.fir === "Yes";
-            const firOk =
-              !firRequired ||
-              userProgress[item.id]?.fir === "Yes" ||
-              (item as any).fir === "Yes";
-            return qtdE >= qtdR && firOk && qtdR > 0;
-          }).length,
-          totalCount: config.items.filter((item) => !(item as any).isReference)
-            .length,
-        }))}
-        activeSection={activeSection}
-        onSectionClick={setActiveSection}
-        getSectionOrder={getSectionOrder}
-        setFullSectionOrder={setFullSectionOrder}
-        resetOrder={resetOrder}
-      />
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 relative">
+      {/* Botão flutuante para abrir sidebar no mobile */}
+      <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+        <SheetContentNoClose side="right" className="block md:hidden p-0 w-64">
+          <NavigationSidebar
+            sections={sortedSectionConfigs.map((config) => ({
+              id: config.id,
+              title: config.title,
+              icon: config.icon,
+              color: config.color,
+              completedCount: config.items.filter((item) => {
+                if ((item as any).isReference) return false;
+                const qtdE = Number(
+                  userProgress[item.id]?.qtdE ?? (item as any).qtdE ?? 0
+                );
+                const qtdR = Number(
+                  userProgress[item.id]?.qtdR ?? (item as any).qtdR ?? 0
+                );
+                const firRequired =
+                  (item as any).fir === "Yes" ||
+                  userProgress[item.id]?.fir === "Yes";
+                const firOk =
+                  !firRequired ||
+                  userProgress[item.id]?.fir === "Yes" ||
+                  (item as any).fir === "Yes";
+                return qtdE >= qtdR && firOk && qtdR > 0;
+              }).length,
+              totalCount: config.items.filter(
+                (item) => !(item as any).isReference
+              ).length,
+            }))}
+            activeSection={activeSection}
+            onSectionClick={(id) => {
+              setActiveSection(id);
+              setSidebarOpen(false);
+            }}
+            getSectionOrder={getSectionOrder}
+            setFullSectionOrder={setFullSectionOrder}
+            resetOrder={resetOrder}
+          />
+        </SheetContentNoClose>
+        <button
+          className="md:hidden fixed bottom-6 right-6 z-50 bg-blue-600 text-white rounded-full p-4 shadow-lg focus:outline-none"
+          onClick={() => setSidebarOpen(true)}
+          aria-label="Abrir menu"
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+      </Sheet>
+
+      {/* Sidebar fixa só no desktop */}
+      <div className="hidden md:block">
+        <NavigationSidebar
+          sections={sortedSectionConfigs.map((config) => ({
+            id: config.id,
+            title: config.title,
+            icon: config.icon,
+            color: config.color,
+            completedCount: config.items.filter((item) => {
+              if ((item as any).isReference) return false;
+              const qtdE = Number(
+                userProgress[item.id]?.qtdE ?? (item as any).qtdE ?? 0
+              );
+              const qtdR = Number(
+                userProgress[item.id]?.qtdR ?? (item as any).qtdR ?? 0
+              );
+              const firRequired =
+                (item as any).fir === "Yes" ||
+                userProgress[item.id]?.fir === "Yes";
+              const firOk =
+                !firRequired ||
+                userProgress[item.id]?.fir === "Yes" ||
+                (item as any).fir === "Yes";
+              return qtdE >= qtdR && firOk && qtdR > 0;
+            }).length,
+            totalCount: config.items.filter(
+              (item) => !(item as any).isReference
+            ).length,
+          }))}
+          activeSection={activeSection}
+          onSectionClick={setActiveSection}
+          getSectionOrder={getSectionOrder}
+          setFullSectionOrder={setFullSectionOrder}
+          resetOrder={resetOrder}
+        />
+      </div>
 
       {/* Header */}
       <HeaderBar>
@@ -532,11 +647,11 @@ export default function KappaQuestTracker() {
       </HeaderBar>
 
       {/* Aviso importante sobre atualização dos IDs dos itens */}
-      <div className="max-w-[1400px] mx-auto px-6 pr-80">
+      <div className="max-w-[1400px] mx-auto px-3 md:px-6 md:pr-80">
         <AvisoBanner showAviso={showAviso} setShowAviso={setShowAviso} />
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 py-8 pr-80">
+      <div className="max-w-[1400px] mx-auto px-3 py-8 md:px-6 md:pr-80">
         <HelpSection showHelp={showHelp} setShowHelp={setShowHelp} />
 
         {/* Dashboard de Estatísticas */}
