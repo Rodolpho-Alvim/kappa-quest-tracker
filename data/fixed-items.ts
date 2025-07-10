@@ -277,6 +277,7 @@ export const FIXED_ITEMS = {
     { id: "main-77", item: "Power cord", qtdE: "", qtdR: "2", fir: "Yes" },
     { id: "main-78", item: "Wire", qtdE: "", qtdR: "5", fir: "Yes" },
     { id: "main-79", item: "Capacitor", qtdE: "", qtdR: "5", fir: "Yes" },
+    { id: "main-80", item: "Toolset", qtdE: "", qtdR: "2", fir: "No" },
   ],
 
   samples: [
