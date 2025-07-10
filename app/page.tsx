@@ -582,8 +582,8 @@ export default function KappaQuestTracker() {
         />
 
         {/* Seção de Ajuda */}
-        <div className="mb-8 bg-white rounded-lg shadow-sm border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="mb-8 bg-card rounded-lg shadow-sm border p-6 text-card-foreground">
+          <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-foreground">
             📚 Como usar o Kappa Quest Tracker
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
@@ -591,7 +591,7 @@ export default function KappaQuestTracker() {
               <h3 className="font-medium text-blue-600">
                 📊 Qtd. E (Quantidade Encontrada)
               </h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 Quantos itens você já possui no seu stash ou encontrou. Atualize
                 conforme coleta os itens.
               </p>
@@ -600,7 +600,7 @@ export default function KappaQuestTracker() {
               <h3 className="font-medium text-green-600">
                 🎯 Qtd. R (Quantidade Requerida)
               </h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 Quantos itens você precisa para completar a quest ou objetivo.
                 Alguns podem ter requisitos específicos.
               </p>
@@ -609,18 +609,31 @@ export default function KappaQuestTracker() {
               <h3 className="font-medium text-purple-600">
                 🔍 FIR (Found in Raid)
               </h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 Se o item precisa ter status "Found in Raid" (encontrado na
                 raid) para ser válido na quest.
               </p>
             </div>
           </div>
-          <div className="mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-            <p className="text-sm text-yellow-800">
+          <div className="mt-4 p-4 bg-secondary rounded-lg border border-yellow-200 text-secondary-foreground">
+            <p className="text-sm text-secondary-foreground">
               <strong>💡 Dica:</strong> Marque o checkbox quando tiver coletado
               todos os itens necessários para aquela entrada. Use a busca para
               encontrar itens específicos rapidamente.
             </p>
+          </div>
+          {/* Player do vídeo do Binoia */}
+          <div className="my-8 flex justify-center">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/-D4S9Ar1L5s"
+              title="Tutorial do Binoia sobre a planilha"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="rounded-lg shadow-lg max-w-full"
+            ></iframe>
           </div>
         </div>
 
