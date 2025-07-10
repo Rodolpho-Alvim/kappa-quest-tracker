@@ -2,7 +2,6 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import {
   closestCenter,
   DndContext,
@@ -197,53 +196,32 @@ export function NavigationSidebar({
   };
 
   return (
-    <div className="md:fixed md:right-0 md:top-[54%] md:transform md:-translate-y-1/2 md:z-50 w-full md:w-auto">
-      <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0 p-2 max-w-xs w-full md:w-auto animate-none md:animate-none">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between px-2 py-1">
-            <div className="text-xs font-semibold text-gray-600">
-              📋 Navegação Rápida
-            </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={resetOrder}
-              className="h-6 w-6 p-0 text-gray-500 hover:text-gray-700"
-              title="Resetar ordem das seções"
-            >
-              <RotateCcw className="h-3 w-3" />
-            </Button>
-          </div>
-
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
+    <div>
+      <div className="flex flex-col gap-2 p-2 pt-6">
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={sortedSections.map((section) => section.id)}
+            strategy={verticalListSortingStrategy}
           >
-            <SortableContext
-              items={sortedSections.map((s) => s.id)}
-              strategy={verticalListSortingStrategy}
-            >
-              <div className="space-y-1">
-                {sortedSections.map((section) => (
-                  <SortableSectionItem
-                    key={section.id}
-                    section={section}
-                    isActive={activeSection === section.id}
-                    onSectionClick={scrollToSection}
-                  />
-                ))}
-              </div>
-            </SortableContext>
-          </DndContext>
-
-          <div className="border-t pt-1 mt-2">
-            <div className="text-xs text-gray-500 px-2">
-              💡 Arraste para reordenar • Clique para navegar
-            </div>
-          </div>
-        </div>
-      </Card>
+            {sortedSections.map((section) => (
+              <SortableSectionItem
+                key={section.id}
+                section={section}
+                isActive={activeSection === section.id}
+                onSectionClick={scrollToSection}
+              />
+            ))}
+          </SortableContext>
+        </DndContext>
+        <Button variant="ghost" size="sm" className="mt-4" onClick={resetOrder}>
+          <RotateCcw className="h-4 w-4 mr-2" />
+          Restaurar Ordem
+        </Button>
+      </div>
     </div>
   );
 }

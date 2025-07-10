@@ -616,7 +616,7 @@ export default function KappaQuestTracker() {
       </Sheet>
 
       {/* Sidebar fixa só no desktop */}
-      <div className="hidden md:block">
+      <div className="hidden md:block md:w-80 md:h-screen md:fixed md:top-0 md:right-0 md:z-0 bg-white border-l shadow-none overflow-y-auto">
         <NavigationSidebar
           sections={sortedSectionConfigs.map((config) => ({
             id: config.id,
