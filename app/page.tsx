@@ -2,18 +2,15 @@
 
 import type React from "react";
 
+import { AvisoBanner } from "@/components/AvisoBanner";
+import { HeaderBar } from "@/components/HeaderBar";
+import { HelpSection } from "@/components/HelpSection";
 import { NavigationSidebar } from "@/components/navigation-sidebar";
+import { SearchBar } from "@/components/SearchBar";
 import { SectionCard } from "@/components/section-card";
+import { SectionList } from "@/components/SectionList";
+import { SettingsDialog } from "@/components/SettingsDialog";
 import { StatsDashboard } from "@/components/stats-dashboard";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { FIXED_ITEMS } from "@/data/fixed-items";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import { useSectionOrder } from "@/hooks/use-section-order";
@@ -22,15 +19,6 @@ import type {
   DeletedItems,
   UserProgress,
 } from "@/types/quest-data";
-import {
-  Download,
-  RefreshCw,
-  RotateCcw,
-  Search,
-  Settings,
-  Upload,
-} from "lucide-react";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function KappaQuestTracker() {
@@ -64,6 +52,8 @@ export default function KappaQuestTracker() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const sectionOrderHook = useSectionOrder();
   const { getSectionOrder, setFullSectionOrder, resetOrder } = sectionOrderHook;
+  const [showAviso, setShowAviso] = useState(true);
+  const [showHelp, setShowHelp] = useState(true);
 
   // Auto-save
   useEffect(() => {
@@ -190,15 +180,6 @@ export default function KappaQuestTracker() {
       addItemKey: "recompensasQuests" as keyof CustomItems,
     },
     {
-      id: "troca-itens",
-      title: "Troca Itens",
-      sectionType: "troca-itens" as const,
-      color: "bg-gradient-to-r from-cyan-500 to-cyan-600",
-      icon: "🔄",
-      items: allItems.trocaItens,
-      addItemKey: "trocaItens" as keyof CustomItems,
-    },
-    {
       id: "streamer-items",
       title: "Streamer Items",
       sectionType: "streamer" as const,
@@ -217,9 +198,19 @@ export default function KappaQuestTracker() {
       addItemKey: "craftsItems" as keyof CustomItems,
     },
     {
+      id: "troca-itens",
+      title: "Troca Itens",
+      subtitle: "Elcan (Break the deal)",
+      sectionType: "troca-itens" as const,
+      color: "bg-gradient-to-r from-cyan-500 to-cyan-600",
+      icon: "🔄",
+      items: allItems.trocaItens,
+      addItemKey: "trocaItens" as keyof CustomItems,
+    },
+    {
       id: "hideout-importante",
       title: "Hideout Importante",
-      subtitle: "LAVATÓRIO 2 (PENTE 6)",
+      subtitle: "LAVATÓRIO 2 (PENTE)",
       sectionType: "hideout" as const,
       color: "bg-gradient-to-r from-red-500 to-red-600",
       icon: "🏠",
@@ -491,88 +482,23 @@ export default function KappaQuestTracker() {
       />
 
       {/* Header */}
-      <div className="bg-white shadow-lg border-b">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Image
-                src="/images/kappa-container.jpg"
-                alt="Kappa Container"
-                width={100}
-                height={100}
-                className="rounded-lg shadow-md border border-yellow-400 bg-white"
-                priority
-              />
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900">
-                  Kappa Quest Tracker
-                </h1>
-                <p className="text-gray-600">
-                  Escape from Tarkov - Container Kappa Progress
-                </p>
-              </div>
-            </div>
+      <HeaderBar>
+        <SettingsDialog
+          handleExport={handleExport}
+          handleImport={handleImport}
+          restoreDefaults={restoreDefaults}
+          handleReset={handleReset}
+        />
+      </HeaderBar>
 
-            <div className="flex items-center gap-3">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="outline" size="sm">
-                    <Settings className="h-4 w-4 mr-2" />
-                    Configurações
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Configurações</DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-4">
-                    <Button onClick={handleExport} className="w-full">
-                      <Download className="h-4 w-4 mr-2" />
-                      Exportar Progresso
-                    </Button>
-                    <label className="cursor-pointer">
-                      <Button
-                        variant="outline"
-                        className="w-full bg-transparent"
-                        asChild
-                      >
-                        <span>
-                          <Upload className="h-4 w-4 mr-2" />
-                          Importar Progresso
-                        </span>
-                      </Button>
-                      <input
-                        type="file"
-                        accept=".json"
-                        onChange={handleImport}
-                        className="hidden"
-                      />
-                    </label>
-                    <Button
-                      onClick={restoreDefaults}
-                      variant="outline"
-                      className="w-full bg-transparent"
-                    >
-                      <RefreshCw className="h-4 w-4 mr-2" />
-                      Restaurar Itens Padrão
-                    </Button>
-                    <Button
-                      onClick={handleReset}
-                      variant="destructive"
-                      className="w-full"
-                    >
-                      <RotateCcw className="h-4 w-4 mr-2" />
-                      Reset Completo
-                    </Button>
-                  </div>
-                </DialogContent>
-              </Dialog>
-            </div>
-          </div>
-        </div>
+      {/* Aviso importante sobre atualização dos IDs dos itens */}
+      <div className="max-w-[1400px] mx-auto px-6 pr-80">
+        <AvisoBanner showAviso={showAviso} setShowAviso={setShowAviso} />
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 py-8 pr-80">
+        <HelpSection showHelp={showHelp} setShowHelp={setShowHelp} />
+
         {/* Dashboard de Estatísticas */}
         <StatsDashboard
           totalItems={totalItems}
@@ -581,81 +507,13 @@ export default function KappaQuestTracker() {
           lastSaved={lastSaved}
         />
 
-        {/* Seção de Ajuda */}
-        <div className="mb-8 bg-card rounded-lg shadow-sm border p-6 text-card-foreground">
-          <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-foreground">
-            📚 Como usar o Kappa Quest Tracker
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-            <div className="space-y-2">
-              <h3 className="font-medium text-blue-600">
-                📊 Qtd. E (Quantidade Encontrada)
-              </h3>
-              <p className="text-muted-foreground">
-                Quantos itens você já possui no seu stash ou encontrou. Atualize
-                conforme coleta os itens.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-medium text-green-600">
-                🎯 Qtd. R (Quantidade Requerida)
-              </h3>
-              <p className="text-muted-foreground">
-                Quantos itens você precisa para completar a quest ou objetivo.
-                Alguns podem ter requisitos específicos.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-medium text-purple-600">
-                🔍 FIR (Found in Raid)
-              </h3>
-              <p className="text-muted-foreground">
-                Se o item precisa ter status "Found in Raid" (encontrado na
-                raid) para ser válido na quest.
-              </p>
-            </div>
-          </div>
-          <div className="mt-4 p-4 bg-secondary rounded-lg border border-yellow-200 text-secondary-foreground">
-            <p className="text-sm text-secondary-foreground">
-              <strong>💡 Dica:</strong> Marque o checkbox quando tiver coletado
-              todos os itens necessários para aquela entrada. Use a busca para
-              encontrar itens específicos rapidamente.
-            </p>
-          </div>
-          {/* Player do vídeo do Binoia */}
-          <div className="my-8 flex justify-center">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/-D4S9Ar1L5s"
-              title="Tutorial do Binoia sobre a planilha"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              className="rounded-lg shadow-lg max-w-full"
-            ></iframe>
-          </div>
-        </div>
+        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-        {/* Barra de Busca */}
-        <div className="mb-8">
-          <div className="relative max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              placeholder="Buscar itens..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-        </div>
-
-        {/* Seções */}
-        <div className="grid grid-cols-1 gap-8">
-          {sortedSectionConfigs
-            .filter((config) => getFilteredItems(config.items).length > 0)
-            .map(renderSection)}
-        </div>
+        <SectionList
+          sortedSectionConfigs={sortedSectionConfigs}
+          getFilteredItems={getFilteredItems}
+          renderSection={renderSection}
+        />
       </div>
     </div>
   );
