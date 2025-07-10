@@ -442,9 +442,22 @@ export default function KappaQuestTracker() {
     .filter((item) => !(item as any).isReference).length;
   const completedItems = Object.values(allItems)
     .flat()
-    .filter(
-      (item) => userProgress[item.id]?.completed && !(item as any).isReference
-    ).length;
+    .filter((item) => {
+      if ((item as any).isReference) return false;
+      const qtdE = Number(
+        userProgress[item.id]?.qtdE ?? (item as any).qtdE ?? 0
+      );
+      const qtdR = Number(
+        userProgress[item.id]?.qtdR ?? (item as any).qtdR ?? 0
+      );
+      const firRequired =
+        (item as any).fir === "Yes" || userProgress[item.id]?.fir === "Yes";
+      const firOk =
+        !firRequired ||
+        userProgress[item.id]?.fir === "Yes" ||
+        (item as any).fir === "Yes";
+      return qtdE >= qtdR && firOk && qtdR > 0;
+    }).length;
 
   // Dados para a sidebar de navegação
   const navigationSections = sortedSectionConfigs.map((config) => ({
@@ -452,9 +465,22 @@ export default function KappaQuestTracker() {
     title: config.title,
     icon: config.icon,
     color: config.color,
-    completedCount: config.items.filter(
-      (item) => userProgress[item.id]?.completed && !(item as any).isReference
-    ).length,
+    completedCount: config.items.filter((item) => {
+      if ((item as any).isReference) return false;
+      const qtdE = Number(
+        userProgress[item.id]?.qtdE ?? (item as any).qtdE ?? 0
+      );
+      const qtdR = Number(
+        userProgress[item.id]?.qtdR ?? (item as any).qtdR ?? 0
+      );
+      const firRequired =
+        (item as any).fir === "Yes" || userProgress[item.id]?.fir === "Yes";
+      const firOk =
+        !firRequired ||
+        userProgress[item.id]?.fir === "Yes" ||
+        (item as any).fir === "Yes";
+      return qtdE >= qtdR && firOk && qtdR > 0;
+    }).length,
     totalCount: config.items.filter((item) => !(item as any).isReference)
       .length,
   }));
@@ -468,10 +494,23 @@ export default function KappaQuestTracker() {
           title: config.title,
           icon: config.icon,
           color: config.color,
-          completedCount: config.items.filter(
-            (item) =>
-              userProgress[item.id]?.completed && !(item as any).isReference
-          ).length,
+          completedCount: config.items.filter((item) => {
+            if ((item as any).isReference) return false;
+            const qtdE = Number(
+              userProgress[item.id]?.qtdE ?? (item as any).qtdE ?? 0
+            );
+            const qtdR = Number(
+              userProgress[item.id]?.qtdR ?? (item as any).qtdR ?? 0
+            );
+            const firRequired =
+              (item as any).fir === "Yes" ||
+              userProgress[item.id]?.fir === "Yes";
+            const firOk =
+              !firRequired ||
+              userProgress[item.id]?.fir === "Yes" ||
+              (item as any).fir === "Yes";
+            return qtdE >= qtdR && firOk && qtdR > 0;
+          }).length,
           totalCount: config.items.filter((item) => !(item as any).isReference)
             .length,
         }))}
