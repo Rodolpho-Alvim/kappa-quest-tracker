@@ -654,12 +654,26 @@ export default function KappaQuestTracker() {
 
       {/* Header */}
       <HeaderBar>
-        <SettingsDialog
-          handleExport={handleExport}
-          handleImport={handleImport}
-          restoreDefaults={restoreDefaults}
-          handleReset={handleReset}
-        />
+        {/* Botão de configurações alinhado ao conteúdo no desktop */}
+        <div className="hidden md:flex w-full justify-center mt-6 mb-2">
+          <div className="w-full max-w-[1400px] px-80 flex justify-end">
+            <SettingsDialog
+              handleExport={handleExport}
+              handleImport={handleImport}
+              restoreDefaults={restoreDefaults}
+              handleReset={handleReset}
+            />
+          </div>
+        </div>
+        <div className="md:hidden">
+          <SettingsDialog
+            handleExport={handleExport}
+            handleImport={handleImport}
+            restoreDefaults={restoreDefaults}
+            handleReset={handleReset}
+            iconOnly
+          />
+        </div>
       </HeaderBar>
 
       {/* Aviso importante sobre atualização dos IDs dos itens */}

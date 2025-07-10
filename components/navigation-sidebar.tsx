@@ -197,7 +197,7 @@ export function NavigationSidebar({
   };
 
   return (
-    <div className="md:fixed md:right-0 md:top-[55%] md:transform md:-translate-y-1/2 md:z-50 w-full md:w-auto">
+    <div className="md:fixed md:right-0 md:top-[54%] md:transform md:-translate-y-1/2 md:z-50 w-full md:w-auto">
       <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0 p-2 max-w-xs w-full md:w-auto animate-none md:animate-none">
         <div className="space-y-2">
           <div className="flex items-center justify-between px-2 py-1">
