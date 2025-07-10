@@ -62,7 +62,7 @@ export function SectionCard({
   const completedCount = items.filter(
     (item) => userProgress[item.id]?.completed
   ).length;
-  const totalCount = items.length;
+  const totalCount = items.filter((item) => !(item as any).isReference).length;
 
   const filteredItems = showCompleted
     ? items

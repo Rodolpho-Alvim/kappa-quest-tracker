@@ -457,9 +457,10 @@ export default function KappaQuestTracker() {
     icon: config.icon,
     color: config.color,
     completedCount: config.items.filter(
-      (item) => userProgress[item.id]?.completed
+      (item) => userProgress[item.id]?.completed && !(item as any).isReference
     ).length,
-    totalCount: config.items.length,
+    totalCount: config.items.filter((item) => !(item as any).isReference)
+      .length,
   }));
 
   return (
@@ -472,9 +473,11 @@ export default function KappaQuestTracker() {
           icon: config.icon,
           color: config.color,
           completedCount: config.items.filter(
-            (item) => userProgress[item.id]?.completed
+            (item) =>
+              userProgress[item.id]?.completed && !(item as any).isReference
           ).length,
-          totalCount: config.items.length,
+          totalCount: config.items.filter((item) => !(item as any).isReference)
+            .length,
         }))}
         activeSection={activeSection}
         onSectionClick={setActiveSection}
