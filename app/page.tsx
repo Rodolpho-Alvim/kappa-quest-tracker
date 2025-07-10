@@ -3,6 +3,7 @@
 import type React from "react";
 
 import { AvisoBanner } from "@/components/AvisoBanner";
+import { Footer } from "@/components/Footer";
 import { HeaderBar } from "@/components/HeaderBar";
 import { HelpSection } from "@/components/HelpSection";
 import { NavigationSidebar } from "@/components/navigation-sidebar";
@@ -515,6 +516,7 @@ export default function KappaQuestTracker() {
           renderSection={renderSection}
         />
       </div>
+      <Footer />
     </div>
   );
 }
