@@ -95,7 +95,8 @@ export const HelpSection: React.FC<HelpSectionProps> = ({
       <div className="mt-4 p-4 bg-secondary rounded-lg border border-yellow-200 text-secondary-foreground">
         <p className="text-sm text-secondary-foreground">
           <strong>💡 Dica:</strong> Use a busca para encontrar itens específicos
-          rapidamente.
+          rapidamente. Recomendamos que você exporte seu progresso regularmente
+          para manter um backup seguro dos seus dados.
         </p>
       </div>
       <div className="my-8 flex justify-center">

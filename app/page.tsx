@@ -2,7 +2,6 @@
 
 import * as React from "react";
 
-import { AvisoBanner } from "@/components/AvisoBanner";
 import { Footer } from "@/components/Footer";
 import { HeaderBar } from "@/components/HeaderBar";
 import { HelpSection } from "@/components/HelpSection";
@@ -681,9 +680,9 @@ export default function KappaQuestTracker() {
       </HeaderBar>
 
       {/* Aviso importante sobre atualização dos IDs dos itens */}
-      <div className="max-w-[1400px] mx-auto px-3 md:px-6 md:pr-80">
+      {/* <div className="max-w-[1400px] mx-auto px-3 md:px-6 md:pr-80">
         <AvisoBanner showAviso={showAviso} setShowAviso={setShowAviso} />
-      </div>
+      </div> */}
 
       <div className="max-w-[1400px] mx-auto px-3 py-8 md:px-6 md:pr-80">
         <HelpSection showHelp={showHelp} setShowHelp={setShowHelp} />
