@@ -60,14 +60,23 @@ export function SectionCard({
 
   const { getSectionOrder } = useSectionOrder();
 
-  const completedCount = items.filter(
-    (item) => userProgress[item.id]?.completed
-  ).length;
+  // Lógica de completude igual ao restante do app
+  function isItemCompleted(item: any): boolean {
+    if (item.isReference) return false;
+    const progress = userProgress[item.id] || {};
+    const qtdE = Number(progress.qtdE ?? item.qtdE ?? 0);
+    const qtdR = Number(progress.qtdR ?? item.qtdR ?? 0);
+    const firRequired = item.fir === "Yes" || progress.fir === "Yes";
+    const firOk = !firRequired || progress.fir === "Yes" || item.fir === "Yes";
+    return qtdE >= qtdR && firOk && qtdR > 0;
+  }
+
+  const completedCount = items.filter(isItemCompleted).length;
   const totalCount = items.filter((item) => !(item as any).isReference).length;
 
   const filteredItems = showCompleted
     ? items
-    : items.filter((item) => !userProgress[item.id]?.completed);
+    : items.filter((item) => !isItemCompleted(item));
 
   return (
     <Card className="shadow-lg border-0 overflow-hidden">
