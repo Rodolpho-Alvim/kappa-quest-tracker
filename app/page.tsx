@@ -10,6 +10,8 @@ import { SectionCard } from "@/components/section-card";
 import { SectionList } from "@/components/SectionList";
 import { SettingsDialog } from "@/components/SettingsDialog";
 import { StatsDashboard } from "@/components/stats-dashboard";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Sheet, SheetOverlay, SheetPortal } from "@/components/ui/sheet";
 import { FIXED_ITEMS } from "@/data/fixed-items";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import { useSectionOrder } from "@/hooks/use-section-order";
@@ -18,6 +20,7 @@ import type {
   DeletedItems,
   UserProgress,
 } from "@/types/quest-data";
+import { ArrowUp } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 const NavigationSidebar = dynamic(
@@ -25,13 +28,10 @@ const NavigationSidebar = dynamic(
   { ssr: false }
 );
 // Adicionar import para ícone de menu
-import { Sheet, SheetOverlay, SheetPortal } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-
-// SheetContent sem botão de fechar
 import { cn } from "@/lib/utils";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cva, type VariantProps } from "class-variance-authority";
+import { Menu } from "lucide-react";
 
 const sheetVariants = cva(
   "fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
@@ -111,6 +111,7 @@ export default function KappaQuestTracker() {
   const [showAviso, setShowAviso] = useState(true);
   const [showHelp, setShowHelp] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Função para detectar mobile
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
@@ -151,7 +152,7 @@ export default function KappaQuestTracker() {
       }
     );
 
-    const sections = sectionConfigs.map((config) => config.id);
+    const sections = sectionConfigs.map((config) => config.scrollId);
     sections.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
@@ -226,6 +227,7 @@ export default function KappaQuestTracker() {
   const sectionConfigs = [
     {
       id: "main-items",
+      scrollId: "main",
       title: "Itens Principais",
       sectionType: "main" as const,
       color: "bg-gradient-to-r from-blue-500 to-blue-600",
@@ -235,6 +237,7 @@ export default function KappaQuestTracker() {
     },
     {
       id: "samples",
+      scrollId: "samples",
       title: "Samples",
       sectionType: "samples" as const,
       color: "bg-gradient-to-r from-green-500 to-green-600",
@@ -244,6 +247,7 @@ export default function KappaQuestTracker() {
     },
     {
       id: "recompensas-quests",
+      scrollId: "recompensas-quests",
       title: "Recompensas de Quests",
       sectionType: "recompensas-quests" as const,
       color: "bg-gradient-to-r from-amber-500 to-amber-600",
@@ -253,6 +257,7 @@ export default function KappaQuestTracker() {
     },
     {
       id: "streamer-items",
+      scrollId: "streamer",
       title: "Streamer Items",
       sectionType: "streamer" as const,
       color: "bg-gradient-to-r from-purple-500 to-purple-600",
@@ -260,9 +265,9 @@ export default function KappaQuestTracker() {
       items: allItems.streamerItems,
       addItemKey: "streamerItems" as keyof CustomItems,
     },
-    // NOVA SEÇÃO: Chaves de Quests
     {
       id: "chavesQuests",
+      scrollId: "chavesQuests",
       title: "Chaves de Quests",
       sectionType: "chavesQuests",
       color: "bg-gradient-to-r from-lime-500 to-lime-600",
@@ -272,6 +277,7 @@ export default function KappaQuestTracker() {
     },
     {
       id: "crafts-items",
+      scrollId: "craft",
       title: "Crafts Prováveis",
       sectionType: "craft" as const,
       color: "bg-gradient-to-r from-orange-500 to-orange-600",
@@ -281,6 +287,7 @@ export default function KappaQuestTracker() {
     },
     {
       id: "troca-itens",
+      scrollId: "troca-itens",
       title: "Troca Itens",
       subtitle: "Elcan (Break the deal)",
       sectionType: "troca-itens" as const,
@@ -291,6 +298,7 @@ export default function KappaQuestTracker() {
     },
     {
       id: "hideout-importante",
+      scrollId: "hideout",
       title: "Hideout Importante",
       subtitle: "LAVATÓRIO 2 (PENTE)",
       sectionType: "hideout" as const,
@@ -301,6 +309,7 @@ export default function KappaQuestTracker() {
     },
     {
       id: "barter-gunsmith",
+      scrollId: "barter-gunsmith",
       title: "Barter Gunsmith",
       sectionType: "barter-gunsmith" as const,
       color: "bg-gradient-to-r from-gray-500 to-gray-600",
@@ -310,6 +319,7 @@ export default function KappaQuestTracker() {
     },
     {
       id: "barter-chaves",
+      scrollId: "barter-chaves",
       title: "Barter Chaves",
       sectionType: "barter-chaves" as const,
       color: "bg-gradient-to-r from-yellow-500 to-yellow-600",
@@ -319,6 +329,7 @@ export default function KappaQuestTracker() {
     },
     {
       id: "dorm206",
+      scrollId: "dorm206",
       title: "DORM 206",
       sectionType: "dorm206" as const,
       color: "bg-gradient-to-r from-indigo-500 to-indigo-600",
@@ -328,6 +339,7 @@ export default function KappaQuestTracker() {
     },
     {
       id: "portable-bunkhouse",
+      scrollId: "portable-bunkhouse",
       title: "Portable Bunkhouse",
       sectionType: "portable-bunkhouse" as const,
       color: "bg-gradient-to-r from-teal-500 to-teal-600",
@@ -337,6 +349,7 @@ export default function KappaQuestTracker() {
     },
     {
       id: "dorm303",
+      scrollId: "dorm303",
       title: "DORM 303",
       sectionType: "dorm303" as const,
       color: "bg-gradient-to-r from-pink-500 to-pink-600",
@@ -348,11 +361,11 @@ export default function KappaQuestTracker() {
 
   // Ordenar as seções conforme a ordem salva
   const sortedSectionConfigs = [...sectionConfigs].sort((a, b) => {
-    return getSectionOrder(a.id) - getSectionOrder(b.id);
+    return getSectionOrder(a.scrollId) - getSectionOrder(b.scrollId);
   });
 
   const renderSection = (config: (typeof sectionConfigs)[0]) => (
-    <div key={config.id} id={config.id}>
+    <div key={config.id} id={config.scrollId}>
       <SectionCard
         title={config.title}
         subtitle={config.subtitle}
@@ -543,7 +556,7 @@ export default function KappaQuestTracker() {
 
   // Dados para a sidebar de navegação
   const navigationSections = sortedSectionConfigs.map((config) => ({
-    id: config.id,
+    id: config.scrollId,
     title: config.title,
     icon: config.icon,
     color: config.color,
@@ -567,14 +580,48 @@ export default function KappaQuestTracker() {
       .length,
   }));
 
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const pageHeight = document.documentElement.scrollHeight;
+      setShowScrollTop(scrollPosition >= pageHeight - 10);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 relative">
-      {/* Botão flutuante para abrir sidebar no mobile */}
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted relative">
+      {/* Header */}
+      <HeaderBar>
+        <div className="hidden md:flex w-full justify-center mt-6 mb-2">
+          <div className="w-full max-w-[1400px] px-80 flex justify-end items-center gap-2">
+            <SettingsDialog
+              handleExport={handleExport}
+              handleImport={handleImport}
+              restoreDefaults={restoreDefaults}
+              handleReset={handleReset}
+            />
+            <ThemeToggle />
+          </div>
+        </div>
+        <div className="md:hidden flex items-center gap-2">
+          <SettingsDialog
+            handleExport={handleExport}
+            handleImport={handleImport}
+            restoreDefaults={restoreDefaults}
+            handleReset={handleReset}
+            iconOnly
+          />
+          <ThemeToggle />
+        </div>
+      </HeaderBar>
+      {/* Sidebar mobile (Sheet) */}
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContentNoClose side="right" className="block md:hidden p-0 w-64">
           <NavigationSidebar
             sections={sortedSectionConfigs.map((config) => ({
-              id: config.id,
+              id: config.scrollId,
               title: config.title,
               icon: config.icon,
               color: config.color,
@@ -610,19 +657,18 @@ export default function KappaQuestTracker() {
           />
         </SheetContentNoClose>
         <button
-          className="md:hidden fixed bottom-6 right-6 z-50 bg-blue-600 text-white rounded-full p-4 shadow-lg focus:outline-none"
+          className="md:hidden fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground rounded-full p-4 shadow-lg focus:outline-none"
           onClick={() => setSidebarOpen(true)}
           aria-label="Abrir menu"
         >
           <Menu className="w-6 h-6" />
         </button>
       </Sheet>
-
-      {/* Sidebar fixa só no desktop */}
-      <div className="hidden md:block md:w-80 md:h-screen md:fixed md:top-0 md:right-0 md:z-0 bg-white border-l shadow-none overflow-y-auto">
+      {/* Sidebar fixa desktop */}
+      <div className="hidden md:block md:w-80 md:h-screen md:fixed md:top-0 md:right-0 md:z-0 bg-background border-l border-border shadow-none overflow-y-auto">
         <NavigationSidebar
           sections={sortedSectionConfigs.map((config) => ({
-            id: config.id,
+            id: config.scrollId,
             title: config.title,
             icon: config.icon,
             color: config.color,
@@ -655,29 +701,18 @@ export default function KappaQuestTracker() {
         />
       </div>
 
-      {/* Header */}
-      <HeaderBar>
-        {/* Botão de configurações alinhado ao conteúdo no desktop */}
-        <div className="hidden md:flex w-full justify-center mt-6 mb-2">
-          <div className="w-full max-w-[1400px] px-80 flex justify-end">
-            <SettingsDialog
-              handleExport={handleExport}
-              handleImport={handleImport}
-              restoreDefaults={restoreDefaults}
-              handleReset={handleReset}
-            />
-          </div>
+      {/* Botão centralizado para voltar ao topo, acima do footer, só no final da página */}
+      {showScrollTop && (
+        <div className="fixed left-0 right-0 bottom-12 z-50 w-full flex justify-center pointer-events-none">
+          <button
+            className="bg-primary text-primary-foreground rounded-full p-3 shadow-lg hover:bg-primary/80 transition pointer-events-auto"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="Voltar ao topo"
+          >
+            <ArrowUp className="w-6 h-6" />
+          </button>
         </div>
-        <div className="md:hidden">
-          <SettingsDialog
-            handleExport={handleExport}
-            handleImport={handleImport}
-            restoreDefaults={restoreDefaults}
-            handleReset={handleReset}
-            iconOnly
-          />
-        </div>
-      </HeaderBar>
+      )}
 
       {/* Aviso importante sobre atualização dos IDs dos itens */}
       {/* <div className="max-w-[1400px] mx-auto px-3 md:px-6 md:pr-80">

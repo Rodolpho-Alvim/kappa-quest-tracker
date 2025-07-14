@@ -73,9 +73,9 @@ export function ItemRow({
     !firRequired || userProgress?.fir === "Yes" || (item as any).fir === "Yes";
   const isCompleted = qtdE >= qtdR && firOk && qtdR > 0;
 
-  const bgColor = isEven ? "bg-gray-50" : "bg-white";
+  const bgColor = isEven ? "bg-muted/50" : "bg-background";
   const completedBg = isCompleted
-    ? "bg-green-50 border-l-4 border-l-green-500 bg-opacity-60"
+    ? "bg-green-500/10 border-l-4 border-l-green-500"
     : "";
 
   // Verificar se é uma referência (TARCONE, OU)
@@ -107,9 +107,9 @@ export function ItemRow({
   // Se for uma referência, renderizar de forma diferente
   if (isReference) {
     return (
-      <div className={`${bgColor} p-4 border-b`}>
+      <div className={`${bgColor} p-4 border-b border-border`}>
         <div className="flex items-center justify-center">
-          <span className="font-bold text-lg text-gray-700 text-center">
+          <span className="font-bold text-lg text-foreground text-center">
             {item.item}
           </span>
         </div>
@@ -119,7 +119,7 @@ export function ItemRow({
 
   return (
     <div
-      className={`${bgColor} ${completedBg} p-4 border-b hover:bg-gray-100 transition-colors group`}
+      className={`${bgColor} ${completedBg} p-4 border-b border-border hover:bg-muted transition-colors group`}
     >
       <div className="flex items-start justify-between gap-4">
         {/* Lado esquerdo: Nome */}
@@ -148,7 +148,7 @@ export function ItemRow({
               <div className="flex items-start gap-2">
                 <span
                   className={`font-medium text-sm leading-tight ${
-                    isCompleted ? "line-through text-gray-500" : ""
+                    isCompleted ? "line-through text-muted-foreground" : ""
                   }`}
                   title={item.item}
                 >
@@ -177,7 +177,7 @@ export function ItemRow({
           {/* Qtd. E - Quantidade Encontrada */}
           <div className="flex flex-col items-center min-w-[60px]">
             <label
-              className="text-xs text-gray-500 mb-1"
+              className="text-xs text-muted-foreground mb-1"
               title="Quantidade Encontrada"
             >
               Qtd. E
@@ -197,7 +197,7 @@ export function ItemRow({
           {/* Qtd. R - Quantidade Requerida */}
           <div className="flex flex-col items-center min-w-[70px]">
             <label
-              className="text-xs text-gray-500 mb-1"
+              className="text-xs text-muted-foreground mb-1"
               title="Quantidade Requerida"
             >
               Qtd. R
@@ -216,7 +216,10 @@ export function ItemRow({
           {/* Coluna Barter apenas para chavesQuests, logo após Qtd. R */}
           {sectionType === "chavesQuests" && (
             <div className="flex flex-col items-center min-w-[70px]">
-              <label className="text-xs text-gray-500 mb-1" title="Barter">
+              <label
+                className="text-xs text-muted-foreground mb-1"
+                title="Barter"
+              >
                 Barter
               </label>
               <Select
@@ -257,7 +260,7 @@ export function ItemRow({
             sectionType === "streamer") && (
             <div className="flex flex-col items-center min-w-[70px]">
               <label
-                className="text-xs text-gray-500 mb-1"
+                className="text-xs text-muted-foreground mb-1"
                 title="Found in Raid (Encontrados na Raid)"
               >
                 FIR
@@ -288,7 +291,7 @@ export function ItemRow({
             size="sm"
             variant="ghost"
             onClick={() => onDeleteItem(item.id)}
-            className="text-red-600 hover:text-red-800 hover:bg-red-50 flex-shrink-0"
+            className="text-destructive hover:text-destructive hover:bg-destructive/10 flex-shrink-0"
             title="Deletar item"
           >
             <Trash2 className="h-4 w-4" />

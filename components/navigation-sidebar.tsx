@@ -76,7 +76,11 @@ function SortableSectionItem({
         onClick={() => onSectionClick(section.id)}
         className={`
           w-full justify-start text-left p-1 h-auto
-          ${isActive ? "bg-blue-500 text-white shadow-md" : "hover:bg-gray-100"}
+          ${
+            isActive
+              ? "bg-primary text-primary-foreground shadow-md"
+              : "hover:bg-muted"
+          }
           transition-all duration-200
           ${isDragging ? "cursor-grabbing" : "cursor-grab"}
         `}
@@ -86,10 +90,10 @@ function SortableSectionItem({
           <div
             {...attributes}
             {...listeners}
-            className="cursor-grab active:cursor-grabbing p-1 hover:bg-gray-200 rounded"
+            className="cursor-grab active:cursor-grabbing p-1 hover:bg-muted rounded"
             title="Arrastar para reordenar"
           >
-            <GripVertical className="h-3 w-3 text-gray-400" />
+            <GripVertical className="h-3 w-3 text-muted-foreground" />
           </div>
 
           <div className="flex items-center gap-2 flex-1">
@@ -103,16 +107,16 @@ function SortableSectionItem({
                   variant="secondary"
                   className={`text-xs ${
                     isActive
-                      ? "bg-white/20 text-white border-0"
-                      : "bg-gray-200 text-gray-700"
+                      ? "bg-primary-foreground/20 text-primary-foreground border-0"
+                      : "bg-muted text-muted-foreground"
                   }`}
                 >
                   {section.completedCount}/{section.totalCount}
                 </Badge>
-                <div className="flex-1 bg-gray-200 rounded-full h-1.5 min-w-[40px]">
+                <div className="flex-1 bg-muted rounded-full h-1.5 min-w-[40px]">
                   <div
                     className={`h-1.5 rounded-full transition-all duration-300 ${
-                      isActive ? "bg-white" : "bg-green-500"
+                      isActive ? "bg-primary-foreground" : "bg-green-500"
                     }`}
                     style={{ width: `${progressPercentage}%` }}
                   />
