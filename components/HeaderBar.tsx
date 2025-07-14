@@ -19,11 +19,11 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ children }) => (
             priority
             style={{ objectFit: "cover" }}
           />
-          <div className="flex flex-col items-center md:items-start w-full">
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center md:text-left leading-tight">
+          <div className="flex flex-col items-center w-full">
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center leading-tight whitespace-nowrap">
               Kappa Quest Tracker
             </h1>
-            <p className="text-muted-foreground text-sm md:text-base text-center md:text-left leading-tight">
+            <p className="text-muted-foreground text-sm md:text-sm text-center leading-tight whitespace-nowrap">
               Escape from Tarkov - Container Kappa Progress
             </p>
           </div>
