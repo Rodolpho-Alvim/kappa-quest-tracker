@@ -200,7 +200,7 @@ const NavigationSidebar = ({
   };
 
   return (
-    <div>
+    <div className="mt-0 md:mt-[10%]">
       <div className="flex flex-col gap-2 p-2 pt-6">
         <DndContext
           sensors={sensors}

@@ -3,15 +3,22 @@
 import { Switch } from "@/components/ui/switch";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const isDark = theme === "dark";
 
   // Alterna entre light e dark
   const handleToggle = () => {
     setTheme(isDark ? "light" : "dark");
   };
+
+  if (!mounted) return null;
 
   return (
     <div className="flex items-center gap-2">
