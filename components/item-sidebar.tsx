@@ -3,6 +3,21 @@ import { useItemsMap } from "@/hooks/use-items-map";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import React from "react";
 
+// Estilo CSS customizado para o efeito de zoom
+const zoomStyle = `
+  .item-zoom {
+    transition: transform 0.3s ease;
+    transform-origin: center;
+    position: relative;
+  }
+  .item-zoom:hover {
+    transform: scale(2.1);
+    z-index: 9999 !important;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  }
+`;
+
 interface ItemSidebarProps {
   progress?: Record<string, number>;
 }
@@ -62,7 +77,7 @@ export const ItemSidebar: React.FC<ItemSidebarProps> = ({
 
   if (loading || loadingItems) {
     return (
-      <aside className="w-72 p-4 bg-background border-r border-border h-full overflow-y-auto">
+      <aside className="w-72 p-4 bg-background border-r border-border h-full overflow-y-auto overflow-x-visible">
         <div className="text-muted-foreground">Carregando itens...</div>
       </aside>
     );
@@ -76,17 +91,20 @@ export const ItemSidebar: React.FC<ItemSidebarProps> = ({
   });
 
   return (
-    <aside className="w-72 p-4 bg-background border-r border-border h-full overflow-y-auto">
+    <aside className="w-72 p-4 bg-background border-r border-border h-full overflow-y-auto overflow-x-visible">
+      <style dangerouslySetInnerHTML={{ __html: zoomStyle }} />
       <h2 className="text-lg font-bold mb-4">Itens necessários no Hideout</h2>
-      <ul className="space-y-2">
+      <ul className="space-y-2 relative">
         {sortedItems.map((itemId) => (
-          <li key={itemId} className="flex items-center gap-3">
-            <img
-              src={`https://assets.tarkov.dev/${itemId}-icon.webp`}
-              alt={itemsMap[itemId] || itemId}
-              className="w-8 h-8 rounded bg-muted object-contain border"
-              onError={(e) => (e.currentTarget.style.display = "none")}
-            />
+          <li key={itemId} className="flex items-center gap-3 relative">
+            <div className="relative">
+              <img
+                src={`https://assets.tarkov.dev/${itemId}-icon.webp`}
+                alt={itemsMap[itemId] || itemId}
+                className="w-8 h-8 rounded bg-muted object-contain border item-zoom cursor-pointer"
+                onError={(e) => (e.currentTarget.style.display = "none")}
+              />
+            </div>
             <span className="flex-1 truncate">
               {itemsMap[itemId] || itemId}
             </span>

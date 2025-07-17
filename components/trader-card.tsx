@@ -49,22 +49,24 @@ export const TraderCard: React.FC<TraderCardProps> = ({
   }
 
   return (
-    <div className="shadow-lg border-0 overflow-hidden mb-4 h-full min-h-[220px] bg-white rounded p-4">
-      <h2 className="text-lg font-bold mb-4">Traders</h2>
+    <div className="shadow-lg border-0 overflow-hidden mb-4 h-full min-h-[220px] bg-white dark:bg-zinc-900 rounded p-4">
+      <h2 className="text-lg font-bold mb-4 dark:text-gray-100">Traders</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {TRADERS.map((trader) => (
           <div
             key={trader.id}
-            className="flex flex-col items-center bg-gray-50 rounded p-3 shadow"
+            className="flex flex-col items-center bg-gray-50 dark:bg-zinc-800 rounded p-3 shadow"
           >
             <img
               src={`https://tarkov.dev/images/traders/${trader.name.toLowerCase()}.jpg`}
               alt={trader.name}
-              className="w-16 h-16 rounded-full object-cover mb-2 border border-gray-300"
+              className="w-16 h-16 rounded-full object-cover mb-2 border border-gray-300 dark:border-zinc-700"
               onError={(e) => (e.currentTarget.style.display = "none")}
             />
-            <span className="font-semibold mb-1">{trader.name}</span>
-            <label className="text-xs mb-1">Nível:</label>
+            <span className="font-semibold mb-1 dark:text-gray-100">
+              {trader.name}
+            </span>
+            <label className="text-xs mb-1 dark:text-gray-300">Nível:</label>
             <input
               type="number"
               min={0}
@@ -73,7 +75,7 @@ export const TraderCard: React.FC<TraderCardProps> = ({
               onChange={(e) =>
                 setTraderLevel(trader.id, Number(e.target.value))
               }
-              className="w-14 px-1 py-0.5 border rounded text-sm text-center"
+              className="w-14 px-1 py-0.5 border rounded text-sm text-center bg-white dark:bg-zinc-900 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-zinc-700"
             />
           </div>
         ))}

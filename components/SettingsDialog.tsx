@@ -15,6 +15,7 @@ interface SettingsDialogProps {
   restoreDefaults: () => void;
   handleReset: () => void;
   iconOnly?: boolean;
+  showRestoreDefaults?: boolean;
 }
 
 export const SettingsDialog: React.FC<SettingsDialogProps> = ({
@@ -23,6 +24,7 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({
   restoreDefaults,
   handleReset,
   iconOnly,
+  showRestoreDefaults = true,
 }) => (
   <Dialog>
     <DialogTrigger asChild>
@@ -60,14 +62,16 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({
             className="hidden"
           />
         </label>
-        <Button
-          onClick={restoreDefaults}
-          variant="outline"
-          className="w-full bg-transparent"
-        >
-          <RefreshCw className="h-4 w-4 mr-2" />
-          Restaurar Itens Padrão
-        </Button>
+        {showRestoreDefaults && (
+          <Button
+            onClick={restoreDefaults}
+            variant="outline"
+            className="w-full bg-transparent"
+          >
+            <RefreshCw className="h-4 w-4 mr-2" />
+            Restaurar Itens Padrão
+          </Button>
+        )}
         <Button onClick={handleReset} variant="destructive" className="w-full">
           <RotateCcw className="h-4 w-4 mr-2" />
           Reset Completo

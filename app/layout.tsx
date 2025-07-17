@@ -4,8 +4,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Tarkov Kappa",
-  description: "Planilha para itens encontrados do Kappa",
+  title: "Tarkov Hub",
+  description:
+    "Seu centro de progresso para Kappa e Hideout no Escape from Tarkov.",
   generator: "Rodolpho-Alvim",
 };
 

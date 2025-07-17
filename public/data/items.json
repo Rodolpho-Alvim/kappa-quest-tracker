@@ -21071,64 +21071,16 @@
     "shortName": "VSS \"Vintorez\" Stripped",
     "icon": "https://assets.tarkov.dev/vssvintorezstripped00001-icon.webp"
   },
-  "5d1b327086f774252167a52c": {
-    "id": "5d1b327086f774252167a52c",
-    "name": "Construction measuring tape",
-    "shortName": "Measuring tape",
-    "icon": "https://assets.tarkov.dev/5d1b327086f774252167a52c-icon.webp"
-  },
   "5d1b2f3f86f774253763a656": {
     "id": "5d1b2f3f86f774253763a656",
     "name": "Toolset",
     "shortName": "Toolset",
     "icon": "https://assets.tarkov.dev/5d1b2f3f86f774253763a656-icon.webp"
   },
-  "5d1b2fb686f77425227d1674": {
-    "id": "5d1b2fb686f77425227d1674",
-    "name": "Metal spare parts",
-    "shortName": "Spare parts",
-    "icon": "https://assets.tarkov.dev/5d1b2fb686f77425227d1674-icon.webp"
-  },
-  "5d1b2f5d86f774253763a656": {
-    "id": "5d1b2f5d86f774253763a656",
-    "name": "Energy-saving lamp",
-    "shortName": "Lamp",
-    "icon": "https://assets.tarkov.dev/5d1b2f5d86f774253763a656-icon.webp"
-  },
-  "custom_set_of_files_master": {
-    "id": "custom_set_of_files_master",
-    "name": "Set of files \"Master\"",
-    "shortName": "Files",
-    "icon": "https://assets.tarkov.dev/custom_set_of_files_master-icon.webp"
-  },
   "5c1a1e3f86f77431e9280bee": {
     "id": "5c1a1e3f86f77431e9280bee",
     "name": "Printed circuit board",
     "shortName": "PCB",
     "icon": "https://assets.tarkov.dev/5c1a1e3f86f77431e9280bee-icon.webp"
-  },
-  "5c0e530286f7747fa54205c7": {
-    "id": "5c0e530286f7747fa54205c7",
-    "name": "Capacitors",
-    "shortName": "Capacitors",
-    "icon": "https://assets.tarkov.dev/5c0e530286f7747fa54205c7-icon.webp"
-  },
-  "custom_phase_control_relay": {
-    "id": "custom_phase_control_relay",
-    "name": "Phase control relay",
-    "shortName": "Relay",
-    "icon": "https://assets.tarkov.dev/custom_phase_control_relay-icon.webp"
-  },
-  "custom_power_cord": {
-    "id": "custom_power_cord",
-    "name": "Power cord",
-    "shortName": "Power cord",
-    "icon": "https://assets.tarkov.dev/custom_power_cord-icon.webp"
-  },
-  "custom_tech_manual": {
-    "id": "custom_tech_manual",
-    "name": "Tech manual",
-    "shortName": "Tech manual",
-    "icon": "https://assets.tarkov.dev/custom_tech_manual-icon.webp"
   }
 }

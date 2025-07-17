@@ -1855,7 +1855,7 @@
         },
         {
           "type": "item",
-          "name": "5d1b327086f774252167a52c",
+          "name": "590c2c9c86f774245b1f03f2",
           "quantity": 1,
           "id": 202
         },
@@ -1867,7 +1867,7 @@
         },
         {
           "type": "item",
-          "name": "5d1b2f3f86f774253763a656",
+          "name": "590c2e1186f77425357b6124",
           "quantity": 1,
           "id": 204
         },
@@ -1885,7 +1885,7 @@
         },
         {
           "type": "item",
-          "name": "5d1b2fb686f77425227d1674",
+          "name": "61bf7b6302b3924be92fa8c3",
           "quantity": 5,
           "id": 207
         },
@@ -1903,7 +1903,7 @@
         },
         {
           "type": "item",
-          "name": "5d1b2f5d86f774253763a656",
+          "name": "590a3cd386f77436f20848cb",
           "quantity": 6,
           "id": 210
         },
@@ -1917,13 +1917,13 @@
       "require": [
         {
           "type": "item",
-          "name": "custom_set_of_files_master",
+          "name": "62a0a0bb621468534a797ad5",
           "quantity": 1,
           "id": 213
         },
         {
           "type": "item",
-          "name": "5c1a1e3f86f77431e9280bee",
+          "name": "590a3b0486f7743954552bdb",
           "quantity": 3,
           "id": 214
         },
@@ -1935,25 +1935,25 @@
         },
         {
           "type": "item",
-          "name": "5d1b2fb686f77425227d1674",
+          "name": "61bf7b6302b3924be92fa8c3",
           "quantity": 5,
           "id": 216
         },
         {
           "type": "item",
-          "name": "5c0e530286f7747fa54205c7",
+          "name": "5c06782b86f77426df5407d2",
           "quantity": 5,
           "id": 217
         },
         {
           "type": "item",
-          "name": "custom_phase_control_relay",
+          "name": "5d1b313086f77425227d1678",
           "quantity": 3,
           "id": 218
         },
         {
           "type": "item",
-          "name": "custom_power_cord",
+          "name": "59e36c6f86f774176c10a2a7",
           "quantity": 5,
           "id": 219
         },
@@ -1965,7 +1965,7 @@
         },
         {
           "type": "item",
-          "name": "custom_tech_manual",
+          "name": "590c639286f774151567fa95",
           "quantity": 1,
           "id": 221
         }

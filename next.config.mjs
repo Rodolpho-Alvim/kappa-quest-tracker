@@ -7,8 +7,8 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    domains: ["static.wikia.nocookie.net"],
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
