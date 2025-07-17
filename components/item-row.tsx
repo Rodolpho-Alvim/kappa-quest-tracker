@@ -86,15 +86,16 @@ function normalize(str?: string) {
 // Estilo CSS customizado para o efeito de zoom
 const zoomStyle = `
   .item-zoom {
-    transition: transform 0.3s ease;
-    transform-origin: center;
+    transition: transform 0.3s;
+    transform-origin: 20% 50%;
     position: relative;
+    z-index: 1;
   }
   .item-zoom:hover {
-    transform: scale(2.1);
+    transform: scale(2);
     z-index: 9999 !important;
-    position: relative;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    background: #222;
   }
 `;
 
@@ -193,102 +194,40 @@ export function ItemRow({
                 </Button>
               </div>
             ) : (
-              <div className="flex items-start gap-2">
+              <div className="flex items-center gap-2">
                 {/* Imagem do item antes do nome */}
-                {(() => {
-                  // 1. Tenta pelo id se for um hash válido
-                  const isValidId =
-                    typeof item.id === "string" &&
-                    /^[a-f0-9]{24}$/.test(item.id);
-                  if (isValidId) {
-                    return (
-                      <img
-                        src={`https://assets.tarkov.dev/${item.id}-icon.webp`}
-                        alt={item.item}
-                        className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border item-zoom"
-                        style={{ verticalAlign: "middle" }}
-                        onError={(e) =>
-                          (e.currentTarget.style.display = "none")
-                        }
-                      />
-                    );
-                  }
-                  // 2. Tenta pelo nome normalizado
-                  const normalizedName = normalize(item.item);
-                  const itemIdByName = Object.keys(itemsMap).find(
-                    (id) => normalize(itemsMap[id]) === normalizedName
-                  );
-                  if (itemIdByName) {
-                    return (
-                      <img
-                        src={`https://assets.tarkov.dev/${itemIdByName}-icon.webp`}
-                        alt={item.item}
-                        className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border item-zoom"
-                        style={{ verticalAlign: "middle" }}
-                        onError={(e) =>
-                          (e.currentTarget.style.display = "none")
-                        }
-                      />
-                    );
-                  }
-                  // 2b. Fuzzy matching: tenta encontrar por partes do nome
-                  const words = normalizedName.split(/\s+/).filter(Boolean);
-                  let fuzzyId: string | undefined;
-                  if (words.length > 0) {
-                    // Tenta com as duas primeiras palavras
-                    const search = words.slice(0, 2).join("");
-                    fuzzyId = Object.keys(itemsMap).find((id) =>
-                      normalize(itemsMap[id]).includes(search)
-                    );
-                  }
-                  if (!fuzzyId && words.length > 0) {
-                    // Tenta com a primeira palavra
-                    const search = words[0];
-                    fuzzyId = Object.keys(itemsMap).find((id) =>
-                      normalize(itemsMap[id]).includes(search)
-                    );
-                  }
-                  if (fuzzyId) {
-                    return (
-                      <img
-                        src={`https://assets.tarkov.dev/${fuzzyId}-icon.webp`}
-                        alt={item.item}
-                        className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border item-zoom"
-                        style={{ verticalAlign: "middle" }}
-                        onError={(e) =>
-                          (e.currentTarget.style.display = "none")
-                        }
-                      />
-                    );
-                  }
-                  // 3. Tenta pelo mapeamento manual
-                  const exceptionId = ITEM_NAME_EXCEPTIONS[item.item];
-                  if (exceptionId) {
-                    if (exceptionId.startsWith("/")) {
-                      // Caminho local (public/images)
+                <div className="relative" style={{ overflow: "visible" }}>
+                  {(() => {
+                    // 1. Tenta pelo id se for um hash válido
+                    const isValidId =
+                      typeof item.id === "string" &&
+                      /^[a-f0-9]{24}$/.test(item.id);
+                    if (isValidId) {
                       return (
                         <img
-                          src={exceptionId}
+                          src={`https://assets.tarkov.dev/${item.id}-icon.webp`}
+                          srcSet={`https://assets.tarkov.dev/${item.id}-icon.webp 1x, https://assets.tarkov.dev/${item.id}-icon.webp 2x`}
                           alt={item.item}
                           className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border item-zoom"
-                          style={{ verticalAlign: "middle" }}
+                          style={{
+                            verticalAlign: "middle",
+                          }}
+                          onError={(e) =>
+                            (e.currentTarget.style.display = "none")
+                          }
                         />
                       );
-                    } else if (exceptionId.startsWith("http")) {
-                      // URL externa
+                    }
+                    // 2. Tenta pelo nome normalizado
+                    const normalizedName = normalize(item.item);
+                    const itemIdByName = Object.keys(itemsMap).find(
+                      (id) => normalize(itemsMap[id]) === normalizedName
+                    );
+                    if (itemIdByName) {
                       return (
                         <img
-                          src={exceptionId}
-                          alt={item.item}
-                          className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border item-zoom"
-                          style={{ verticalAlign: "middle" }}
-                        />
-                      );
-                    } else {
-                      // ID do tarkov.dev
-                      return (
-                        <img
-                          src={`https://assets.tarkov.dev/${exceptionId}-icon.webp`}
+                          src={`https://assets.tarkov.dev/${itemIdByName}-icon.webp`}
+                          srcSet={`https://assets.tarkov.dev/${itemIdByName}-icon.webp 1x, https://assets.tarkov.dev/${itemIdByName}-icon.webp 2x`}
                           alt={item.item}
                           className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border item-zoom"
                           style={{ verticalAlign: "middle" }}
@@ -298,17 +237,87 @@ export function ItemRow({
                         />
                       );
                     }
-                  }
-                  // 4. Placeholder
-                  return (
-                    <img
-                      src="/placeholder-logo.png"
-                      alt="Sem imagem"
-                      className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border opacity-40"
-                      style={{ verticalAlign: "middle" }}
-                    />
-                  );
-                })()}
+                    // 2b. Fuzzy matching: tenta encontrar por partes do nome
+                    const words = normalizedName.split(/\s+/).filter(Boolean);
+                    let fuzzyId: string | undefined;
+                    if (words.length > 0) {
+                      // Tenta com as duas primeiras palavras
+                      const search = words.slice(0, 2).join("");
+                      fuzzyId = Object.keys(itemsMap).find((id) =>
+                        normalize(itemsMap[id]).includes(search)
+                      );
+                    }
+                    if (!fuzzyId && words.length > 0) {
+                      // Tenta com a primeira palavra
+                      const search = words[0];
+                      fuzzyId = Object.keys(itemsMap).find((id) =>
+                        normalize(itemsMap[id]).includes(search)
+                      );
+                    }
+                    if (fuzzyId) {
+                      return (
+                        <img
+                          src={`https://assets.tarkov.dev/${fuzzyId}-icon.webp`}
+                          srcSet={`https://assets.tarkov.dev/${fuzzyId}-icon.webp 1x, https://assets.tarkov.dev/${fuzzyId}-icon.webp 2x`}
+                          alt={item.item}
+                          className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border item-zoom"
+                          style={{ verticalAlign: "middle" }}
+                          onError={(e) =>
+                            (e.currentTarget.style.display = "none")
+                          }
+                        />
+                      );
+                    }
+                    // 3. Tenta pelo mapeamento manual
+                    const exceptionId = ITEM_NAME_EXCEPTIONS[item.item];
+                    if (exceptionId) {
+                      if (exceptionId.startsWith("/")) {
+                        // Caminho local (public/images)
+                        return (
+                          <img
+                            src={exceptionId}
+                            alt={item.item}
+                            className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border item-zoom"
+                            style={{ verticalAlign: "middle" }}
+                          />
+                        );
+                      } else if (exceptionId.startsWith("http")) {
+                        // URL externa
+                        return (
+                          <img
+                            src={exceptionId}
+                            alt={item.item}
+                            className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border item-zoom"
+                            style={{ verticalAlign: "middle" }}
+                          />
+                        );
+                      } else {
+                        // ID do tarkov.dev
+                        return (
+                          <img
+                            src={`https://assets.tarkov.dev/${exceptionId}-icon.webp`}
+                            srcSet={`https://assets.tarkov.dev/${exceptionId}-icon.webp 1x, https://assets.tarkov.dev/${exceptionId}-icon.webp 2x`}
+                            alt={item.item}
+                            className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border item-zoom"
+                            style={{ verticalAlign: "middle" }}
+                            onError={(e) =>
+                              (e.currentTarget.style.display = "none")
+                            }
+                          />
+                        );
+                      }
+                    }
+                    // 4. Placeholder
+                    return (
+                      <img
+                        src="/placeholder-logo.png"
+                        alt="Sem imagem"
+                        className="inline-block w-12 h-12 mr-2 align-middle rounded bg-muted object-contain border opacity-40"
+                        style={{ verticalAlign: "middle" }}
+                      />
+                    );
+                  })()}
+                </div>
                 <span
                   className={`font-medium text-sm leading-tight flex items-center ${
                     isCompleted ? "line-through text-muted-foreground" : ""
@@ -322,14 +331,17 @@ export function ItemRow({
                     </span>
                   )}
                 </span>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => setIsEditingName(true)}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
-                >
-                  <Edit3 className="h-3 w-3" />
-                </Button>
+                {/* Só mostra o botão de editar se for item customizado */}
+                {item.isCustom && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => setIsEditingName(true)}
+                    className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
+                  >
+                    <Edit3 className="h-3 w-3" />
+                  </Button>
+                )}
               </div>
             )}
           </div>
