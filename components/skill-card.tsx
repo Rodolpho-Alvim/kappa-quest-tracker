@@ -1,4 +1,5 @@
 import React from "react";
+import { QuantityInput } from "./QuantityInput";
 
 const SKILLS = [
   { name: "Endurance" },
@@ -56,15 +57,12 @@ export const SkillCard: React.FC<SkillCardProps> = ({
               {skill.name}
             </span>
             <label className="text-xs mb-1 dark:text-gray-300">Nível:</label>
-            <input
-              type="number"
+            <QuantityInput
+              value={progress[`skill-${skill.name}`] ?? 0}
+              onChange={(val) => setSkillLevel(skill.name, val)}
               min={0}
               max={51}
-              value={progress[`skill-${skill.name}`] ?? 0}
-              onChange={(e) =>
-                setSkillLevel(skill.name, Number(e.target.value))
-              }
-              className="w-14 px-1 py-0.5 border rounded text-sm text-center bg-white dark:bg-zinc-900 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-zinc-700"
+              className="w-14 text-sm"
             />
           </div>
         ))}

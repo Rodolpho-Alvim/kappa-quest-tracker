@@ -1,4 +1,5 @@
 import React from "react";
+import { QuantityInput } from "./QuantityInput";
 
 const TRADERS = [
   {
@@ -67,15 +68,12 @@ export const TraderCard: React.FC<TraderCardProps> = ({
               {trader.name}
             </span>
             <label className="text-xs mb-1 dark:text-gray-300">Nível:</label>
-            <input
-              type="number"
-              min={0}
+            <QuantityInput
+              value={progress[`trader-${trader.id}`] ?? 1}
+              onChange={(val) => setTraderLevel(trader.id, val)}
+              min={1}
               max={4}
-              value={progress[`trader-${trader.id}`] ?? 0}
-              onChange={(e) =>
-                setTraderLevel(trader.id, Number(e.target.value))
-              }
-              className="w-14 px-1 py-0.5 border rounded text-sm text-center bg-white dark:bg-zinc-900 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-zinc-700"
+              className="w-14 text-sm"
             />
           </div>
         ))}

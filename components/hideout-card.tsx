@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useHideoutStations } from "@/hooks/use-hideout-stations";
 import { useItemsMap } from "@/hooks/use-items-map";
 import * as React from "react";
+import { QuantityInput } from "./QuantityInput";
 
 interface Requirement {
   type: "item" | "module" | "trader" | "skill";
@@ -365,36 +366,18 @@ export function HideoutCard({
                           </span>{" "}
                           x{required}
                         </span>
-                        <input
-                          type="number"
+                        <QuantityInput
+                          value={found}
+                          onChange={(val) => setItemProgress(progressKey, val)}
                           min={0}
                           max={required}
-                          value={found}
-                          onChange={(e) => {
-                            const newValue = Number(e.target.value);
-                            // Limitar o valor máximo ao necessário
-                            const limitedValue = Math.min(newValue, required);
-                            // Garantir que não seja negativo
-                            const finalValue = Math.max(0, limitedValue);
-                            setItemProgress(progressKey, finalValue);
-                          }}
-                          onBlur={(e) => {
-                            // Corrigir valor quando o usuário sai do campo
-                            const currentValue = Number(e.target.value);
-                            if (currentValue > required) {
-                              setItemProgress(progressKey, required);
-                            } else if (currentValue < 0) {
-                              setItemProgress(progressKey, 0);
-                            }
-                          }}
-                          className={`w-16 px-1 py-0.5 border rounded text-sm text-right ${
+                          className={`w-16 text-sm text-right -ml-4 ${
                             isHighlighted
                               ? "border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20"
                               : ""
                           } ${
                             found > required ? "border-red-500 bg-red-50" : ""
                           }`}
-                          title={`Máximo: ${required} itens`}
                         />
                         <span
                           className={`text-xs font-bold text-right block ${

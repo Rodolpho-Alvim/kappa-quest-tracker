@@ -95,24 +95,58 @@ export const ItemSidebar: React.FC<ItemSidebarProps> = ({
       <style dangerouslySetInnerHTML={{ __html: zoomStyle }} />
       <h2 className="text-lg font-bold mb-4">Itens necessários no Hideout</h2>
       <ul className="space-y-2 relative">
-        {sortedItems.map((itemId) => (
-          <li key={itemId} className="flex items-center gap-3 relative">
-            <div className="relative">
-              <img
-                src={`https://assets.tarkov.dev/${itemId}-icon.webp`}
-                alt={itemsMap[itemId] || itemId}
-                className="w-8 h-8 rounded bg-muted object-contain border item-zoom cursor-pointer"
-                onError={(e) => (e.currentTarget.style.display = "none")}
-              />
-            </div>
-            <span className="flex-1 truncate">
-              {itemsMap[itemId] || itemId}
-            </span>
-            <span className="font-bold text-primary text-right min-w-[48px]">
-              {itemFound[itemId] || 0}/{itemTotals[itemId]}
-            </span>
-          </li>
-        ))}
+        {sortedItems.map((itemId) => {
+          const found = itemFound[itemId] || 0;
+          const total = itemTotals[itemId] || 0;
+          const percent = total > 0 ? (found / total) * 100 : 0;
+          let bg = "";
+          if (percent >= 100) {
+            bg = "bg-green-200 dark:bg-green-700/70";
+          } else if (percent >= 90) {
+            bg = "bg-yellow-500 dark:bg-yellow-500/90";
+          } else if (percent >= 80) {
+            bg = "bg-yellow-400 dark:bg-yellow-500/80";
+          } else if (percent >= 70) {
+            bg = "bg-yellow-300 dark:bg-yellow-500/70";
+          } else if (percent >= 60) {
+            bg = "bg-yellow-200 dark:bg-yellow-500/60";
+          } else if (percent >= 50) {
+            bg = "bg-yellow-200 dark:bg-yellow-500/50";
+          } else if (percent >= 40) {
+            bg = "bg-yellow-100 dark:bg-yellow-500/40";
+          } else if (percent >= 30) {
+            bg = "bg-yellow-100 dark:bg-yellow-500/30";
+          } else if (percent >= 20) {
+            bg = "bg-yellow-100 dark:bg-yellow-500/20";
+          } else if (percent >= 10) {
+            bg = "bg-yellow-100 dark:bg-yellow-500/15";
+          } else if (percent >= 1) {
+            bg = "bg-yellow-100 dark:bg-yellow-500/10";
+          } else {
+            bg = "";
+          }
+          return (
+            <li
+              key={itemId}
+              className={`flex items-center gap-3 relative transition-colors duration-300 ${bg}`}
+            >
+              <div className="relative">
+                <img
+                  src={`https://assets.tarkov.dev/${itemId}-icon.webp`}
+                  alt={itemsMap[itemId] || itemId}
+                  className="w-8 h-8 rounded bg-muted object-contain border item-zoom cursor-pointer"
+                  onError={(e) => (e.currentTarget.style.display = "none")}
+                />
+              </div>
+              <span className="flex-1 truncate">
+                {itemsMap[itemId] || itemId}
+              </span>
+              <span className="font-bold text-primary text-right min-w-[48px]">
+                {found}/{total}
+              </span>
+            </li>
+          );
+        })}
       </ul>
     </aside>
   );

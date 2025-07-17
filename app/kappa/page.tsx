@@ -109,7 +109,7 @@ export default function KappaQuestTracker() {
   const sectionOrderHook = useSectionOrder();
   const { getSectionOrder, setFullSectionOrder, resetOrder } = sectionOrderHook;
   const [showAviso, setShowAviso] = useState(true);
-  const [showHelp, setShowHelp] = useState(true);
+  const [showHelp, setShowHelp] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
