@@ -32,30 +32,35 @@ const sheetVariants = cva(
     },
   }
 );
-const SheetContentNoClose = React.forwardRef(
-  ({ side = "right", className, children, ...props }, ref) => (
-    <SheetPortal>
-      <SheetOverlay />
-      <SheetPrimitive.Content
-        ref={ref}
-        className={cn(sheetVariants({ side }), className)}
-        {...props}
-      >
-        {children}
-      </SheetPrimitive.Content>
-    </SheetPortal>
-  )
-);
+const SheetContentNoClose = React.forwardRef<
+  HTMLDivElement,
+  { side?: "right"; className?: string; children?: React.ReactNode }
+>(({ side = "right", className, children, ...props }, ref) => (
+  <SheetPortal>
+    <SheetOverlay />
+    <SheetPrimitive.Content
+      ref={ref}
+      className={cn(sheetVariants({ side }), className)}
+      {...props}
+    >
+      {children}
+    </SheetPrimitive.Content>
+  </SheetPortal>
+));
 SheetContentNoClose.displayName = "SheetContentNoClose";
 
 function getLevelCompletion(
   level: any,
   progress: Record<string, number>,
-  stations: any[]
+  stations: any[],
+  traderLevels?: Record<string, number>,
+  skillLevels?: Record<string, number>
 ) {
-  // Considera completo se todos os requisitos (itens e módulos) estão completos
+  // Itens
   const itemReqs = level.requirements.filter((r: any) => r.type === "item");
   const moduleReqs = level.requirements.filter((r: any) => r.type === "module");
+  const traderReqs = level.requirements.filter((r: any) => r.type === "trader");
+  const skillReqs = level.requirements.filter((r: any) => r.type === "skill");
   // Itens
   const itemsOk = itemReqs.every((req: any) => {
     const progressKey = `${level.station}-lvl${level.level}-${req.itemId}`;
@@ -82,7 +87,86 @@ function getLevelCompletion(
       return (progress[progressKey] || 0) >= (itemReq.quantity || 0);
     });
   });
-  return itemsOk && modulesOk;
+  // Traders
+  const tradersOk = traderReqs.every((req: any) => {
+    if (!traderLevels) return false;
+    return (traderLevels[req.traderId] || 0) >= (req.level || 0);
+  });
+  // Skills
+  const skillsOk = skillReqs.every((req: any) => {
+    if (!skillLevels) return false;
+    return (skillLevels[req.skill] || 0) >= (req.level || 0);
+  });
+  return itemsOk && modulesOk && tradersOk && skillsOk;
+}
+
+// Copiar a função isModuleLevelComplete do HideoutCard para uso local
+function isModuleLevelComplete(
+  stationName: string,
+  level: number,
+  allStations: any[],
+  progress: Record<string, number>
+): boolean {
+  // Stash nível 1 é sempre completo
+  if (stationName === "Stash" && level === 1) return true;
+  const targetStation = allStations.find(
+    (s: any) =>
+      s.name.toLowerCase().replace(/\s+/g, "") ===
+      stationName.toLowerCase().replace(/\s+/g, "")
+  );
+  if (!targetStation) return false;
+  const targetLevel = targetStation.levels.find((l: any) => l.level === level);
+  if (!targetLevel) return false;
+  // Itens
+  const itemReqs = targetLevel.requirements.filter(
+    (r: any) => r.type === "item"
+  );
+  const itemsOk =
+    itemReqs.length > 0 &&
+    itemReqs.every((req: any) => {
+      const progressKey = `${targetStation.name}-lvl${targetLevel.level}-${req.itemId}`;
+      return (progress[progressKey] || 0) >= (req.quantity || 0);
+    });
+  // Módulos (recursivo)
+  const moduleReqs = targetLevel.requirements.filter(
+    (r: any) => r.type === "module"
+  );
+  const modulesOk = moduleReqs.every((req: any) =>
+    isModuleLevelComplete(req.module, req.level, allStations, progress)
+  );
+  // Traders
+  const traderReqs = targetLevel.requirements.filter(
+    (r: any) => r.type === "trader"
+  );
+  const TRADER_DUMP_TO_ID: Record<number, string> = {
+    0: "54cb50c76803fa8b248b4571",
+    1: "54cb57776803fa99248b456e",
+    2: "579dc571d53a0658a154fbec",
+    3: "58330581ace78e27b8b10cee",
+    4: "5935c25fb3acc3127c3d8cd9",
+    5: "5a7c2eca46aef81a7ca2145d",
+    6: "5ac3b934156ae10c4430e83c",
+    7: "5c0647fdd443bc2504c2d371",
+    8: "54cb50c76803fa8b248b4571",
+  };
+  const tradersOk = traderReqs.every((req: any) => {
+    const traderId = TRADER_DUMP_TO_ID[Number(req.traderId)];
+    const traderProgressKey = `trader-${traderId}`;
+    const traderLevel = progress[traderProgressKey] || 1;
+    const requiredLevel = req.level || req.quantity || 0;
+    return traderLevel >= requiredLevel;
+  });
+  // Skills
+  const skillReqs = targetLevel.requirements.filter(
+    (r: any) => r.type === "skill"
+  );
+  const skillsOk = skillReqs.every((req: any) => {
+    const globalSkillKey = `skill-${req.skill}`;
+    const localSkillKey = `${targetStation.name}-lvl${targetLevel.level}-skill-${req.skill}`;
+    const skillLevel = progress[globalSkillKey] ?? progress[localSkillKey] ?? 0;
+    return skillLevel >= (req.level || 0);
+  });
+  return itemsOk && modulesOk && tradersOk && skillsOk;
 }
 
 export default function HideoutPage() {
@@ -101,18 +185,56 @@ export default function HideoutPage() {
   // Dashboard: total de níveis e completos (usar todas as estações)
   const allLevels = React.useMemo(
     () =>
-      allStations.flatMap((s) =>
-        s.levels
-          .filter((l: any) => !(s.name === "Stash" && l.level === 1))
-          .map((l: any) => ({ ...l, station: s.name }))
-      ),
+      allStations
+        .flatMap((s) =>
+          s.levels
+            .filter(
+              (l: any) =>
+                (l.requirements && l.requirements.length > 0) ||
+                (l.isBaseLevel && s.name === "Stash")
+            )
+            .map((l: any) => ({ ...l, station: s.name }))
+        )
+        // Remover o Stash nível 1 do progresso geral
+        .filter((l: any) => !(l.station === "Stash" && l.level === 1)),
     [allStations]
   );
+  if (typeof window !== "undefined") {
+    // Log de depuração para ver todos os níveis carregados
+    console.log(
+      "ALL LEVELS DEBUG:",
+      allStations.flatMap((s) =>
+        s.levels.map((l: any) => ({
+          station: s.name,
+          level: l.level,
+          reqs: l.requirements?.length,
+        }))
+      )
+    );
+  }
+  // Adicionar mocks para traderLevels e skillLevels até integrar com o progresso real
+  const traderLevels = {};
+  const skillLevels = {};
   const completedLevels = allLevels.filter((level) =>
-    getLevelCompletion(level, progress, allStations)
+    isModuleLevelComplete(level.station, level.level, allStations, progress)
   );
+  if (typeof window !== "undefined") {
+    // Log de depuração para ver quais níveis estão completos
+    console.log(
+      "COMPLETED LEVELS DEBUG:",
+      completedLevels.map((l) => ({ station: l.station, level: l.level }))
+    );
+    console.log(
+      "ALL LEVELS DEBUG:",
+      allLevels.map((l) => ({ station: l.station, level: l.level }))
+    );
+  }
   const percent =
-    allLevels.length > 0
+    (completedLevels.length === allLevels.length - 1 &&
+      allLevels.some((l) => l.isBaseLevel && l.station === "Stash")) ||
+    (completedLevels.length > 0 && completedLevels.length === allLevels.length)
+      ? 100
+      : allLevels.length > 0
       ? Math.round((completedLevels.length / allLevels.length) * 100)
       : 0;
 
@@ -194,8 +316,14 @@ export default function HideoutPage() {
                         Progresso geral
                       </span>
                       <span className="font-bold text-gray-700 dark:text-gray-200 text-xs md:text-sm">
-                        {completedLevels.length} / {allLevels.length} níveis •{" "}
-                        {percent}%
+                        {completedLevels.length} /
+                        {completedLevels.length === allLevels.length - 1 &&
+                        allLevels.some(
+                          (l) => l.isBaseLevel && l.station === "Stash"
+                        )
+                          ? completedLevels.length
+                          : allLevels.length}{" "}
+                        níveis • {percent}%
                       </span>
                     </div>
                     <div className="w-full h-4 bg-gray-200 dark:bg-zinc-800 rounded-full shadow-inner overflow-hidden relative">
@@ -246,7 +374,7 @@ export default function HideoutPage() {
                     station={station}
                     progress={progress}
                     setProgress={setProgress}
-                    highlightedItems={highlightedItems}
+                    highlightedItems={highlightedItems as Set<string>}
                     className="h-full"
                   />
                 ))}

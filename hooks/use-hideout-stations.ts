@@ -59,33 +59,45 @@ export function useHideoutStations() {
             return req;
           });
 
-        const stations = data.stations.map((station: any) => {
-          const levelsRaw = data.modules.filter(
-            (mod: any) =>
-              normalize(mod.module) === normalize(station.locales.en)
-          );
-          // Descobrir o número máximo de níveis para a estação
-          const maxLevel =
-            STATION_MAX_LEVELS[station.locales.en] ||
-            Math.max(1, ...levelsRaw.map((l: any) => l.level));
-          // Montar todos os níveis, preenchendo vazios se necessário
-          const levels = Array.from({ length: maxLevel }, (_, i) => {
-            const found = levelsRaw.find((l: any) => l.level === i + 1);
-            return found
-              ? {
-                  level: found.level,
-                  requirements: mapRequirements(found.require),
-                }
-              : { level: i + 1, requirements: [] };
+        const stations = data.stations
+          .filter((station: any) => !station.disabled)
+          .map((station: any) => {
+            const levelsRaw = data.modules.filter(
+              (mod: any) =>
+                normalize(mod.module) === normalize(station.locales.en)
+            );
+            // Descobrir o número máximo de níveis para a estação
+            const maxLevel =
+              STATION_MAX_LEVELS[station.locales.en] ||
+              Math.max(1, ...levelsRaw.map((l: any) => l.level));
+            // Montar todos os níveis, preenchendo vazios se necessário
+            const levels = Array.from({ length: maxLevel }, (_, i) => {
+              const found = levelsRaw.find((l: any) => l.level === i + 1);
+              // Sempre incluir o nível 1 do Stash para visualização e progresso
+              if (station.locales.en === "Stash" && i + 1 === 1) {
+                return {
+                  level: 1,
+                  requirements: [],
+                  isBaseLevel: true,
+                };
+              }
+              // Remover filtro do Stash nível 1 para visualização
+              if (!found || !found.require || found.require.length === 0) {
+                return null;
+              }
+              return {
+                level: found.level,
+                requirements: mapRequirements(found.require),
+              };
+            }).filter(Boolean); // Remove nulls
+            return {
+              id: station.id,
+              name: station.locales.en,
+              description: station.function,
+              img: station.imgSource,
+              levels,
+            };
           });
-          return {
-            id: station.id,
-            name: station.locales.en,
-            description: station.function,
-            img: station.imgSource,
-            levels,
-          };
-        });
         setStations(stations);
         setLoading(false);
       });

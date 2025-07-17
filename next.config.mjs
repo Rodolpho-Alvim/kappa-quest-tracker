@@ -7,7 +7,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ["static.wikia.nocookie.net"],
+    remotePatterns: [{ protocol: "https", hostname: "tarkov.dev" }],
   },
 };
 

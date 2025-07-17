@@ -320,9 +320,21 @@ export function HideoutCard({
         </div>
         {levelData ? (
           <div>
-            <div className="mb-2 font-semibold text-gray-900 dark:text-gray-200">
-              Requisitos para o nível {levelData.level}:
-            </div>
+            {/* Substituir a renderização dos requisitos para o nível 1 do Stash */}
+            {levelData.level === 1 &&
+            station.name === "Stash" &&
+            (levelData as any).isBaseLevel ? (
+              <div className="mb-2 font-semibold text-gray-900 dark:text-gray-200">
+                Requisitos para o nível 1:
+                <div className="text-gray-500 dark:text-gray-400 mt-2">
+                  Possuir a edição padrão do jogo
+                </div>
+              </div>
+            ) : (
+              <div className="mb-2 font-semibold text-gray-900 dark:text-gray-200">
+                Requisitos para o nível {levelData.level}:
+              </div>
+            )}
             {levelData.requirements.length === 0 ? (
               <div className="text-gray-500 dark:text-gray-400">
                 Nenhum requisito para este nível.
