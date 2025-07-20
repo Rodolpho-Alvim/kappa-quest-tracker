@@ -31,11 +31,11 @@ export function ThemeToggle() {
         checked={isDark}
         onCheckedChange={handleToggle}
         aria-label="Alternar tema"
-        className="data-[state=checked]:bg-blue-900 data-[state=unchecked]:bg-yellow-400"
+        className="data-[state=checked]:bg-gray-700 data-[state=unchecked]:bg-yellow-500"
       />
       <Moon
         className={`h-5 w-5 ${
-          isDark ? "text-blue-400" : "text-muted-foreground"
+          isDark ? "text-gray-300" : "text-muted-foreground"
         }`}
       />
     </div>
