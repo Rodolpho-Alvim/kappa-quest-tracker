@@ -21,7 +21,7 @@ import type {
   UserProgress,
 } from "@/types/quest-data";
 import { Check, Edit3, Trash2, X } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { QuantityInput } from "./QuantityInput";
 
 interface ItemRowProps {
@@ -99,7 +99,7 @@ const zoomStyle = `
   }
 `;
 
-export function ItemRow({
+const ItemRowComponent = ({
   item,
   sectionType,
   userProgress,
@@ -107,7 +107,7 @@ export function ItemRow({
   onItemUpdate,
   onDeleteItem,
   isEven,
-}: ItemRowProps) {
+}: ItemRowProps) => {
   const [isEditingName, setIsEditingName] = useState(false);
   const [editName, setEditName] = useState(item.item);
   const { itemsMap } = useItemsMap();
@@ -468,4 +468,6 @@ export function ItemRow({
       </div>
     </div>
   );
-}
+};
+
+export const ItemRow = React.memo(ItemRowComponent);

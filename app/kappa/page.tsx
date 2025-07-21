@@ -22,7 +22,7 @@ import type {
 } from "@/types/quest-data";
 import { ArrowUp } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 const NavigationSidebar = dynamic(
   () => import("@/components/navigation-sidebar"),
   { ssr: false }
@@ -162,7 +162,7 @@ export default function KappaQuestTracker() {
   }, []);
 
   // Combinar itens fixos com customizados, excluindo deletados
-  const getAllItems = () => {
+  const getAllItems = useMemo(() => {
     const filterDeleted = (items: any[]) =>
       items.filter((item) => !deletedItems[item.id]);
 
@@ -211,17 +211,19 @@ export default function KappaQuestTracker() {
       ]),
       dorm303: filterDeleted([...FIXED_ITEMS.dorm303, ...customItems.dorm303]),
     };
-  };
+  }, [FIXED_ITEMS, customItems, deletedItems]);
 
-  const allItems = getAllItems();
+  const allItems = getAllItems;
 
   // Filtrar por busca
-  const getFilteredItems = (items: any[]) => {
-    if (!searchTerm) return items;
-    return items.filter((item) =>
-      item.item.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  };
+  const getFilteredItems = useMemo(() => {
+    return (items: any[]) => {
+      if (!searchTerm) return items;
+      return items.filter((item) =>
+        item.item.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    };
+  }, [searchTerm]);
 
   // Configuração das seções
   const sectionConfigs = [
@@ -370,7 +372,7 @@ export default function KappaQuestTracker() {
         title={config.title}
         subtitle={config.subtitle}
         items={getFilteredItems(config.items)}
-        sectionType={config.sectionType}
+        sectionType={config.sectionType as any}
         userProgress={userProgress}
         onProgressUpdate={updateProgress}
         onItemUpdate={updateCustomItem}

@@ -12,7 +12,7 @@ import type {
   UserProgress,
 } from "@/types/quest-data";
 import { ChevronDown, ChevronUp, Eye, EyeOff, Plus } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { ItemRow } from "./item-row";
 
 interface SectionCardProps {
@@ -42,7 +42,7 @@ interface SectionCardProps {
   icon: string;
 }
 
-export function SectionCard({
+const SectionCardComponent = ({
   title,
   subtitle,
   items,
@@ -54,7 +54,7 @@ export function SectionCard({
   onAddItem,
   color,
   icon,
-}: SectionCardProps) {
+}: SectionCardProps) => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [showCompleted, setShowCompleted] = useState(true);
 
@@ -191,4 +191,6 @@ export function SectionCard({
       )}
     </Card>
   );
-}
+};
+
+export const SectionCard = React.memo(SectionCardComponent);
