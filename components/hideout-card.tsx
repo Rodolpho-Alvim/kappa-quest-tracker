@@ -317,6 +317,62 @@ export function HideoutCard({
               </Button>
             );
           })}
+
+          {/* Botão para completar o nível selecionado - alinhado à direita */}
+          {(() => {
+            if (!levelData) return null;
+
+            // Verificar se há itens para completar
+            const itemRequirements = levelData.requirements.filter(
+              (r) => r.type === "item"
+            );
+
+            const hasIncompleteItems = itemRequirements.some((req) => {
+              const progressKey = `${station.name}-lvl${levelData.level}-${req.itemId}`;
+              const found = progress[progressKey] || 0;
+              const required = req.quantity || 0;
+              return found < required;
+            });
+
+            // Se não há itens ou todos estão completos, não mostrar o botão
+            if (itemRequirements.length === 0 || !hasIncompleteItems) {
+              return null;
+            }
+
+            return (
+              <div className="ml-auto">
+                <Button
+                  onClick={() => {
+                    // Completar todos os itens do nível atual de uma vez
+                    const updates: Record<string, number> = {};
+                    itemRequirements.forEach((req) => {
+                      const progressKey = `${station.name}-lvl${levelData.level}-${req.itemId}`;
+                      const required = req.quantity || 0;
+                      updates[progressKey] = required;
+                    });
+
+                    // Atualizar todos os itens de uma vez usando uma função de callback
+                    setProgress((prevProgress) => {
+                      const newProgress = { ...prevProgress };
+                      Object.entries(updates).forEach(([key, value]) => {
+                        newProgress[key] = value;
+                      });
+                      return newProgress;
+                    });
+                  }}
+                  size="sm"
+                  className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold px-2 py-2 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg transform hover:scale-105"
+                  title="Completar todos os itens necessários para este nível"
+                >
+                  <span className="mr-1 text-sm">⚡</span>
+                  Completar
+                  <span className="ml-1 text-xs opacity-90">
+                    ({itemRequirements.length})
+                  </span>
+                </Button>
+              </div>
+            );
+          })()}
         </div>
         {levelData ? (
           <div>
