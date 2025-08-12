@@ -9,6 +9,7 @@ interface HeaderBarProps {
   title?: string;
   subtitle?: string;
   showHubButton?: boolean;
+  showApiHubButton?: boolean;
 }
 
 export const HeaderBar: React.FC<HeaderBarProps> = ({
@@ -17,6 +18,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
   title,
   subtitle,
   showHubButton = true,
+  showApiHubButton = false,
 }) => (
   <div className="bg-background shadow-lg border-b border-border">
     <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 md:py-4">
@@ -51,6 +53,15 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
           </div>
         </div>
         <div className="flex items-center justify-center md:justify-end w-full md:w-auto mt-2 md:mt-0 gap-2">
+          {showApiHubButton && (
+            <a
+              href="/hideout/hubapi"
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+              title="Acessar Hub da API"
+            >
+              🌐 Hub API
+            </a>
+          )}
           {children}
         </div>
       </div>

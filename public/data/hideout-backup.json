@@ -213,7 +213,7 @@
         },
         {
           "type": "trader",
-          "name": 3,
+          "name": 2,
           "quantity": 3,
           "id": 275
         }
@@ -234,31 +234,31 @@
         {
           "type": "item",
           "name": "5734779624597737e04bf329",
-          "quantity": 30,
+          "quantity": 15,
           "id": 3
         },
         {
           "type": "item",
           "name": "57347c2e24597744902c94a1",
-          "quantity": 20,
+          "quantity": 10,
           "id": 4
         },
         {
           "type": "item",
           "name": "59e36c6f86f774176c10a2a7",
-          "quantity": 20,
+          "quantity": 10,
           "id": 5
         },
         {
           "type": "item",
           "name": "5c05300686f7746dce784e5d",
-          "quantity": 2,
+          "quantity": 1,
           "id": 6
         },
         {
           "type": "item",
           "name": "57347cd0245977445a2d6ff1",
-          "quantity": 10,
+          "quantity": 5,
           "id": 307
         }
       ],
@@ -284,31 +284,31 @@
         {
           "type": "item",
           "name": "5734779624597737e04bf329",
-          "quantity": 30,
+          "quantity": 15,
           "id": 9
         },
         {
           "type": "item",
           "name": "57347c2e24597744902c94a1",
-          "quantity": 20,
+          "quantity": 10,
           "id": 10
         },
         {
           "type": "item",
           "name": "590a3b0486f7743954552bdb",
-          "quantity": 30,
+          "quantity": 15,
           "id": 11
         },
         {
           "type": "item",
           "name": "5d1b313086f77425227d1678",
-          "quantity": 10,
+          "quantity": 5,
           "id": 12
         },
         {
           "type": "item",
           "name": "5d0378d486f77420421a5ff4",
-          "quantity": 4,
+          "quantity": 2,
           "id": 320
         }
       ],
@@ -346,25 +346,25 @@
         {
           "type": "item",
           "name": "5d1b39a386f774252339976f",
-          "quantity": 30,
+          "quantity": 15,
           "id": 17
         },
         {
           "type": "item",
           "name": "5d1b2fa286f77425227d1674",
-          "quantity": 20,
+          "quantity": 10,
           "id": 18
         },
         {
           "type": "item",
           "name": "5d1b327086f7742525194449",
-          "quantity": 20,
+          "quantity": 10,
           "id": 19
         },
         {
           "type": "item",
           "name": "5d03794386f77420415576f5",
-          "quantity": 3,
+          "quantity": 1,
           "id": 321
         }
       ],
@@ -390,43 +390,43 @@
         {
           "type": "item",
           "name": "59e35cbb86f7741778269d83",
-          "quantity": 10,
+          "quantity": 5,
           "id": 22
         },
         {
           "type": "item",
           "name": "5d1b39a386f774252339976f",
-          "quantity": 8,
+          "quantity": 4,
           "id": 23
         },
         {
           "type": "item",
           "name": "5d1b32c186f774252167a530",
-          "quantity": 4,
+          "quantity": 2,
           "id": 24
         },
         {
           "type": "item",
           "name": "5d1b327086f7742525194449",
-          "quantity": 4,
+          "quantity": 2,
           "id": 25
         },
         {
           "type": "item",
           "name": "5d1c774f86f7746d6620f8db",
-          "quantity": 6,
+          "quantity": 3,
           "id": 305
         },
         {
           "type": "item",
           "name": "619cbfccbedcde2f5b3f7bdd",
-          "quantity": 2,
+          "quantity": 1,
           "id": 306
         },
         {
           "type": "item",
           "name": "61bf7b6302b3924be92fa8c3",
-          "quantity": 4,
+          "quantity": 2,
           "id": 272
         }
       ],
@@ -446,13 +446,13 @@
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 200000,
+          "quantity": 100000,
           "id": 190
         },
         {
           "type": "item",
           "name": "590a3c0a86f774385a33c450",
-          "quantity": 2,
+          "quantity": 1,
           "id": 217
         }
       ],
@@ -484,25 +484,25 @@
         {
           "type": "item",
           "name": "5d1b313086f77425227d1678",
-          "quantity": 10,
+          "quantity": 5,
           "id": 35
         },
         {
           "type": "item",
           "name": "5d1b2fa286f77425227d1674",
-          "quantity": 2,
+          "quantity": 1,
           "id": 36
         },
         {
           "type": "item",
           "name": "5c06779c86f77426e00dd782",
-          "quantity": 30,
+          "quantity": 15,
           "id": 37
         },
         {
           "type": "item",
           "name": "619cbfeb6b8a1b37a54eebfa",
-          "quantity": 2,
+          "quantity": 1,
           "id": 309
         }
       ],
@@ -534,36 +534,36 @@
         {
           "type": "item",
           "name": "5d1b313086f77425227d1678",
-          "quantity": 12,
+          "quantity": 6,
           "id": 41
         },
         {
           "type": "item",
           "name": "5d1b2fa286f77425227d1674",
-          "quantity": 6,
+          "quantity": 3,
           "id": 42
         },
         {
           "type": "item",
           "name": "590a3c0a86f774385a33c450",
-          "quantity": 20,
+          "quantity": 10,
           "id": 43
         },
         {
           "type": "item",
           "name": "57347c2e24597744902c94a1",
-          "quantity": 10,
+          "quantity": 5,
           "id": 44
         },
         {
           "type": "item",
           "name": "61bf7b6302b3924be92fa8c3",
-          "quantity": 14,
+          "quantity": 7,
           "id": 316
         },
         {
           "type": "trader",
-          "name": 5,
+          "name": 4,
           "quantity": 3,
           "id": 276
         }
@@ -578,13 +578,13 @@
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 50000,
+          "quantity": 25000,
           "id": 191
         },
         {
           "type": "item",
           "name": "57347b8b24597737dd42e192",
-          "quantity": 4,
+          "quantity": 2,
           "id": 231
         }
       ],
@@ -610,25 +610,25 @@
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 100000,
+          "quantity": 50000,
           "id": 192
         },
         {
           "type": "item",
           "name": "590a373286f774287540368b",
-          "quantity": 6,
+          "quantity": 3,
           "id": 232
         },
         {
           "type": "item",
           "name": "5e2af2bc86f7746d3f3c33fc",
-          "quantity": 4,
+          "quantity": 2,
           "id": 233
         },
         {
           "type": "item",
           "name": "56742c284bdc2d98058b456d",
-          "quantity": 6,
+          "quantity": 3,
           "id": 311
         }
       ],
@@ -660,30 +660,30 @@
         {
           "type": "item",
           "name": "5d1c774f86f7746d6620f8db",
-          "quantity": 16,
+          "quantity": 8,
           "id": 49
         },
         {
           "type": "item",
           "name": "5c06779c86f77426e00dd782",
-          "quantity": 16,
+          "quantity": 8,
           "id": 50
         },
         {
           "type": "item",
           "name": "5d1b313086f77425227d1678",
-          "quantity": 8,
+          "quantity": 4,
           "id": 267
         },
         {
           "type": "item",
           "name": "619cbf476b8a1b37a54eebf8",
-          "quantity": 4,
+          "quantity": 2,
           "id": 315
         },
         {
           "type": "trader",
-          "name": 6,
+          "name": 5,
           "quantity": 2,
           "id": 277
         }
@@ -698,13 +698,13 @@
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 20000,
+          "quantity": 10000,
           "id": 193
         },
         {
           "type": "item",
           "name": "56742c284bdc2d98058b456d",
-          "quantity": 2,
+          "quantity": 1,
           "id": 304
         }
       ],
@@ -768,30 +768,30 @@
         {
           "type": "item",
           "name": "5c06782b86f77426df5407d2",
-          "quantity": 14,
+          "quantity": 7,
           "id": 58
         },
         {
           "type": "item",
           "name": "5c06779c86f77426e00dd782",
-          "quantity": 12,
+          "quantity": 6,
           "id": 216
         },
         {
           "type": "item",
           "name": "590a3cd386f77436f20848cb",
-          "quantity": 24,
+          "quantity": 12,
           "id": 274
         },
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 100000,
+          "quantity": 50000,
           "id": 194
         },
         {
           "type": "trader",
-          "name": 5,
+          "name": 4,
           "quantity": 2,
           "id": 278
         }
@@ -818,19 +818,19 @@
         {
           "type": "item",
           "name": "5c12613b86f7743bbe2c3f76",
-          "quantity": 2,
+          "quantity": 1,
           "id": 61
         },
         {
           "type": "item",
           "name": "62a0a124de7ac81993580542",
-          "quantity": 2,
+          "quantity": 1,
           "id": 302
         },
         {
           "type": "item",
           "name": "574eb85c245977648157eec3",
-          "quantity": 2,
+          "quantity": 1,
           "id": 303
         }
       ],
@@ -874,30 +874,30 @@
         {
           "type": "item",
           "name": "5c12613b86f7743bbe2c3f76",
-          "quantity": 6,
+          "quantity": 3,
           "id": 66
         },
         {
           "type": "item",
           "name": "590c621186f774138d11ea29",
-          "quantity": 6,
+          "quantity": 3,
           "id": 67
         },
         {
           "type": "item",
           "name": "59e36c6f86f774176c10a2a7",
-          "quantity": 14,
+          "quantity": 4,
           "id": 68
         },
         {
           "type": "item",
           "name": "590a386e86f77429692b27ab",
-          "quantity": 8,
+          "quantity": 4,
           "id": 69
         },
         {
           "type": "trader",
-          "name": 5,
+          "name": 4,
           "quantity": 2,
           "id": 279
         }
@@ -930,25 +930,25 @@
         {
           "type": "item",
           "name": "5c052f6886f7746b1e3db148",
-          "quantity": 4,
+          "quantity": 2,
           "id": 72
         },
         {
           "type": "item",
           "name": "5c05300686f7746dce784e5d",
-          "quantity": 4,
+          "quantity": 2,
           "id": 73
         },
         {
           "type": "item",
           "name": "62a0a16d0b9d3c46de5b6e97",
-          "quantity": 10,
+          "quantity": 5,
           "id": 74
         },
         {
           "type": "item",
           "name": "5d0375ff86f774186372f685",
-          "quantity": 10,
+          "quantity": 5,
           "id": 75
         },
         {
@@ -960,7 +960,7 @@
         {
           "type": "item",
           "name": "61bf7c024770ee6f9c6b8b53",
-          "quantity": 4,
+          "quantity": 2,
           "id": 319
         }
       ],
@@ -974,31 +974,31 @@
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 4000,
+          "quantity": 2000,
           "id": 195
         },
         {
           "type": "item",
           "name": "5c13cef886f774072e618e82",
-          "quantity": 2,
+          "quantity": 1,
           "id": 236
         },
         {
           "type": "item",
           "name": "57347c93245977448d35f6e3",
-          "quantity": 2,
+          "quantity": 1,
           "id": 253
         },
         {
           "type": "item",
           "name": "5c13cd2486f774072c757944",
-          "quantity": 2,
+          "quantity": 1,
           "id": 254
         },
         {
           "type": "item",
           "name": "62a0a098de7ac8199358053b",
-          "quantity": 2,
+          "quantity": 1,
           "id": 323
         }
       ],
@@ -1030,31 +1030,31 @@
         {
           "type": "item",
           "name": "59e35cbb86f7741778269d83",
-          "quantity": 6,
+          "quantity": 3,
           "id": 78
         },
         {
           "type": "item",
           "name": "59e35ef086f7741777737012",
-          "quantity": 10,
+          "quantity": 5,
           "id": 79
         },
         {
           "type": "item",
           "name": "59e35de086f7741778269d84",
-          "quantity": 2,
+          "quantity": 1,
           "id": 80
         },
         {
           "type": "item",
           "name": "5e2af29386f7746d4159f077",
-          "quantity": 2,
+          "quantity": 1,
           "id": 238
         },
         {
           "type": "item",
           "name": "61bf83814088ec1a363d7097",
-          "quantity": 4,
+          "quantity": 2,
           "id": 318
         }
       ],
@@ -1086,25 +1086,25 @@
         {
           "type": "item",
           "name": "59e35cbb86f7741778269d83",
-          "quantity": 12,
+          "quantity": 6,
           "id": 83
         },
         {
           "type": "item",
           "name": "5d1b327086f7742525194449",
-          "quantity": 4,
+          "quantity": 2,
           "id": 84
         },
         {
           "type": "item",
           "name": "590c2e1186f77425357b6124",
-          "quantity": 2,
+          "quantity": 1,
           "id": 85
         },
         {
           "type": "item",
           "name": "590c346786f77423e50ed342",
-          "quantity": 6,
+          "quantity": 3,
           "id": 86
         }
       ],
@@ -1174,31 +1174,31 @@
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 100000,
+          "quantity": 50000,
           "id": 197
         },
         {
           "type": "item",
           "name": "5d1b3f2d86f774253763b735",
-          "quantity": 2,
+          "quantity": 1,
           "id": 255
         },
         {
           "type": "item",
           "name": "5d1b3a5d86f774252167ba22",
-          "quantity": 2,
+          "quantity": 1,
           "id": 256
         },
         {
           "type": "item",
           "name": "544fb25a4bdc2dfb738b4567",
-          "quantity": 4,
+          "quantity": 2,
           "id": 298
         },
         {
           "type": "item",
           "name": "62a0a043cf4a99369e2624a5",
-          "quantity": 2,
+          "quantity": 1,
           "id": 322
         }
       ],
@@ -1230,31 +1230,31 @@
         {
           "type": "item",
           "name": "5e831507ea0a7c419c2f9bd9",
-          "quantity": 10,
+          "quantity": 5,
           "id": 242
         },
         {
           "type": "item",
           "name": "5b4335ba86f7744d2837a264",
-          "quantity": 4,
+          "quantity": 2,
           "id": 89
         },
         {
           "type": "item",
           "name": "59e3606886f77417674759a5",
-          "quantity": 6,
+          "quantity": 3,
           "id": 90
         },
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 300000,
+          "quantity": 150000,
           "id": 198
         },
         {
           "type": "item",
           "name": "619cc01e0a7c3a1a2731940c",
-          "quantity": 6,
+          "quantity": 3,
           "id": 314
         },
         {
@@ -1298,25 +1298,25 @@
         {
           "type": "item",
           "name": "5c0530ee86f774697952d952",
-          "quantity": 2,
+          "quantity": 1,
           "id": 92
         },
         {
           "type": "item",
           "name": "5af0534a86f7743b6f354284",
-          "quantity": 2,
+          "quantity": 1,
           "id": 93
         },
         {
           "type": "item",
           "name": "59e3606886f77417674759a5",
-          "quantity": 8,
+          "quantity": 4,
           "id": 94
         },
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 1000000,
+          "quantity": 500000,
           "id": 199
         },
         {
@@ -1324,12 +1324,6 @@
           "name": 1,
           "quantity": 3,
           "id": 282
-        },
-        {
-          "type": "trader",
-          "name": 3,
-          "quantity": 2,
-          "id": 283
         }
       ],
       "id": 24,
@@ -1348,25 +1342,25 @@
         {
           "type": "item",
           "name": "5d1b313086f77425227d1678",
-          "quantity": 4,
+          "quantity": 2,
           "id": 96
         },
         {
           "type": "item",
           "name": "59e36c6f86f774176c10a2a7",
-          "quantity": 2,
+          "quantity": 1,
           "id": 297
         },
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 50000,
+          "quantity": 25000,
           "id": 200
         },
         {
           "type": "item",
           "name": "62a09ee4cf4a99369e262453",
-          "quantity": 2,
+          "quantity": 1,
           "id": 324
         }
       ],
@@ -1392,25 +1386,25 @@
         {
           "type": "item",
           "name": "5d1b313086f77425227d1678",
-          "quantity": 2,
+          "quantity": 1,
           "id": 99
         },
         {
           "type": "item",
           "name": "590c311186f77424d1667482",
-          "quantity": 8,
+          "quantity": 4,
           "id": 100
         },
         {
           "type": "item",
           "name": "59e35cbb86f7741778269d83",
-          "quantity": 4,
+          "quantity": 2,
           "id": 101
         },
         {
           "type": "item",
           "name": "59faf98186f774067b6be103",
-          "quantity": 4,
+          "quantity": 2,
           "id": 102
         }
       ],
@@ -1454,25 +1448,25 @@
         {
           "type": "item",
           "name": "5e2af00086f7746d3f3c33f7",
-          "quantity": 4,
+          "quantity": 2,
           "id": 219
         },
         {
           "type": "item",
           "name": "59e35abd86f7741778269d82",
-          "quantity": 6,
+          "quantity": 3,
           "id": 107
         },
         {
           "type": "item",
           "name": "5af0484c86f7740f02001f7f",
-          "quantity": 6,
+          "quantity": 3,
           "id": 108
         },
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 250000,
+          "quantity": 125000,
           "id": 201
         }
       ],
@@ -1492,19 +1486,19 @@
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 20000,
+          "quantity": 10000,
           "id": 202
         },
         {
           "type": "item",
           "name": "57347c1124597737fb1379e3",
-          "quantity": 2,
+          "quantity": 1,
           "id": 262
         },
         {
           "type": "item",
           "name": "57347b8b24597737dd42e192",
-          "quantity": 2,
+          "quantity": 1,
           "id": 296
         }
       ],
@@ -1536,30 +1530,30 @@
         {
           "type": "item",
           "name": "590a391c86f774385a33c404",
-          "quantity": 2,
+          "quantity": 1,
           "id": 246
         },
         {
           "type": "item",
           "name": "5734781f24597737e04bf32a",
-          "quantity": 2,
+          "quantity": 1,
           "id": 247
         },
         {
           "type": "item",
           "name": "590a3cd386f77436f20848cb",
-          "quantity": 6,
+          "quantity": 3,
           "id": 248
         },
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 70000,
+          "quantity": 35000,
           "id": 203
         },
         {
           "type": "trader",
-          "name": 6,
+          "name": 5,
           "quantity": 2,
           "id": 283
         }
@@ -1592,30 +1586,30 @@
         {
           "type": "item",
           "name": "59e36c6f86f774176c10a2a7",
-          "quantity": 8,
+          "quantity": 4,
           "id": 115
         },
         {
           "type": "item",
           "name": "5c06782b86f77426df5407d2",
-          "quantity": 10,
+          "quantity": 5,
           "id": 116
         },
         {
           "type": "item",
           "name": "5c06779c86f77426e00dd782",
-          "quantity": 14,
+          "quantity": 7,
           "id": 117
         },
         {
           "type": "item",
           "name": "5e2aedd986f7746d404f3aa4",
-          "quantity": 10,
+          "quantity": 5,
           "id": 204
         },
         {
           "type": "trader",
-          "name": 3,
+          "name": 2,
           "quantity": 3,
           "id": 284
         }
@@ -1630,37 +1624,37 @@
         {
           "type": "item",
           "name": "59e3639286f7741777737013",
-          "quantity": 6,
+          "quantity": 3,
           "id": 118
         },
         {
           "type": "item",
           "name": "5d235a5986f77443f6329bc6",
-          "quantity": 12,
+          "quantity": 6,
           "id": 119
         },
         {
           "type": "item",
           "name": "5734758f24597738025ee253",
-          "quantity": 16,
+          "quantity": 8,
           "id": 120
         },
         {
           "type": "item",
           "name": "59faf7ca86f7740dbe19f6c2",
-          "quantity": 8,
+          "quantity": 4,
           "id": 121
         },
         {
           "type": "item",
           "name": "5d1b376e86f774252519444e",
-          "quantity": 6,
+          "quantity": 3,
           "id": 266
         },
         {
           "type": "item",
           "name": "5b7c710788a4506dec015957",
-          "quantity": 2,
+          "quantity": 1,
           "id": 295
         },
         {
@@ -1672,7 +1666,7 @@
         {
           "type": "item",
           "name": "5bc9bc53d4351e00367fbcee",
-          "quantity": 2,
+          "quantity": 1,
           "id": 325
         }
       ],
@@ -1686,13 +1680,13 @@
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 40000,
+          "quantity": 20000,
           "id": 205
         },
         {
           "type": "item",
           "name": "590c2c9c86f774245b1f03f2",
-          "quantity": 2,
+          "quantity": 1,
           "id": 258
         }
       ],
@@ -1724,25 +1718,25 @@
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 90000,
+          "quantity": 45000,
           "id": 206
         },
         {
           "type": "item",
           "name": "5af04b6486f774195a3ebb49",
-          "quantity": 2,
+          "quantity": 1,
           "id": 260
         },
         {
           "type": "item",
           "name": "590c5bbd86f774785762df04",
-          "quantity": 2,
+          "quantity": 1,
           "id": 261
         },
         {
           "type": "item",
           "name": "60391b0fb847c71012789415",
-          "quantity": 2,
+          "quantity": 1,
           "id": 310
         }
       ],
@@ -1768,30 +1762,30 @@
         {
           "type": "item",
           "name": "5d1b304286f774253763a528",
-          "quantity": 4,
+          "quantity": 2,
           "id": 126
         },
         {
           "type": "item",
           "name": "5c06779c86f77426e00dd782",
-          "quantity": 8,
+          "quantity": 4,
           "id": 127
         },
         {
           "type": "item",
           "name": "5d1b2ffd86f77425243e8d17",
-          "quantity": 16,
+          "quantity": 8,
           "id": 128
         },
         {
           "type": "item",
           "name": "590c392f86f77444754deb29",
-          "quantity": 2,
+          "quantity": 1,
           "id": 129
         },
         {
           "type": "trader",
-          "name": 5,
+          "name": 4,
           "quantity": 2,
           "id": 285
         }
@@ -1818,13 +1812,13 @@
         {
           "type": "item",
           "name": "57347c77245977448d35f6e2",
-          "quantity": 2,
+          "quantity": 5,
           "id": 132
         },
         {
           "type": "item",
           "name": "57347c5b245977448d35f6e1",
-          "quantity": 2,
+          "quantity": 5,
           "id": 133
         },
         {
@@ -2006,36 +2000,36 @@
         {
           "type": "item",
           "name": "5d0375ff86f774186372f685",
-          "quantity": 20,
+          "quantity": 10,
           "id": 137
         },
         {
           "type": "item",
           "name": "5d03775b86f774203e7e0c4b",
-          "quantity": 8,
+          "quantity": 4,
           "id": 138
         },
         {
           "type": "item",
           "name": "5d0378d486f77420421a5ff4",
-          "quantity": 20,
+          "quantity": 10,
           "id": 139
         },
         {
           "type": "item",
           "name": "569668774bdc2da2298b4568",
-          "quantity": 50000,
+          "quantity": 75000,
           "id": 207
         },
         {
           "type": "item",
           "name": "5d1b304286f774253763a528",
-          "quantity": 6,
+          "quantity": 3,
           "id": 312
         },
         {
           "type": "trader",
-          "name": 4,
+          "name": 3,
           "quantity": 4,
           "id": 286
         }
@@ -2154,7 +2148,7 @@
         },
         {
           "type": "trader",
-          "name": 6,
+          "name": 5,
           "quantity": 3,
           "id": 288
         }
@@ -2228,13 +2222,13 @@
         },
         {
           "type": "trader",
-          "name": 4,
+          "name": 3,
           "quantity": 4,
           "id": 289
         },
         {
           "type": "trader",
-          "name": 6,
+          "name": 5,
           "quantity": 4,
           "id": 290
         }
@@ -2249,7 +2243,7 @@
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 50000,
+          "quantity": 25000,
           "id": 211
         }
       ],
@@ -2269,25 +2263,25 @@
         {
           "type": "item",
           "name": "5d1b2fa286f77425227d1674",
-          "quantity": 2,
+          "quantity": 1,
           "id": 155
         },
         {
           "type": "item",
           "name": "5733279d245977289b77ec24",
-          "quantity": 2,
+          "quantity": 1,
           "id": 156
         },
         {
           "type": "item",
           "name": "5734779624597737e04bf329",
-          "quantity": 6,
+          "quantity": 3,
           "id": 218
         },
         {
           "type": "item",
           "name": "61bf7b6302b3924be92fa8c3",
-          "quantity": 4,
+          "quantity": 2,
           "id": 269
         }
       ],
@@ -2319,31 +2313,31 @@
         {
           "type": "item",
           "name": "5d1b2fa286f77425227d1674",
-          "quantity": 8,
+          "quantity": 4,
           "id": 159
         },
         {
           "type": "item",
           "name": "5733279d245977289b77ec24",
-          "quantity": 8,
+          "quantity": 4,
           "id": 160
         },
         {
           "type": "item",
           "name": "5c06779c86f77426e00dd782",
-          "quantity": 28,
+          "quantity": 14,
           "id": 161
         },
         {
           "type": "item",
           "name": "590a3b0486f7743954552bdb",
-          "quantity": 10,
+          "quantity": 5,
           "id": 162
         },
         {
           "type": "item",
           "name": "61bf7b6302b3924be92fa8c3",
-          "quantity": 10,
+          "quantity": 5,
           "id": 317
         }
       ],
@@ -2357,25 +2351,25 @@
         {
           "type": "item",
           "name": "59e35cbb86f7741778269d83",
-          "quantity": 8,
+          "quantity": 4,
           "id": 163
         },
         {
           "type": "item",
           "name": "57347c5b245977448d35f6e1",
-          "quantity": 10,
+          "quantity": 5,
           "id": 164
         },
         {
           "type": "item",
           "name": "57347c77245977448d35f6e2",
-          "quantity": 10,
+          "quantity": 5,
           "id": 165
         },
         {
           "type": "item",
           "name": "57347c1124597737fb1379e3",
-          "quantity": 6,
+          "quantity": 3,
           "id": 166
         },
         {
@@ -2413,30 +2407,30 @@
         {
           "type": "item",
           "name": "59e35cbb86f7741778269d83",
-          "quantity": 12,
+          "quantity": 6,
           "id": 169
         },
         {
           "type": "item",
           "name": "5d1b2fa286f77425227d1674",
-          "quantity": 4,
+          "quantity": 2,
           "id": 170
         },
         {
           "type": "item",
           "name": "590c2e1186f77425357b6124",
-          "quantity": 4,
+          "quantity": 2,
           "id": 171
         },
         {
           "type": "item",
           "name": "5e2af29386f7746d4159f077",
-          "quantity": 4,
+          "quantity": 2,
           "id": 251
         },
         {
           "type": "trader",
-          "name": 7,
+          "name": 6,
           "quantity": 2,
           "id": 291
         }
@@ -2469,30 +2463,30 @@
         {
           "type": "item",
           "name": "5af04b6486f774195a3ebb49",
-          "quantity": 4,
+          "quantity": 2,
           "id": 175
         },
         {
           "type": "item",
           "name": "590c35a486f774273531c822",
-          "quantity": 10,
+          "quantity": 5,
           "id": 176
         },
         {
           "type": "item",
           "name": "60391afc25aff57af81f7085",
-          "quantity": 2,
+          "quantity": 1,
           "id": 268
         },
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 40000,
+          "quantity": 20000,
           "id": 212
         },
         {
           "type": "trader",
-          "name": 7,
+          "name": 6,
           "quantity": 3,
           "id": 292
         }
@@ -2507,19 +2501,19 @@
         {
           "type": "item",
           "name": "57347c77245977448d35f6e2",
-          "quantity": 4,
+          "quantity": 2,
           "id": 177
         },
         {
           "type": "item",
           "name": "57347c5b245977448d35f6e1",
-          "quantity": 4,
+          "quantity": 2,
           "id": 178
         },
         {
           "type": "item",
           "name": "544fb5454bdc2df8738b456a",
-          "quantity": 2,
+          "quantity": 1,
           "id": 179
         }
       ],
@@ -2545,36 +2539,36 @@
         {
           "type": "item",
           "name": "590c2e1186f77425357b6124",
-          "quantity": 6,
+          "quantity": 3,
           "id": 182
         },
         {
           "type": "item",
           "name": "59e35de086f7741778269d84",
-          "quantity": 4,
+          "quantity": 2,
           "id": 183
         },
         {
           "type": "item",
           "name": "57347c5b245977448d35f6e1",
-          "quantity": 12,
+          "quantity": 6,
           "id": 184
         },
         {
           "type": "item",
           "name": "5d1c819a86f774771b0acd6c",
-          "quantity": 6,
+          "quantity": 3,
           "id": 265
         },
         {
           "type": "item",
           "name": "62a0a0bb621468534a797ad5",
-          "quantity": 2,
+          "quantity": 1,
           "id": 326
         },
         {
           "type": "trader",
-          "name": 5,
+          "name": 4,
           "quantity": 2,
           "id": 293
         }
@@ -2607,30 +2601,30 @@
         {
           "type": "item",
           "name": "5af04b6486f774195a3ebb49",
-          "quantity": 4,
+          "quantity": 2,
           "id": 187
         },
         {
           "type": "item",
           "name": "5bc9b355d4351e6d1509862a",
-          "quantity": 2,
+          "quantity": 1,
           "id": 188
         },
         {
           "type": "item",
           "name": "5449016a4bdc2d6f028b456f",
-          "quantity": 790000,
+          "quantity": 395000,
           "id": 213
         },
         {
           "type": "item",
           "name": "60391a8b3364dc22b04d0ce5",
-          "quantity": 4,
+          "quantity": 2,
           "id": 273
         },
         {
           "type": "trader",
-          "name": 5,
+          "name": 4,
           "quantity": 3,
           "id": 294
         }

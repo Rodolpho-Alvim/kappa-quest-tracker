@@ -248,6 +248,7 @@ export default function HideoutPage() {
             title="Hideout"
             subtitle="Hideout Progress"
             showHubButton={true}
+            showApiHubButton={false}
           >
             <div className="flex items-center justify-center md:justify-end w-full md:w-auto gap-2">
               <SettingsDialog
@@ -358,6 +359,25 @@ export default function HideoutPage() {
               searchTerm={searchTerm}
               onSearchChange={setSearchTerm}
             />
+
+            {/* Link para o Hub da API */}
+            {/* <div className="mb-6 text-center">
+              <div className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-xl">
+                <h3 className="text-xl font-semibold mb-2">
+                  🚀 Hub da API Tarkov.dev
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  Acesse ferramentas avançadas de sincronização, comparação e
+                  análise dos dados oficiais
+                </p>
+                <a
+                  href="/hideout/hubapi"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+                >
+                  🌐 Acessar Hub da API
+                </a>
+              </div>
+            </div> */}
             {loading ? (
               <div className="text-center text-gray-500 py-12">
                 Carregando estações do Hideout...
