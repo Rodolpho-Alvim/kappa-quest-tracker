@@ -21,7 +21,7 @@ import type {
   UserProgress,
 } from "@/types/quest-data";
 import { Check, Edit3, Trash2, X } from "lucide-react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { QuantityInput } from "./QuantityInput";
 
 interface ItemRowProps {
@@ -113,18 +113,26 @@ const ItemRowComponent = ({
   const { itemsMap } = useItemsMap();
 
   // Lógica automática de completo: qtdE >= qtdR (e FIR, se necessário)
-  const qtdE = Number(userProgress?.qtdE ?? (item as any).qtdE ?? 0);
-  const qtdR = Number(userProgress?.qtdR ?? (item as any).qtdR ?? 0);
-  const firRequired =
-    (item as any).fir === "Yes" || userProgress?.fir === "Yes";
-  const firOk =
-    !firRequired || userProgress?.fir === "Yes" || (item as any).fir === "Yes";
-  const isCompleted = qtdE >= qtdR && firOk && qtdR > 0;
+  const isCompleted = useMemo(() => {
+    const qtdE = Number(userProgress?.qtdE ?? (item as any).qtdE ?? 0);
+    const qtdR = Number(userProgress?.qtdR ?? (item as any).qtdR ?? 0);
+    const firRequired =
+      (item as any).fir === "Yes" || userProgress?.fir === "Yes";
+    const firOk =
+      !firRequired ||
+      userProgress?.fir === "Yes" ||
+      (item as any).fir === "Yes";
+    return qtdE >= qtdR && firOk && qtdR > 0;
+  }, [userProgress, item]);
 
-  const bgColor = isEven ? "bg-muted/50" : "bg-background";
-  const completedBg = isCompleted
-    ? "bg-green-500/10 border-l-4 border-l-green-500"
-    : "";
+  const bgColor = useMemo(
+    () => (isEven ? "bg-muted/50" : "bg-background"),
+    [isEven]
+  );
+  const completedBg = useMemo(
+    () => (isCompleted ? "bg-green-500/10 border-l-4 border-l-green-500" : ""),
+    [isCompleted]
+  );
 
   // Verificar se é uma referência (TARCONE, OU)
   const isReference = (item as any).isReference === true;
@@ -139,13 +147,15 @@ const ItemRowComponent = ({
     setIsEditingName(false);
   };
 
-  const getValue = (field: string, defaultValue: any = "") => {
-    return (
-      userProgress?.[field as keyof UserProgress[string]] ??
-      (item as any)[field] ??
-      defaultValue
-    );
-  };
+  const getValue = useMemo(() => {
+    return (field: string, defaultValue: any = "") => {
+      return (
+        userProgress?.[field as keyof UserProgress[string]] ??
+        (item as any)[field] ??
+        defaultValue
+      );
+    };
+  }, [userProgress, item]);
 
   const getFirValue = () => {
     const value = getValue("fir", "");
@@ -173,9 +183,9 @@ const ItemRowComponent = ({
       <div className="flex items-start justify-between gap-4">
         {/* Lado esquerdo: Nome */}
         <div className="flex items-start gap-3 flex-1 min-w-0">
-          <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-1 min-w-0">
             {isEditingName ? (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-1">
                 <Input
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
@@ -194,9 +204,9 @@ const ItemRowComponent = ({
                 </Button>
               </div>
             ) : (
-              <div className="flex items-center gap-2">
+              <>
                 {/* Imagem do item antes do nome */}
-                <div className="relative" style={{ overflow: "visible" }}>
+                <div className="flex-shrink-0">
                   {(() => {
                     // 1. Tenta pelo id se for um hash válido
                     const isValidId =
@@ -319,14 +329,17 @@ const ItemRowComponent = ({
                   })()}
                 </div>
                 <span
-                  className={`font-medium text-sm leading-tight flex items-center ${
+                  className={`font-medium text-sm leading-tight flex items-center flex-1 min-w-0 ${
                     isCompleted ? "line-through text-muted-foreground" : ""
                   }`}
                   title={item.item}
                 >
-                  {item.item}
+                  <span className="truncate flex-1">{item.item}</span>
                   {isCompleted && (
-                    <span className="ml-2 text-green-600" title="Completo">
+                    <span
+                      className="ml-2 text-green-600 flex-shrink-0"
+                      title="Completo"
+                    >
                       ✓
                     </span>
                   )}
@@ -342,15 +355,15 @@ const ItemRowComponent = ({
                     <Edit3 className="h-3 w-3" />
                   </Button>
                 )}
-              </div>
+              </>
             )}
           </div>
         </div>
 
         {/* Lado direito: Campos editáveis */}
-        <div className="flex items-center gap-4 flex-shrink-0">
+        <div className="flex items-center gap-2 flex-shrink-0">
           {/* Qtd. E - Quantidade Encontrada */}
-          <div className="flex flex-col items-center min-w-[60px]">
+          <div className="flex flex-col items-center min-w-[50px]">
             <label
               className="text-xs text-muted-foreground mb-1"
               title="Quantidade Encontrada"
@@ -361,63 +374,49 @@ const ItemRowComponent = ({
               value={Number(getValue("qtdE", 0))}
               onChange={(val) => onProgressUpdate(item.id, "qtdE", val)}
               min={0}
-              className="w-14 h-8 text-xs -ml-2"
+              max={Number(getValue("qtdR", 0))}
+              className="w-12 h-8 text-xs"
             />
           </div>
 
           {/* Qtd. R - Quantidade Requerida */}
-          <div className="flex flex-col items-center min-w-[70px]">
+          <div className="flex flex-col items-center min-w-[50px]">
             <label
               className="text-xs text-muted-foreground mb-1"
               title="Quantidade Requerida"
             >
               Qtd. R
             </label>
-            <QuantityInput
-              value={Number(getValue("qtdR", 0))}
-              onChange={(val) => onProgressUpdate(item.id, "qtdR", val)}
-              min={0}
-              className="w-16 h-8 text-xs -ml-2"
-            />
+            {item.isCustom ? (
+              <QuantityInput
+                value={Number(getValue("qtdR", 0))}
+                onChange={(val) => onProgressUpdate(item.id, "qtdR", val)}
+                min={0}
+                className="w-12 h-8 text-xs"
+              />
+            ) : (
+              <div className="w-12 h-8 text-xs flex items-center justify-center bg-muted rounded border text-center font-medium">
+                {getValue("qtdR", 0)}
+              </div>
+            )}
           </div>
 
           {/* Coluna Barter apenas para chavesQuests, logo após Qtd. R */}
           {sectionType === "chavesQuests" && (
-            <div className="flex flex-col items-center min-w-[70px]">
+            <div className="flex flex-col items-center min-w-[50px]">
               <label
                 className="text-xs text-muted-foreground mb-1"
                 title="Barter"
               >
                 Barter
               </label>
-              <Select
-                value={
-                  getValue("barter", "-") === "Yes"
-                    ? "Yes"
-                    : getValue("barter", "-") === "No"
-                    ? "No"
-                    : "-"
-                }
-                onValueChange={(value) =>
-                  onProgressUpdate(
-                    item.id,
-                    "barter",
-                    value === "-" ? "" : value
-                  )
-                }
-              >
-                <SelectTrigger
-                  className="w-16 h-8 text-xs"
-                  title="Pode ser trocado?"
-                >
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="-">-</SelectItem>
-                  <SelectItem value="Yes">Sim</SelectItem>
-                  <SelectItem value="No">Não</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="w-12 h-8 text-xs flex items-center justify-center bg-muted rounded border text-center font-medium">
+                {getValue("barter", "-") === "Yes"
+                  ? "Sim"
+                  : getValue("barter", "-") === "No"
+                  ? "Não"
+                  : "-"}
+              </div>
             </div>
           )}
 
@@ -426,44 +425,64 @@ const ItemRowComponent = ({
             sectionType === "samples" ||
             sectionType === "recompensas-quests" ||
             sectionType === "streamer") && (
-            <div className="flex flex-col items-center min-w-[70px]">
+            <div className="flex flex-col items-center min-w-[50px]">
               <label
                 className="text-xs text-muted-foreground mb-1"
                 title="Found in Raid (Encontrados na Raid)"
               >
                 FIR
               </label>
-              <Select
-                value={getFirValue()}
-                onValueChange={(value) =>
-                  onProgressUpdate(item.id, "fir", value === "-" ? "" : value)
-                }
-              >
-                <SelectTrigger
-                  className="w-16 h-8 text-xs"
-                  title="Precisa ser encontrado na raid?"
+              {item.isCustom ? (
+                <Select
+                  value={getFirValue()}
+                  onValueChange={(value) =>
+                    onProgressUpdate(item.id, "fir", value === "-" ? "" : value)
+                  }
                 >
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="-">-</SelectItem>
-                  <SelectItem value="Yes">Sim</SelectItem>
-                  <SelectItem value="No">Não</SelectItem>
-                </SelectContent>
-              </Select>
+                  <SelectTrigger
+                    className="w-12 h-8 text-xs"
+                    title="Precisa ser encontrado na raid?"
+                  >
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="-">-</SelectItem>
+                    <SelectItem value="Yes">Sim</SelectItem>
+                    <SelectItem value="No">Não</SelectItem>
+                  </SelectContent>
+                </Select>
+              ) : (
+                <div className="w-12 h-8 text-xs flex items-center justify-center bg-muted rounded border text-center font-medium">
+                  <span
+                    className={
+                      getFirValue() === "Yes"
+                        ? "text-red-700 dark:text-red-500"
+                        : ""
+                    }
+                  >
+                    {getFirValue() === "Yes"
+                      ? "Sim"
+                      : getFirValue() === "No"
+                      ? "Não"
+                      : getFirValue()}
+                  </span>
+                </div>
+              )}
             </div>
           )}
 
-          {/* Botão deletar */}
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={() => onDeleteItem(item.id)}
-            className="text-destructive hover:text-destructive hover:bg-destructive/10 flex-shrink-0"
-            title="Deletar item"
-          >
-            <Trash2 className="h-4 w-4" />
-          </Button>
+          {/* Botão deletar - só mostra se for item customizado */}
+          {item.isCustom && (
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => onDeleteItem(item.id)}
+              className="text-destructive hover:text-destructive hover:bg-destructive/10 flex-shrink-0"
+              title="Deletar item"
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          )}
         </div>
       </div>
     </div>

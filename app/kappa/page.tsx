@@ -22,7 +22,7 @@ import type {
 } from "@/types/quest-data";
 import { ArrowUp } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 const NavigationSidebar = dynamic(
   () => import("@/components/navigation-sidebar"),
   { ssr: false }
@@ -211,11 +211,11 @@ export default function KappaQuestTracker() {
       ]),
       dorm303: filterDeleted([...FIXED_ITEMS.dorm303, ...customItems.dorm303]),
     };
-  }, [FIXED_ITEMS, customItems, deletedItems]);
+  }, [customItems, deletedItems]);
 
   const allItems = getAllItems;
 
-  // Filtrar por busca
+  // Filtrar por busca com debouncing
   const getFilteredItems = useMemo(() => {
     return (items: any[]) => {
       if (!searchTerm) return items;
@@ -225,199 +225,190 @@ export default function KappaQuestTracker() {
     };
   }, [searchTerm]);
 
-  // Configuração das seções
-  const sectionConfigs = [
-    {
-      id: "main-items",
-      scrollId: "main",
-      title: "Itens Principais",
-      sectionType: "main" as const,
-      color: "bg-gradient-to-r from-blue-500 to-blue-600",
-      icon: "🎯",
-      items: allItems.mainItems,
-      addItemKey: "mainItems" as keyof CustomItems,
-    },
-    {
-      id: "samples",
-      scrollId: "samples",
-      title: "Samples",
-      sectionType: "samples" as const,
-      color: "bg-gradient-to-r from-green-500 to-green-600",
-      icon: "💉",
-      items: allItems.samples,
-      addItemKey: "samples" as keyof CustomItems,
-    },
-    {
-      id: "recompensas-quests",
-      scrollId: "recompensas-quests",
-      title: "Recompensas de Quests",
-      sectionType: "recompensas-quests" as const,
-      color: "bg-gradient-to-r from-amber-500 to-amber-600",
-      icon: "🏆",
-      items: allItems.recompensasQuests,
-      addItemKey: "recompensasQuests" as keyof CustomItems,
-    },
-    {
-      id: "streamer-items",
-      scrollId: "streamer",
-      title: "Streamer Items",
-      sectionType: "streamer" as const,
-      color: "bg-gradient-to-r from-purple-500 to-purple-600",
-      icon: "⭐",
-      items: allItems.streamerItems,
-      addItemKey: "streamerItems" as keyof CustomItems,
-    },
-    {
-      id: "chavesQuests",
-      scrollId: "chavesQuests",
-      title: "Chaves de Quests",
-      sectionType: "chavesQuests",
-      color: "bg-gradient-to-r from-lime-500 to-lime-600",
-      icon: "🔑",
-      items: allItems.chavesQuests,
-      addItemKey: "chavesQuests" as keyof CustomItems,
-    },
-    {
-      id: "crafts-items",
-      scrollId: "craft",
-      title: "Crafts Prováveis",
-      sectionType: "craft" as const,
-      color: "bg-gradient-to-r from-orange-500 to-orange-600",
-      icon: "🔧",
-      items: allItems.craftsItems,
-      addItemKey: "craftsItems" as keyof CustomItems,
-    },
-    {
-      id: "troca-itens",
-      scrollId: "troca-itens",
-      title: "Troca Itens",
-      subtitle: "Elcan (Break the deal)",
-      sectionType: "troca-itens" as const,
-      color: "bg-gradient-to-r from-cyan-500 to-cyan-600",
-      icon: "🔄",
-      items: allItems.trocaItens,
-      addItemKey: "trocaItens" as keyof CustomItems,
-    },
-    {
-      id: "hideout-importante",
-      scrollId: "hideout",
-      title: "Hideout Importante",
-      subtitle: "LAVATÓRIO 2 (PENTE)",
-      sectionType: "hideout" as const,
-      color: "bg-gradient-to-r from-red-500 to-red-600",
-      icon: "🏠",
-      items: allItems.hideoutImportante,
-      addItemKey: "hideoutImportante" as keyof CustomItems,
-    },
-    {
-      id: "barter-gunsmith",
-      scrollId: "barter-gunsmith",
-      title: "Barter Gunsmith",
-      sectionType: "barter-gunsmith" as const,
-      color: "bg-gradient-to-r from-gray-500 to-gray-600",
-      icon: "🔫",
-      items: allItems.barterGunsmith,
-      addItemKey: "barterGunsmith" as keyof CustomItems,
-    },
-    {
-      id: "barter-chaves",
-      scrollId: "barter-chaves",
-      title: "Barter Chaves",
-      sectionType: "barter-chaves" as const,
-      color: "bg-gradient-to-r from-yellow-500 to-yellow-600",
-      icon: "🗝️",
-      items: allItems.barterChaves,
-      addItemKey: "barterChaves" as keyof CustomItems,
-    },
-    {
-      id: "dorm206",
-      scrollId: "dorm206",
-      title: "DORM 206",
-      sectionType: "dorm206" as const,
-      color: "bg-gradient-to-r from-indigo-500 to-indigo-600",
-      icon: "🏢",
-      items: allItems.dorm206,
-      addItemKey: "dorm206" as keyof CustomItems,
-    },
-    {
-      id: "portable-bunkhouse",
-      scrollId: "portable-bunkhouse",
-      title: "Portable Bunkhouse",
-      sectionType: "portable-bunkhouse" as const,
-      color: "bg-gradient-to-r from-teal-500 to-teal-600",
-      icon: "🏕️",
-      items: allItems.portableBunkhouse,
-      addItemKey: "portableBunkhouse" as keyof CustomItems,
-    },
-    {
-      id: "dorm303",
-      scrollId: "dorm303",
-      title: "DORM 303",
-      sectionType: "dorm303" as const,
-      color: "bg-gradient-to-r from-pink-500 to-pink-600",
-      icon: "🏢",
-      items: allItems.dorm303,
-      addItemKey: "dorm303" as keyof CustomItems,
-    },
-  ];
+  // Configuração das seções com useMemo
+  const sectionConfigs = useMemo(
+    () => [
+      {
+        id: "main-items",
+        scrollId: "main",
+        title: "Itens Principais",
+        sectionType: "main" as const,
+        color: "bg-gradient-to-r from-blue-500 to-blue-600",
+        icon: "🎯",
+        items: allItems.mainItems,
+        addItemKey: "mainItems" as keyof CustomItems,
+      },
+      {
+        id: "samples",
+        scrollId: "samples",
+        title: "Samples",
+        sectionType: "samples" as const,
+        color: "bg-gradient-to-r from-green-500 to-green-600",
+        icon: "💉",
+        items: allItems.samples,
+        addItemKey: "samples" as keyof CustomItems,
+      },
+      {
+        id: "recompensas-quests",
+        scrollId: "recompensas-quests",
+        title: "Recompensas de Quests",
+        sectionType: "recompensas-quests" as const,
+        color: "bg-gradient-to-r from-amber-500 to-amber-600",
+        icon: "🏆",
+        items: allItems.recompensasQuests,
+        addItemKey: "recompensasQuests" as keyof CustomItems,
+      },
+      {
+        id: "streamer-items",
+        scrollId: "streamer",
+        title: "Streamer Items",
+        sectionType: "streamer" as const,
+        color: "bg-gradient-to-r from-purple-500 to-purple-600",
+        icon: "⭐",
+        items: allItems.streamerItems,
+        addItemKey: "streamerItems" as keyof CustomItems,
+      },
+      {
+        id: "chavesQuests",
+        scrollId: "chavesQuests",
+        title: "Chaves de Quests",
+        sectionType: "chavesQuests",
+        color: "bg-gradient-to-r from-lime-500 to-lime-600",
+        icon: "🔑",
+        items: allItems.chavesQuests,
+        addItemKey: "chavesQuests" as keyof CustomItems,
+      },
+      {
+        id: "crafts-items",
+        scrollId: "craft",
+        title: "Crafts Prováveis",
+        sectionType: "craft" as const,
+        color: "bg-gradient-to-r from-orange-500 to-orange-600",
+        icon: "🔧",
+        items: allItems.craftsItems,
+        addItemKey: "craftsItems" as keyof CustomItems,
+      },
+      {
+        id: "troca-itens",
+        scrollId: "troca-itens",
+        title: "Troca Itens",
+        subtitle: "Elcan (Break the deal)",
+        sectionType: "troca-itens" as const,
+        color: "bg-gradient-to-r from-cyan-500 to-cyan-600",
+        icon: "🔄",
+        items: allItems.trocaItens,
+        addItemKey: "trocaItens" as keyof CustomItems,
+      },
+      {
+        id: "hideout-importante",
+        scrollId: "hideout",
+        title: "Hideout Importante",
+        subtitle: "LAVATÓRIO 2 (PENTE)",
+        sectionType: "hideout" as const,
+        color: "bg-gradient-to-r from-red-500 to-red-600",
+        icon: "🏠",
+        items: allItems.hideoutImportante,
+        addItemKey: "hideoutImportante" as keyof CustomItems,
+      },
+      {
+        id: "barter-gunsmith",
+        scrollId: "barter-gunsmith",
+        title: "Barter Gunsmith",
+        sectionType: "barter-gunsmith" as const,
+        color: "bg-gradient-to-r from-gray-500 to-gray-600",
+        icon: "🔫",
+        items: allItems.barterGunsmith,
+        addItemKey: "barterGunsmith" as keyof CustomItems,
+      },
+      {
+        id: "barter-chaves",
+        scrollId: "barter-chaves",
+        title: "Barter Chaves",
+        sectionType: "barter-chaves" as const,
+        color: "bg-gradient-to-r from-yellow-500 to-yellow-600",
+        icon: "🗝️",
+        items: allItems.barterChaves,
+        addItemKey: "barterChaves" as keyof CustomItems,
+      },
+      {
+        id: "dorm206",
+        scrollId: "dorm206",
+        title: "DORM 206",
+        sectionType: "dorm206" as const,
+        color: "bg-gradient-to-r from-indigo-500 to-indigo-600",
+        icon: "🏢",
+        items: allItems.dorm206,
+        addItemKey: "dorm206" as keyof CustomItems,
+      },
+      {
+        id: "portable-bunkhouse",
+        scrollId: "portable-bunkhouse",
+        title: "Portable Bunkhouse",
+        sectionType: "portable-bunkhouse" as const,
+        color: "bg-gradient-to-r from-teal-500 to-teal-600",
+        icon: "🏕️",
+        items: allItems.portableBunkhouse,
+        addItemKey: "portableBunkhouse" as keyof CustomItems,
+      },
+      {
+        id: "dorm303",
+        scrollId: "dorm303",
+        title: "DORM 303",
+        sectionType: "dorm303" as const,
+        color: "bg-gradient-to-r from-pink-500 to-pink-600",
+        icon: "🏢",
+        items: allItems.dorm303,
+        addItemKey: "dorm303" as keyof CustomItems,
+      },
+    ],
+    [allItems]
+  );
 
   // Ordenar as seções conforme a ordem salva
   const sortedSectionConfigs = [...sectionConfigs].sort((a, b) => {
     return getSectionOrder(a.scrollId) - getSectionOrder(b.scrollId);
   });
 
-  const renderSection = (config: (typeof sectionConfigs)[0]) => (
-    <div key={config.id} id={config.scrollId}>
-      <SectionCard
-        title={config.title}
-        subtitle={config.subtitle}
-        items={getFilteredItems(config.items)}
-        sectionType={config.sectionType as any}
-        userProgress={userProgress}
-        onProgressUpdate={updateProgress}
-        onItemUpdate={updateCustomItem}
-        onDeleteItem={deleteItem}
-        onAddItem={() => addNewItem(config.addItemKey)}
-        color={config.color}
-        icon={config.icon}
-      />
-    </div>
+  const updateProgress = useCallback(
+    (itemId: string, field: string, value: any) => {
+      setUserProgress((prev) => ({
+        ...prev,
+        [itemId]: {
+          ...prev[itemId],
+          [field]: value,
+          lastUpdated: Date.now(),
+        },
+      }));
+    },
+    []
   );
 
-  const updateProgress = (itemId: string, field: string, value: any) => {
-    setUserProgress((prev) => ({
-      ...prev,
-      [itemId]: {
-        ...prev[itemId],
-        [field]: value,
-        lastUpdated: Date.now(),
-      },
-    }));
-  };
+  const updateCustomItem = useCallback(
+    (itemId: string, field: string, value: any) => {
+      const updateSection = (section: keyof CustomItems) => {
+        setCustomItems((prev) => ({
+          ...prev,
+          [section]: prev[section].map((item) =>
+            item.id === itemId ? { ...item, [field]: value } : item
+          ),
+        }));
+      };
 
-  const updateCustomItem = (itemId: string, field: string, value: any) => {
-    const updateSection = (section: keyof CustomItems) => {
-      setCustomItems((prev) => ({
-        ...prev,
-        [section]: prev[section].map((item) =>
-          item.id === itemId ? { ...item, [field]: value } : item
-        ),
-      }));
-    };
+      // Encontrar em qual seção está o item
+      Object.keys(customItems).forEach((section) => {
+        if (
+          customItems[section as keyof CustomItems].some(
+            (item) => item.id === itemId
+          )
+        ) {
+          updateSection(section as keyof CustomItems);
+        }
+      });
+    },
+    [customItems]
+  );
 
-    // Encontrar em qual seção está o item
-    Object.keys(customItems).forEach((section) => {
-      if (
-        customItems[section as keyof CustomItems].some(
-          (item) => item.id === itemId
-        )
-      ) {
-        updateSection(section as keyof CustomItems);
-      }
-    });
-  };
-
-  const addNewItem = (section: keyof CustomItems) => {
+  const addNewItem = useCallback((section: keyof CustomItems) => {
     const newId = `custom-${section}-${Date.now()}`;
     let newItem: any = {
       id: newId,
@@ -440,9 +431,9 @@ export default function KappaQuestTracker() {
       ...prev,
       [section]: [...prev[section], newItem],
     }));
-  };
+  }, []);
 
-  const deleteItem = (itemId: string) => {
+  const deleteItem = useCallback((itemId: string) => {
     if (confirm("Tem certeza que deseja deletar este item?")) {
       setDeletedItems((prev) => ({ ...prev, [itemId]: true }));
 
@@ -453,7 +444,35 @@ export default function KappaQuestTracker() {
         return newProgress;
       });
     }
-  };
+  }, []);
+
+  const renderSection = useCallback(
+    (config: (typeof sectionConfigs)[0]) => (
+      <div key={config.id} id={config.scrollId}>
+        <SectionCard
+          title={config.title}
+          subtitle={config.subtitle}
+          items={getFilteredItems(config.items)}
+          sectionType={config.sectionType as any}
+          userProgress={userProgress}
+          onProgressUpdate={updateProgress}
+          onItemUpdate={updateCustomItem}
+          onDeleteItem={deleteItem}
+          onAddItem={() => addNewItem(config.addItemKey)}
+          color={config.color}
+          icon={config.icon}
+        />
+      </div>
+    ),
+    [
+      getFilteredItems,
+      userProgress,
+      updateProgress,
+      updateCustomItem,
+      deleteItem,
+      addNewItem,
+    ]
+  );
 
   const restoreDefaults = () => {
     if (
@@ -729,15 +748,56 @@ export default function KappaQuestTracker() {
       <div className="max-w-[1400px] mx-auto px-3 py-8 md:px-6 md:pr-80">
         <HelpSection showHelp={showHelp} setShowHelp={setShowHelp} />
 
+        {/* Título principal com melhor hierarquia */}
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-yellow-600 via-amber-500 to-yellow-500 bg-clip-text text-transparent drop-shadow-sm tracking-tight mb-4 font-tarkov">
+            Kappa Quest Tracker
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium max-w-3xl mx-auto leading-relaxed font-tarkov">
+            Acompanhe seu progresso para o Container Kappa
+          </p>
+        </div>
+
+        {/* Separador visual elegante */}
+        <div className="mb-10 flex items-center">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+          <div className="px-6 py-2 bg-gradient-to-r from-yellow-600 to-amber-500 rounded-full shadow-lg">
+            <span className="text-white font-semibold text-sm">
+              📊 ESTATÍSTICAS
+            </span>
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+        </div>
+
         {/* Dashboard de Estatísticas */}
-        <StatsDashboard
-          totalItems={totalItems}
-          completedItems={completedItems}
-          userProgress={userProgress}
-          lastSaved={lastSaved}
-        />
+        <div className="mb-10 p-6 bg-gradient-to-r from-yellow-50/80 via-amber-50/60 to-yellow-50/80 dark:from-yellow-950/20 dark:via-amber-950/15 dark:to-yellow-950/20 rounded-2xl shadow-xl border border-yellow-200/30 dark:border-yellow-800/40 backdrop-blur-sm">
+          <StatsDashboard
+            totalItems={totalItems}
+            completedItems={completedItems}
+            userProgress={userProgress}
+            lastSaved={lastSaved}
+          />
+        </div>
+
+        {/* Separador visual para busca */}
+        <div className="mb-8 flex items-center">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+          <div className="px-6 py-2 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-full shadow-lg">
+            <span className="text-white font-semibold text-sm">🔍 BUSCA</span>
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+        </div>
 
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+
+        {/* Separador visual para as seções */}
+        <div className="mb-10 flex items-center">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+          <div className="px-6 py-2 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-full shadow-lg">
+            <span className="text-white font-semibold text-sm">🎯 SEÇÕES</span>
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+        </div>
 
         <SectionList
           sortedSectionConfigs={sortedSectionConfigs}
