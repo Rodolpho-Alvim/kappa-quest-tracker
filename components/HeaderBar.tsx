@@ -41,6 +41,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
             height={200}
             className="rounded-lg shadow-md border border-yellow-400 bg-background w-14 h-14 md:w-[100px] md:h-[100px] object-cover"
             priority
+            unoptimized
             style={{ objectFit: "cover" }}
           />
           <div className="flex flex-col items-start justify-center">
@@ -56,7 +57,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
           {showApiHubButton && (
             <a
               href="/hideout/hubapi"
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-[#bfa94a] hover:bg-[#a68c2c] text-[#181a1b] font-medium rounded-lg transition-colors"
               title="Acessar Hub da API"
             >
               🌐 Hub API

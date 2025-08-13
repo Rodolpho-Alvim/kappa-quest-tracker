@@ -136,31 +136,6 @@ export default function KappaQuestTracker() {
     }
   }, [userProgress, customItems, deletedItems]);
 
-  // Intersection Observer para detectar seção ativa
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 0.3,
-        rootMargin: "-20% 0px -20% 0px",
-      }
-    );
-
-    const sections = sectionConfigs.map((config) => config.scrollId);
-    sections.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   // Combinar itens fixos com customizados, excluindo deletados
   const getAllItems = useMemo(() => {
     const filterDeleted = (items: any[]) =>
@@ -211,11 +186,11 @@ export default function KappaQuestTracker() {
       ]),
       dorm303: filterDeleted([...FIXED_ITEMS.dorm303, ...customItems.dorm303]),
     };
-  }, [customItems, deletedItems]);
+  }, [FIXED_ITEMS, customItems, deletedItems]);
 
   const allItems = getAllItems;
 
-  // Filtrar por busca com debouncing
+  // Filtrar por busca
   const getFilteredItems = useMemo(() => {
     return (items: any[]) => {
       if (!searchTerm) return items;
@@ -225,190 +200,280 @@ export default function KappaQuestTracker() {
     };
   }, [searchTerm]);
 
-  // Configuração das seções com useMemo
-  const sectionConfigs = useMemo(
-    () => [
-      {
-        id: "main-items",
-        scrollId: "main",
-        title: "Itens Principais",
-        sectionType: "main" as const,
-        color: "bg-gradient-to-r from-blue-500 to-blue-600",
-        icon: "🎯",
-        items: allItems.mainItems,
-        addItemKey: "mainItems" as keyof CustomItems,
-      },
-      {
-        id: "samples",
-        scrollId: "samples",
-        title: "Samples",
-        sectionType: "samples" as const,
-        color: "bg-gradient-to-r from-green-500 to-green-600",
-        icon: "💉",
-        items: allItems.samples,
-        addItemKey: "samples" as keyof CustomItems,
-      },
-      {
-        id: "recompensas-quests",
-        scrollId: "recompensas-quests",
-        title: "Recompensas de Quests",
-        sectionType: "recompensas-quests" as const,
-        color: "bg-gradient-to-r from-amber-500 to-amber-600",
-        icon: "🏆",
-        items: allItems.recompensasQuests,
-        addItemKey: "recompensasQuests" as keyof CustomItems,
-      },
-      {
-        id: "streamer-items",
-        scrollId: "streamer",
-        title: "Streamer Items",
-        sectionType: "streamer" as const,
-        color: "bg-gradient-to-r from-purple-500 to-purple-600",
-        icon: "⭐",
-        items: allItems.streamerItems,
-        addItemKey: "streamerItems" as keyof CustomItems,
-      },
-      {
-        id: "chavesQuests",
-        scrollId: "chavesQuests",
-        title: "Chaves de Quests",
-        sectionType: "chavesQuests",
-        color: "bg-gradient-to-r from-lime-500 to-lime-600",
-        icon: "🔑",
-        items: allItems.chavesQuests,
-        addItemKey: "chavesQuests" as keyof CustomItems,
-      },
-      {
-        id: "crafts-items",
-        scrollId: "craft",
-        title: "Crafts Prováveis",
-        sectionType: "craft" as const,
-        color: "bg-gradient-to-r from-orange-500 to-orange-600",
-        icon: "🔧",
-        items: allItems.craftsItems,
-        addItemKey: "craftsItems" as keyof CustomItems,
-      },
-      {
-        id: "troca-itens",
-        scrollId: "troca-itens",
-        title: "Troca Itens",
-        subtitle: "Elcan (Break the deal)",
-        sectionType: "troca-itens" as const,
-        color: "bg-gradient-to-r from-cyan-500 to-cyan-600",
-        icon: "🔄",
-        items: allItems.trocaItens,
-        addItemKey: "trocaItens" as keyof CustomItems,
-      },
-      {
-        id: "hideout-importante",
-        scrollId: "hideout",
-        title: "Hideout Importante",
-        subtitle: "LAVATÓRIO 2 (PENTE)",
-        sectionType: "hideout" as const,
-        color: "bg-gradient-to-r from-red-500 to-red-600",
-        icon: "🏠",
-        items: allItems.hideoutImportante,
-        addItemKey: "hideoutImportante" as keyof CustomItems,
-      },
-      {
-        id: "barter-gunsmith",
-        scrollId: "barter-gunsmith",
-        title: "Barter Gunsmith",
-        sectionType: "barter-gunsmith" as const,
-        color: "bg-gradient-to-r from-gray-500 to-gray-600",
-        icon: "🔫",
-        items: allItems.barterGunsmith,
-        addItemKey: "barterGunsmith" as keyof CustomItems,
-      },
-      {
-        id: "barter-chaves",
-        scrollId: "barter-chaves",
-        title: "Barter Chaves",
-        sectionType: "barter-chaves" as const,
-        color: "bg-gradient-to-r from-yellow-500 to-yellow-600",
-        icon: "🗝️",
-        items: allItems.barterChaves,
-        addItemKey: "barterChaves" as keyof CustomItems,
-      },
-      {
-        id: "dorm206",
-        scrollId: "dorm206",
-        title: "DORM 206",
-        sectionType: "dorm206" as const,
-        color: "bg-gradient-to-r from-indigo-500 to-indigo-600",
-        icon: "🏢",
-        items: allItems.dorm206,
-        addItemKey: "dorm206" as keyof CustomItems,
-      },
-      {
-        id: "portable-bunkhouse",
-        scrollId: "portable-bunkhouse",
-        title: "Portable Bunkhouse",
-        sectionType: "portable-bunkhouse" as const,
-        color: "bg-gradient-to-r from-teal-500 to-teal-600",
-        icon: "🏕️",
-        items: allItems.portableBunkhouse,
-        addItemKey: "portableBunkhouse" as keyof CustomItems,
-      },
-      {
-        id: "dorm303",
-        scrollId: "dorm303",
-        title: "DORM 303",
-        sectionType: "dorm303" as const,
-        color: "bg-gradient-to-r from-pink-500 to-pink-600",
-        icon: "🏢",
-        items: allItems.dorm303,
-        addItemKey: "dorm303" as keyof CustomItems,
-      },
-    ],
-    [allItems]
+  // 🔥 NOVO: Memoizar função de cálculo de progresso para evitar recálculos
+  const calculateItemProgress = useCallback(
+    (item: any) => {
+      if ((item as any).isReference) return false;
+
+      const qtdE = Number(
+        userProgress[item.id]?.qtdE ?? (item as any).qtdE ?? 0
+      );
+      const qtdR = Number(
+        userProgress[item.id]?.qtdR ?? (item as any).qtdR ?? 0
+      );
+
+      const firRequired =
+        (item as any).fir === "Yes" || userProgress[item.id]?.fir === "Yes";
+      const firOk =
+        !firRequired ||
+        userProgress[item.id]?.fir === "Yes" ||
+        (item as any).fir === "Yes";
+
+      return qtdE >= qtdR && firOk && qtdR > 0;
+    },
+    [userProgress]
   );
+
+  // 🔥 NOVO: Memoizar todas as estatísticas de progresso
+  const progressStats = useMemo(() => {
+    const totalItems = Object.values(allItems)
+      .flat()
+      .filter((item) => !(item as any).isReference).length;
+
+    const completedItems = Object.values(allItems)
+      .flat()
+      .filter(calculateItemProgress).length;
+
+    return { totalItems, completedItems };
+  }, [allItems, calculateItemProgress]);
+
+  // Configuração das seções
+  const sectionConfigs = [
+    {
+      id: "main-items",
+      scrollId: "main",
+      title: "Itens Principais",
+      sectionType: "main" as const,
+      color: "bg-gradient-to-r from-[#bfa94a] to-[#a68c2c]",
+      icon: "🎯",
+      items: allItems.mainItems,
+      addItemKey: "mainItems" as keyof CustomItems,
+    },
+    {
+      id: "samples",
+      scrollId: "samples",
+      title: "Samples",
+      sectionType: "samples" as const,
+      color: "bg-gradient-to-r from-green-500 to-green-600",
+      icon: "💉",
+      items: allItems.samples,
+      addItemKey: "samples" as keyof CustomItems,
+    },
+    {
+      id: "recompensas-quests",
+      scrollId: "recompensas-quests",
+      title: "Recompensas de Quests",
+      sectionType: "recompensas-quests" as const,
+      color: "bg-gradient-to-r from-amber-500 to-amber-600",
+      icon: "🏆",
+      items: allItems.recompensasQuests,
+      addItemKey: "recompensasQuests" as keyof CustomItems,
+    },
+    {
+      id: "streamer-items",
+      scrollId: "streamer",
+      title: "Streamer Items",
+      sectionType: "streamer" as const,
+      color: "bg-gradient-to-r from-purple-500 to-purple-600",
+      icon: "⭐",
+      items: allItems.streamerItems,
+      addItemKey: "streamerItems" as keyof CustomItems,
+    },
+    {
+      id: "chavesQuests",
+      scrollId: "chavesQuests",
+      title: "Chaves de Quests",
+      sectionType: "chavesQuests",
+      color: "bg-gradient-to-r from-lime-500 to-lime-600",
+      icon: "🔑",
+      items: allItems.chavesQuests,
+      addItemKey: "chavesQuests" as keyof CustomItems,
+    },
+    {
+      id: "crafts-items",
+      scrollId: "craft",
+      title: "Crafts Prováveis",
+      sectionType: "craft" as const,
+      color: "bg-gradient-to-r from-orange-500 to-orange-600",
+      icon: "🔧",
+      items: allItems.craftsItems,
+      addItemKey: "craftsItems" as keyof CustomItems,
+    },
+    {
+      id: "troca-itens",
+      scrollId: "troca-itens",
+      title: "Troca Itens",
+      subtitle: "Elcan (Break the deal)",
+      sectionType: "troca-itens" as const,
+      color: "bg-gradient-to-r from-[#a68c2c] to-[#bfa94a]",
+      icon: "🔄",
+      items: allItems.trocaItens,
+      addItemKey: "trocaItens" as keyof CustomItems,
+    },
+    {
+      id: "hideout-importante",
+      scrollId: "hideout",
+      title: "Hideout Importante",
+      subtitle: "LAVATÓRIO 2 (PENTE)",
+      sectionType: "hideout" as const,
+      color: "bg-gradient-to-r from-red-500 to-red-600",
+      icon: "🏠",
+      items: allItems.hideoutImportante,
+      addItemKey: "hideoutImportante" as keyof CustomItems,
+    },
+    {
+      id: "barter-gunsmith",
+      scrollId: "barter-gunsmith",
+      title: "Barter Gunsmith",
+      sectionType: "barter-gunsmith" as const,
+      color: "bg-gradient-to-r from-gray-500 to-gray-600",
+      icon: "🔫",
+      items: allItems.barterGunsmith,
+      addItemKey: "barterGunsmith" as keyof CustomItems,
+    },
+    {
+      id: "barter-chaves",
+      scrollId: "barter-chaves",
+      title: "Barter Chaves",
+      sectionType: "barter-chaves" as const,
+      color: "bg-gradient-to-r from-yellow-500 to-yellow-600",
+      icon: "🗝️",
+      items: allItems.barterChaves,
+      addItemKey: "barterChaves" as keyof CustomItems,
+    },
+    {
+      id: "dorm206",
+      scrollId: "dorm206",
+      title: "DORM 206",
+      sectionType: "dorm206" as const,
+      color: "bg-gradient-to-r from-indigo-500 to-indigo-600",
+      icon: "🏢",
+      items: allItems.dorm206,
+      addItemKey: "dorm206" as keyof CustomItems,
+    },
+    {
+      id: "portable-bunkhouse",
+      scrollId: "portable-bunkhouse",
+      title: "Portable Bunkhouse",
+      sectionType: "portable-bunkhouse" as const,
+      color: "bg-gradient-to-r from-teal-500 to-teal-600",
+      icon: "🏕️",
+      items: allItems.portableBunkhouse,
+      addItemKey: "portableBunkhouse" as keyof CustomItems,
+    },
+    {
+      id: "dorm303",
+      scrollId: "dorm303",
+      title: "DORM 303",
+      sectionType: "dorm303" as const,
+      color: "bg-gradient-to-r from-pink-500 to-pink-600",
+      icon: "🏢",
+      items: allItems.dorm303,
+      addItemKey: "dorm303" as keyof CustomItems,
+    },
+  ];
 
   // Ordenar as seções conforme a ordem salva
   const sortedSectionConfigs = [...sectionConfigs].sort((a, b) => {
     return getSectionOrder(a.scrollId) - getSectionOrder(b.scrollId);
   });
 
-  const updateProgress = useCallback(
-    (itemId: string, field: string, value: any) => {
-      setUserProgress((prev) => ({
+  // 🔥 NOVO: Memoizar dados da sidebar para evitar recálculos
+  const sidebarSections = useMemo(() => {
+    return sortedSectionConfigs.map((config) => ({
+      id: config.scrollId,
+      title: config.title,
+      icon: config.icon,
+      color: config.color,
+      completedCount: config.items.filter(calculateItemProgress).length,
+      totalCount: config.items.filter((item) => !(item as any).isReference)
+        .length,
+      items: config.items,
+    }));
+  }, [sortedSectionConfigs, calculateItemProgress]);
+
+  // 🔥 NOVO: Memoizar dados de navegação (mantido para compatibilidade)
+  const navigationSections = useMemo(() => {
+    return sidebarSections;
+  }, [sidebarSections]);
+
+  // Intersection Observer para detectar seção ativa
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "-20% 0px -20% 0px",
+      }
+    );
+
+    const sections = sortedSectionConfigs.map((config) => config.scrollId);
+    sections.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [sortedSectionConfigs]);
+
+  const renderSection = (config: (typeof sectionConfigs)[0]) => (
+    <div key={config.id} id={config.scrollId}>
+      <SectionCard
+        title={config.title}
+        subtitle={config.subtitle}
+        items={getFilteredItems(config.items)}
+        sectionType={config.sectionType as any}
+        userProgress={userProgress}
+        onProgressUpdate={updateProgress}
+        onItemUpdate={updateCustomItem}
+        onDeleteItem={deleteItem}
+        onAddItem={() => addNewItem(config.addItemKey)}
+        color={config.color}
+        icon={config.icon}
+      />
+    </div>
+  );
+
+  const updateProgress = (itemId: string, field: string, value: any) => {
+    setUserProgress((prev) => ({
+      ...prev,
+      [itemId]: {
+        ...prev[itemId],
+        [field]: value,
+        lastUpdated: Date.now(),
+      },
+    }));
+  };
+
+  const updateCustomItem = (itemId: string, field: string, value: any) => {
+    const updateSection = (section: keyof CustomItems) => {
+      setCustomItems((prev) => ({
         ...prev,
-        [itemId]: {
-          ...prev[itemId],
-          [field]: value,
-          lastUpdated: Date.now(),
-        },
+        [section]: prev[section].map((item) =>
+          item.id === itemId ? { ...item, [field]: value } : item
+        ),
       }));
-    },
-    []
-  );
+    };
 
-  const updateCustomItem = useCallback(
-    (itemId: string, field: string, value: any) => {
-      const updateSection = (section: keyof CustomItems) => {
-        setCustomItems((prev) => ({
-          ...prev,
-          [section]: prev[section].map((item) =>
-            item.id === itemId ? { ...item, [field]: value } : item
-          ),
-        }));
-      };
+    // Encontrar em qual seção está o item
+    Object.keys(customItems).forEach((section) => {
+      if (
+        customItems[section as keyof CustomItems].some(
+          (item) => item.id === itemId
+        )
+      ) {
+        updateSection(section as keyof CustomItems);
+      }
+    });
+  };
 
-      // Encontrar em qual seção está o item
-      Object.keys(customItems).forEach((section) => {
-        if (
-          customItems[section as keyof CustomItems].some(
-            (item) => item.id === itemId
-          )
-        ) {
-          updateSection(section as keyof CustomItems);
-        }
-      });
-    },
-    [customItems]
-  );
-
-  const addNewItem = useCallback((section: keyof CustomItems) => {
+  const addNewItem = (section: keyof CustomItems) => {
     const newId = `custom-${section}-${Date.now()}`;
     let newItem: any = {
       id: newId,
@@ -431,9 +496,9 @@ export default function KappaQuestTracker() {
       ...prev,
       [section]: [...prev[section], newItem],
     }));
-  }, []);
+  };
 
-  const deleteItem = useCallback((itemId: string) => {
+  const deleteItem = (itemId: string) => {
     if (confirm("Tem certeza que deseja deletar este item?")) {
       setDeletedItems((prev) => ({ ...prev, [itemId]: true }));
 
@@ -444,35 +509,7 @@ export default function KappaQuestTracker() {
         return newProgress;
       });
     }
-  }, []);
-
-  const renderSection = useCallback(
-    (config: (typeof sectionConfigs)[0]) => (
-      <div key={config.id} id={config.scrollId}>
-        <SectionCard
-          title={config.title}
-          subtitle={config.subtitle}
-          items={getFilteredItems(config.items)}
-          sectionType={config.sectionType as any}
-          userProgress={userProgress}
-          onProgressUpdate={updateProgress}
-          onItemUpdate={updateCustomItem}
-          onDeleteItem={deleteItem}
-          onAddItem={() => addNewItem(config.addItemKey)}
-          color={config.color}
-          icon={config.icon}
-        />
-      </div>
-    ),
-    [
-      getFilteredItems,
-      userProgress,
-      updateProgress,
-      updateCustomItem,
-      deleteItem,
-      addNewItem,
-    ]
-  );
+  };
 
   const restoreDefaults = () => {
     if (
@@ -552,55 +589,6 @@ export default function KappaQuestTracker() {
     }
   };
 
-  // Calcular estatísticas
-  const totalItems = Object.values(allItems)
-    .flat()
-    .filter((item) => !(item as any).isReference).length;
-  const completedItems = Object.values(allItems)
-    .flat()
-    .filter((item) => {
-      if ((item as any).isReference) return false;
-      const qtdE = Number(
-        userProgress[item.id]?.qtdE ?? (item as any).qtdE ?? 0
-      );
-      const qtdR = Number(
-        userProgress[item.id]?.qtdR ?? (item as any).qtdR ?? 0
-      );
-      const firRequired =
-        (item as any).fir === "Yes" || userProgress[item.id]?.fir === "Yes";
-      const firOk =
-        !firRequired ||
-        userProgress[item.id]?.fir === "Yes" ||
-        (item as any).fir === "Yes";
-      return qtdE >= qtdR && firOk && qtdR > 0;
-    }).length;
-
-  // Dados para a sidebar de navegação
-  const navigationSections = sortedSectionConfigs.map((config) => ({
-    id: config.scrollId,
-    title: config.title,
-    icon: config.icon,
-    color: config.color,
-    completedCount: config.items.filter((item) => {
-      if ((item as any).isReference) return false;
-      const qtdE = Number(
-        userProgress[item.id]?.qtdE ?? (item as any).qtdE ?? 0
-      );
-      const qtdR = Number(
-        userProgress[item.id]?.qtdR ?? (item as any).qtdR ?? 0
-      );
-      const firRequired =
-        (item as any).fir === "Yes" || userProgress[item.id]?.fir === "Yes";
-      const firOk =
-        !firRequired ||
-        userProgress[item.id]?.fir === "Yes" ||
-        (item as any).fir === "Yes";
-      return qtdE >= qtdR && firOk && qtdR > 0;
-    }).length,
-    totalCount: config.items.filter((item) => !(item as any).isReference)
-      .length,
-  }));
-
   useEffect(() => {
     const onScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight;
@@ -621,7 +609,7 @@ export default function KappaQuestTracker() {
         showHubButton={true}
       >
         <div className="hidden md:flex w-full justify-center mt-6 mb-2">
-          <div className="w-full max-w-[1400px] px-80 flex justify-end items-center gap-2">
+          <div className="w-full max-w-[1400px] px-72 flex justify-end items-center gap-2">
             <SettingsDialog
               handleExport={handleExport}
               handleImport={handleImport}
@@ -646,32 +634,7 @@ export default function KappaQuestTracker() {
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContentNoClose side="right" className="block md:hidden p-0 w-64">
           <NavigationSidebar
-            sections={sortedSectionConfigs.map((config) => ({
-              id: config.scrollId,
-              title: config.title,
-              icon: config.icon,
-              color: config.color,
-              completedCount: config.items.filter((item) => {
-                if ((item as any).isReference) return false;
-                const qtdE = Number(
-                  userProgress[item.id]?.qtdE ?? (item as any).qtdE ?? 0
-                );
-                const qtdR = Number(
-                  userProgress[item.id]?.qtdR ?? (item as any).qtdR ?? 0
-                );
-                const firRequired =
-                  (item as any).fir === "Yes" ||
-                  userProgress[item.id]?.fir === "Yes";
-                const firOk =
-                  !firRequired ||
-                  userProgress[item.id]?.fir === "Yes" ||
-                  (item as any).fir === "Yes";
-                return qtdE >= qtdR && firOk && qtdR > 0;
-              }).length,
-              totalCount: config.items.filter(
-                (item) => !(item as any).isReference
-              ).length,
-            }))}
+            sections={sidebarSections}
             activeSection={activeSection}
             onSectionClick={(id) => {
               setActiveSection(id);
@@ -679,7 +642,9 @@ export default function KappaQuestTracker() {
             }}
             getSectionOrder={getSectionOrder}
             setFullSectionOrder={setFullSectionOrder}
-            resetOrder={resetOrder}
+            userProgress={userProgress}
+            onProgressUpdate={updateProgress}
+            searchTerm={searchTerm}
           />
         </SheetContentNoClose>
         <button
@@ -691,39 +656,16 @@ export default function KappaQuestTracker() {
         </button>
       </Sheet>
       {/* Sidebar fixa desktop */}
-      <div className="hidden md:block md:w-80 md:h-screen md:fixed md:top-0 md:right-0 md:z-0 bg-background border-l border-border shadow-none overflow-y-auto">
+      <div className="hidden md:block md:w-72 md:h-screen md:fixed md:top-0 md:right-0 md:z-0 bg-background border-l border-border shadow-none overflow-y-auto">
         <NavigationSidebar
-          sections={sortedSectionConfigs.map((config) => ({
-            id: config.scrollId,
-            title: config.title,
-            icon: config.icon,
-            color: config.color,
-            completedCount: config.items.filter((item) => {
-              if ((item as any).isReference) return false;
-              const qtdE = Number(
-                userProgress[item.id]?.qtdE ?? (item as any).qtdE ?? 0
-              );
-              const qtdR = Number(
-                userProgress[item.id]?.qtdR ?? (item as any).qtdR ?? 0
-              );
-              const firRequired =
-                (item as any).fir === "Yes" ||
-                userProgress[item.id]?.fir === "Yes";
-              const firOk =
-                !firRequired ||
-                userProgress[item.id]?.fir === "Yes" ||
-                (item as any).fir === "Yes";
-              return qtdE >= qtdR && firOk && qtdR > 0;
-            }).length,
-            totalCount: config.items.filter(
-              (item) => !(item as any).isReference
-            ).length,
-          }))}
+          sections={sidebarSections}
           activeSection={activeSection}
           onSectionClick={setActiveSection}
           getSectionOrder={getSectionOrder}
           setFullSectionOrder={setFullSectionOrder}
-          resetOrder={resetOrder}
+          userProgress={userProgress}
+          onProgressUpdate={updateProgress}
+          searchTerm={searchTerm}
         />
       </div>
 
@@ -745,12 +687,12 @@ export default function KappaQuestTracker() {
         <AvisoBanner showAviso={showAviso} setShowAviso={setShowAviso} />
       </div> */}
 
-      <div className="max-w-[1400px] mx-auto px-3 py-8 md:px-6 md:pr-80">
+      <div className="max-w-[1400px] mx-auto px-3 py-8 md:px-6 md:pr-72">
         <HelpSection showHelp={showHelp} setShowHelp={setShowHelp} />
 
         {/* Título principal com melhor hierarquia */}
         <div className="mb-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-yellow-600 via-amber-500 to-yellow-500 bg-clip-text text-transparent drop-shadow-sm tracking-tight mb-4 font-tarkov">
+          <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-[#bfa94a] via-[#a68c2c] to-[#bfa94a] bg-clip-text text-transparent drop-shadow-sm tracking-tight mb-4 font-tarkov">
             Kappa Quest Tracker
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium max-w-3xl mx-auto leading-relaxed font-tarkov">
@@ -761,8 +703,8 @@ export default function KappaQuestTracker() {
         {/* Separador visual elegante */}
         <div className="mb-10 flex items-center">
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
-          <div className="px-6 py-2 bg-gradient-to-r from-yellow-600 to-amber-500 rounded-full shadow-lg">
-            <span className="text-white font-semibold text-sm">
+          <div className="px-6 py-2 bg-gradient-to-r from-[#bfa94a] to-[#a68c2c] rounded-full shadow-lg">
+            <span className="text-[#181a1b] font-semibold text-sm">
               📊 ESTATÍSTICAS
             </span>
           </div>
@@ -770,10 +712,10 @@ export default function KappaQuestTracker() {
         </div>
 
         {/* Dashboard de Estatísticas */}
-        <div className="mb-10 p-6 bg-gradient-to-r from-yellow-50/80 via-amber-50/60 to-yellow-50/80 dark:from-yellow-950/20 dark:via-amber-950/15 dark:to-yellow-950/20 rounded-2xl shadow-xl border border-yellow-200/30 dark:border-yellow-800/40 backdrop-blur-sm">
+        <div className="mb-10 p-6 bg-gradient-to-r from-[#bfa94a]/10 via-[#a68c2c]/8 to-[#bfa94a]/10 dark:from-[#bfa94a]/20 dark:via-[#a68c2c]/15 dark:to-[#bfa94a]/20 rounded-2xl shadow-xl border border-[#bfa94a]/30 dark:border-[#bfa94a]/40 backdrop-blur-sm">
           <StatsDashboard
-            totalItems={totalItems}
-            completedItems={completedItems}
+            totalItems={progressStats.totalItems}
+            completedItems={progressStats.completedItems}
             userProgress={userProgress}
             lastSaved={lastSaved}
           />
@@ -782,8 +724,10 @@ export default function KappaQuestTracker() {
         {/* Separador visual para busca */}
         <div className="mb-8 flex items-center">
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
-          <div className="px-6 py-2 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-full shadow-lg">
-            <span className="text-white font-semibold text-sm">🔍 BUSCA</span>
+          <div className="px-6 py-2 bg-gradient-to-r from-[#a68c2c] to-[#bfa94a] rounded-full shadow-lg">
+            <span className="text-[#181a1b] font-semibold text-sm">
+              🔍 BUSCA
+            </span>
           </div>
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
         </div>
@@ -793,8 +737,10 @@ export default function KappaQuestTracker() {
         {/* Separador visual para as seções */}
         <div className="mb-10 flex items-center">
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
-          <div className="px-6 py-2 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-full shadow-lg">
-            <span className="text-white font-semibold text-sm">🎯 SEÇÕES</span>
+          <div className="px-6 py-2 bg-gradient-to-r from-[#bfa94a] to-[#a68c2c] rounded-full shadow-lg">
+            <span className="text-[#181a1b] font-semibold text-sm">
+              🎯 SEÇÕES
+            </span>
           </div>
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
         </div>

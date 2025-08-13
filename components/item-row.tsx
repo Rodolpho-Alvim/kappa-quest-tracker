@@ -21,7 +21,7 @@ import type {
   UserProgress,
 } from "@/types/quest-data";
 import { Check, Edit3, Trash2, X } from "lucide-react";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { QuantityInput } from "./QuantityInput";
 
 interface ItemRowProps {
@@ -113,26 +113,18 @@ const ItemRowComponent = ({
   const { itemsMap } = useItemsMap();
 
   // Lógica automática de completo: qtdE >= qtdR (e FIR, se necessário)
-  const isCompleted = useMemo(() => {
-    const qtdE = Number(userProgress?.qtdE ?? (item as any).qtdE ?? 0);
-    const qtdR = Number(userProgress?.qtdR ?? (item as any).qtdR ?? 0);
-    const firRequired =
-      (item as any).fir === "Yes" || userProgress?.fir === "Yes";
-    const firOk =
-      !firRequired ||
-      userProgress?.fir === "Yes" ||
-      (item as any).fir === "Yes";
-    return qtdE >= qtdR && firOk && qtdR > 0;
-  }, [userProgress, item]);
+  const qtdE = Number(userProgress?.qtdE ?? (item as any).qtdE ?? 0);
+  const qtdR = Number(userProgress?.qtdR ?? (item as any).qtdR ?? 0);
+  const firRequired =
+    (item as any).fir === "Yes" || userProgress?.fir === "Yes";
+  const firOk =
+    !firRequired || userProgress?.fir === "Yes" || (item as any).fir === "Yes";
+  const isCompleted = qtdE >= qtdR && firOk && qtdR > 0;
 
-  const bgColor = useMemo(
-    () => (isEven ? "bg-muted/50" : "bg-background"),
-    [isEven]
-  );
-  const completedBg = useMemo(
-    () => (isCompleted ? "bg-green-500/10 border-l-4 border-l-green-500" : ""),
-    [isCompleted]
-  );
+  const bgColor = isEven ? "bg-muted/50" : "bg-background";
+  const completedBg = isCompleted
+    ? "bg-green-500/10 border-l-4 border-l-green-500"
+    : "";
 
   // Verificar se é uma referência (TARCONE, OU)
   const isReference = (item as any).isReference === true;
@@ -147,15 +139,13 @@ const ItemRowComponent = ({
     setIsEditingName(false);
   };
 
-  const getValue = useMemo(() => {
-    return (field: string, defaultValue: any = "") => {
-      return (
-        userProgress?.[field as keyof UserProgress[string]] ??
-        (item as any)[field] ??
-        defaultValue
-      );
-    };
-  }, [userProgress, item]);
+  const getValue = (field: string, defaultValue: any = "") => {
+    return (
+      userProgress?.[field as keyof UserProgress[string]] ??
+      (item as any)[field] ??
+      defaultValue
+    );
+  };
 
   const getFirValue = () => {
     const value = getValue("fir", "");

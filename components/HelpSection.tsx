@@ -65,7 +65,7 @@ export const HelpSection: React.FC<HelpSectionProps> = ({
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
         <div className="space-y-2">
-          <h3 className="font-medium text-blue-600">
+          <h3 className="font-medium text-[#bfa94a]">
             📊 Qtd. E (Quantidade Encontrada)
           </h3>
           <p className="text-muted-foreground">

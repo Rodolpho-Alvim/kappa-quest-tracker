@@ -4,7 +4,7 @@ import { useLocalStorage } from "./use-local-storage";
 const KAPPA_STORAGE_KEY = "kappa-quest-progress-v4";
 
 export function useKappaProgress() {
-  const [progress, setProgress] = useLocalStorage<Record<string, number>>(
+  const [progress, setProgress] = useLocalStorage<Record<string, any>>(
     KAPPA_STORAGE_KEY,
     {}
   );
@@ -46,8 +46,15 @@ export function useKappaProgress() {
     };
   }
 
-  function setItemProgress(itemId: string, value: number) {
-    setProgress((prev) => ({ ...prev, [itemId]: value }));
+  function setItemProgress(itemId: string, field: string, value: any) {
+    setProgress((prev) => ({
+      ...prev,
+      [itemId]: {
+        ...prev[itemId],
+        [field]: value,
+        lastUpdated: Date.now(),
+      },
+    }));
   }
 
   function resetProgress() {

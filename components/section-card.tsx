@@ -12,7 +12,7 @@ import type {
   UserProgress,
 } from "@/types/quest-data";
 import { ChevronDown, ChevronUp, Eye, EyeOff, Plus } from "lucide-react";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { ItemRow } from "./item-row";
 
 interface SectionCardProps {
@@ -61,101 +61,90 @@ const SectionCardComponent = ({
   const { getSectionOrder } = useSectionOrder();
 
   // Lógica de completude igual ao restante do app
-  const isItemCompleted = useMemo(() => {
-    return (item: any): boolean => {
-      if (item.isReference) return false;
-      const progress = userProgress[item.id] || {};
-      const qtdE = Number(progress.qtdE ?? item.qtdE ?? 0);
-      const qtdR = Number(progress.qtdR ?? item.qtdR ?? 0);
-      const firRequired = item.fir === "Yes" || progress.fir === "Yes";
-      const firOk =
-        !firRequired || progress.fir === "Yes" || item.fir === "Yes";
-      return qtdE >= qtdR && firOk && qtdR > 0;
-    };
-  }, [userProgress]);
+  function isItemCompleted(item: any): boolean {
+    if (item.isReference) return false;
+    const progress = userProgress[item.id] || {};
+    const qtdE = Number(progress.qtdE ?? item.qtdE ?? 0);
+    const qtdR = Number(progress.qtdR ?? item.qtdR ?? 0);
+    const firRequired = item.fir === "Yes" || progress.fir === "Yes";
+    const firOk = !firRequired || progress.fir === "Yes" || item.fir === "Yes";
+    return qtdE >= qtdR && firOk && qtdR > 0;
+  }
 
-  const completedCount = useMemo(
-    () => items.filter(isItemCompleted).length,
-    [items, isItemCompleted]
-  );
-  const totalCount = useMemo(
-    () => items.filter((item) => !(item as any).isReference).length,
-    [items]
-  );
+  const completedCount = items.filter(isItemCompleted).length;
+  const totalCount = items.filter((item) => !(item as any).isReference).length;
 
-  const filteredItems = useMemo(
-    () =>
-      showCompleted ? items : items.filter((item) => !isItemCompleted(item)),
-    [items, showCompleted, isItemCompleted]
-  );
+  const filteredItems = showCompleted
+    ? items
+    : items.filter((item) => !isItemCompleted(item));
 
   return (
     <Card className="shadow-2xl border-0 overflow-hidden mb-4 transition-all duration-300 hover:shadow-3xl h-full">
       <CardHeader
-        className={`${color} text-white p-6 relative overflow-hidden h-32 flex flex-col justify-center`}
+        className={`${color} text-white p-4 relative overflow-hidden h-auto min-h-[120px] flex flex-col justify-between`}
       >
         {/* Efeito de brilho sutil */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 transform -skew-x-12 -translate-x-full animate-pulse"></div>
 
-        <div className="flex items-center justify-between h-full relative z-10">
-          <div className="flex items-center gap-4 flex-1">
-            <div className="flex-shrink-0">
-              <div className="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center border border-white/30 shadow-lg backdrop-blur-sm">
-                <span className="text-3xl drop-shadow-lg">{icon}</span>
-              </div>
-            </div>
-
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-4 mb-2">
-                <CardTitle className="text-2xl font-bold text-gray-100 drop-shadow-lg leading-tight">
-                  {title}
-                </CardTitle>
-                {subtitle && (
-                  <span className="text-sm font-medium opacity-90 bg-white/20 px-3 py-1.5 rounded-full backdrop-blur-sm border border-white/30 shadow-lg">
-                    {subtitle}
-                  </span>
-                )}
-              </div>
-
-              <div className="flex items-center gap-4">
-                <Badge
-                  variant="secondary"
-                  className="bg-white/20 text-white border-0 px-4 py-2 text-sm font-bold backdrop-blur-sm shadow-lg"
-                >
-                  {completedCount}/{totalCount} itens
-                </Badge>
-
-                <div className="flex-1 max-w-48">
-                  <div className="w-full bg-white/20 rounded-full h-3 shadow-inner overflow-hidden">
-                    <div
-                      className="bg-white h-3 rounded-full transition-all duration-700 shadow-lg"
-                      style={{
-                        width: `${
-                          totalCount > 0
-                            ? (completedCount / totalCount) * 100
-                            : 0
-                        }%`,
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <span className="text-sm font-bold text-white/90 bg-white/10 px-3 py-1.5 rounded-full backdrop-blur-sm">
-                  {totalCount > 0
-                    ? Math.round((completedCount / totalCount) * 100)
-                    : 0}
-                  %
-                </span>
-              </div>
+        {/* Título e ícone no topo */}
+        <div className="flex items-start gap-3 relative z-10 mb-3">
+          <div className="flex-shrink-0">
+            <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center border border-white/30 shadow-lg backdrop-blur-sm">
+              <span className="text-2xl drop-shadow-lg">{icon}</span>
             </div>
           </div>
 
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-col gap-2">
+              <CardTitle className="text-xl font-bold text-gray-100 drop-shadow-lg leading-tight">
+                {title}
+              </CardTitle>
+              {subtitle && (
+                <span className="text-xs font-medium opacity-90 bg-white/20 px-2 py-1 rounded-full backdrop-blur-sm border border-white/30 shadow-lg self-start">
+                  {subtitle}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Controles e progresso na parte inferior */}
+        <div className="flex items-center justify-between relative z-10">
           <div className="flex items-center gap-3">
+            <Badge
+              variant="secondary"
+              className="bg-white/20 text-white border-0 px-3 py-1.5 text-xs font-bold backdrop-blur-sm shadow-lg"
+            >
+              {completedCount}/{totalCount} itens
+            </Badge>
+
+            <div className="flex-1 max-w-40">
+              <div className="w-full bg-white/20 rounded-full h-2.5 shadow-inner overflow-hidden">
+                <div
+                  className="bg-white h-2.5 rounded-full transition-all duration-700 shadow-lg"
+                  style={{
+                    width: `${
+                      totalCount > 0 ? (completedCount / totalCount) * 100 : 0
+                    }%`,
+                  }}
+                />
+              </div>
+            </div>
+
+            <span className="text-xs font-bold text-white/90 bg-white/10 px-2 py-1 rounded-full backdrop-blur-sm">
+              {totalCount > 0
+                ? Math.round((completedCount / totalCount) * 100)
+                : 0}
+              %
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setShowCompleted(!showCompleted)}
-              className="text-white hover:bg-white/20 rounded-xl px-3 py-2 transition-all duration-200 hover:scale-105 backdrop-blur-sm"
+              className="text-white hover:bg-white/20 rounded-lg px-2 py-1.5 transition-all duration-200 hover:scale-105 backdrop-blur-sm"
               title={
                 showCompleted
                   ? "Ocultar itens completos"
@@ -163,9 +152,9 @@ const SectionCardComponent = ({
               }
             >
               {showCompleted ? (
-                <Eye className="h-5 w-5" />
+                <Eye className="h-4 w-4" />
               ) : (
-                <EyeOff className="h-5 w-5" />
+                <EyeOff className="h-4 w-4" />
               )}
             </Button>
 
@@ -173,23 +162,23 @@ const SectionCardComponent = ({
               variant="ghost"
               size="sm"
               onClick={onAddItem}
-              className="text-white hover:bg-white/20 rounded-xl px-3 py-2 transition-all duration-200 hover:scale-105 backdrop-blur-sm"
+              className="text-white hover:bg-white/20 rounded-lg px-2 py-1.5 transition-all duration-200 hover:scale-105 backdrop-blur-sm"
               title="Adicionar novo item personalizado"
             >
-              <Plus className="h-5 w-5" />
+              <Plus className="h-4 w-4" />
             </Button>
 
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsExpanded(!isExpanded)}
-              className="text-white hover:bg-white/20 rounded-xl px-3 py-2 transition-all duration-200 hover:scale-105 backdrop-blur-sm"
+              className="text-white hover:bg-white/20 rounded-lg px-2 py-1.5 transition-all duration-200 hover:scale-105 backdrop-blur-sm"
               title={isExpanded ? "Recolher seção" : "Expandir seção"}
             >
               {isExpanded ? (
-                <ChevronUp className="h-5 w-5" />
+                <ChevronUp className="h-4 w-4" />
               ) : (
-                <ChevronDown className="h-5 w-5" />
+                <ChevronDown className="h-4 w-4" />
               )}
             </Button>
           </div>

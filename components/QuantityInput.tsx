@@ -17,15 +17,18 @@ export const QuantityInput: React.FC<QuantityInputProps> = ({
   className = "",
   disabled = false,
 }) => {
+  // Garantir que o valor seja sempre um número válido
+  const safeValue = typeof value === "number" && !isNaN(value) ? value : 0;
+
   const handleDecrease = () => {
     if (disabled) return;
-    const newValue = Math.max(min, value - 1);
+    const newValue = Math.max(min, safeValue - 1);
     onChange(newValue);
   };
 
   const handleIncrease = () => {
     if (disabled) return;
-    const newValue = Math.min(max, value + 1);
+    const newValue = Math.min(max, safeValue + 1);
     onChange(newValue);
   };
 
@@ -54,7 +57,7 @@ export const QuantityInput: React.FC<QuantityInputProps> = ({
       <input
         type="number"
         className="w-10 text-center bg-transparent outline-none border-0 text-base font-medium hide-number-spin"
-        value={value}
+        value={safeValue}
         onChange={handleInputChange}
         min={min}
         max={max === Infinity ? undefined : max}
