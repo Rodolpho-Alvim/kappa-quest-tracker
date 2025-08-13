@@ -1,0 +1,5205 @@
+{
+  "hideoutStations": [
+    {
+      "id": "5d388e97081959000a123acf",
+      "name": "Heating",
+      "normalizedName": "heating",
+      "imageLink": "https://assets.tarkov.dev/station-heating.png",
+      "levels": [
+        {
+          "id": "5d388e97081959000a123acf-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "A simple barrel with firewood to maintain heat. A very basic option for heating. Dangerous because of toxic carbon monoxide.",
+          "stationLevelRequirements": [],
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d388e97081959000a123acf-1-0",
+              "count": 50000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d388e97081959000a123acf-1-1",
+              "count": 4,
+              "item": {
+                "id": "57347b8b24597737dd42e192",
+                "name": "Classic matches",
+                "normalizedName": "classic-matches"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d388e97081959000a123acf-2",
+          "level": 2,
+          "constructionTime": 7200,
+          "description": "A potbelly stove is a metal stove for interior heating, popular in the first half of the 20th century. An irreplaceable thing in the Hideout, especially when connected to the ventilation system for the output of combustion products.",
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d388e97081959000a123acf-2-0",
+              "count": 100000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d388e97081959000a123acf-2-4",
+              "count": 4,
+              "item": {
+                "id": "5e2af2bc86f7746d3f3c33fc",
+                "name": "Hunting matches",
+                "normalizedName": "hunting-matches"
+              }
+            },
+            {
+              "id": "5d388e97081959000a123acf-2-5",
+              "count": 6,
+              "item": {
+                "id": "590a373286f774287540368b",
+                "name": "Dry fuel",
+                "normalizedName": "dry-fuel"
+              }
+            },
+            {
+              "id": "5d388e97081959000a123acf-2-6",
+              "count": 6,
+              "item": {
+                "id": "56742c284bdc2d98058b456d",
+                "name": "Crickent lighter",
+                "normalizedName": "crickent-lighter"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d388e97081959000a123acf-2-1",
+              "level": 1,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            },
+            {
+              "id": "5d388e97081959000a123acf-2-2",
+              "level": 1,
+              "station": {
+                "id": "5d388e97081959000a123acf",
+                "name": "Heating"
+              }
+            }
+          ],
+          "skillRequirements": [
+            {
+              "id": "5d388e97081959000a123acf-2-3",
+              "level": 1,
+              "skill": {
+                "id": "Endurance",
+                "name": "Endurance"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d388e97081959000a123acf-3",
+          "level": 3,
+          "constructionTime": 28800,
+          "description": "Equips the entire Hideout with additional electric heaters. Now, together with the potbelly stove, you won't be afraid of any cold.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d388e97081959000a123acf-3-0",
+              "count": 16,
+              "item": {
+                "id": "5d1c774f86f7746d6620f8db",
+                "name": "Radiator helix",
+                "normalizedName": "radiator-helix"
+              }
+            },
+            {
+              "id": "5d388e97081959000a123acf-3-1",
+              "count": 16,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            },
+            {
+              "id": "5d388e97081959000a123acf-3-6",
+              "count": 8,
+              "item": {
+                "id": "5d1b313086f77425227d1678",
+                "name": "Phase control relay",
+                "normalizedName": "phase-control-relay"
+              }
+            },
+            {
+              "id": "5d388e97081959000a123acf-3-7",
+              "count": 4,
+              "item": {
+                "id": "619cbf476b8a1b37a54eebf8",
+                "name": "Military corrugated tube",
+                "normalizedName": "military-corrugated-tube"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d388e97081959000a123acf-3-2",
+              "level": 2,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d388e97081959000a123acf-3-3",
+              "level": 2,
+              "station": {
+                "id": "5d484fda654e7600681d9315",
+                "name": "Workbench"
+              }
+            },
+            {
+              "id": "5d388e97081959000a123acf-3-5",
+              "level": 2,
+              "station": {
+                "id": "5d388e97081959000a123acf",
+                "name": "Heating"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d388e97081959000a123acf-3-4",
+              "level": 2,
+              "trader": {
+                "id": "5ac3b934156ae10c4430e83c",
+                "name": "Ragman"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d3b396e33c48f02b81cd9f3",
+      "name": "Generator",
+      "normalizedName": "generator",
+      "imageLink": "https://assets.tarkov.dev/station-generator.png",
+      "levels": [
+        {
+          "id": "5d3b396e33c48f02b81cd9f3-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "A simple fuel generator that can provide basic Hideout equipment with electricity. The heart of your shelter. Fuel is needed to maintain the working power grid.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-1-0",
+              "count": 200000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-1-2",
+              "count": 2,
+              "item": {
+                "id": "590a3c0a86f774385a33c450",
+                "name": "Spark plug",
+                "normalizedName": "spark-plug"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-1-1",
+              "level": 1,
+              "station": {
+                "id": "5d484fb3654e7600681d9314",
+                "name": "Security"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d3b396e33c48f02b81cd9f3-2",
+          "level": 2,
+          "constructionTime": 18000,
+          "description": "A superior high power generator. It allows you to use a wider range of electrical appliances. Provides additional slots for installing fuel cans.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-2-2",
+              "count": 10,
+              "item": {
+                "id": "5d1b313086f77425227d1678",
+                "name": "Phase control relay",
+                "normalizedName": "phase-control-relay"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-2-3",
+              "count": 2,
+              "item": {
+                "id": "5d1b2fa286f77425227d1674",
+                "name": "Electric motor",
+                "normalizedName": "electric-motor"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-2-4",
+              "count": 30,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-2-6",
+              "count": 2,
+              "item": {
+                "id": "619cbfeb6b8a1b37a54eebfa",
+                "name": "Bulbex cable cutter",
+                "normalizedName": "bulbex-cable-cutter"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-2-0",
+              "level": 2,
+              "station": {
+                "id": "5d484fb3654e7600681d9314",
+                "name": "Security"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-2-1",
+              "level": 2,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-2-5",
+              "level": 1,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d3b396e33c48f02b81cd9f3-3",
+          "level": 3,
+          "constructionTime": 57600,
+          "description": "Industrial generator to ensure the autonomous operation of production facilities. Also provides additional slots for installing fuel cans.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-3-2",
+              "count": 12,
+              "item": {
+                "id": "5d1b313086f77425227d1678",
+                "name": "Phase control relay",
+                "normalizedName": "phase-control-relay"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-3-3",
+              "count": 6,
+              "item": {
+                "id": "5d1b2fa286f77425227d1674",
+                "name": "Electric motor",
+                "normalizedName": "electric-motor"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-3-4",
+              "count": 20,
+              "item": {
+                "id": "590a3c0a86f774385a33c450",
+                "name": "Spark plug",
+                "normalizedName": "spark-plug"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-3-5",
+              "count": 10,
+              "item": {
+                "id": "57347c2e24597744902c94a1",
+                "name": "Power supply unit",
+                "normalizedName": "power-supply-unit"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-3-8",
+              "count": 14,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-3-0",
+              "level": 3,
+              "station": {
+                "id": "5d484fb3654e7600681d9314",
+                "name": "Security"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-3-1",
+              "level": 3,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            },
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-3-7",
+              "level": 2,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d3b396e33c48f02b81cd9f3-3-6",
+              "level": 3,
+              "trader": {
+                "id": "5a7c2eca46aef81a7ca2145d",
+                "name": "Mechanic"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d473c1e081959000e530190",
+      "name": "Vents",
+      "normalizedName": "vents",
+      "imageLink": "https://assets.tarkov.dev/station-vents.png",
+      "levels": [
+        {
+          "id": "5d473c1e081959000e530190-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "Ventilation duct suspended from the ceiling. The air duct passes through part of the room, providing the natural movement of air flows. It is necessary for the installation of \"smoky\" zones where the output of combustion products is required.",
+          "stationLevelRequirements": [],
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d473c1e081959000e530190-1-0",
+              "count": 50000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d473c1e081959000e530190-2",
+          "level": 2,
+          "constructionTime": 10800,
+          "description": "A basic ventilation duct with additional emergency bunker ventilation system of external airflow. Now, besides the removal of combustion products, there will be fresh air in the Hideout.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d473c1e081959000e530190-2-0",
+              "count": 2,
+              "item": {
+                "id": "5d1b2fa286f77425227d1674",
+                "name": "Electric motor",
+                "normalizedName": "electric-motor"
+              }
+            },
+            {
+              "id": "5d473c1e081959000e530190-2-1",
+              "count": 2,
+              "item": {
+                "id": "5733279d245977289b77ec24",
+                "name": "Car battery",
+                "normalizedName": "car-battery"
+              }
+            },
+            {
+              "id": "5d473c1e081959000e530190-2-3",
+              "count": 6,
+              "item": {
+                "id": "5734779624597737e04bf329",
+                "name": "CPU fan",
+                "normalizedName": "cpu-fan"
+              }
+            },
+            {
+              "id": "5d473c1e081959000e530190-2-4",
+              "count": 4,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d473c1e081959000e530190-2-2",
+              "level": 1,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d473c1e081959000e530190-3",
+          "level": 3,
+          "constructionTime": 36000,
+          "description": "A ventilation duct fitted with electric fans to increase the airflow rate. A complete air circulation system is needed for advanced production and chemical research.",
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d473c1e081959000e530190-3-1",
+              "count": 8,
+              "item": {
+                "id": "5d1b2fa286f77425227d1674",
+                "name": "Electric motor",
+                "normalizedName": "electric-motor"
+              }
+            },
+            {
+              "id": "5d473c1e081959000e530190-3-2",
+              "count": 28,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            },
+            {
+              "id": "5d473c1e081959000e530190-3-3",
+              "count": 10,
+              "item": {
+                "id": "590a3b0486f7743954552bdb",
+                "name": "Printed circuit board",
+                "normalizedName": "printed-circuit-board"
+              }
+            },
+            {
+              "id": "5d473c1e081959000e530190-3-4",
+              "count": 8,
+              "item": {
+                "id": "5733279d245977289b77ec24",
+                "name": "Car battery",
+                "normalizedName": "car-battery"
+              }
+            },
+            {
+              "id": "5d473c1e081959000e530190-3-7",
+              "count": 10,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d473c1e081959000e530190-3-0",
+              "level": 2,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d473c1e081959000e530190-3-6",
+              "level": 2,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            }
+          ],
+          "skillRequirements": [
+            {
+              "id": "5d473c1e081959000e530190-3-5",
+              "level": 2,
+              "skill": {
+                "id": "Strength",
+                "name": "Strength"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d484fb3654e7600681d9314",
+      "name": "Security",
+      "normalizedName": "security",
+      "imageLink": "https://assets.tarkov.dev/station-security.png",
+      "levels": [
+        {
+          "id": "5d484fb3654e7600681d9314-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "A basic front door. So that all kinds of fools don't come to pay you a visit. It does not save from drafts and moisture, but it creates the feeling that the Hideout is slowly getting settled.",
+          "stationLevelRequirements": [],
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fb3654e7600681d9314-1-0",
+              "count": 40000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fb3654e7600681d9314-1-1",
+              "count": 2,
+              "item": {
+                "id": "590c2c9c86f774245b1f03f2",
+                "name": "Construction measuring tape",
+                "normalizedName": "construction-measuring-tape"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fb3654e7600681d9314-2",
+          "level": 2,
+          "constructionTime": 10800,
+          "description": "An improved entrance hall with a reinforced door, a clothes hanger, and other household items. Can’t kick such a door down with just a single kick.",
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fb3654e7600681d9314-2-2",
+              "count": 90000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fb3654e7600681d9314-2-4",
+              "count": 2,
+              "item": {
+                "id": "5af04b6486f774195a3ebb49",
+                "name": "Pliers Elite",
+                "normalizedName": "pliers-elite"
+              }
+            },
+            {
+              "id": "5d484fb3654e7600681d9314-2-5",
+              "count": 2,
+              "item": {
+                "id": "590c5bbd86f774785762df04",
+                "name": "WD-40 (100ml)",
+                "normalizedName": "wd-40-100ml"
+              }
+            },
+            {
+              "id": "5d484fb3654e7600681d9314-2-6",
+              "count": 2,
+              "item": {
+                "id": "60391b0fb847c71012789415",
+                "name": "TP-200 TNT brick",
+                "normalizedName": "tp-200-tnt-brick"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fb3654e7600681d9314-2-0",
+              "level": 1,
+              "station": {
+                "id": "5d494a205b56502f18c98a06",
+                "name": "Illumination"
+              }
+            },
+            {
+              "id": "5d484fb3654e7600681d9314-2-3",
+              "level": 1,
+              "station": {
+                "id": "5d484fb3654e7600681d9314",
+                "name": "Security"
+              }
+            }
+          ],
+          "skillRequirements": [
+            {
+              "id": "5d484fb3654e7600681d9314-2-1",
+              "level": 2,
+              "skill": {
+                "id": "Endurance",
+                "name": "Endurance"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fb3654e7600681d9314-3",
+          "level": 3,
+          "constructionTime": 61200,
+          "description": "An advanced Hideout security system which includes, in addition to an armored bunker door, a video surveillance camera, an intercom system, fire extinguishers, as well as special ties to increase the structural strength of walls and ceiling.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fb3654e7600681d9314-3-1",
+              "count": 4,
+              "item": {
+                "id": "5d1b304286f774253763a528",
+                "name": "Working LCD",
+                "normalizedName": "working-lcd"
+              }
+            },
+            {
+              "id": "5d484fb3654e7600681d9314-3-2",
+              "count": 8,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            },
+            {
+              "id": "5d484fb3654e7600681d9314-3-3",
+              "count": 16,
+              "item": {
+                "id": "5d1b2ffd86f77425243e8d17",
+                "name": "NIXXOR lens",
+                "normalizedName": "nixxor-lens"
+              }
+            },
+            {
+              "id": "5d484fb3654e7600681d9314-3-4",
+              "count": 2,
+              "item": {
+                "id": "590c392f86f77444754deb29",
+                "name": "SSD drive",
+                "normalizedName": "ssd-drive"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fb3654e7600681d9314-3-0",
+              "level": 3,
+              "station": {
+                "id": "5d494a205b56502f18c98a06",
+                "name": "Illumination"
+              }
+            },
+            {
+              "id": "5d484fb3654e7600681d9314-3-6",
+              "level": 2,
+              "station": {
+                "id": "5d484fb3654e7600681d9314",
+                "name": "Security"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fb3654e7600681d9314-3-5",
+              "level": 2,
+              "trader": {
+                "id": "5a7c2eca46aef81a7ca2145d",
+                "name": "Mechanic"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d484fba654e7600691aadf7",
+      "name": "Lavatory",
+      "normalizedName": "lavatory",
+      "imageLink": "https://assets.tarkov.dev/station-lavatory.png",
+      "levels": [
+        {
+          "id": "5d484fba654e7600691aadf7-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "A primitive toilet. Any amenities are out of the question. Just a bucket and a litter box to maintain basic sanitation in the Hideout.",
+          "stationLevelRequirements": [],
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fba654e7600691aadf7-1-0",
+              "count": 4000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-1-1",
+              "count": 2,
+              "item": {
+                "id": "5c13cef886f774072e618e82",
+                "name": "Toilet paper",
+                "normalizedName": "toilet-paper"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-1-2",
+              "count": 2,
+              "item": {
+                "id": "57347c93245977448d35f6e3",
+                "name": "Toothpaste",
+                "normalizedName": "toothpaste"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-1-3",
+              "count": 2,
+              "item": {
+                "id": "5c13cd2486f774072c757944",
+                "name": "Soap",
+                "normalizedName": "soap"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-1-4",
+              "count": 2,
+              "item": {
+                "id": "62a0a098de7ac8199358053b",
+                "name": "Awl",
+                "normalizedName": "awl"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fba654e7600691aadf7-2",
+          "level": 2,
+          "constructionTime": 10800,
+          "description": "A basic bathroom with a wooden outhouse type toilet and a washstand, connected to the water supply system. All this raises the level of cleanliness and hygiene in the Hideout.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fba654e7600691aadf7-2-0",
+              "count": 6,
+              "item": {
+                "id": "59e35cbb86f7741778269d83",
+                "name": "Corrugated hose",
+                "normalizedName": "corrugated-hose"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-2-1",
+              "count": 10,
+              "item": {
+                "id": "59e35ef086f7741777737012",
+                "name": "Pack of screws",
+                "normalizedName": "pack-of-screws"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-2-2",
+              "count": 2,
+              "item": {
+                "id": "59e35de086f7741778269d84",
+                "name": "Electric drill",
+                "normalizedName": "electric-drill"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-2-6",
+              "count": 2,
+              "item": {
+                "id": "5e2af29386f7746d4159f077",
+                "name": "KEKTAPE duct tape",
+                "normalizedName": "kektape-duct-tape"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-2-7",
+              "count": 4,
+              "item": {
+                "id": "61bf83814088ec1a363d7097",
+                "name": "Sewing kit",
+                "normalizedName": "sewing-kit"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fba654e7600691aadf7-2-3",
+              "level": 1,
+              "station": {
+                "id": "5d484fc8654e760065037abf",
+                "name": "Water Collector"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-2-4",
+              "level": 1,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-2-5",
+              "level": 1,
+              "station": {
+                "id": "5d484fba654e7600691aadf7",
+                "name": "Lavatory"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fba654e7600691aadf7-3",
+          "level": 3,
+          "constructionTime": 25200,
+          "description": "An advanced bathroom with a dry closet, a shower and a trash can. Everything you need is connected to the water supply system and provides the most affordable level of personal hygiene.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fba654e7600691aadf7-3-0",
+              "count": 12,
+              "item": {
+                "id": "59e35cbb86f7741778269d83",
+                "name": "Corrugated hose",
+                "normalizedName": "corrugated-hose"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-3-1",
+              "count": 4,
+              "item": {
+                "id": "5d1b327086f7742525194449",
+                "name": "Pressure gauge",
+                "normalizedName": "pressure-gauge"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-3-2",
+              "count": 2,
+              "item": {
+                "id": "590c2e1186f77425357b6124",
+                "name": "Toolset",
+                "normalizedName": "toolset"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-3-5",
+              "count": 6,
+              "item": {
+                "id": "590c346786f77423e50ed342",
+                "name": "Xenomorph sealing foam",
+                "normalizedName": "xenomorph-sealing-foam"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fba654e7600691aadf7-3-3",
+              "level": 2,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-3-4",
+              "level": 2,
+              "station": {
+                "id": "5d484fc8654e760065037abf",
+                "name": "Water Collector"
+              }
+            },
+            {
+              "id": "5d484fba654e7600691aadf7-3-6",
+              "level": 2,
+              "station": {
+                "id": "5d484fba654e7600691aadf7",
+                "name": "Lavatory"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d484fc0654e76006657e0ab",
+      "name": "Stash",
+      "normalizedName": "stash",
+      "imageLink": "https://assets.tarkov.dev/station-stash.png",
+      "levels": [
+        {
+          "id": "5d484fc0654e76006657e0ab-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "Small stash (10x30)",
+          "itemRequirements": [],
+          "stationLevelRequirements": [],
+          "skillRequirements": [],
+          "traderRequirements": []
+        },
+        {
+          "id": "5d484fc0654e76006657e0ab-2",
+          "level": 2,
+          "constructionTime": 86400,
+          "description": "Medium stash (10x40)",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fc0654e76006657e0ab-2-0",
+              "count": 1,
+              "item": {
+                "id": "5d1b317c86f7742523398392",
+                "name": "Hand drill",
+                "normalizedName": "hand-drill"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-2-1",
+              "count": 10,
+              "item": {
+                "id": "59e35ef086f7741777737012",
+                "name": "Pack of screws",
+                "normalizedName": "pack-of-screws"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-2-2",
+              "count": 4,
+              "item": {
+                "id": "590c5bbd86f774785762df04",
+                "name": "WD-40 (100ml)",
+                "normalizedName": "wd-40-100ml"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-2-4",
+              "count": 2500000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-2-6",
+              "count": 5,
+              "item": {
+                "id": "590c31c586f774245e3141b2",
+                "name": "Pack of nails",
+                "normalizedName": "pack-of-nails"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fc0654e76006657e0ab-2-3",
+              "level": 1,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-2-5",
+              "level": 1,
+              "station": {
+                "id": "5d484fc0654e76006657e0ab",
+                "name": "Stash"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fc0654e76006657e0ab-3",
+          "level": 3,
+          "constructionTime": 172800,
+          "description": "Large stash (10x50)",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fc0654e76006657e0ab-3-2",
+              "count": 2,
+              "item": {
+                "id": "59e35de086f7741778269d84",
+                "name": "Electric drill",
+                "normalizedName": "electric-drill"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-3-3",
+              "count": 15,
+              "item": {
+                "id": "59e35ef086f7741777737012",
+                "name": "Pack of screws",
+                "normalizedName": "pack-of-screws"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-3-4",
+              "count": 8500000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-3-8",
+              "count": 7,
+              "item": {
+                "id": "590c31c586f774245e3141b2",
+                "name": "Pack of nails",
+                "normalizedName": "pack-of-nails"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fc0654e76006657e0ab-3-0",
+              "level": 2,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-3-1",
+              "level": 2,
+              "station": {
+                "id": "5d388e97081959000a123acf",
+                "name": "Heating"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-3-6",
+              "level": 2,
+              "station": {
+                "id": "5d484fc0654e76006657e0ab",
+                "name": "Stash"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fc0654e76006657e0ab-3-5",
+              "level": 3,
+              "trader": {
+                "id": "54cb50c76803fa8b248b4571",
+                "name": "Prapor"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-3-7",
+              "level": 3,
+              "trader": {
+                "id": "5ac3b934156ae10c4430e83c",
+                "name": "Ragman"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fc0654e76006657e0ab-4",
+          "level": 4,
+          "constructionTime": 345600,
+          "description": "Maximum size stash (10x68)",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fc0654e76006657e0ab-4-3",
+              "count": 200000,
+              "item": {
+                "id": "569668774bdc2da2298b4568",
+                "name": "Euros",
+                "normalizedName": "euros"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-4-8",
+              "count": 10,
+              "item": {
+                "id": "57347c5b245977448d35f6e1",
+                "name": "Bolts",
+                "normalizedName": "bolts"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-4-9",
+              "count": 10,
+              "item": {
+                "id": "57347c77245977448d35f6e2",
+                "name": "Screw nuts",
+                "normalizedName": "screw-nuts"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-4-10",
+              "count": 5,
+              "item": {
+                "id": "590c35a486f774273531c822",
+                "name": "Shustrilo sealing foam",
+                "normalizedName": "shustrilo-sealing-foam"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-4-11",
+              "count": 2,
+              "item": {
+                "id": "60391afc25aff57af81f7085",
+                "name": "Ratchet wrench",
+                "normalizedName": "ratchet-wrench"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fc0654e76006657e0ab-4-0",
+              "level": 3,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-4-1",
+              "level": 3,
+              "station": {
+                "id": "5d484fda654e7600681d9315",
+                "name": "Workbench"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-4-2",
+              "level": 3,
+              "station": {
+                "id": "5d388e97081959000a123acf",
+                "name": "Heating"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-4-5",
+              "level": 3,
+              "station": {
+                "id": "5d484fc0654e76006657e0ab",
+                "name": "Stash"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-4-6",
+              "level": 2,
+              "station": {
+                "id": "5d484fdf654e7600691aadf8",
+                "name": "Intelligence Center"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fc0654e76006657e0ab-4-4",
+              "level": 4,
+              "trader": {
+                "id": "5935c25fb3acc3127c3d8cd9",
+                "name": "Peacekeeper"
+              }
+            },
+            {
+              "id": "5d484fc0654e76006657e0ab-4-7",
+              "level": 4,
+              "trader": {
+                "id": "5ac3b934156ae10c4430e83c",
+                "name": "Ragman"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d484fc8654e760065037abf",
+      "name": "Water Collector",
+      "normalizedName": "water-collector",
+      "imageLink": "https://assets.tarkov.dev/station-water-collector.png",
+      "levels": [
+        {
+          "id": "5d484fc8654e760065037abf-1",
+          "level": 1,
+          "constructionTime": 7200,
+          "description": "Basic water system for collecting groundwater. Contains several water filters and containers for water purification. One of the most important systems for maintaining life support in the Hideout.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fc8654e760065037abf-1-0",
+              "count": 8,
+              "item": {
+                "id": "59e35cbb86f7741778269d83",
+                "name": "Corrugated hose",
+                "normalizedName": "corrugated-hose"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-1-1",
+              "count": 10,
+              "item": {
+                "id": "57347c5b245977448d35f6e1",
+                "name": "Bolts",
+                "normalizedName": "bolts"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-1-2",
+              "count": 10,
+              "item": {
+                "id": "57347c77245977448d35f6e2",
+                "name": "Screw nuts",
+                "normalizedName": "screw-nuts"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-1-4",
+              "count": 6,
+              "item": {
+                "id": "57347c1124597737fb1379e3",
+                "name": "Duct tape",
+                "normalizedName": "duct-tape"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fc8654e760065037abf-1-3",
+              "level": 1,
+              "station": {
+                "id": "5d484fb3654e7600681d9314",
+                "name": "Security"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fc8654e760065037abf-2",
+          "level": 2,
+          "constructionTime": 28800,
+          "description": "A sophisticated water collection system with additional pipes, filters, and larger containers. Installation of pumps allows to improve the pressure in the pipes and, consequently, the pressure of water.",
+          "itemRequirements": [
+            {
+              "id": "5d484fc8654e760065037abf-2-0",
+              "count": 12,
+              "item": {
+                "id": "59e35cbb86f7741778269d83",
+                "name": "Corrugated hose",
+                "normalizedName": "corrugated-hose"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-2-1",
+              "count": 4,
+              "item": {
+                "id": "5d1b2fa286f77425227d1674",
+                "name": "Electric motor",
+                "normalizedName": "electric-motor"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-2-2",
+              "count": 4,
+              "item": {
+                "id": "590c2e1186f77425357b6124",
+                "name": "Toolset",
+                "normalizedName": "toolset"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-2-7",
+              "count": 4,
+              "item": {
+                "id": "5e2af29386f7746d4159f077",
+                "name": "KEKTAPE duct tape",
+                "normalizedName": "kektape-duct-tape"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fc8654e760065037abf-2-4",
+              "level": 2,
+              "station": {
+                "id": "5d484fda654e7600681d9315",
+                "name": "Workbench"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-2-5",
+              "level": 1,
+              "station": {
+                "id": "5d484fc8654e760065037abf",
+                "name": "Water Collector"
+              }
+            }
+          ],
+          "skillRequirements": [
+            {
+              "id": "5d484fc8654e760065037abf-2-3",
+              "level": 3,
+              "skill": {
+                "id": "Attention",
+                "name": "Attention"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fc8654e760065037abf-2-6",
+              "level": 2,
+              "trader": {
+                "id": "5c0647fdd443bc2504c2d371",
+                "name": "Jaeger"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fc8654e760065037abf-3",
+          "level": 3,
+          "constructionTime": 57600,
+          "description": "An advanced water collection system for both groundwater and rainwater. It contains various cleaning filters, an electric pump and an extensive water supply system throughout the Hideout. An additional filtration and enrichment system allows you to get very clean and high-quality water.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fc8654e760065037abf-3-0",
+              "count": 40000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-3-3",
+              "count": 4,
+              "item": {
+                "id": "5af04b6486f774195a3ebb49",
+                "name": "Pliers Elite",
+                "normalizedName": "pliers-elite"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-3-4",
+              "count": 10,
+              "item": {
+                "id": "590c35a486f774273531c822",
+                "name": "Shustrilo sealing foam",
+                "normalizedName": "shustrilo-sealing-foam"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-3-7",
+              "count": 2,
+              "item": {
+                "id": "60391afc25aff57af81f7085",
+                "name": "Ratchet wrench",
+                "normalizedName": "ratchet-wrench"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fc8654e760065037abf-3-2",
+              "level": 3,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-3-5",
+              "level": 2,
+              "station": {
+                "id": "5d484fc8654e760065037abf",
+                "name": "Water Collector"
+              }
+            },
+            {
+              "id": "5d484fc8654e760065037abf-3-6",
+              "level": 3,
+              "station": {
+                "id": "5d388e97081959000a123acf",
+                "name": "Heating"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fc8654e760065037abf-3-1",
+              "level": 3,
+              "trader": {
+                "id": "5c0647fdd443bc2504c2d371",
+                "name": "Jaeger"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d484fcd654e7668ec2ec322",
+      "name": "Medstation",
+      "normalizedName": "medstation",
+      "imageLink": "https://assets.tarkov.dev/station-medstation.png",
+      "levels": [
+        {
+          "id": "5d484fcd654e7668ec2ec322-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "The continued availability of medication means greater chances of survival after raids. Several medical storage boxes for basic medical care.",
+          "stationLevelRequirements": [],
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fcd654e7668ec2ec322-1-0",
+              "count": 100000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-1-1",
+              "count": 2,
+              "item": {
+                "id": "5d1b3f2d86f774253763b735",
+                "name": "Disposable syringe",
+                "normalizedName": "disposable-syringe"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-1-2",
+              "count": 2,
+              "item": {
+                "id": "5d1b3a5d86f774252167ba22",
+                "name": "Pile of meds",
+                "normalizedName": "pile-of-meds"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-1-3",
+              "count": 4,
+              "item": {
+                "id": "544fb25a4bdc2dfb738b4567",
+                "name": "Aseptic bandage",
+                "normalizedName": "aseptic-bandage"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-1-4",
+              "count": 2,
+              "item": {
+                "id": "62a0a043cf4a99369e2624a5",
+                "name": "Bottle of OLOLO Multivitamins",
+                "normalizedName": "bottle-of-ololo-multivitamins"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fcd654e7668ec2ec322-2",
+          "level": 2,
+          "constructionTime": 10800,
+          "description": "A medical unit consisting of a table for medicine, a chair and a dropper. The healing process will be faster while you are out of raids.",
+          "itemRequirements": [
+            {
+              "id": "5d484fcd654e7668ec2ec322-2-1",
+              "count": 300000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-2-4",
+              "count": 4,
+              "item": {
+                "id": "5b4335ba86f7744d2837a264",
+                "name": "Medical bloodset",
+                "normalizedName": "medical-bloodset"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-2-5",
+              "count": 6,
+              "item": {
+                "id": "59e3606886f77417674759a5",
+                "name": "Bottle of saline solution",
+                "normalizedName": "bottle-of-saline-solution"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-2-7",
+              "count": 10,
+              "item": {
+                "id": "5e831507ea0a7c419c2f9bd9",
+                "name": "Esmarch tourniquet",
+                "normalizedName": "esmarch-tourniquet"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-2-8",
+              "count": 6,
+              "item": {
+                "id": "619cc01e0a7c3a1a2731940c",
+                "name": "Medical tools",
+                "normalizedName": "medical-tools"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fcd654e7668ec2ec322-2-0",
+              "level": 1,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-2-6",
+              "level": 1,
+              "station": {
+                "id": "5d484fcd654e7668ec2ec322",
+                "name": "Medstation"
+              }
+            }
+          ],
+          "skillRequirements": [
+            {
+              "id": "5d484fcd654e7668ec2ec322-2-2",
+              "level": 2,
+              "skill": {
+                "id": "Health",
+                "name": "Health"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fcd654e7668ec2ec322-2-3",
+              "level": 2,
+              "trader": {
+                "id": "54cb57776803fa99248b456e",
+                "name": "Therapist"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fcd654e7668ec2ec322-3",
+          "level": 3,
+          "constructionTime": 43200,
+          "description": "A full-fledged Hideout medical laboratory. It has everything you need to treat wounds, create medicines and maintain your good health during these difficult times.",
+          "itemRequirements": [
+            {
+              "id": "5d484fcd654e7668ec2ec322-3-0",
+              "count": 1000000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-3-5",
+              "count": 8,
+              "item": {
+                "id": "59e3606886f77417674759a5",
+                "name": "Bottle of saline solution",
+                "normalizedName": "bottle-of-saline-solution"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-3-6",
+              "count": 2,
+              "item": {
+                "id": "5c0530ee86f774697952d952",
+                "name": "LEDX Skin Transilluminator",
+                "normalizedName": "ledx-skin-transilluminator"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-3-9",
+              "count": 2,
+              "item": {
+                "id": "5af0534a86f7743b6f354284",
+                "name": "Ophthalmoscope",
+                "normalizedName": "ophthalmoscope"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fcd654e7668ec2ec322-3-3",
+              "level": 2,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-3-4",
+              "level": 2,
+              "station": {
+                "id": "5d484fba654e7600691aadf7",
+                "name": "Lavatory"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-3-7",
+              "level": 2,
+              "station": {
+                "id": "5d484fcd654e7668ec2ec322",
+                "name": "Medstation"
+              }
+            }
+          ],
+          "skillRequirements": [
+            {
+              "id": "5d484fcd654e7668ec2ec322-3-8",
+              "level": 3,
+              "skill": {
+                "id": "Vitality",
+                "name": "Vitality"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fcd654e7668ec2ec322-3-1",
+              "level": 3,
+              "trader": {
+                "id": "54cb57776803fa99248b456e",
+                "name": "Therapist"
+              }
+            },
+            {
+              "id": "5d484fcd654e7668ec2ec322-3-2",
+              "level": 2,
+              "trader": {
+                "id": "58330581ace78e27b8b10cee",
+                "name": "Skier"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d484fd1654e76006732bf2e",
+      "name": "Nutrition Unit",
+      "normalizedName": "nutrition-unit",
+      "imageLink": "https://assets.tarkov.dev/station-nutrition-unit.png",
+      "levels": [
+        {
+          "id": "5d484fd1654e76006732bf2e-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "Food in the Hideout provides you with energy for future raids. A basic nutrition unit with an old fridge and a place to eat allows you to recover your energy faster.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fd1654e76006732bf2e-1-1",
+              "count": 50000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-1-2",
+              "count": 4,
+              "item": {
+                "id": "5d1b313086f77425227d1678",
+                "name": "Phase control relay",
+                "normalizedName": "phase-control-relay"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-1-3",
+              "count": 2,
+              "item": {
+                "id": "59e36c6f86f774176c10a2a7",
+                "name": "Power cord",
+                "normalizedName": "power-cord"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-1-4",
+              "count": 2,
+              "item": {
+                "id": "62a09ee4cf4a99369e262453",
+                "name": "Can of white salt",
+                "normalizedName": "can-of-white-salt"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fd1654e76006732bf2e-1-0",
+              "level": 1,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fd1654e76006732bf2e-2",
+          "level": 2,
+          "constructionTime": 14400,
+          "description": "A nutrition unit with a more modern refrigerator, dining accessories, stove and sink, providing better food. Energy is restored faster.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fd1654e76006732bf2e-2-1",
+              "count": 8,
+              "item": {
+                "id": "590c311186f77424d1667482",
+                "name": "Wrench",
+                "normalizedName": "wrench"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-2-2",
+              "count": 4,
+              "item": {
+                "id": "59e35cbb86f7741778269d83",
+                "name": "Corrugated hose",
+                "normalizedName": "corrugated-hose"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-2-3",
+              "count": 4,
+              "item": {
+                "id": "59faf98186f774067b6be103",
+                "name": "Alkaline cleaner for heat exchangers",
+                "normalizedName": "alkaline-cleaner-for-heat-exchangers"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-2-5",
+              "count": 2,
+              "item": {
+                "id": "5d1b313086f77425227d1678",
+                "name": "Phase control relay",
+                "normalizedName": "phase-control-relay"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fd1654e76006732bf2e-2-0",
+              "level": 2,
+              "station": {
+                "id": "5d484fba654e7600691aadf7",
+                "name": "Lavatory"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-2-4",
+              "level": 1,
+              "station": {
+                "id": "5d484fd1654e76006732bf2e",
+                "name": "Nutrition Unit"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fd1654e76006732bf2e-3",
+          "level": 3,
+          "constructionTime": 50400,
+          "description": "A full-fledged kitchen with a comfortable stove, an improved sink, an electric kettle, a microwave and everything necessary for fast and high-quality food cooking outside raids. Can’t violate the diet!",
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fd1654e76006732bf2e-3-3",
+              "count": 250000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-3-6",
+              "count": 6,
+              "item": {
+                "id": "5af0484c86f7740f02001f7f",
+                "name": "Can of Majaica coffee beans",
+                "normalizedName": "can-of-majaica-coffee-beans"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-3-7",
+              "count": 6,
+              "item": {
+                "id": "59e35abd86f7741778269d82",
+                "name": "Pack of sodium bicarbonate",
+                "normalizedName": "pack-of-sodium-bicarbonate"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-3-8",
+              "count": 4,
+              "item": {
+                "id": "5e2af00086f7746d3f3c33f7",
+                "name": "Smoked Chimney drain cleaner",
+                "normalizedName": "smoked-chimney-drain-cleaner"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fd1654e76006732bf2e-3-0",
+              "level": 2,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-3-1",
+              "level": 3,
+              "station": {
+                "id": "5d484fba654e7600691aadf7",
+                "name": "Lavatory"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-3-2",
+              "level": 2,
+              "station": {
+                "id": "5d484fc0654e76006657e0ab",
+                "name": "Stash"
+              }
+            },
+            {
+              "id": "5d484fd1654e76006732bf2e-3-5",
+              "level": 2,
+              "station": {
+                "id": "5d484fd1654e76006732bf2e",
+                "name": "Nutrition Unit"
+              }
+            }
+          ],
+          "skillRequirements": [
+            {
+              "id": "5d484fd1654e76006732bf2e-3-4",
+              "level": 3,
+              "skill": {
+                "id": "Metabolism",
+                "name": "Metabolism"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d484fd6654e76051d3cc791",
+      "name": "Rest Space",
+      "normalizedName": "rest-space",
+      "imageLink": "https://assets.tarkov.dev/station-rest-space.png",
+      "levels": [
+        {
+          "id": "5d484fd6654e76051d3cc791-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "Rest is very important, especially in the besieged Tarkov environment. A mattress over pallets is the very basic thing which can help PMCs relax after hard battles.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fd6654e76051d3cc791-1-1",
+              "count": 20000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-1-2",
+              "count": 2,
+              "item": {
+                "id": "57347c1124597737fb1379e3",
+                "name": "Duct tape",
+                "normalizedName": "duct-tape"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-1-3",
+              "count": 2,
+              "item": {
+                "id": "57347b8b24597737dd42e192",
+                "name": "Classic matches",
+                "normalizedName": "classic-matches"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fd6654e76051d3cc791-1-0",
+              "level": 1,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fd6654e76051d3cc791-2",
+          "level": 2,
+          "constructionTime": 7200,
+          "description": "A place to relax, equipped with a normal bed, bedside table and even an old TV. It creates a feeling of comfort and gives nostalgic memories of a former life.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fd6654e76051d3cc791-2-2",
+              "count": 70000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-2-5",
+              "count": 2,
+              "item": {
+                "id": "5734781f24597737e04bf32a",
+                "name": "DVD drive",
+                "normalizedName": "dvd-drive"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-2-6",
+              "count": 2,
+              "item": {
+                "id": "590a391c86f774385a33c404",
+                "name": "Magnet",
+                "normalizedName": "magnet"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-2-7",
+              "count": 6,
+              "item": {
+                "id": "590a3cd386f77436f20848cb",
+                "name": "Energy-saving lamp",
+                "normalizedName": "energy-saving-lamp"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fd6654e76051d3cc791-2-0",
+              "level": 2,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-2-1",
+              "level": 2,
+              "station": {
+                "id": "5d388e97081959000a123acf",
+                "name": "Heating"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-2-4",
+              "level": 1,
+              "station": {
+                "id": "5d484fd6654e76051d3cc791",
+                "name": "Rest Space"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fd6654e76051d3cc791-2-3",
+              "level": 2,
+              "trader": {
+                "id": "5ac3b934156ae10c4430e83c",
+                "name": "Ragman"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fd6654e76051d3cc791-3",
+          "level": 3,
+          "constructionTime": 36000,
+          "description": "A lounge area with a sofa, an LCD TV with a Ployka Station console and a stereo system. It is hard to imagine that such comfort can be organized in an underground bunker when the whole world flies into the abyss.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fd6654e76051d3cc791-3-2",
+              "count": 8,
+              "item": {
+                "id": "59e36c6f86f774176c10a2a7",
+                "name": "Power cord",
+                "normalizedName": "power-cord"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-3-3",
+              "count": 10,
+              "item": {
+                "id": "5c06782b86f77426df5407d2",
+                "name": "Capacitors",
+                "normalizedName": "capacitors"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-3-4",
+              "count": 14,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-3-5",
+              "count": 10,
+              "item": {
+                "id": "5e2aedd986f7746d404f3aa4",
+                "name": "GreenBat lithium battery",
+                "normalizedName": "greenbat-lithium-battery"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fd6654e76051d3cc791-3-0",
+              "level": 3,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-3-1",
+              "level": 3,
+              "station": {
+                "id": "5d388e97081959000a123acf",
+                "name": "Heating"
+              }
+            },
+            {
+              "id": "5d484fd6654e76051d3cc791-3-7",
+              "level": 2,
+              "station": {
+                "id": "5d484fd6654e76051d3cc791",
+                "name": "Rest Space"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fd6654e76051d3cc791-3-6",
+              "level": 3,
+              "trader": {
+                "id": "58330581ace78e27b8b10cee",
+                "name": "Skier"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d484fda654e7600681d9315",
+      "name": "Workbench",
+      "normalizedName": "workbench",
+      "imageLink": "https://assets.tarkov.dev/station-workbench.png",
+      "levels": [
+        {
+          "id": "5d484fda654e7600681d9315-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "Everybody needs a place to work with their tools. A simple workbench allows you to do the basic modifications of your weapon and disassembling various technical parts.",
+          "stationLevelRequirements": [],
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fda654e7600681d9315-1-0",
+              "count": 4,
+              "item": {
+                "id": "57347c77245977448d35f6e2",
+                "name": "Screw nuts",
+                "normalizedName": "screw-nuts"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-1-1",
+              "count": 4,
+              "item": {
+                "id": "57347c5b245977448d35f6e1",
+                "name": "Bolts",
+                "normalizedName": "bolts"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-1-2",
+              "count": 2,
+              "item": {
+                "id": "544fb5454bdc2df8738b456a",
+                "name": "Leatherman Multitool",
+                "normalizedName": "leatherman-multitool"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fda654e7600681d9315-2",
+          "level": 2,
+          "constructionTime": 10800,
+          "description": "A workplace equipped with everything necessary for the production of simple ammunition and more complex technical tasks required to improve your hideout.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fda654e7600681d9315-2-1",
+              "count": 6,
+              "item": {
+                "id": "590c2e1186f77425357b6124",
+                "name": "Toolset",
+                "normalizedName": "toolset"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-2-2",
+              "count": 4,
+              "item": {
+                "id": "59e35de086f7741778269d84",
+                "name": "Electric drill",
+                "normalizedName": "electric-drill"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-2-3",
+              "count": 12,
+              "item": {
+                "id": "57347c5b245977448d35f6e1",
+                "name": "Bolts",
+                "normalizedName": "bolts"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-2-6",
+              "count": 6,
+              "item": {
+                "id": "5d1c819a86f774771b0acd6c",
+                "name": "Weapon parts",
+                "normalizedName": "weapon-parts"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-2-7",
+              "count": 2,
+              "item": {
+                "id": "62a0a0bb621468534a797ad5",
+                "name": "Set of files \"Master\"",
+                "normalizedName": "set-of-files-master"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fda654e7600681d9315-2-0",
+              "level": 2,
+              "station": {
+                "id": "5d494a205b56502f18c98a06",
+                "name": "Illumination"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-2-5",
+              "level": 1,
+              "station": {
+                "id": "5d484fda654e7600681d9315",
+                "name": "Workbench"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fda654e7600681d9315-2-4",
+              "level": 2,
+              "trader": {
+                "id": "5a7c2eca46aef81a7ca2145d",
+                "name": "Mechanic"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fda654e7600681d9315-3",
+          "level": 3,
+          "constructionTime": 39600,
+          "description": "A full-fledged table of the gunsmithing master. It allows you to produce more advanced cartridges and engage in high-tech tasks, assembly and disassembly of complex electronic devices and mechanical systems.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fda654e7600681d9315-3-2",
+              "count": 790000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-3-5",
+              "count": 4,
+              "item": {
+                "id": "5af04b6486f774195a3ebb49",
+                "name": "Pliers Elite",
+                "normalizedName": "pliers-elite"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-3-6",
+              "count": 2,
+              "item": {
+                "id": "5bc9b355d4351e6d1509862a",
+                "name": "#FireKlean gun lube",
+                "normalizedName": "fireklean-gun-lube"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-3-7",
+              "count": 4,
+              "item": {
+                "id": "60391a8b3364dc22b04d0ce5",
+                "name": "Can of thermite",
+                "normalizedName": "can-of-thermite"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fda654e7600681d9315-3-0",
+              "level": 2,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-3-1",
+              "level": 2,
+              "station": {
+                "id": "5d484fc0654e76006657e0ab",
+                "name": "Stash"
+              }
+            },
+            {
+              "id": "5d484fda654e7600681d9315-3-4",
+              "level": 2,
+              "station": {
+                "id": "5d484fda654e7600681d9315",
+                "name": "Workbench"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fda654e7600681d9315-3-3",
+              "level": 3,
+              "trader": {
+                "id": "5a7c2eca46aef81a7ca2145d",
+                "name": "Mechanic"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d484fdf654e7600691aadf8",
+      "name": "Intelligence Center",
+      "normalizedName": "intelligence-center",
+      "imageLink": "https://assets.tarkov.dev/station-intelligence-center.png",
+      "levels": [
+        {
+          "id": "5d484fdf654e7600691aadf8-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "If the generator is the heart of the Hideout, then the intelligence center is its brain. For now, this is just an old table and chair for analyzing various information that can help you escape from Tarkov.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fdf654e7600691aadf8-1-2",
+              "count": 2,
+              "item": {
+                "id": "5c12613b86f7743bbe2c3f76",
+                "name": "Intelligence folder",
+                "normalizedName": "intelligence-folder"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-1-3",
+              "count": 2,
+              "item": {
+                "id": "62a0a124de7ac81993580542",
+                "name": "Topographic survey maps",
+                "normalizedName": "topographic-survey-maps"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-1-4",
+              "count": 2,
+              "item": {
+                "id": "574eb85c245977648157eec3",
+                "name": "Factory plan map",
+                "normalizedName": "factory-plan-map"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fdf654e7600691aadf8-1-0",
+              "level": 2,
+              "station": {
+                "id": "5d484fb3654e7600681d9314",
+                "name": "Security"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-1-1",
+              "level": 2,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fdf654e7600691aadf8-2",
+          "level": 2,
+          "constructionTime": 21600,
+          "description": "An advanced intelligence center equipped with a laptop, which has more working space due to an additional table. Thanks to Mechanic, it is connected to an isolated computer network, which remained intact after the EMP strike and isolation of Tarkov.",
+          "itemRequirements": [
+            {
+              "id": "5d484fdf654e7600691aadf8-2-0",
+              "count": 6,
+              "item": {
+                "id": "5c12613b86f7743bbe2c3f76",
+                "name": "Intelligence folder",
+                "normalizedName": "intelligence-folder"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-2-1",
+              "count": 6,
+              "item": {
+                "id": "590c621186f774138d11ea29",
+                "name": "Secure Flash drive",
+                "normalizedName": "secure-flash-drive"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-2-2",
+              "count": 14,
+              "item": {
+                "id": "59e36c6f86f774176c10a2a7",
+                "name": "Power cord",
+                "normalizedName": "power-cord"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-2-3",
+              "count": 8,
+              "item": {
+                "id": "590a386e86f77429692b27ab",
+                "name": "Damaged hard drive",
+                "normalizedName": "damaged-hard-drive"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fdf654e7600691aadf8-2-4",
+              "level": 3,
+              "station": {
+                "id": "5d484fb3654e7600681d9314",
+                "name": "Security"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-2-5",
+              "level": 3,
+              "station": {
+                "id": "5d484fcd654e7668ec2ec322",
+                "name": "Medstation"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-2-6",
+              "level": 3,
+              "station": {
+                "id": "5d484fd1654e76006732bf2e",
+                "name": "Nutrition Unit"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-2-8",
+              "level": 1,
+              "station": {
+                "id": "5d484fdf654e7600691aadf8",
+                "name": "Intelligence Center"
+              }
+            }
+          ],
+          "skillRequirements": [
+            {
+              "id": "5d484fdf654e7600691aadf8-2-7",
+              "level": 3,
+              "skill": {
+                "id": "Attention",
+                "name": "Attention"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fdf654e7600691aadf8-2-9",
+              "level": 2,
+              "trader": {
+                "id": "5a7c2eca46aef81a7ca2145d",
+                "name": "Mechanic"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fdf654e7600691aadf8-3",
+          "level": 3,
+          "constructionTime": 86400,
+          "description": "A full-fledged intelligence center equipped with computer equipment, radio devices and analytical tools. The escape from Tarkov was never so close.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fdf654e7600691aadf8-3-0",
+              "count": 4,
+              "item": {
+                "id": "5c052f6886f7746b1e3db148",
+                "name": "Military COFDM Wireless Signal Transmitter",
+                "normalizedName": "military-cofdm-wireless-signal-transmitter"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-3-1",
+              "count": 4,
+              "item": {
+                "id": "5c05300686f7746dce784e5d",
+                "name": "VPX Flash Storage Module",
+                "normalizedName": "vpx-flash-storage-module"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-3-2",
+              "count": 10,
+              "item": {
+                "id": "62a0a16d0b9d3c46de5b6e97",
+                "name": "Military flash drive",
+                "normalizedName": "military-flash-drive"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-3-3",
+              "count": 10,
+              "item": {
+                "id": "5d0375ff86f774186372f685",
+                "name": "Military cable",
+                "normalizedName": "military-cable"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-3-8",
+              "count": 4,
+              "item": {
+                "id": "61bf7c024770ee6f9c6b8b53",
+                "name": "Secure magnetic tape cassette",
+                "normalizedName": "secure-magnetic-tape-cassette"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-3-9",
+              "count": 2,
+              "item": {
+                "id": "6389c7f115805221fb410466",
+                "name": "Far-forward GPS Signal Amplifier Unit",
+                "normalizedName": "far-forward-gps-signal-amplifier-unit"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fdf654e7600691aadf8-3-5",
+              "level": 3,
+              "station": {
+                "id": "5d484fda654e7600681d9315",
+                "name": "Workbench"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-3-6",
+              "level": 3,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d484fdf654e7600691aadf8-3-7",
+              "level": 2,
+              "station": {
+                "id": "5d484fdf654e7600691aadf8",
+                "name": "Intelligence Center"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d484fdf654e7600691aadf8-3-4",
+              "level": 3,
+              "trader": {
+                "id": "54cb50c76803fa8b248b4571",
+                "name": "Prapor"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d484fe3654e76006657e0ac",
+      "name": "Shooting Range",
+      "normalizedName": "shooting-range",
+      "imageLink": "https://assets.tarkov.dev/station-shooting-range.png",
+      "levels": [
+        {
+          "id": "5d484fe3654e76006657e0ac-1",
+          "level": 1,
+          "constructionTime": 3600,
+          "description": "A specially equipped place for shooting firearms. For the convenience of evaluating the shooting results, the range is equipped with metal silhouette popper targets for the close range, and paper targets for the long range.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fe3654e76006657e0ac-1-1",
+              "count": 2,
+              "item": {
+                "id": "57347c77245977448d35f6e2",
+                "name": "Screw nuts",
+                "normalizedName": "screw-nuts"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-1-2",
+              "count": 2,
+              "item": {
+                "id": "57347c5b245977448d35f6e1",
+                "name": "Bolts",
+                "normalizedName": "bolts"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-1-3",
+              "count": 2,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-1-4",
+              "count": 40000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fe3654e76006657e0ac-1-0",
+              "level": 1,
+              "station": {
+                "id": "5d494a205b56502f18c98a06",
+                "name": "Illumination"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fe3654e76006657e0ac-2",
+          "level": 2,
+          "constructionTime": 86400,
+          "description": "An improved range with installed ceiling-mounted target rails with three speed levels.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fe3654e76006657e0ac-2-2",
+              "count": 1,
+              "item": {
+                "id": "590c2e1186f77425357b6124",
+                "name": "Toolset",
+                "normalizedName": "toolset"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-2-3",
+              "count": 5,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-2-4",
+              "count": 1,
+              "item": {
+                "id": "590c2c9c86f774245b1f03f2",
+                "name": "Construction measuring tape",
+                "normalizedName": "construction-measuring-tape"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-2-5",
+              "count": 3,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-2-6",
+              "count": 3,
+              "item": {
+                "id": "59e35ef086f7741777737012",
+                "name": "Pack of screws",
+                "normalizedName": "pack-of-screws"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-2-7",
+              "count": 1,
+              "item": {
+                "id": "5e2af22086f7746d3f3c33fa",
+                "name": "Tube of Poxeram cold welding",
+                "normalizedName": "tube-of-poxeram-cold-welding"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-2-8",
+              "count": 3,
+              "item": {
+                "id": "5d1b2fa286f77425227d1674",
+                "name": "Electric motor",
+                "normalizedName": "electric-motor"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-2-9",
+              "count": 6,
+              "item": {
+                "id": "590a3cd386f77436f20848cb",
+                "name": "Energy-saving lamp",
+                "normalizedName": "energy-saving-lamp"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-2-10",
+              "count": 3,
+              "item": {
+                "id": "5b4391a586f7745321235ab2",
+                "name": "WI-FI Camera",
+                "normalizedName": "wi-fi-camera"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-2-11",
+              "count": 1,
+              "item": {
+                "id": "59e35de086f7741778269d84",
+                "name": "Electric drill",
+                "normalizedName": "electric-drill"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fe3654e76006657e0ac-2-0",
+              "level": 3,
+              "station": {
+                "id": "5d494a205b56502f18c98a06",
+                "name": "Illumination"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-2-1",
+              "level": 2,
+              "station": {
+                "id": "5d484fda654e7600681d9315",
+                "name": "Workbench"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-2-12",
+              "level": 1,
+              "station": {
+                "id": "5d484fe3654e76006657e0ac",
+                "name": "Shooting Range"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d484fe3654e76006657e0ac-3",
+          "level": 3,
+          "constructionTime": 86400,
+          "description": "An advanced shooting range with installed popper targets and a laptop for configuration. Also allows to start training with random rail targets and poppers, scores are displayed on the laptop monitor.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d484fe3654e76006657e0ac-3-0",
+              "count": 1,
+              "item": {
+                "id": "62a0a0bb621468534a797ad5",
+                "name": "Set of files \"Master\"",
+                "normalizedName": "set-of-files-master"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-3-1",
+              "count": 5,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-3-2",
+              "count": 3,
+              "item": {
+                "id": "590a3b0486f7743954552bdb",
+                "name": "Printed circuit board",
+                "normalizedName": "printed-circuit-board"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-3-3",
+              "count": 5,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-3-4",
+              "count": 5,
+              "item": {
+                "id": "5c06782b86f77426df5407d2",
+                "name": "Capacitors",
+                "normalizedName": "capacitors"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-3-5",
+              "count": 3,
+              "item": {
+                "id": "5d1b313086f77425227d1678",
+                "name": "Phase control relay",
+                "normalizedName": "phase-control-relay"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-3-6",
+              "count": 5,
+              "item": {
+                "id": "59e36c6f86f774176c10a2a7",
+                "name": "Power cord",
+                "normalizedName": "power-cord"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-3-7",
+              "count": 1,
+              "item": {
+                "id": "544fb5454bdc2df8738b456a",
+                "name": "Leatherman Multitool",
+                "normalizedName": "leatherman-multitool"
+              }
+            },
+            {
+              "id": "5d484fe3654e76006657e0ac-3-8",
+              "count": 1,
+              "item": {
+                "id": "590c639286f774151567fa95",
+                "name": "Tech manual",
+                "normalizedName": "tech-manual"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d484fe3654e76006657e0ac-3-9",
+              "level": 2,
+              "station": {
+                "id": "5d484fe3654e76006657e0ac",
+                "name": "Shooting Range"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d494a0e5b56502f18c98a02",
+      "name": "Library",
+      "normalizedName": "library",
+      "imageLink": "https://assets.tarkov.dev/station-library.png",
+      "levels": [
+        {
+          "id": "5d494a0e5b56502f18c98a02-1",
+          "level": 1,
+          "constructionTime": 194400,
+          "description": "Home library with various fiction and popular science books and magazines.",
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a0e5b56502f18c98a02-1-1",
+              "count": 400000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d494a0e5b56502f18c98a02-1-3",
+              "count": 1,
+              "item": {
+                "id": "573478bc24597738002c6175",
+                "name": "Horse figurine",
+                "normalizedName": "horse-figurine"
+              }
+            },
+            {
+              "id": "5d494a0e5b56502f18c98a02-1-4",
+              "count": 2,
+              "item": {
+                "id": "573474f924597738002c6174",
+                "name": "Chainlet",
+                "normalizedName": "chainlet"
+              }
+            },
+            {
+              "id": "5d494a0e5b56502f18c98a02-1-5",
+              "count": 5,
+              "item": {
+                "id": "590c639286f774151567fa95",
+                "name": "Tech manual",
+                "normalizedName": "tech-manual"
+              }
+            },
+            {
+              "id": "5d494a0e5b56502f18c98a02-1-6",
+              "count": 2,
+              "item": {
+                "id": "590c645c86f77412b01304d9",
+                "name": "Diary",
+                "normalizedName": "diary"
+              }
+            },
+            {
+              "id": "5d494a0e5b56502f18c98a02-1-7",
+              "count": 2,
+              "item": {
+                "id": "590c651286f7741e566b6461",
+                "name": "Slim diary",
+                "normalizedName": "slim-diary"
+              }
+            },
+            {
+              "id": "5d494a0e5b56502f18c98a02-1-8",
+              "count": 1,
+              "item": {
+                "id": "62a09e73af34e73a266d932a",
+                "name": "BakeEzy cook book",
+                "normalizedName": "bakeezy-cook-book"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a0e5b56502f18c98a02-1-0",
+              "level": 3,
+              "station": {
+                "id": "5d484fd6654e76051d3cc791",
+                "name": "Rest Space"
+              }
+            }
+          ],
+          "skillRequirements": [
+            {
+              "id": "5d494a0e5b56502f18c98a02-1-2",
+              "level": 5,
+              "skill": {
+                "id": "HideoutManagement",
+                "name": "Hideout Management"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d494a175b56502f18c98a04",
+      "name": "Scav Case",
+      "normalizedName": "scav-case",
+      "imageLink": "https://assets.tarkov.dev/station-scav-case.png",
+      "levels": [
+        {
+          "id": "5d494a175b56502f18c98a04-1",
+          "level": 1,
+          "constructionTime": 288000,
+          "description": "A special box where specially hired Scavs drop off various items that they've found.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a175b56502f18c98a04-1-1",
+              "count": 6,
+              "item": {
+                "id": "59e3639286f7741777737013",
+                "name": "Bronze lion figurine",
+                "normalizedName": "bronze-lion-figurine"
+              }
+            },
+            {
+              "id": "5d494a175b56502f18c98a04-1-2",
+              "count": 12,
+              "item": {
+                "id": "5d235a5986f77443f6329bc6",
+                "name": "Gold skull ring",
+                "normalizedName": "gold-skull-ring"
+              }
+            },
+            {
+              "id": "5d494a175b56502f18c98a04-1-3",
+              "count": 16,
+              "item": {
+                "id": "5734758f24597738025ee253",
+                "name": "Golden neck chain",
+                "normalizedName": "golden-neck-chain"
+              }
+            },
+            {
+              "id": "5d494a175b56502f18c98a04-1-4",
+              "count": 8,
+              "item": {
+                "id": "59faf7ca86f7740dbe19f6c2",
+                "name": "Roler Submariner gold wrist watch",
+                "normalizedName": "roler-submariner-gold-wrist-watch"
+              }
+            },
+            {
+              "id": "5d494a175b56502f18c98a04-1-5",
+              "count": 6,
+              "item": {
+                "id": "5d1b376e86f774252519444e",
+                "name": "Bottle of Fierce Hatchling moonshine",
+                "normalizedName": "bottle-of-fierce-hatchling-moonshine"
+              }
+            },
+            {
+              "id": "5d494a175b56502f18c98a04-1-6",
+              "count": 2,
+              "item": {
+                "id": "5b7c710788a4506dec015957",
+                "name": "Lucky Scav Junk box",
+                "normalizedName": "lucky-scav-junk-box"
+              }
+            },
+            {
+              "id": "5d494a175b56502f18c98a04-1-7",
+              "count": 2,
+              "item": {
+                "id": "5bc9bc53d4351e00367fbcee",
+                "name": "Golden rooster figurine",
+                "normalizedName": "golden-rooster-figurine"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a175b56502f18c98a04-1-0",
+              "level": 2,
+              "station": {
+                "id": "5d484fdf654e7600691aadf8",
+                "name": "Intelligence Center"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d494a205b56502f18c98a06",
+      "name": "Illumination",
+      "normalizedName": "illumination",
+      "imageLink": "https://assets.tarkov.dev/station-illumination.png",
+      "levels": [
+        {
+          "id": "5d494a205b56502f18c98a06-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "Basic lighting with paraffin candles, giving a dim and uneven light.",
+          "stationLevelRequirements": [],
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a205b56502f18c98a06-1-0",
+              "count": 20000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d494a205b56502f18c98a06-1-1",
+              "count": 2,
+              "item": {
+                "id": "56742c284bdc2d98058b456d",
+                "name": "Crickent lighter",
+                "normalizedName": "crickent-lighter"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d494a205b56502f18c98a06-2",
+          "level": 2,
+          "constructionTime": 0,
+          "description": "Hideout lighting with incandescent bulbs. The illumination is more even and brighter than from the candles.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a205b56502f18c98a06-2-0",
+              "count": 14,
+              "item": {
+                "id": "5d1b392c86f77425243e98fe",
+                "name": "Light bulb",
+                "normalizedName": "light-bulb"
+              }
+            },
+            {
+              "id": "5d494a205b56502f18c98a06-2-1",
+              "count": 10,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a205b56502f18c98a06-2-2",
+              "level": 1,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d494a205b56502f18c98a06-2-3",
+              "level": 1,
+              "station": {
+                "id": "5d494a205b56502f18c98a06",
+                "name": "Illumination"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d494a205b56502f18c98a06-3",
+          "level": 3,
+          "constructionTime": 21600,
+          "description": "Hideout lighting with fluorescent lights provides optimal brightness and uniformity of illumination.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a205b56502f18c98a06-3-4",
+              "count": 100000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            },
+            {
+              "id": "5d494a205b56502f18c98a06-3-5",
+              "count": 14,
+              "item": {
+                "id": "5c06782b86f77426df5407d2",
+                "name": "Capacitors",
+                "normalizedName": "capacitors"
+              }
+            },
+            {
+              "id": "5d494a205b56502f18c98a06-3-6",
+              "count": 12,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            },
+            {
+              "id": "5d494a205b56502f18c98a06-3-7",
+              "count": 24,
+              "item": {
+                "id": "590a3cd386f77436f20848cb",
+                "name": "Energy-saving lamp",
+                "normalizedName": "energy-saving-lamp"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a205b56502f18c98a06-3-0",
+              "level": 2,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d494a205b56502f18c98a06-3-1",
+              "level": 1,
+              "station": {
+                "id": "5d484fda654e7600681d9315",
+                "name": "Workbench"
+              }
+            },
+            {
+              "id": "5d494a205b56502f18c98a06-3-2",
+              "level": 2,
+              "station": {
+                "id": "5d494a205b56502f18c98a06",
+                "name": "Illumination"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d494a205b56502f18c98a06-3-3",
+              "level": 2,
+              "trader": {
+                "id": "5a7c2eca46aef81a7ca2145d",
+                "name": "Mechanic"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d494a295b56502f18c98a08",
+      "name": "Hall of Fame",
+      "normalizedName": "hall-of-fame",
+      "imageLink": "https://assets.tarkov.dev/station-hall-of-fame.png",
+      "levels": [
+        {
+          "id": "5d494a295b56502f18c98a08-1",
+          "level": 1,
+          "constructionTime": 43207,
+          "description": "The Hall of Fame is a special rack where you can put your trophies and collectibles.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a295b56502f18c98a08-1-3",
+              "count": 1,
+              "item": {
+                "id": "5d1b31ce86f7742523398394",
+                "name": "Round pliers",
+                "normalizedName": "round-pliers"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-1-4",
+              "count": 5,
+              "item": {
+                "id": "5e2af47786f7746d404f3aaa",
+                "name": "Fleece fabric",
+                "normalizedName": "fleece-fabric"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-1-5",
+              "count": 1,
+              "item": {
+                "id": "59e3658a86f7741776641ac4",
+                "name": "Cat figurine",
+                "normalizedName": "cat-figurine"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-1-6",
+              "count": 5,
+              "item": {
+                "id": "5d1b392c86f77425243e98fe",
+                "name": "Light bulb",
+                "normalizedName": "light-bulb"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-1-7",
+              "count": 5,
+              "item": {
+                "id": "590c31c586f774245e3141b2",
+                "name": "Pack of nails",
+                "normalizedName": "pack-of-nails"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-1-8",
+              "count": 2,
+              "item": {
+                "id": "5734795124597738002c6176",
+                "name": "Insulating tape",
+                "normalizedName": "insulating-tape"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a295b56502f18c98a08-1-0",
+              "level": 6,
+              "station": {
+                "id": "637b39f02e873739ec490215",
+                "name": "Defective Wall"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-1-1",
+              "level": 2,
+              "station": {
+                "id": "5d494a205b56502f18c98a06",
+                "name": "Illumination"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d494a295b56502f18c98a08-1-2",
+              "level": 2,
+              "trader": {
+                "id": "5a7c2eca46aef81a7ca2145d",
+                "name": "Mechanic"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d494a295b56502f18c98a08-2",
+          "level": 2,
+          "constructionTime": 64800,
+          "description": "A great rack from IDEA that can very nicely hold all the figurines found in raids and several dogtags taken from PMCs.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a295b56502f18c98a08-2-0",
+              "count": 1,
+              "item": {
+                "id": "590c639286f774151567fa95",
+                "name": "Tech manual",
+                "normalizedName": "tech-manual"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-2-1",
+              "count": 1,
+              "item": {
+                "id": "5af04b6486f774195a3ebb49",
+                "name": "Pliers Elite",
+                "normalizedName": "pliers-elite"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-2-2",
+              "count": 1,
+              "item": {
+                "id": "590c2e1186f77425357b6124",
+                "name": "Toolset",
+                "normalizedName": "toolset"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-2-3",
+              "count": 1,
+              "item": {
+                "id": "5bc9bc53d4351e00367fbcee",
+                "name": "Golden rooster figurine",
+                "normalizedName": "golden-rooster-figurine"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-2-4",
+              "count": 10,
+              "item": {
+                "id": "590a3cd386f77436f20848cb",
+                "name": "Energy-saving lamp",
+                "normalizedName": "energy-saving-lamp"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-2-5",
+              "count": 6,
+              "item": {
+                "id": "59e35ef086f7741777737012",
+                "name": "Pack of screws",
+                "normalizedName": "pack-of-screws"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-2-6",
+              "count": 3,
+              "item": {
+                "id": "57347c1124597737fb1379e3",
+                "name": "Duct tape",
+                "normalizedName": "duct-tape"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-2-7",
+              "count": 2,
+              "item": {
+                "id": "590c346786f77423e50ed342",
+                "name": "Xenomorph sealing foam",
+                "normalizedName": "xenomorph-sealing-foam"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-2-8",
+              "count": 2,
+              "item": {
+                "id": "5e2af22086f7746d3f3c33fa",
+                "name": "Tube of Poxeram cold welding",
+                "normalizedName": "tube-of-poxeram-cold-welding"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a295b56502f18c98a08-2-9",
+              "level": 1,
+              "station": {
+                "id": "5d494a295b56502f18c98a08",
+                "name": "Hall of Fame"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d494a295b56502f18c98a08-3",
+          "level": 3,
+          "constructionTime": 86400,
+          "description": "A full-fledged area in the Hideout dedicated to storing items of collectible value.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a295b56502f18c98a08-3-0",
+              "count": 1,
+              "item": {
+                "id": "62a0a0bb621468534a797ad5",
+                "name": "Set of files \"Master\"",
+                "normalizedName": "set-of-files-master"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-3-1",
+              "count": 1,
+              "item": {
+                "id": "59e35de086f7741778269d84",
+                "name": "Electric drill",
+                "normalizedName": "electric-drill"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-3-2",
+              "count": 1,
+              "item": {
+                "id": "59e3639286f7741777737013",
+                "name": "Bronze lion figurine",
+                "normalizedName": "bronze-lion-figurine"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-3-3",
+              "count": 15,
+              "item": {
+                "id": "590a3cd386f77436f20848cb",
+                "name": "Energy-saving lamp",
+                "normalizedName": "energy-saving-lamp"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-3-4",
+              "count": 3,
+              "item": {
+                "id": "5e2af29386f7746d4159f077",
+                "name": "KEKTAPE duct tape",
+                "normalizedName": "kektape-duct-tape"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-3-5",
+              "count": 3,
+              "item": {
+                "id": "57347cd0245977445a2d6ff1",
+                "name": "T-Shaped plug",
+                "normalizedName": "t-shaped-plug"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-3-6",
+              "count": 15,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            },
+            {
+              "id": "5d494a295b56502f18c98a08-3-7",
+              "count": 5,
+              "item": {
+                "id": "59e36c6f86f774176c10a2a7",
+                "name": "Power cord",
+                "normalizedName": "power-cord"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a295b56502f18c98a08-3-8",
+              "level": 2,
+              "station": {
+                "id": "5d494a295b56502f18c98a08",
+                "name": "Hall of Fame"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d494a385b56502f18c98a0c",
+      "name": "Solar Power",
+      "normalizedName": "solar-power",
+      "imageLink": "https://assets.tarkov.dev/station-solar-power.png",
+      "levels": [
+        {
+          "id": "5d494a385b56502f18c98a0c-1",
+          "level": 1,
+          "constructionTime": 259200,
+          "description": "Surface-mounted solar-wind batteries improve the overall Hideout power generation.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a385b56502f18c98a0c-1-2",
+              "count": 50000,
+              "item": {
+                "id": "569668774bdc2da2298b4568",
+                "name": "Euros",
+                "normalizedName": "euros"
+              }
+            },
+            {
+              "id": "5d494a385b56502f18c98a0c-1-4",
+              "count": 20,
+              "item": {
+                "id": "5d0375ff86f774186372f685",
+                "name": "Military cable",
+                "normalizedName": "military-cable"
+              }
+            },
+            {
+              "id": "5d494a385b56502f18c98a0c-1-5",
+              "count": 8,
+              "item": {
+                "id": "5d03775b86f774203e7e0c4b",
+                "name": "Phased array element",
+                "normalizedName": "phased-array-element"
+              }
+            },
+            {
+              "id": "5d494a385b56502f18c98a0c-1-6",
+              "count": 20,
+              "item": {
+                "id": "5d0378d486f77420421a5ff4",
+                "name": "Military power filter",
+                "normalizedName": "military-power-filter"
+              }
+            },
+            {
+              "id": "5d494a385b56502f18c98a0c-1-7",
+              "count": 6,
+              "item": {
+                "id": "5d1b304286f774253763a528",
+                "name": "Working LCD",
+                "normalizedName": "working-lcd"
+              }
+            },
+            {
+              "id": "5d494a385b56502f18c98a0c-1-8",
+              "count": 2,
+              "item": {
+                "id": "6389c85357baa773a825b356",
+                "name": "Advanced current converter",
+                "normalizedName": "advanced-current-converter"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a385b56502f18c98a0c-1-0",
+              "level": 3,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d494a385b56502f18c98a0c-1-1",
+              "level": 3,
+              "station": {
+                "id": "5d484fda654e7600681d9315",
+                "name": "Workbench"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d494a385b56502f18c98a0c-1-3",
+              "level": 4,
+              "trader": {
+                "id": "5935c25fb3acc3127c3d8cd9",
+                "name": "Peacekeeper"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d494a3f5b56502f18c98a0e",
+      "name": "Booze Generator",
+      "normalizedName": "booze-generator",
+      "imageLink": "https://assets.tarkov.dev/station-booze-generator.png",
+      "levels": [
+        {
+          "id": "5d494a3f5b56502f18c98a0e-1",
+          "level": 1,
+          "constructionTime": 172800,
+          "description": "The moonshine still allows you to produce strong drinks directly in your Hideout.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a3f5b56502f18c98a0e-1-2",
+              "count": 8,
+              "item": {
+                "id": "5d1b39a386f774252339976f",
+                "name": "Silicone tube",
+                "normalizedName": "silicone-tube"
+              }
+            },
+            {
+              "id": "5d494a3f5b56502f18c98a0e-1-3",
+              "count": 4,
+              "item": {
+                "id": "5d1b32c186f774252167a530",
+                "name": "Analog thermometer",
+                "normalizedName": "analog-thermometer"
+              }
+            },
+            {
+              "id": "5d494a3f5b56502f18c98a0e-1-4",
+              "count": 4,
+              "item": {
+                "id": "5d1b327086f7742525194449",
+                "name": "Pressure gauge",
+                "normalizedName": "pressure-gauge"
+              }
+            },
+            {
+              "id": "5d494a3f5b56502f18c98a0e-1-5",
+              "count": 10,
+              "item": {
+                "id": "59e35cbb86f7741778269d83",
+                "name": "Corrugated hose",
+                "normalizedName": "corrugated-hose"
+              }
+            },
+            {
+              "id": "5d494a3f5b56502f18c98a0e-1-6",
+              "count": 2,
+              "item": {
+                "id": "619cbfccbedcde2f5b3f7bdd",
+                "name": "Pipe grip wrench",
+                "normalizedName": "pipe-grip-wrench"
+              }
+            },
+            {
+              "id": "5d494a3f5b56502f18c98a0e-1-7",
+              "count": 6,
+              "item": {
+                "id": "5d1c774f86f7746d6620f8db",
+                "name": "Radiator helix",
+                "normalizedName": "radiator-helix"
+              }
+            },
+            {
+              "id": "5d494a3f5b56502f18c98a0e-1-8",
+              "count": 4,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a3f5b56502f18c98a0e-1-0",
+              "level": 3,
+              "station": {
+                "id": "5d484fc8654e760065037abf",
+                "name": "Water Collector"
+              }
+            },
+            {
+              "id": "5d494a3f5b56502f18c98a0e-1-1",
+              "level": 3,
+              "station": {
+                "id": "5d484fd1654e76006732bf2e",
+                "name": "Nutrition Unit"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d494a445b56502f18c98a10",
+      "name": "Bitcoin Farm",
+      "normalizedName": "bitcoin-farm",
+      "imageLink": "https://assets.tarkov.dev/station-bitcoin-farm.png",
+      "levels": [
+        {
+          "id": "5d494a445b56502f18c98a10-1",
+          "level": 1,
+          "constructionTime": 122400,
+          "description": "Basic bitcoin farm of 10 units. Using the computing power of graphics cards, you can use the system to produce physical bitcoins.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a445b56502f18c98a10-1-1",
+              "count": 30,
+              "item": {
+                "id": "5734779624597737e04bf329",
+                "name": "CPU fan",
+                "normalizedName": "cpu-fan"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-1-2",
+              "count": 20,
+              "item": {
+                "id": "57347c2e24597744902c94a1",
+                "name": "Power supply unit",
+                "normalizedName": "power-supply-unit"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-1-3",
+              "count": 20,
+              "item": {
+                "id": "59e36c6f86f774176c10a2a7",
+                "name": "Power cord",
+                "normalizedName": "power-cord"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-1-4",
+              "count": 2,
+              "item": {
+                "id": "5c05300686f7746dce784e5d",
+                "name": "VPX Flash Storage Module",
+                "normalizedName": "vpx-flash-storage-module"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-1-5",
+              "count": 10,
+              "item": {
+                "id": "57347cd0245977445a2d6ff1",
+                "name": "T-Shaped plug",
+                "normalizedName": "t-shaped-plug"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a445b56502f18c98a10-1-0",
+              "level": 2,
+              "station": {
+                "id": "5d484fdf654e7600691aadf8",
+                "name": "Intelligence Center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d494a445b56502f18c98a10-2",
+          "level": 2,
+          "constructionTime": 180000,
+          "description": "An improved bitcoin farm of 25 units. Using the computing power of graphics cards, you can use the system to produce physical bitcoins.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a445b56502f18c98a10-2-2",
+              "count": 30,
+              "item": {
+                "id": "5734779624597737e04bf329",
+                "name": "CPU fan",
+                "normalizedName": "cpu-fan"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-2-3",
+              "count": 20,
+              "item": {
+                "id": "57347c2e24597744902c94a1",
+                "name": "Power supply unit",
+                "normalizedName": "power-supply-unit"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-2-4",
+              "count": 30,
+              "item": {
+                "id": "590a3b0486f7743954552bdb",
+                "name": "Printed circuit board",
+                "normalizedName": "printed-circuit-board"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-2-5",
+              "count": 10,
+              "item": {
+                "id": "5d1b313086f77425227d1678",
+                "name": "Phase control relay",
+                "normalizedName": "phase-control-relay"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-2-6",
+              "count": 4,
+              "item": {
+                "id": "5d0378d486f77420421a5ff4",
+                "name": "Military power filter",
+                "normalizedName": "military-power-filter"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a445b56502f18c98a10-2-0",
+              "level": 1,
+              "station": {
+                "id": "5d494a445b56502f18c98a10",
+                "name": "Bitcoin Farm"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-2-1",
+              "level": 3,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5d494a445b56502f18c98a10-3",
+          "level": 3,
+          "constructionTime": 381600,
+          "description": "Maximum size bitcoin farm for 50 units with water cooling. Using the computing power of graphics cards, you can use the system to produce physical bitcoins.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a445b56502f18c98a10-3-3",
+              "count": 25,
+              "item": {
+                "id": "5734779624597737e04bf329",
+                "name": "CPU fan",
+                "normalizedName": "cpu-fan"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-3-4",
+              "count": 30,
+              "item": {
+                "id": "5d1b39a386f774252339976f",
+                "name": "Silicone tube",
+                "normalizedName": "silicone-tube"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-3-5",
+              "count": 20,
+              "item": {
+                "id": "5d1b2fa286f77425227d1674",
+                "name": "Electric motor",
+                "normalizedName": "electric-motor"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-3-6",
+              "count": 20,
+              "item": {
+                "id": "5d1b327086f7742525194449",
+                "name": "Pressure gauge",
+                "normalizedName": "pressure-gauge"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-3-7",
+              "count": 3,
+              "item": {
+                "id": "5d03794386f77420415576f5",
+                "name": "6-STEN-140-M military battery",
+                "normalizedName": "6-sten-140-m-military-battery"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a445b56502f18c98a10-3-0",
+              "level": 2,
+              "station": {
+                "id": "5d494a445b56502f18c98a10",
+                "name": "Bitcoin Farm"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-3-1",
+              "level": 1,
+              "station": {
+                "id": "5d494a385b56502f18c98a0c",
+                "name": "Solar Power"
+              }
+            },
+            {
+              "id": "5d494a445b56502f18c98a10-3-2",
+              "level": 3,
+              "station": {
+                "id": "5d484fc8654e760065037abf",
+                "name": "Water Collector"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "637b39f02e873739ec490215",
+      "name": "Defective Wall",
+      "normalizedName": "defective-wall",
+      "imageLink": "https://assets.tarkov.dev/station-defective-wall.png",
+      "levels": [
+        {
+          "id": "637b39f02e873739ec490215-1",
+          "level": 1,
+          "constructionTime": 0,
+          "description": "A piece of a wall with swollen paint. Nothing serious, but it might become a problem soon.",
+          "itemRequirements": [],
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "stationLevelRequirements": [
+            {
+              "id": "637b39f02e873739ec490215-1-0",
+              "level": 1,
+              "station": {
+                "id": "5d484fcd654e7668ec2ec322",
+                "name": "Medstation"
+              }
+            },
+            {
+              "id": "637b39f02e873739ec490215-1-1",
+              "level": 1,
+              "station": {
+                "id": "5d484fc8654e760065037abf",
+                "name": "Water Collector"
+              }
+            }
+          ]
+        },
+        {
+          "id": "637b39f02e873739ec490215-2",
+          "level": 2,
+          "constructionTime": 43200,
+          "description": "A piece of wall with heavily swollen paint. Water is seeping from the wall. You definitely need to do something about it. Wipe the floor, maybe.",
+          "itemRequirements": [],
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "stationLevelRequirements": [
+            {
+              "id": "637b39f02e873739ec490215-2-0",
+              "level": 1,
+              "station": {
+                "id": "637b39f02e873739ec490215",
+                "name": "Defective Wall"
+              }
+            }
+          ]
+        },
+        {
+          "id": "637b39f02e873739ec490215-3",
+          "level": 3,
+          "constructionTime": 86400,
+          "description": "A piece of wall with heavily swollen paint. Part of the paint fell off. Water is seeping from the wall. There seems to be something behind this wall.",
+          "itemRequirements": [],
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "stationLevelRequirements": [
+            {
+              "id": "637b39f02e873739ec490215-3-0",
+              "level": 2,
+              "station": {
+                "id": "637b39f02e873739ec490215",
+                "name": "Defective Wall"
+              }
+            }
+          ]
+        },
+        {
+          "id": "637b39f02e873739ec490215-4",
+          "level": 4,
+          "constructionTime": 10800,
+          "description": "A wall with a hidden door. You don't know who made it and why, but to open it, you will need tools. Also, another wipe wouldn't hurt.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "637b39f02e873739ec490215-4-0",
+              "count": 1,
+              "item": {
+                "id": "63a0b208f444d32d6f03ea1e",
+                "name": "Fierce Blow sledgehammer",
+                "normalizedName": "fierce-blow-sledgehammer"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "637b39f02e873739ec490215-4-1",
+              "level": 3,
+              "station": {
+                "id": "637b39f02e873739ec490215",
+                "name": "Defective Wall"
+              }
+            }
+          ]
+        },
+        {
+          "id": "637b39f02e873739ec490215-5",
+          "level": 5,
+          "constructionTime": 10800,
+          "description": "The damaged part of the wall turned out to be an entrance to the old hidden room. There is nothing inside but rubbish and a dead body. It will take a lot of effort to put this room in shape.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "637b39f02e873739ec490215-5-0",
+              "count": 2,
+              "item": {
+                "id": "5d40419286f774318526545f",
+                "name": "Metal cutting scissors",
+                "normalizedName": "metal-cutting-scissors"
+              }
+            },
+            {
+              "id": "637b39f02e873739ec490215-5-1",
+              "count": 2,
+              "item": {
+                "id": "590c2e1186f77425357b6124",
+                "name": "Toolset",
+                "normalizedName": "toolset"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "637b39f02e873739ec490215-5-2",
+              "level": 4,
+              "station": {
+                "id": "637b39f02e873739ec490215",
+                "name": "Defective Wall"
+              }
+            }
+          ]
+        },
+        {
+          "id": "637b39f02e873739ec490215-6",
+          "level": 6,
+          "constructionTime": 43200,
+          "description": "A tidied up entrance to the new room.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "637b39f02e873739ec490215-6-0",
+              "count": 4,
+              "item": {
+                "id": "59e35cbb86f7741778269d83",
+                "name": "Corrugated hose",
+                "normalizedName": "corrugated-hose"
+              }
+            },
+            {
+              "id": "637b39f02e873739ec490215-6-1",
+              "count": 2,
+              "item": {
+                "id": "57347c1124597737fb1379e3",
+                "name": "Duct tape",
+                "normalizedName": "duct-tape"
+              }
+            },
+            {
+              "id": "637b39f02e873739ec490215-6-2",
+              "count": 2,
+              "item": {
+                "id": "590c2e1186f77425357b6124",
+                "name": "Toolset",
+                "normalizedName": "toolset"
+              }
+            },
+            {
+              "id": "637b39f02e873739ec490215-6-3",
+              "count": 2,
+              "item": {
+                "id": "5af04b6486f774195a3ebb49",
+                "name": "Pliers Elite",
+                "normalizedName": "pliers-elite"
+              }
+            },
+            {
+              "id": "637b39f02e873739ec490215-6-4",
+              "count": 10,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            },
+            {
+              "id": "637b39f02e873739ec490215-6-5",
+              "count": 2,
+              "item": {
+                "id": "590c346786f77423e50ed342",
+                "name": "Xenomorph sealing foam",
+                "normalizedName": "xenomorph-sealing-foam"
+              }
+            },
+            {
+              "id": "637b39f02e873739ec490215-6-6",
+              "count": 4,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            },
+            {
+              "id": "637b39f02e873739ec490215-6-7",
+              "count": 4,
+              "item": {
+                "id": "5d1b392c86f77425243e98fe",
+                "name": "Light bulb",
+                "normalizedName": "light-bulb"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "637b39f02e873739ec490215-6-8",
+              "level": 5,
+              "station": {
+                "id": "637b39f02e873739ec490215",
+                "name": "Defective Wall"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "63db64cbf9963741dc0d741f",
+      "name": "Weapon Rack",
+      "normalizedName": "weapon-rack",
+      "imageLink": "https://assets.tarkov.dev/station-weapon-rack.png",
+      "levels": [
+        {
+          "id": "63db64cbf9963741dc0d741f-1",
+          "level": 1,
+          "constructionTime": 43200,
+          "description": "A small weapon rack. Simplifies firearm storage and allows to display weapons in a fancy way.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "63db64cbf9963741dc0d741f-1-0",
+              "count": 1,
+              "item": {
+                "id": "5d1b317c86f7742523398392",
+                "name": "Hand drill",
+                "normalizedName": "hand-drill"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-1-1",
+              "count": 1,
+              "item": {
+                "id": "5d40419286f774318526545f",
+                "name": "Metal cutting scissors",
+                "normalizedName": "metal-cutting-scissors"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-1-2",
+              "count": 5,
+              "item": {
+                "id": "590a3cd386f77436f20848cb",
+                "name": "Energy-saving lamp",
+                "normalizedName": "energy-saving-lamp"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-1-3",
+              "count": 3,
+              "item": {
+                "id": "590c346786f77423e50ed342",
+                "name": "Xenomorph sealing foam",
+                "normalizedName": "xenomorph-sealing-foam"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-1-4",
+              "count": 15,
+              "item": {
+                "id": "57347c5b245977448d35f6e1",
+                "name": "Bolts",
+                "normalizedName": "bolts"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-1-5",
+              "count": 5,
+              "item": {
+                "id": "5734795124597738002c6176",
+                "name": "Insulating tape",
+                "normalizedName": "insulating-tape"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-1-6",
+              "count": 5,
+              "item": {
+                "id": "590c31c586f774245e3141b2",
+                "name": "Pack of nails",
+                "normalizedName": "pack-of-nails"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "63db64cbf9963741dc0d741f-1-7",
+              "level": 3,
+              "station": {
+                "id": "5d494a205b56502f18c98a06",
+                "name": "Illumination"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-1-9",
+              "level": 2,
+              "station": {
+                "id": "5d484fc0654e76006657e0ab",
+                "name": "Stash"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "63db64cbf9963741dc0d741f-1-8",
+              "level": 2,
+              "trader": {
+                "id": "5a7c2eca46aef81a7ca2145d",
+                "name": "Mechanic"
+              }
+            }
+          ]
+        },
+        {
+          "id": "63db64cbf9963741dc0d741f-2",
+          "level": 2,
+          "constructionTime": 64800,
+          "description": "A medium-sized weapon rack. Simplifies firearm storage and allows to display weapons in a fancy way.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "63db64cbf9963741dc0d741f-2-0",
+              "count": 1,
+              "item": {
+                "id": "59e35de086f7741778269d84",
+                "name": "Electric drill",
+                "normalizedName": "electric-drill"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-2-1",
+              "count": 1,
+              "item": {
+                "id": "62a0a0bb621468534a797ad5",
+                "name": "Set of files \"Master\"",
+                "normalizedName": "set-of-files-master"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-2-2",
+              "count": 10,
+              "item": {
+                "id": "590a3cd386f77436f20848cb",
+                "name": "Energy-saving lamp",
+                "normalizedName": "energy-saving-lamp"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-2-3",
+              "count": 10,
+              "item": {
+                "id": "59e35ef086f7741777737012",
+                "name": "Pack of screws",
+                "normalizedName": "pack-of-screws"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-2-4",
+              "count": 5,
+              "item": {
+                "id": "57347c1124597737fb1379e3",
+                "name": "Duct tape",
+                "normalizedName": "duct-tape"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-2-5",
+              "count": 10,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-2-6",
+              "count": 5,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-2-7",
+              "count": 5,
+              "item": {
+                "id": "5d1c819a86f774771b0acd6c",
+                "name": "Weapon parts",
+                "normalizedName": "weapon-parts"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-2-8",
+              "count": 3,
+              "item": {
+                "id": "5e2af22086f7746d3f3c33fa",
+                "name": "Tube of Poxeram cold welding",
+                "normalizedName": "tube-of-poxeram-cold-welding"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "63db64cbf9963741dc0d741f-2-9",
+              "level": 2,
+              "station": {
+                "id": "5d484fe3654e76006657e0ac",
+                "name": "Shooting Range"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-2-10",
+              "level": 2,
+              "station": {
+                "id": "5d484fda654e7600681d9315",
+                "name": "Workbench"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-2-11",
+              "level": 3,
+              "station": {
+                "id": "5d484fc0654e76006657e0ab",
+                "name": "Stash"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-2-13",
+              "level": 1,
+              "station": {
+                "id": "63db64cbf9963741dc0d741f",
+                "name": "Weapon Rack"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "63db64cbf9963741dc0d741f-2-12",
+              "level": 3,
+              "trader": {
+                "id": "5a7c2eca46aef81a7ca2145d",
+                "name": "Mechanic"
+              }
+            }
+          ]
+        },
+        {
+          "id": "63db64cbf9963741dc0d741f-3",
+          "level": 3,
+          "constructionTime": 86400,
+          "description": "A large weapon rack. Simplifies firearm storage and allows to display weapons in a fancy way.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "63db64cbf9963741dc0d741f-3-0",
+              "count": 1,
+              "item": {
+                "id": "59e35de086f7741778269d84",
+                "name": "Electric drill",
+                "normalizedName": "electric-drill"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-3-1",
+              "count": 15,
+              "item": {
+                "id": "590a3cd386f77436f20848cb",
+                "name": "Energy-saving lamp",
+                "normalizedName": "energy-saving-lamp"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-3-2",
+              "count": 10,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-3-3",
+              "count": 5,
+              "item": {
+                "id": "5e2af29386f7746d4159f077",
+                "name": "KEKTAPE duct tape",
+                "normalizedName": "kektape-duct-tape"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-3-4",
+              "count": 15,
+              "item": {
+                "id": "5c06779c86f77426e00dd782",
+                "name": "Bundle of wires",
+                "normalizedName": "bundle-of-wires"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-3-5",
+              "count": 3,
+              "item": {
+                "id": "590c35a486f774273531c822",
+                "name": "Shustrilo sealing foam",
+                "normalizedName": "shustrilo-sealing-foam"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-3-6",
+              "count": 1,
+              "item": {
+                "id": "590c639286f774151567fa95",
+                "name": "Tech manual",
+                "normalizedName": "tech-manual"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-3-7",
+              "count": 1,
+              "item": {
+                "id": "5bc9b355d4351e6d1509862a",
+                "name": "#FireKlean gun lube",
+                "normalizedName": "fireklean-gun-lube"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "63db64cbf9963741dc0d741f-3-9",
+              "level": 3,
+              "station": {
+                "id": "5d484fe3654e76006657e0ac",
+                "name": "Shooting Range"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-3-10",
+              "level": 3,
+              "station": {
+                "id": "5d484fda654e7600681d9315",
+                "name": "Workbench"
+              }
+            },
+            {
+              "id": "63db64cbf9963741dc0d741f-3-11",
+              "level": 2,
+              "station": {
+                "id": "63db64cbf9963741dc0d741f",
+                "name": "Weapon Rack"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "63db64cbf9963741dc0d741f-3-8",
+              "level": 4,
+              "trader": {
+                "id": "5a7c2eca46aef81a7ca2145d",
+                "name": "Mechanic"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "65e5bb1713227bb7690cea0a",
+      "name": "Gear Rack",
+      "normalizedName": "gear-rack",
+      "imageLink": "https://assets.tarkov.dev/station-gear-rack.png",
+      "levels": [
+        {
+          "id": "65e5bb1713227bb7690cea0a-1",
+          "level": 1,
+          "constructionTime": 21600,
+          "description": "A mannequin with a weapon rack. Allows you to prepare a set of equipment for the raid.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "65e5bb1713227bb7690cea0a-1-4",
+              "count": 1,
+              "item": {
+                "id": "544fb5454bdc2df8738b456a",
+                "name": "Leatherman Multitool",
+                "normalizedName": "leatherman-multitool"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-1-5",
+              "count": 10,
+              "item": {
+                "id": "5e2af47786f7746d404f3aaa",
+                "name": "Fleece fabric",
+                "normalizedName": "fleece-fabric"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-1-6",
+              "count": 1,
+              "item": {
+                "id": "61bf83814088ec1a363d7097",
+                "name": "Sewing kit",
+                "normalizedName": "sewing-kit"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-1-7",
+              "count": 8,
+              "item": {
+                "id": "590a3cd386f77436f20848cb",
+                "name": "Energy-saving lamp",
+                "normalizedName": "energy-saving-lamp"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-1-8",
+              "count": 15,
+              "item": {
+                "id": "57347c5b245977448d35f6e1",
+                "name": "Bolts",
+                "normalizedName": "bolts"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-1-9",
+              "count": 1,
+              "item": {
+                "id": "62a0a098de7ac8199358053b",
+                "name": "Awl",
+                "normalizedName": "awl"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-1-10",
+              "count": 1,
+              "item": {
+                "id": "59e35de086f7741778269d84",
+                "name": "Electric drill",
+                "normalizedName": "electric-drill"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-1-11",
+              "count": 300000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "65e5bb1713227bb7690cea0a-1-0",
+              "level": 6,
+              "station": {
+                "id": "637b39f02e873739ec490215",
+                "name": "Defective Wall"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-1-2",
+              "level": 2,
+              "station": {
+                "id": "5d494a205b56502f18c98a06",
+                "name": "Illumination"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "65e5bb1713227bb7690cea0a-1-3",
+              "level": 2,
+              "trader": {
+                "id": "5ac3b934156ae10c4430e83c",
+                "name": "Ragman"
+              }
+            }
+          ]
+        },
+        {
+          "id": "65e5bb1713227bb7690cea0a-2",
+          "level": 2,
+          "constructionTime": 43200,
+          "description": "With two mannequins, you can not only prepare gear for a raid, but also display something cool and rare. Would look great.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "65e5bb1713227bb7690cea0a-2-2",
+              "count": 1,
+              "item": {
+                "id": "590c311186f77424d1667482",
+                "name": "Wrench",
+                "normalizedName": "wrench"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-2-3",
+              "count": 10,
+              "item": {
+                "id": "5e2af4d286f7746d4159f07a",
+                "name": "Aramid fiber fabric",
+                "normalizedName": "aramid-fiber-fabric"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-2-4",
+              "count": 12,
+              "item": {
+                "id": "590a3cd386f77436f20848cb",
+                "name": "Energy-saving lamp",
+                "normalizedName": "energy-saving-lamp"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-2-5",
+              "count": 8,
+              "item": {
+                "id": "590c31c586f774245e3141b2",
+                "name": "Pack of nails",
+                "normalizedName": "pack-of-nails"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-2-6",
+              "count": 3,
+              "item": {
+                "id": "590c35a486f774273531c822",
+                "name": "Shustrilo sealing foam",
+                "normalizedName": "shustrilo-sealing-foam"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-2-7",
+              "count": 5,
+              "item": {
+                "id": "57347c1124597737fb1379e3",
+                "name": "Duct tape",
+                "normalizedName": "duct-tape"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-2-8",
+              "count": 1,
+              "item": {
+                "id": "59e35de086f7741778269d84",
+                "name": "Electric drill",
+                "normalizedName": "electric-drill"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-2-9",
+              "count": 800000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "65e5bb1713227bb7690cea0a-2-0",
+              "level": 1,
+              "station": {
+                "id": "5d494a295b56502f18c98a08",
+                "name": "Hall of Fame"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-2-10",
+              "level": 1,
+              "station": {
+                "id": "65e5bb1713227bb7690cea0a",
+                "name": "Gear Rack"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "65e5bb1713227bb7690cea0a-2-1",
+              "level": 3,
+              "trader": {
+                "id": "5ac3b934156ae10c4430e83c",
+                "name": "Ragman"
+              }
+            }
+          ]
+        },
+        {
+          "id": "65e5bb1713227bb7690cea0a-3",
+          "level": 3,
+          "constructionTime": 86400,
+          "description": "Several mannequins with a weapon rack. With a wardrobe like this, it will be easy to store quick access gear for any occasion.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "65e5bb1713227bb7690cea0a-3-2",
+              "count": 1,
+              "item": {
+                "id": "60391afc25aff57af81f7085",
+                "name": "Ratchet wrench",
+                "normalizedName": "ratchet-wrench"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-3-3",
+              "count": 1,
+              "item": {
+                "id": "62a0a0bb621468534a797ad5",
+                "name": "Set of files \"Master\"",
+                "normalizedName": "set-of-files-master"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-3-4",
+              "count": 15,
+              "item": {
+                "id": "590a3cd386f77436f20848cb",
+                "name": "Energy-saving lamp",
+                "normalizedName": "energy-saving-lamp"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-3-5",
+              "count": 5,
+              "item": {
+                "id": "5e2af29386f7746d4159f077",
+                "name": "KEKTAPE duct tape",
+                "normalizedName": "kektape-duct-tape"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-3-6",
+              "count": 15,
+              "item": {
+                "id": "61bf7b6302b3924be92fa8c3",
+                "name": "Metal spare parts",
+                "normalizedName": "metal-spare-parts"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-3-7",
+              "count": 10,
+              "item": {
+                "id": "5e2af41e86f774755a234b67",
+                "name": "Cordura polyamide fabric",
+                "normalizedName": "cordura-polyamide-fabric"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-3-8",
+              "count": 1,
+              "item": {
+                "id": "591094e086f7747caa7bb2ef",
+                "name": "Body armor repair kit",
+                "normalizedName": "body-armor-repair-kit"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-3-9",
+              "count": 1200000,
+              "item": {
+                "id": "5449016a4bdc2d6f028b456f",
+                "name": "Roubles",
+                "normalizedName": "roubles"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "65e5bb1713227bb7690cea0a-3-0",
+              "level": 2,
+              "station": {
+                "id": "5d494a295b56502f18c98a08",
+                "name": "Hall of Fame"
+              }
+            },
+            {
+              "id": "65e5bb1713227bb7690cea0a-3-10",
+              "level": 2,
+              "station": {
+                "id": "65e5bb1713227bb7690cea0a",
+                "name": "Gear Rack"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "65e5bb1713227bb7690cea0a-3-1",
+              "level": 4,
+              "trader": {
+                "id": "5ac3b934156ae10c4430e83c",
+                "name": "Ragman"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "667298e75ea6b4493c08f266",
+      "name": "Cultist Circle",
+      "normalizedName": "cultist-circle",
+      "imageLink": "https://assets.tarkov.dev/station-cultist-circle.png",
+      "levels": [
+        {
+          "id": "667298e75ea6b4493c08f266-1",
+          "level": 1,
+          "constructionTime": 21600,
+          "description": "A circle drawn in chalk and cluttered with mysterious symbols. Such circles are used by the cultists for their rituals. One wonders what would happen if you put something in the middle of it...?",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "667298e75ea6b4493c08f266-1-0",
+              "count": 2,
+              "item": {
+                "id": "5b4391a586f7745321235ab2",
+                "name": "WI-FI Camera",
+                "normalizedName": "wi-fi-camera"
+              }
+            },
+            {
+              "id": "667298e75ea6b4493c08f266-1-2",
+              "count": 2,
+              "item": {
+                "id": "590c2c9c86f774245b1f03f2",
+                "name": "Construction measuring tape",
+                "normalizedName": "construction-measuring-tape"
+              }
+            },
+            {
+              "id": "667298e75ea6b4493c08f266-1-3",
+              "count": 2,
+              "item": {
+                "id": "5e2af37686f774755a234b65",
+                "name": "SurvL Survivor Lighter",
+                "normalizedName": "survl-survivor-lighter"
+              }
+            },
+            {
+              "id": "667298e75ea6b4493c08f266-1-4",
+              "count": 6,
+              "item": {
+                "id": "62a09ee4cf4a99369e262453",
+                "name": "Can of white salt",
+                "normalizedName": "can-of-white-salt"
+              }
+            },
+            {
+              "id": "667298e75ea6b4493c08f266-1-5",
+              "count": 10,
+              "item": {
+                "id": "5d1b392c86f77425243e98fe",
+                "name": "Light bulb",
+                "normalizedName": "light-bulb"
+              }
+            },
+            {
+              "id": "667298e75ea6b4493c08f266-1-6",
+              "count": 2,
+              "item": {
+                "id": "59e3596386f774176c10a2a2",
+                "name": "PAID AntiRoach spray",
+                "normalizedName": "paid-antiroach-spray"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "667298e75ea6b4493c08f266-1-1",
+              "level": 2,
+              "station": {
+                "id": "5d484fb3654e7600681d9314",
+                "name": "Security"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6377a9b9a93bde8fa30eb79a",
+      "name": "Gym",
+      "normalizedName": "gym",
+      "imageLink": "https://assets.tarkov.dev/station-gym.png",
+      "levels": [
+        {
+          "id": "6377a9b9a93bde8fa30eb79a-1",
+          "level": 1,
+          "constructionTime": 14400,
+          "description": "A well-equipped gym to keep your body in good physical shape.",
+          "skillRequirements": [],
+          "traderRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "6377a9b9a93bde8fa30eb79a-1-1",
+              "count": 1,
+              "item": {
+                "id": "590c2e1186f77425357b6124",
+                "name": "Toolset",
+                "normalizedName": "toolset"
+              }
+            },
+            {
+              "id": "6377a9b9a93bde8fa30eb79a-1-2",
+              "count": 1,
+              "item": {
+                "id": "59e35de086f7741778269d84",
+                "name": "Electric drill",
+                "normalizedName": "electric-drill"
+              }
+            },
+            {
+              "id": "6377a9b9a93bde8fa30eb79a-1-3",
+              "count": 1,
+              "item": {
+                "id": "5d40419286f774318526545f",
+                "name": "Metal cutting scissors",
+                "normalizedName": "metal-cutting-scissors"
+              }
+            },
+            {
+              "id": "6377a9b9a93bde8fa30eb79a-1-4",
+              "count": 3,
+              "item": {
+                "id": "57347c77245977448d35f6e2",
+                "name": "Screw nuts",
+                "normalizedName": "screw-nuts"
+              }
+            },
+            {
+              "id": "6377a9b9a93bde8fa30eb79a-1-5",
+              "count": 3,
+              "item": {
+                "id": "57347c5b245977448d35f6e1",
+                "name": "Bolts",
+                "normalizedName": "bolts"
+              }
+            },
+            {
+              "id": "6377a9b9a93bde8fa30eb79a-1-6",
+              "count": 1,
+              "item": {
+                "id": "590c5bbd86f774785762df04",
+                "name": "WD-40 (100ml)",
+                "normalizedName": "wd-40-100ml"
+              }
+            },
+            {
+              "id": "6377a9b9a93bde8fa30eb79a-1-7",
+              "count": 1,
+              "item": {
+                "id": "5734795124597738002c6176",
+                "name": "Insulating tape",
+                "normalizedName": "insulating-tape"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "6377a9b9a93bde8fa30eb79a-1-0",
+              "level": 6,
+              "station": {
+                "id": "637b39f02e873739ec490215",
+                "name": "Defective Wall"
+              }
+            },
+            {
+              "id": "6377a9b9a93bde8fa30eb79a-1-8",
+              "level": 2,
+              "station": {
+                "id": "5d494a205b56502f18c98a06",
+                "name": "Illumination"
+              }
+            },
+            {
+              "id": "6377a9b9a93bde8fa30eb79a-1-9",
+              "level": 2,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5d494a315b56502f18c98a0a",
+      "name": "Air Filtering Unit",
+      "normalizedName": "air-filtering-unit",
+      "imageLink": "https://assets.tarkov.dev/station-air-filtering-unit.png",
+      "levels": [
+        {
+          "id": "5d494a315b56502f18c98a0a-1",
+          "level": 1,
+          "constructionTime": 172800,
+          "description": "Air filtration system, connected to the common ventilation system. It provides the air which is as cleanest from harmful impurities as possible.",
+          "skillRequirements": [],
+          "itemRequirements": [
+            {
+              "id": "5d494a315b56502f18c98a0a-1-2",
+              "count": 50000,
+              "item": {
+                "id": "5696686a4bdc2da3298b456a",
+                "name": "Dollars",
+                "normalizedName": "dollars"
+              }
+            },
+            {
+              "id": "5d494a315b56502f18c98a0a-1-4",
+              "count": 6,
+              "item": {
+                "id": "5d0378d486f77420421a5ff4",
+                "name": "Military power filter",
+                "normalizedName": "military-power-filter"
+              }
+            },
+            {
+              "id": "5d494a315b56502f18c98a0a-1-5",
+              "count": 10,
+              "item": {
+                "id": "590c595c86f7747884343ad7",
+                "name": "Gas mask air filter",
+                "normalizedName": "gas-mask-air-filter"
+              }
+            },
+            {
+              "id": "5d494a315b56502f18c98a0a-1-6",
+              "count": 6,
+              "item": {
+                "id": "619cbf476b8a1b37a54eebf8",
+                "name": "Military corrugated tube",
+                "normalizedName": "military-corrugated-tube"
+              }
+            }
+          ],
+          "stationLevelRequirements": [
+            {
+              "id": "5d494a315b56502f18c98a0a-1-0",
+              "level": 3,
+              "station": {
+                "id": "5d3b396e33c48f02b81cd9f3",
+                "name": "Generator"
+              }
+            },
+            {
+              "id": "5d494a315b56502f18c98a0a-1-1",
+              "level": 3,
+              "station": {
+                "id": "5d473c1e081959000e530190",
+                "name": "Vents"
+              }
+            }
+          ],
+          "traderRequirements": [
+            {
+              "id": "5d494a315b56502f18c98a0a-1-3",
+              "level": 3,
+              "trader": {
+                "id": "58330581ace78e27b8b10cee",
+                "name": "Skier"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

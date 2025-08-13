@@ -20,10 +20,14 @@ const zoomStyle = `
 
 interface ItemSidebarProps {
   progress?: Record<string, number>;
+  hideCompleted?: boolean;
+  onHideCompletedChange?: (hide: boolean) => void;
 }
 
 export const ItemSidebar: React.FC<ItemSidebarProps> = ({
   progress: progressProp,
+  hideCompleted = false,
+  onHideCompletedChange,
 }) => {
   const { stations, loading } = useHideoutStations();
   const { itemsMap, loading: loadingItems } = useItemsMap();
@@ -45,6 +49,27 @@ export const ItemSidebar: React.FC<ItemSidebarProps> = ({
     });
     return map;
   }, [itemsMap]);
+
+  // Ordenar por nome do item (alfabético) e filtrar itens completos se necessário
+  const sortedItems = React.useMemo(() => {
+    let items = Object.keys(itemTotals);
+
+    // Se o checkbox estiver marcado, filtrar itens completos
+    if (hideCompleted) {
+      items = items.filter((itemId) => {
+        const found = itemFound[itemId] || 0;
+        const total = itemTotals[itemId] || 0;
+        return found < total; // Mostrar apenas itens incompletos
+      });
+    }
+
+    // Ordenar por nome
+    return items.sort((a, b) => {
+      const nameA = itemsMap[a] || a;
+      const nameB = itemsMap[b] || b;
+      return nameA.localeCompare(nameB);
+    });
+  }, [itemTotals, itemFound, hideCompleted, itemsMap]);
 
   React.useEffect(() => {
     if (loading) return;
@@ -83,17 +108,24 @@ export const ItemSidebar: React.FC<ItemSidebarProps> = ({
     );
   }
 
-  // Ordenar por nome do item (alfabético)
-  const sortedItems = Object.keys(itemTotals).sort((a, b) => {
-    const nameA = itemsMap[a] || a;
-    const nameB = itemsMap[b] || b;
-    return nameA.localeCompare(nameB);
-  });
-
   return (
     <aside className="w-72 p-4 bg-background border-r border-border h-full overflow-y-auto overflow-x-visible">
       <style dangerouslySetInnerHTML={{ __html: zoomStyle }} />
       <h2 className="text-lg font-bold mb-4">Itens necessários no Hideout</h2>
+
+      {/* Checkbox para ocultar itens completos */}
+      <div className="mb-4 p-3 bg-muted/50 rounded-lg border">
+        <label className="flex items-center gap-2 cursor-pointer text-sm">
+          <input
+            type="checkbox"
+            checked={hideCompleted}
+            onChange={(e) => onHideCompletedChange?.(e.target.checked)}
+            className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary focus:ring-2"
+          />
+          <span className="text-muted-foreground">Ocultar itens completos</span>
+        </label>
+      </div>
+
       <ul className="space-y-2 relative">
         {sortedItems.map((itemId) => {
           const found = itemFound[itemId] || 0;

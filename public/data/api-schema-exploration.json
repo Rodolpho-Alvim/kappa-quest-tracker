@@ -1,0 +1,7398 @@
+{
+  "schema": {
+    "types": [
+      {
+        "name": "Achievement",
+        "description": "**In-game achievements players can earn by completing specific objectives.**",
+        "fields": [
+          {
+            "name": "id",
+            "description": "A unique 24-character hexadecimal identifier for the achievement. Follows a consistent format across all achievements.",
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": "The display name of the achievement (e.g., \"Welcome to Tarkov\", \"The Kappa Path\").",
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": "Text describing the conditions required to unlock the achievement (e.g., \"Neutralize Killa 15 times while playing as a PMC\").",
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "hidden",
+            "description": "Whether the achievement is hidden from players until unlocked (true) or visible from the start (false).",
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "playersCompletedPercent",
+            "description": "Raw percentage of all players who have completed this achievement (e.g., 0.06, 43.48).",
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "adjustedPlayersCompletedPercent",
+            "description": "Statistically adjusted percentage that accounts for active players, providing a more representative completion rate. Uses the percentage completion of Welcome to Tarkov as the baseline under the assumption that all active accounts have died once.",
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "side",
+            "description": "The game faction or player type this achievement is associated with. Values include \"PMC\", \"All\", or \"Scavs\".",
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "normalizedSide",
+            "description": "Lowercase, standardized version of the side field used for consistent sorting and filtering (e.g., \"pmc\", \"all\", \"scavs\").",
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "rarity",
+            "description": "The difficulty/rarity tier of the achievement. Values include \"Common\", \"Rare\", or \"Legendary\".",
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "normalizedRarity",
+            "description": "Lowercase, standardized version of the rarity field used for consistent sorting and filtering (e.g., \"common\", \"rare\", \"legendary\").",
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "imageLink",
+            "description": "URL to the achievement's image.",
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ID",
+        "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
+        "fields": null
+      },
+      {
+        "name": "String",
+        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+        "fields": null
+      },
+      {
+        "name": "Boolean",
+        "description": "The `Boolean` scalar type represents `true` or `false`.",
+        "fields": null
+      },
+      {
+        "name": "Float",
+        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+        "fields": null
+      },
+      {
+        "name": "Ammo",
+        "description": null,
+        "fields": [
+          {
+            "name": "item",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "weight",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "caliber",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "stackMaxSize",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "tracer",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "tracerColor",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "ammoType",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "projectileCount",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "damage",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "armorDamage",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "fragmentationChance",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "ricochetChance",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "penetrationChance",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "penetrationPower",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "penetrationPowerDeviation",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "accuracyModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "recoilModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "initialSpeed",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "lightBleedModifier",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "heavyBleedModifier",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "staminaBurnPerDamage",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Int",
+        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "fields": null
+      },
+      {
+        "name": "ArmorMaterial",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "destructibility",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "minRepairDegradation",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "maxRepairDegradation",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "explosionDestructibility",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "minRepairKitDegradation",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "maxRepairKitDegradation",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "AttributeThreshold",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requirement",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Barter",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "trader",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "level",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "taskUnlock",
+            "description": null,
+            "type": {
+              "name": "Task"
+            }
+          },
+          {
+            "name": "requiredItems",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "rewardItems",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "buyLimit",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "BossSpawn",
+        "description": null,
+        "fields": [
+          {
+            "name": "boss",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "spawnChance",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "spawnLocations",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "escorts",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "spawnTime",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "spawnTimeRandom",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "spawnTrigger",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "switch",
+            "description": null,
+            "type": {
+              "name": "MapSwitch"
+            }
+          }
+        ]
+      },
+      {
+        "name": "BossEscort",
+        "description": null,
+        "fields": [
+          {
+            "name": "boss",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "amount",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "BossEscortAmount",
+        "description": null,
+        "fields": [
+          {
+            "name": "count",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "chance",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "BossSpawnLocation",
+        "description": "The chances of spawning in a given location are \nvery rough estimates and may be incaccurate",
+        "fields": [
+          {
+            "name": "spawnKey",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "chance",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ContainedItem",
+        "description": null,
+        "fields": [
+          {
+            "name": "item",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "count",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "quantity",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "attributes",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Craft",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "station",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "level",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "taskUnlock",
+            "description": null,
+            "type": {
+              "name": "Task"
+            }
+          },
+          {
+            "name": "duration",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredItems",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredQuestItems",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "rewardItems",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "GameProperty",
+        "description": null,
+        "fields": [
+          {
+            "name": "key",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "numericValue",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "stringValue",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "arrayValue",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "objectValue",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "FleaMarket",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "minPlayerLevel",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "enabled",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "sellOfferFeeRate",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "sellRequirementFeeRate",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "foundInRaidRequired",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "reputationLevels",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "FleaMarketReputationLevel",
+        "description": null,
+        "fields": [
+          {
+            "name": "offers",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "offersSpecialEditions",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "minRep",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maxRep",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "GameMode",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "GoonReport",
+        "description": null,
+        "fields": [
+          {
+            "name": "map",
+            "description": null,
+            "type": {
+              "name": "Map"
+            }
+          },
+          {
+            "name": "timestamp",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "HealthEffect",
+        "description": null,
+        "fields": [
+          {
+            "name": "bodyParts",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "effects",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "time",
+            "description": null,
+            "type": {
+              "name": "NumberCompare"
+            }
+          }
+        ]
+      },
+      {
+        "name": "HealthPart",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "max",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "bodyPart",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "HideoutStation",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "imageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "levels",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "tarkovDataId",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "crafts",
+            "description": "crafts is only available via the hideoutStations query.",
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "HideoutStationBonus",
+        "description": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "value",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "passive",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "production",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "slotItems",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "skillName",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "HideoutStationLevel",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "level",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "constructionTime",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "itemRequirements",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "stationLevelRequirements",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "skillRequirements",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "traderRequirements",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "tarkovDataId",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "crafts",
+            "description": "crafts is only available via the hideoutStations query.",
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "bonuses",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "historicalPricePoint",
+        "description": null,
+        "fields": [
+          {
+            "name": "price",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "priceMin",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "offerCount",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "offerCountMin",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "timestamp",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Item",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "shortName",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "basePrice",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "updated",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "width",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "height",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "backgroundColor",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "iconLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "gridImageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "baseImageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "inspectImageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "image512pxLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "image8xLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "wikiLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "types",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "avg24hPrice",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "properties",
+            "description": null,
+            "type": {
+              "name": "ItemProperties"
+            }
+          },
+          {
+            "name": "conflictingItems",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "conflictingSlotIds",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "accuracyModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "recoilModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ergonomicsModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "hasGrid",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "blocksHeadphones",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "link",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "lastLowPrice",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "changeLast48h",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "changeLast48hPercent",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "low24hPrice",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "high24hPrice",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "lastOfferCount",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "sellFor",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "buyFor",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "containsItems",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "category",
+            "description": null,
+            "type": {
+              "name": "ItemCategory"
+            }
+          },
+          {
+            "name": "categories",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "bsgCategoryId",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "handbookCategories",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "weight",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "velocity",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "loudness",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "usedInTasks",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "receivedFromTasks",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "bartersFor",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "bartersUsing",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "craftsFor",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "craftsUsing",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "historicalPrices",
+            "description": "historicalPrices is only available via the item and items queries.",
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "fleaMarketFee",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemArmorSlot",
+        "description": null,
+        "fields": [
+          {
+            "name": "nameId",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemArmorSlotLocked",
+        "description": null,
+        "fields": [
+          {
+            "name": "nameId",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "bluntThroughput",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "class",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "durability",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "repairCost",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "speedPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "turnPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ergoPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "material",
+            "description": null,
+            "type": {
+              "name": "ArmorMaterial"
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "armorType",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "baseValue",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "ricochetX",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ricochetY",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ricochetZ",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemArmorSlotOpen",
+        "description": null,
+        "fields": [
+          {
+            "name": "nameId",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "allowedPlates",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemAttribute",
+        "description": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "value",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemCategory",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "parent",
+            "description": null,
+            "type": {
+              "name": "ItemCategory"
+            }
+          },
+          {
+            "name": "children",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "imageLink",
+            "description": "Only Handbook categories have image links",
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemFilters",
+        "description": null,
+        "fields": [
+          {
+            "name": "allowedCategories",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "allowedItems",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "excludedCategories",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "excludedItems",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPrice",
+        "description": null,
+        "fields": [
+          {
+            "name": "vendor",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "price",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "currency",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "currencyItem",
+            "description": null,
+            "type": {
+              "name": "Item"
+            }
+          },
+          {
+            "name": "priceRUB",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesAmmo",
+        "description": null,
+        "fields": [
+          {
+            "name": "caliber",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "stackMaxSize",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "tracer",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "tracerColor",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "ammoType",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "projectileCount",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "damage",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "armorDamage",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "fragmentationChance",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ricochetChance",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "penetrationChance",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "penetrationPower",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "penetrationPowerDeviation",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "accuracyModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "recoilModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "initialSpeed",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "lightBleedModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "heavyBleedModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "durabilityBurnFactor",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "heatFactor",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "staminaBurnPerDamage",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ballisticCoeficient",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "bulletDiameterMilimeters",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "bulletMassGrams",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "misfireChance",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "failureToFeedChance",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesArmor",
+        "description": null,
+        "fields": [
+          {
+            "name": "class",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "durability",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "repairCost",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "speedPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "turnPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ergoPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "material",
+            "description": null,
+            "type": {
+              "name": "ArmorMaterial"
+            }
+          },
+          {
+            "name": "armorType",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "bluntThroughput",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "armorSlots",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesArmorAttachment",
+        "description": null,
+        "fields": [
+          {
+            "name": "class",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "durability",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "repairCost",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "speedPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "turnPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ergoPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "material",
+            "description": null,
+            "type": {
+              "name": "ArmorMaterial"
+            }
+          },
+          {
+            "name": "armorType",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "blindnessProtection",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "bluntThroughput",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "slots",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesBackpack",
+        "description": null,
+        "fields": [
+          {
+            "name": "capacity",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "grids",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "speedPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "turnPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ergoPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesBarrel",
+        "description": null,
+        "fields": [
+          {
+            "name": "ergonomics",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "recoilModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "centerOfImpact",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "deviationCurve",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "deviationMax",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "slots",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesChestRig",
+        "description": null,
+        "fields": [
+          {
+            "name": "class",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "durability",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "repairCost",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "speedPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "turnPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ergoPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "material",
+            "description": null,
+            "type": {
+              "name": "ArmorMaterial"
+            }
+          },
+          {
+            "name": "capacity",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "grids",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "armorType",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "bluntThroughput",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "armorSlots",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesContainer",
+        "description": null,
+        "fields": [
+          {
+            "name": "capacity",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "grids",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesFoodDrink",
+        "description": null,
+        "fields": [
+          {
+            "name": "energy",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "hydration",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "units",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "stimEffects",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesGlasses",
+        "description": null,
+        "fields": [
+          {
+            "name": "class",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "durability",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "repairCost",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "blindnessProtection",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ergoPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "material",
+            "description": null,
+            "type": {
+              "name": "ArmorMaterial"
+            }
+          },
+          {
+            "name": "bluntThroughput",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesGrenade",
+        "description": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "fuse",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "minExplosionDistance",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "maxExplosionDistance",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "fragments",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "contusionRadius",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesHeadphone",
+        "description": null,
+        "fields": [
+          {
+            "name": "ambientVolume",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "compressorAttack",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "compressorGain",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "compressorRelease",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "compressorThreshold",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "compressorVolume",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "cutoffFrequency",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "distanceModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "distortion",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "dryVolume",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "highFrequencyGain",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "resonance",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesHeadwear",
+        "description": null,
+        "fields": [
+          {
+            "name": "slots",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesHelmet",
+        "description": null,
+        "fields": [
+          {
+            "name": "class",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "durability",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "repairCost",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "speedPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "turnPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ergoPenalty",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "headZones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "material",
+            "description": null,
+            "type": {
+              "name": "ArmorMaterial"
+            }
+          },
+          {
+            "name": "deafening",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "blocksHeadset",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "blindnessProtection",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "slots",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "ricochetX",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ricochetY",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ricochetZ",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "armorType",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "bluntThroughput",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "armorSlots",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesKey",
+        "description": null,
+        "fields": [
+          {
+            "name": "uses",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesMagazine",
+        "description": null,
+        "fields": [
+          {
+            "name": "ergonomics",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "recoilModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "capacity",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "loadModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "ammoCheckModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "malfunctionChance",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "slots",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "allowedAmmo",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesMedicalItem",
+        "description": null,
+        "fields": [
+          {
+            "name": "uses",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "useTime",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "cures",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesMedKit",
+        "description": null,
+        "fields": [
+          {
+            "name": "hitpoints",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "useTime",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "maxHealPerUse",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "cures",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "hpCostLightBleeding",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "hpCostHeavyBleeding",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesMelee",
+        "description": null,
+        "fields": [
+          {
+            "name": "slashDamage",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "stabDamage",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "hitRadius",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesNightVision",
+        "description": null,
+        "fields": [
+          {
+            "name": "intensity",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "noiseIntensity",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "noiseScale",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "diffuseIntensity",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesPainkiller",
+        "description": null,
+        "fields": [
+          {
+            "name": "uses",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "useTime",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "cures",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "painkillerDuration",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "energyImpact",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "hydrationImpact",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesPreset",
+        "description": null,
+        "fields": [
+          {
+            "name": "baseItem",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "ergonomics",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "recoilVertical",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "recoilHorizontal",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "moa",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "default",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesResource",
+        "description": null,
+        "fields": [
+          {
+            "name": "units",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesScope",
+        "description": null,
+        "fields": [
+          {
+            "name": "ergonomics",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "sightModes",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "sightingRange",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "recoilModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "slots",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "zoomLevels",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesStim",
+        "description": null,
+        "fields": [
+          {
+            "name": "useTime",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "cures",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "stimEffects",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesSurgicalKit",
+        "description": null,
+        "fields": [
+          {
+            "name": "uses",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "useTime",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "cures",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "minLimbHealth",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "maxLimbHealth",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesWeapon",
+        "description": null,
+        "fields": [
+          {
+            "name": "caliber",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "defaultAmmo",
+            "description": null,
+            "type": {
+              "name": "Item"
+            }
+          },
+          {
+            "name": "effectiveDistance",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "ergonomics",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "fireModes",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "fireRate",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "maxDurability",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "recoilVertical",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "recoilHorizontal",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "repairCost",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "sightingRange",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "centerOfImpact",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "deviationCurve",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "recoilDispersion",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "recoilAngle",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "cameraRecoil",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "cameraSnap",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "deviationMax",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "convergence",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "defaultWidth",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "defaultHeight",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "defaultErgonomics",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "defaultRecoilVertical",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "defaultRecoilHorizontal",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "defaultWeight",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "defaultPreset",
+            "description": null,
+            "type": {
+              "name": "Item"
+            }
+          },
+          {
+            "name": "presets",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "slots",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "allowedAmmo",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemPropertiesWeaponMod",
+        "description": null,
+        "fields": [
+          {
+            "name": "ergonomics",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "recoilModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "accuracyModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "slots",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemProperties",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "ItemSlot",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "nameId",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "filters",
+            "description": null,
+            "type": {
+              "name": "ItemFilters"
+            }
+          },
+          {
+            "name": "required",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemSourceName",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "ItemStorageGrid",
+        "description": null,
+        "fields": [
+          {
+            "name": "width",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "height",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "filters",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Lock",
+        "description": null,
+        "fields": [
+          {
+            "name": "lockType",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "key",
+            "description": null,
+            "type": {
+              "name": "Item"
+            }
+          },
+          {
+            "name": "needsPower",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "position",
+            "description": null,
+            "type": {
+              "name": "MapPosition"
+            }
+          },
+          {
+            "name": "outline",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "top",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "bottom",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LootContainer",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "LootContainerPosition",
+        "description": null,
+        "fields": [
+          {
+            "name": "lootContainer",
+            "description": null,
+            "type": {
+              "name": "LootContainer"
+            }
+          },
+          {
+            "name": "position",
+            "description": null,
+            "type": {
+              "name": "MapPosition"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LootLoosePosition",
+        "description": null,
+        "fields": [
+          {
+            "name": "items",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "position",
+            "description": null,
+            "type": {
+              "name": "MapPosition"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Map",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "tarkovDataId",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "wiki",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "enemies",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "raidDuration",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "players",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "bosses",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "nameId",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "accessKeys",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "accessKeysMinPlayerLevel",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "minPlayerLevel",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "maxPlayerLevel",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "spawns",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "extracts",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "transits",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "locks",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "switches",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "hazards",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "lootContainers",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "lootLoose",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "stationaryWeapons",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "artillery",
+            "description": null,
+            "type": {
+              "name": "MapArtillerySettings"
+            }
+          }
+        ]
+      },
+      {
+        "name": "MapArtillerySettings",
+        "description": null,
+        "fields": [
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "MapArtilleryZone",
+        "description": null,
+        "fields": [
+          {
+            "name": "position",
+            "description": null,
+            "type": {
+              "name": "MapPosition"
+            }
+          },
+          {
+            "name": "outline",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "top",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "bottom",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "MapExtract",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "faction",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "switches",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "position",
+            "description": null,
+            "type": {
+              "name": "MapPosition"
+            }
+          },
+          {
+            "name": "outline",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "top",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "bottom",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "MapHazard",
+        "description": null,
+        "fields": [
+          {
+            "name": "hazardType",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "position",
+            "description": null,
+            "type": {
+              "name": "MapPosition"
+            }
+          },
+          {
+            "name": "outline",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "top",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "bottom",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "MapWithPosition",
+        "description": null,
+        "fields": [
+          {
+            "name": "map",
+            "description": null,
+            "type": {
+              "name": "Map"
+            }
+          },
+          {
+            "name": "positions",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "MapPosition",
+        "description": null,
+        "fields": [
+          {
+            "name": "x",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "y",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "z",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "MapSpawn",
+        "description": null,
+        "fields": [
+          {
+            "name": "zoneName",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "position",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "sides",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "categories",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "MapSwitch",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "switchType",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "activatedBy",
+            "description": null,
+            "type": {
+              "name": "MapSwitch"
+            }
+          },
+          {
+            "name": "activates",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "position",
+            "description": null,
+            "type": {
+              "name": "MapPosition"
+            }
+          }
+        ]
+      },
+      {
+        "name": "MapSwitchOperation",
+        "description": null,
+        "fields": [
+          {
+            "name": "operation",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "target",
+            "description": null,
+            "type": {
+              "name": "MapSwitchTarget"
+            }
+          }
+        ]
+      },
+      {
+        "name": "MapSwitchTarget",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "MapTransit",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "conditions",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "map",
+            "description": null,
+            "type": {
+              "name": "Map"
+            }
+          },
+          {
+            "name": "position",
+            "description": null,
+            "type": {
+              "name": "MapPosition"
+            }
+          },
+          {
+            "name": "outline",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "top",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "bottom",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Mastering",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "weapons",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "level2",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "level3",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "MobInfo",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "health",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "imagePortraitLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "imagePosterLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "equipment",
+            "description": "equipment and items are estimates and may be inaccurate.",
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "items",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "NumberCompare",
+        "description": null,
+        "fields": [
+          {
+            "name": "compareMethod",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "value",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "OfferUnlock",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "trader",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "level",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "item",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "PlayerLevel",
+        "description": null,
+        "fields": [
+          {
+            "name": "level",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "exp",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "levelBadgeImageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "PriceRequirement",
+        "description": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "value",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "stringValue",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "QuestItem",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "shortName",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "width",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "height",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "iconLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "gridImageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "baseImageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "inspectImageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "image512pxLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "image8xLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "RequirementHideoutStationLevel",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "station",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "level",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "RequirementItem",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "item",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "count",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "quantity",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "attributes",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "RequirementSkill",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "skill",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "level",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "RequirementTask",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "task",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "RequirementTrader",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "trader",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requirementType",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "compareMethod",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "value",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "RequirementType",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "ServerStatus",
+        "description": null,
+        "fields": [
+          {
+            "name": "generalStatus",
+            "description": null,
+            "type": {
+              "name": "Status"
+            }
+          },
+          {
+            "name": "currentStatuses",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "messages",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Skill",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "imageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "SkillLevel",
+        "description": null,
+        "fields": [
+          {
+            "name": "skill",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "level",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "StationaryWeapon",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "shortName",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "StationaryWeaponPosition",
+        "description": null,
+        "fields": [
+          {
+            "name": "stationaryWeapon",
+            "description": null,
+            "type": {
+              "name": "StationaryWeapon"
+            }
+          },
+          {
+            "name": "position",
+            "description": null,
+            "type": {
+              "name": "MapPosition"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Status",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "message",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "statusCode",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "StatusCode",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "StatusMessage",
+        "description": null,
+        "fields": [
+          {
+            "name": "content",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "time",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "solveTime",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "statusCode",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "StimEffect",
+        "description": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "chance",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "delay",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "duration",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "value",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "percent",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "skillName",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "skill",
+            "description": null,
+            "type": {
+              "name": "Skill"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Task",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "tarkovDataId",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "trader",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "map",
+            "description": null,
+            "type": {
+              "name": "Map"
+            }
+          },
+          {
+            "name": "experience",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "wikiLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "taskImageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "minPlayerLevel",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "taskRequirements",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "traderRequirements",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "availableDelaySecondsMin",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "availableDelaySecondsMax",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "objectives",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "startRewards",
+            "description": null,
+            "type": {
+              "name": "TaskRewards"
+            }
+          },
+          {
+            "name": "finishRewards",
+            "description": null,
+            "type": {
+              "name": "TaskRewards"
+            }
+          },
+          {
+            "name": "failConditions",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "failureOutcome",
+            "description": null,
+            "type": {
+              "name": "TaskRewards"
+            }
+          },
+          {
+            "name": "restartable",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "factionName",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "kappaRequired",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "lightkeeperRequired",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "descriptionMessageId",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "startMessageId",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "successMessageId",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "failMessageId",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskKey",
+        "description": null,
+        "fields": [
+          {
+            "name": "keys",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "map",
+            "description": null,
+            "type": {
+              "name": "Map"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjective",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveBasic",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredKeys",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveBuildItem",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "item",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "containsAll",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "containsCategory",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "attributes",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveExperience",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "count",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "healthEffect",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveExtract",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "exitStatus",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "exitName",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "zoneNames",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "count",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredKeys",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveItem",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "items",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "count",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "foundInRaid",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "dogTagLevel",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "maxDurability",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "minDurability",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredKeys",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveMark",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "markerItem",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredKeys",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectivePlayerLevel",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "playerLevel",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveQuestItem",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "questItem",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "count",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "possibleLocations",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredKeys",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveShoot",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "targetNames",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "count",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "shotType",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "zoneNames",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "bodyParts",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "usingWeapon",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "usingWeaponMods",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "wearing",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "notWearing",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "distance",
+            "description": null,
+            "type": {
+              "name": "NumberCompare"
+            }
+          },
+          {
+            "name": "playerHealthEffect",
+            "description": null,
+            "type": {
+              "name": "HealthEffect"
+            }
+          },
+          {
+            "name": "enemyHealthEffect",
+            "description": null,
+            "type": {
+              "name": "HealthEffect"
+            }
+          },
+          {
+            "name": "timeFromHour",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "timeUntilHour",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredKeys",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveSkill",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "skillLevel",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveTaskStatus",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "task",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveTraderLevel",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "trader",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "level",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveTraderStanding",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "trader",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "compareMethod",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "value",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskObjectiveUseItem",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "optional",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "useAny",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "compareMethod",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "count",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "zoneNames",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "zones",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredKeys",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskRewards",
+        "description": null,
+        "fields": [
+          {
+            "name": "traderStanding",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "items",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "offerUnlock",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "skillLevelReward",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "traderUnlock",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "craftUnlock",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskStatusRequirement",
+        "description": null,
+        "fields": [
+          {
+            "name": "task",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "TaskZone",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "map",
+            "description": null,
+            "type": {
+              "name": "Map"
+            }
+          },
+          {
+            "name": "position",
+            "description": null,
+            "type": {
+              "name": "MapPosition"
+            }
+          },
+          {
+            "name": "outline",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "top",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "bottom",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Trader",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "resetTime",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "currency",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "discount",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "levels",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "reputationLevels",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "barters",
+            "description": "barters and cashOffers are only available via the traders query.",
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "cashOffers",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "imageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "image4xLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "tarkovDataId",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TraderLevel",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "level",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredPlayerLevel",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredReputation",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "requiredCommerce",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "payRate",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "insuranceRate",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "repairCostMultiplier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "barters",
+            "description": "barters and cashOffers are only available via the traders query.",
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "cashOffers",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "imageLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "image4xLink",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TraderCashOffer",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "name": "ID"
+            }
+          },
+          {
+            "name": "item",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "minTraderLevel",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "price",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "currency",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "currencyItem",
+            "description": null,
+            "type": {
+              "name": "Item"
+            }
+          },
+          {
+            "name": "priceRUB",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "taskUnlock",
+            "description": null,
+            "type": {
+              "name": "Task"
+            }
+          },
+          {
+            "name": "buyLimit",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TraderName",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "TraderOffer",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "trader",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "minTraderLevel",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "taskUnlock",
+            "description": null,
+            "type": {
+              "name": "Task"
+            }
+          },
+          {
+            "name": "buyLimit",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TraderReputationLevel",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "TraderReputationLevelFence",
+        "description": null,
+        "fields": [
+          {
+            "name": "minimumReputation",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "scavCooldownModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "scavCaseTimeModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "extractPriceModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "scavFollowChance",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "scavEquipmentSpawnChanceModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "priceModifier",
+            "description": null,
+            "type": {
+              "name": "Float"
+            }
+          },
+          {
+            "name": "hostileBosses",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "hostileScavs",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "scavAttackSupport",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "availableScavExtracts",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "btrEnabled",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "btrDeliveryDiscount",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "btrDeliveryGridSize",
+            "description": null,
+            "type": {
+              "name": "MapPosition"
+            }
+          },
+          {
+            "name": "btrTaxiDiscount",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "btrCoveringFireDiscount",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TraderStanding",
+        "description": null,
+        "fields": [
+          {
+            "name": "trader",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "standing",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Vendor",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "normalizedName",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Query",
+        "description": null,
+        "fields": [
+          {
+            "name": "achievements",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "ammo",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "archivedItemPrices",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "barters",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "bosses",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "crafts",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "hideoutStations",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "historicalItemPrices",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "item",
+            "description": null,
+            "type": {
+              "name": "Item"
+            }
+          },
+          {
+            "name": "items",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "itemPrices",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "itemCategories",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "goonReports",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "handbookCategories",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "lootContainers",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "maps",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "questItems",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "stationaryWeapons",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "task",
+            "description": null,
+            "type": {
+              "name": "Task"
+            }
+          },
+          {
+            "name": "tasks",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "traders",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "fleaMarket",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "armorMaterials",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "playerLevels",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "skills",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "mastering",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "ItemTranslation",
+        "description": "The below types are all deprecated and may not return current data.\nItemTranslation has been replaced with the lang argument on all queries",
+        "fields": []
+      },
+      {
+        "name": "HideoutModule",
+        "description": "HideoutModule has been replaced with HideoutStation.",
+        "fields": [
+          {
+            "name": "level",
+            "description": null,
+            "type": {
+              "name": "Int"
+            }
+          },
+          {
+            "name": "itemRequirements",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "moduleRequirements",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Quest",
+        "description": "Quest has been replaced with Task.",
+        "fields": []
+      },
+      {
+        "name": "QuestObjective",
+        "description": "QuestObjective has been replaced with TaskObjective.",
+        "fields": []
+      },
+      {
+        "name": "QuestRequirement",
+        "description": "QuestRequirement has been replaced with TaskRequirement.",
+        "fields": []
+      },
+      {
+        "name": "QuestRewardReputation",
+        "description": null,
+        "fields": []
+      },
+      {
+        "name": "TraderPrice",
+        "description": "TraderPrice is deprecated and replaced with ItemPrice.",
+        "fields": []
+      },
+      {
+        "name": "TraderResetTime",
+        "description": "TraderResetTime is deprecated and replaced with Trader.",
+        "fields": []
+      },
+      {
+        "name": "ItemType",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "ItemCategoryName",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "HandbookCategoryName",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "LanguageCode",
+        "description": null,
+        "fields": null
+      },
+      {
+        "name": "__Schema",
+        "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
+        "fields": [
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "types",
+            "description": "A list of all types supported by this server.",
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "queryType",
+            "description": "The type that query operations will be rooted at.",
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "mutationType",
+            "description": "If this server supports mutation, the type that mutation operations will be rooted at.",
+            "type": {
+              "name": "__Type"
+            }
+          },
+          {
+            "name": "subscriptionType",
+            "description": "If this server support subscription, the type that subscription operations will be rooted at.",
+            "type": {
+              "name": "__Type"
+            }
+          },
+          {
+            "name": "directives",
+            "description": "A list of all directives supported by this server.",
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "__Type",
+        "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
+        "fields": [
+          {
+            "name": "kind",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "specifiedByURL",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "fields",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "interfaces",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "possibleTypes",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "enumValues",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "inputFields",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "ofType",
+            "description": null,
+            "type": {
+              "name": "__Type"
+            }
+          },
+          {
+            "name": "isOneOf",
+            "description": null,
+            "type": {
+              "name": "Boolean"
+            }
+          }
+        ]
+      },
+      {
+        "name": "__TypeKind",
+        "description": "An enum describing what kind of type a given `__Type` is.",
+        "fields": null
+      },
+      {
+        "name": "__Field",
+        "description": "Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.",
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "args",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "isDeprecated",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "deprecationReason",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "__InputValue",
+        "description": "Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.",
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "defaultValue",
+            "description": "A GraphQL-formatted string representing the default value for this input value.",
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "isDeprecated",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "deprecationReason",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "__EnumValue",
+        "description": "One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.",
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "isDeprecated",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "deprecationReason",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "name": "__Directive",
+        "description": "A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.\n\nIn some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.",
+        "fields": [
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "name": "String"
+            }
+          },
+          {
+            "name": "isRepeatable",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "locations",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          },
+          {
+            "name": "args",
+            "description": null,
+            "type": {
+              "name": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "__DirectiveLocation",
+        "description": "A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.",
+        "fields": null
+      }
+    ]
+  },
+  "testResults": [
+    {
+      "name": "hideoutModules (sem filtro)",
+      "success": false,
+      "data": null,
+      "errors": null
+    },
+    {
+      "name": "hideoutModules (com filtro)",
+      "success": false,
+      "data": null,
+      "errors": null
+    },
+    {
+      "name": "hideoutModule (singular)",
+      "success": false,
+      "data": null,
+      "errors": null
+    },
+    {
+      "name": "modules (sem prefixo)",
+      "success": false,
+      "data": null,
+      "errors": null
+    },
+    {
+      "name": "hideoutStations com módulos",
+      "success": false,
+      "data": null,
+      "errors": null
+    }
+  ],
+  "errorDetails": [
+    {
+      "message": "Unknown argument \"module\" on field \"Query.hideoutModules\".",
+      "locations": [
+        {
+          "line": 3,
+          "column": 22
+        }
+      ],
+      "extensions": {
+        "code": "GRAPHQL_VALIDATION_FAILED",
+        "http": {
+          "spec": true,
+          "status": 400
+        }
+      }
+    },
+    {
+      "message": "Cannot query field \"module\" on type \"HideoutModule\".",
+      "locations": [
+        {
+          "line": 5,
+          "column": 9
+        }
+      ],
+      "extensions": {
+        "code": "GRAPHQL_VALIDATION_FAILED",
+        "http": {
+          "spec": true,
+          "status": 400
+        }
+      }
+    },
+    {
+      "message": "Cannot query field \"require\" on type \"HideoutModule\".",
+      "locations": [
+        {
+          "line": 7,
+          "column": 9
+        }
+      ],
+      "extensions": {
+        "code": "GRAPHQL_VALIDATION_FAILED",
+        "http": {
+          "spec": true,
+          "status": 400
+        }
+      }
+    }
+  ]
+}

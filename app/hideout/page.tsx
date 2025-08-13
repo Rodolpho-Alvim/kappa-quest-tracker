@@ -171,6 +171,7 @@ function isModuleLevelComplete(
 
 export default function HideoutPage() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [hideCompleted, setHideCompleted] = useState(false);
   const { filteredStations, allStations, highlightedItems, loading } =
     useHideoutSearch(searchTerm);
   const [progress, setProgress] = useLocalStorage<Record<string, number>>(
@@ -178,6 +179,7 @@ export default function HideoutPage() {
     {}
   );
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
   function resetProgress() {
     setProgress({});
   }
@@ -405,7 +407,11 @@ export default function HideoutPage() {
         </div>
         {/* Sidebar de itens necessários - visível apenas em telas md+ */}
         <div className="hidden md:block sticky top-0 h-screen z-10">
-          <ItemSidebar progress={progress} />
+          <ItemSidebar
+            progress={progress}
+            hideCompleted={hideCompleted}
+            onHideCompletedChange={setHideCompleted}
+          />
         </div>
         {/* Botão para abrir o sidebar no mobile */}
         <button
@@ -421,7 +427,11 @@ export default function HideoutPage() {
             side="right"
             className="block md:hidden p-0 w-70"
           >
-            <ItemSidebar progress={progress} />
+            <ItemSidebar
+              progress={progress}
+              hideCompleted={hideCompleted}
+              onHideCompletedChange={setHideCompleted}
+            />
           </SheetContentNoClose>
         </Sheet>
       </div>

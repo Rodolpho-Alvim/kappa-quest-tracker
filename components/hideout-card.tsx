@@ -115,7 +115,9 @@ export function HideoutCard({
       (r: any) => r.type === "trader"
     );
     const tradersOk = traderReqs.every((req: any) => {
-      const traderId = TRADER_DUMP_TO_ID[Number(req.traderId)];
+      // Mapear nome do trader para ID correto
+      const traderName = req.traderId;
+      const traderId = getTraderIdByName(traderName);
       const traderProgressKey = `trader-${traderId}`;
       const traderLevel = progress[traderProgressKey] || 1;
       const requiredLevel = req.level || req.quantity || 0;
@@ -166,30 +168,50 @@ export function HideoutCard({
     8: "54cb50c76803fa8b248b4571", // Prapor
   };
 
+  // Função para mapear nome do trader para ID
+  const getTraderIdByName = (traderName: string): string => {
+    const traderMap: Record<string, string> = {
+      Prapor: "54cb50c76803fa8b248b4571",
+      Therapist: "54cb57776803fa99248b456e",
+      Fence: "579dc571d53a0658a154fbec",
+      Skier: "58330581ace78e27b8b10cee",
+      Peacekeeper: "5935c25fb3acc3127c3d8cd9",
+      Mechanic: "5a7c2eca46aef81a7ca2145d",
+      Ragman: "5ac3b934156ae10c4430e83c",
+      Jaeger: "5c0647fdd443bc2504c2d371",
+    };
+    return traderMap[traderName] || traderName;
+  };
+
   // Mapeamento de cores por estação
   const STATION_COLOR_MAP: Record<string, string> = {
-    "Rest space": "bg-gradient-to-r from-blue-700 to-blue-400",
+    "Rest Space": "bg-gradient-to-r from-blue-700 to-blue-400",
     "Air Filtering Unit": "bg-gradient-to-r from-green-800 to-green-400",
-    "Bitcoin farm": "bg-gradient-to-r from-yellow-900 to-yellow-500",
+    "Bitcoin Farm": "bg-gradient-to-r from-yellow-900 to-yellow-500",
     "Nutrition Unit": "bg-gradient-to-r from-lime-800 to-lime-400",
-    "Solar power": "bg-gradient-to-r from-orange-900 to-yellow-300",
+    "Solar Power": "bg-gradient-to-r from-orange-900 to-yellow-300",
     Vents: "bg-gradient-to-r from-gray-800 to-gray-400",
-    "Christmas Tree": "bg-gradient-to-r from-emerald-900 to-emerald-400",
+
     Generator: "bg-gradient-to-r from-yellow-700 to-yellow-400",
     Heating: "bg-gradient-to-r from-orange-700 to-orange-400",
     Medstation: "bg-gradient-to-r from-rose-700 to-rose-400",
-    "Water collector": "bg-gradient-to-r from-cyan-700 to-cyan-400",
+    "Water Collector": "bg-gradient-to-r from-cyan-700 to-cyan-400",
     Workbench: "bg-gradient-to-r from-gray-700 to-gray-400",
     Lavatory: "bg-gradient-to-r from-indigo-700 to-indigo-400",
     Stash: "bg-gradient-to-r from-amber-700 to-amber-400",
-    "Intelligence center": "bg-gradient-to-r from-purple-700 to-purple-400",
-    "Shooting range": "bg-gradient-to-r from-green-700 to-green-400",
-    "Booze generator": "bg-gradient-to-r from-pink-700 to-pink-400",
-    "Scav case": "bg-gradient-to-r from-teal-700 to-teal-400",
+    "Intelligence Center": "bg-gradient-to-r from-purple-700 to-purple-400",
+    "Shooting Range": "bg-gradient-to-r from-green-700 to-green-400",
+    "Booze Generator": "bg-gradient-to-r from-pink-700 to-pink-400",
+    "Scav Case": "bg-gradient-to-r from-teal-700 to-teal-400",
     Illumination: "bg-gradient-to-r from-fuchsia-700 to-fuchsia-400",
     Security: "bg-gradient-to-r from-slate-700 to-slate-400",
     Library: "bg-gradient-to-r from-emerald-700 to-emerald-400",
     "Hall of Fame": "bg-gradient-to-r from-red-700 to-red-400",
+    "Defective Wall": "bg-gradient-to-r from-red-800 to-red-500",
+    Gym: "bg-gradient-to-r from-purple-800 to-purple-500",
+    "Gear Rack": "bg-gradient-to-r from-blue-800 to-blue-500",
+    "Cultist Circle": "bg-gradient-to-r from-purple-900 to-purple-600",
+    "Weapon Rack": "bg-gradient-to-r from-gray-900 to-gray-600",
     // Adicione outras estações conforme necessário
   };
   const headerColor =
@@ -208,30 +230,31 @@ export function HideoutCard({
             // Mapeamento de nomes de estação para arquivos de imagem customizados
             const imageMap: Record<string, string> = {
               "Air Filtering Unit": "/images/air-filtering-unit.png",
-              "Bitcoin farm": "/images/bitcoin-farm.png",
-              "Booze generator": "/images/booze-generator.png",
-              "Christmas Tree": "/images/Christmas_Tree_Portrait.png",
+              "Bitcoin Farm": "/images/bitcoin-farm.png",
+              "Booze Generator": "/images/booze-generator.png",
+
               "Cultist Circle": "/images/cultist-circle.png",
-              "Defective Wall": "/images/defective-wall.png",
+              "Defective Wall":
+                "https://assets.tarkov.dev/station-defective-wall.png",
               "Gear Rack": "/images/Gear_Rack_Portrait.png",
               Generator: "/images/Generator_Portrait.png",
               Gym: "/images/Gym_Portrait.png",
               "Hall of Fame": "/images/Hall_of_Fame_Portrait.png",
               Heating: "/images/Heating_Portrait.png",
               Illumination: "/images/Illumination_Portrait.png",
-              "Intelligence center": "/images/Intelligence_Center_Portrait.png",
+              "Intelligence Center": "/images/Intelligence_Center_Portrait.png",
               Lavatory: "/images/Lavatory_Portrait.png",
               Library: "/images/Library_Portrait.png",
               Medstation: "/images/Medstation_Portrait.png",
               "Nutrition Unit": "/images/Nutrition_Unit_Portrait.png",
-              "Rest space": "/images/Rest_Space_Portrait.png",
-              "Scav case": "/images/Scav_Case_Portrait.png",
+              "Rest Space": "/images/Rest_Space_Portrait.png",
+              "Scav Case": "/images/Scav_Case_Portrait.png",
               Security: "/images/Security_Portrait.png",
-              "Shooting range": "/images/Shooting_Range_Portrait.png",
-              "Solar power": "/images/Solar_power_Portrait.png",
+              "Shooting Range": "/images/Shooting_Range_Portrait.png",
+              "Solar Power": "/images/Solar_power_Portrait.png",
               Stash: "/images/Stash_Portrait.png",
               Vents: "/images/Vents_Portrait.png",
-              "Water collector": "/images/Water_Collector_Portrait.png",
+              "Water Collector": "/images/Water_Collector_Portrait.png",
               "Weapon Rack": "/images/Weapon_Rack_Portrait.png",
               Workbench: "/images/Workbench_Portrait.png",
             };
@@ -246,12 +269,22 @@ export function HideoutCard({
                 />
               );
             } else {
+              // Fallback para imagens locais se disponíveis
+              const fallbackImage = `/images/${station.name
+                .toLowerCase()
+                .replace(/\s+/g, "-")}.png`;
               return (
                 <img
-                  src={`https://assets.tarkov.dev/${station.id}-icon.webp`}
+                  src={fallbackImage}
                   alt={station.name}
                   className="w-10 h-10 rounded bg-white/20 object-contain"
-                  onError={(e) => (e.currentTarget.style.display = "none")}
+                  onError={(e) => {
+                    // Se a imagem local falhar, tentar a API do Tarkov.dev
+                    e.currentTarget.src = `https://assets.tarkov.dev/${station.id}-icon.webp`;
+                    e.currentTarget.onerror = () => {
+                      e.currentTarget.style.display = "none";
+                    };
+                  }}
                 />
               );
             }
@@ -364,8 +397,8 @@ export function HideoutCard({
                   className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold px-2 py-2 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg transform hover:scale-105"
                   title="Completar todos os itens necessários para este nível"
                 >
-                  <span className="mr-1 text-sm">⚡</span>
-                  Completar
+                  <span className="text-sm">⚡</span>
+                  <span className="text-sm">Completar</span>
                   <span className="ml-1 text-xs opacity-90">
                     ({itemRequirements.length})
                   </span>
@@ -510,11 +543,9 @@ export function HideoutCard({
                       );
                     }
                     if (req.type === "trader") {
-                      const traderId = TRADER_DUMP_TO_ID[Number(req.traderId)];
-                      const traderName = traderId
-                        ? TRADER_NUMBER_MAP[Number(req.traderId)] ||
-                          `Trader ${req.traderId}`
-                        : `Trader desconhecido (${req.traderId})`;
+                      // Mapear o nome do trader para o ID correto usado no TraderCard
+                      const traderName = req.traderId || "Trader Desconhecido";
+                      const traderId = getTraderIdByName(traderName);
                       const traderProgressKey = `trader-${traderId}`;
                       const traderLevel = Number(
                         progress[traderProgressKey] ?? 1
