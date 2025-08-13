@@ -1,9 +1,19 @@
+"use client";
+
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useHideoutProgress } from "@/hooks/use-hideout-progress";
+import { useKappaProgress } from "@/hooks/use-kappa-progress";
 import Link from "next/link";
 
 export default function Home() {
+  const { getHideoutOverallProgress } = useHideoutProgress();
+  const { getKappaOverallProgress } = useKappaProgress();
+
+  const hideoutProgress = getHideoutOverallProgress();
+  const kappaProgress = getKappaOverallProgress();
+
   return (
     <div
       className="min-h-screen flex flex-col bg-gradient-to-br from-[#181a1b] to-[#232d23] dark:from-[#101112] dark:to-[#232d23]"
@@ -34,11 +44,11 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-3xl">
             {/* Hideout Card */}
             <div
-              className="bg-transparent border-2 rounded-xl shadow-2xl hover:shadow-green-400/20 transition-shadow duration-300 group flex flex-col min-h-[320px] border-[#5a6b4a] dark:border-[#5a6b4a]"
+              className="bg-transparent border-2 rounded-xl shadow-2xl hover:shadow-green-400/20 transition-shadow duration-300 group flex flex-col min-h-[400px] border-[#5a6b4a] dark:border-[#5a6b4a]"
               style={{ backdropFilter: "blur(4px)" }}
             >
               <div className="flex flex-col flex-1 justify-between h-full p-6">
-                <div>
+                <div className="flex flex-col h-full">
                   <CardHeader className="flex flex-col items-center p-0 mb-4">
                     <img
                       src="/images/Banner_hideout.png"
@@ -65,11 +75,46 @@ export default function Home() {
                     >
                       Hideout
                     </CardTitle>
-                    <CardDescription className="text-center text-gray-200">
+                    <CardDescription className="text-center text-gray-200 mb-4">
                       Gerencie o progresso das estações do Hideout, requisitos
                       de itens, traders e skills.
                     </CardDescription>
                   </CardHeader>
+
+                  {/* Indicador de Progresso - Posicionado no meio */}
+                  <div className="flex-1 flex items-center justify-center pt-4">
+                    <div className="text-center w-full">
+                      <div className="flex items-center justify-between text-sm text-gray-300 mb-3">
+                        <span className="font-medium">Progresso Geral</span>
+                        <span className="font-bold text-[#5a6b4a] bg-[#5a6b4a]/10 px-3 py-1 rounded-full">
+                          {hideoutProgress.completed}/{hideoutProgress.total} •{" "}
+                          {hideoutProgress.percentage}%
+                        </span>
+                      </div>
+                      <div className="relative w-full bg-gray-800/50 dark:bg-gray-900/50 rounded-full h-3 border border-gray-600/30 overflow-hidden">
+                        <div
+                          className="bg-gradient-to-r from-[#5a6b4a] via-[#4a5b3a] to-[#5a6b4a] h-3 rounded-full transition-all duration-700 ease-out shadow-lg relative"
+                          style={{ width: `${hideoutProgress.percentage}%` }}
+                        >
+                          {/* Efeito de brilho */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full animate-pulse"></div>
+                        </div>
+                        {/* Marcadores de progresso */}
+                        <div className="absolute inset-0 flex justify-between items-center px-2 pointer-events-none">
+                          {[0, 25, 50, 75, 100].map((mark) => (
+                            <div
+                              key={mark}
+                              className={`w-1 h-1 rounded-full ${
+                                hideoutProgress.percentage >= mark
+                                  ? "bg-[#5a6b4a]"
+                                  : "bg-gray-600/50"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="flex justify-center mt-6">
                   <Link href="/hideout" passHref legacyBehavior>
@@ -86,11 +131,11 @@ export default function Home() {
             </div>
             {/* Kappa Card */}
             <div
-              className="bg-transparent border-2 rounded-xl shadow-2xl hover:shadow-yellow-400/20 transition-shadow duration-300 group flex flex-col min-h-[320px] border-[#bfa94a] dark:border-[#bfa94a]"
+              className="bg-transparent border-2 rounded-xl shadow-2xl hover:shadow-yellow-400/20 transition-shadow duration-300 group flex flex-col min-h-[400px] border-[#bfa94a] dark:border-[#bfa94a]"
               style={{ backdropFilter: "blur(4px)" }}
             >
               <div className="flex flex-col flex-1 justify-between h-full p-6">
-                <div>
+                <div className="flex flex-col h-full">
                   <CardHeader className="flex flex-col items-center p-0 mb-4">
                     <img
                       src="/images/Secure_container_Kappa_image.gif"
@@ -117,11 +162,46 @@ export default function Home() {
                     >
                       Kappa
                     </CardTitle>
-                    <CardDescription className="text-center text-gray-200">
+                    <CardDescription className="text-center text-gray-200 mb-4">
                       Acompanhe todos os itens necessários para conquistar o
                       Container Kappa no Escape from Tarkov.
                     </CardDescription>
                   </CardHeader>
+
+                  {/* Indicador de Progresso - Posicionado no meio */}
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="text-center w-full">
+                      <div className="flex items-center justify-between text-sm text-gray-300 mb-3">
+                        <span className="font-medium">Progresso Geral</span>
+                        <span className="font-bold text-[#bfa94a] bg-[#bfa94a]/10 px-3 py-1 rounded-full">
+                          {kappaProgress.completed}/{kappaProgress.total} •{" "}
+                          {kappaProgress.percentage}%
+                        </span>
+                      </div>
+                      <div className="relative w-full bg-gray-800/50 dark:bg-gray-900/50 rounded-full h-3 border border-gray-600/30 overflow-hidden">
+                        <div
+                          className="bg-gradient-to-r from-[#bfa94a] via-[#a68c2c] to-[#bfa94a] h-3 rounded-full transition-all duration-700 ease-out shadow-lg relative"
+                          style={{ width: `${kappaProgress.percentage}%` }}
+                        >
+                          {/* Efeito de brilho */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full animate-pulse"></div>
+                        </div>
+                        {/* Marcadores de progresso */}
+                        <div className="absolute inset-0 flex justify-between items-center px-2 pointer-events-none">
+                          {[0, 25, 50, 75, 100].map((mark) => (
+                            <div
+                              key={mark}
+                              className={`w-1 h-1 rounded-full ${
+                                kappaProgress.percentage >= mark
+                                  ? "bg-[#bfa94a]"
+                                  : "bg-gray-600/50"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="flex justify-center mt-6">
                   <Link href="/kappa" passHref legacyBehavior>

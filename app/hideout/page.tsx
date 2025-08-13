@@ -305,33 +305,46 @@ export default function HideoutPage() {
               <ThemeToggle />
             </div>
           </HeaderBar>
-          <main className="flex-1 max-w-5xl mx-auto w-full px-2 py-6">
-            {/* Dashboard de progresso */}
-            <div className="mb-6 p-4 bg-cyan-100/60 dark:bg-cyan-900/40 rounded-xl shadow-md flex flex-col md:flex-row md:items-center md:justify-between gap-2 border border-cyan-200 dark:border-cyan-900/60">
-              <div className="flex flex-col md:flex-row items-center w-full gap-4">
-                <div className="flex items-center gap-3 w-full">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 via-cyan-400 to-green-400 shadow-lg">
-                    <Target className="w-5 h-5 text-gray-900 dark:text-gray-200 drop-shadow" />
-                  </span>
+          <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-4">
+            {/* Título principal com melhor hierarquia */}
+            <div className="mb-6 text-center">
+              <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-[#5a6b4a] via-[#4a5b3a] to-[#6b7c5a] bg-clip-text text-transparent drop-shadow-sm tracking-tight mb-4 font-tarkov">
+                Hideout Tracker
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium max-w-3xl mx-auto leading-relaxed font-tarkov">
+                Gerencie seu progresso do Hideout com precisão
+              </p>
+            </div>
+            {/* Separador visual elegante */}
+            <div className="mb-10 flex items-center">
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+              <div className="px-6 py-2 bg-gradient-to-r from-[#5a6b4a] to-[#4a5b3a] rounded-full shadow-lg">
+                <span className="text-white font-semibold text-sm">
+                  🎯 PROGRESSO
+                </span>
+              </div>
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+            </div>
+            {/* Dashboard de progresso elegante */}
+            <div className="mb-10 p-6 bg-gradient-to-r from-[#5a6b4a]/10 via-[#4a5b3a]/8 to-[#6b7c5a]/6 dark:from-[#5a6b4a]/20 dark:via-[#4a5b3a]/15 dark:to-[#6b7c5a]/12 rounded-2xl shadow-xl border border-[#5a6b4a]/30 dark:border-[#5a6b4a]/40 backdrop-blur-sm">
+              <div className="flex flex-col md:flex-row items-center w-full gap-6">
+                <div className="flex items-center gap-4 w-full">
+                  <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#5a6b4a] via-[#4a5b3a] to-[#6b7c5a] shadow-2xl p-3">
+                    <Target className="w-8 h-8 text-white drop-shadow-lg" />
+                  </div>
                   <div className="flex-1">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-semibold text-gray-800 dark:text-gray-300 text-sm md:text-base">
-                        Progresso geral
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="font-bold text-gray-800 dark:text-gray-200 text-lg md:text-xl font-tarkov">
+                        Progresso Geral do Hideout
                       </span>
-                      <span className="font-bold text-gray-700 dark:text-gray-200 text-xs md:text-sm">
-                        {completedLevels.length} /
-                        {completedLevels.length === allLevels.length - 1 &&
-                        allLevels.some(
-                          (l) => l.isBaseLevel && l.station === "Stash"
-                        )
-                          ? completedLevels.length
-                          : allLevels.length}{" "}
-                        níveis • {percent}%
+                      <span className="font-bold text-gray-700 dark:text-gray-200 text-sm md:text-base bg-white/60 dark:bg-gray-800/60 px-4 py-2 rounded-full shadow-sm">
+                        {completedLevels.length} / {allLevels.length} níveis •{" "}
+                        {percent}%
                       </span>
                     </div>
-                    <div className="w-full h-4 bg-gray-200 dark:bg-zinc-800 rounded-full shadow-inner overflow-hidden relative">
+                    <div className="w-full h-5 bg-gray-200/60 dark:bg-zinc-800/60 rounded-full shadow-inner overflow-hidden relative">
                       <div
-                        className="absolute left-0 top-0 h-4 rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-green-400 transition-all duration-500 shadow"
+                        className="absolute left-0 top-0 h-5 rounded-full bg-gradient-to-r from-[#5a6b4a] via-[#4a5b3a] to-[#6b7c5a] transition-all duration-700 shadow-lg"
                         style={{ width: `${percent}%` }}
                       />
                     </div>
@@ -339,23 +352,21 @@ export default function HideoutPage() {
                 </div>
               </div>
             </div>
-            {/* Cards de Traders e Skills */}
-            <div className="flex flex-col md:flex-row gap-4 mb-4">
+
+            {/* Cards de Traders e Skills com melhor layout */}
+            <div className="flex flex-col lg:flex-row gap-6 mb-10">
               <div className="flex-1">
-                <TraderCard progress={progress} setProgress={setProgress} />
+                <div className="transition-all duration-300">
+                  <TraderCard progress={progress} setProgress={setProgress} />
+                </div>
               </div>
               <div className="flex-1">
-                <SkillCard progress={progress} setProgress={setProgress} />
+                <div className="transition-all duration-300">
+                  <SkillCard progress={progress} setProgress={setProgress} />
+                </div>
               </div>
             </div>
-            <div className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-extrabold text-center dark:text-gray-100 text-gray-900 drop-shadow-sm tracking-tight">
-                Hideout
-              </h1>
-              <p className="text-center text-lg md:text-xl text-gray-600 dark:text-gray-300 mt-2 font-medium">
-                Gerencie seu progresso do Hideout
-              </p>
-            </div>
+
             {/* Campo de busca */}
             <HideoutSearch
               searchTerm={searchTerm}
@@ -380,25 +391,51 @@ export default function HideoutPage() {
                 </a>
               </div>
             </div> */}
+            {/* Separador visual para as estações */}
+            <div className="mb-10 flex items-center">
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+              <div className="px-6 py-2 bg-gradient-to-r from-[#6b7c5a] to-[#5a6b4a] rounded-full shadow-lg">
+                <span className="text-white font-semibold text-sm">
+                  🏗️ ESTAÇÕES
+                </span>
+              </div>
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+            </div>
+
+            {/* Grid de estações com melhor espaçamento */}
             {loading ? (
-              <div className="text-center text-gray-500 py-12">
-                Carregando estações do Hideout...
+              <div className="text-center py-16">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#5a6b4a] to-[#4a5b3a] shadow-2xl mb-4">
+                  <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                </div>
+                <p className="text-lg text-gray-600 dark:text-gray-300 font-medium">
+                  Carregando estações do Hideout...
+                </p>
               </div>
             ) : filteredStations.length === 0 ? (
-              <div className="text-center text-gray-500 py-12">
-                Nenhuma estação encontrada para este filtro.
+              <div className="text-center py-16">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 shadow-2xl mb-4">
+                  <span className="text-2xl">🔍</span>
+                </div>
+                <p className="text-lg text-gray-600 dark:text-gray-300 font-medium mb-2">
+                  Nenhuma estação encontrada para este filtro.
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Tente ajustar os termos de pesquisa.
+                </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
                 {filteredStations.map((station: any) => (
-                  <HideoutCard
-                    key={station.id}
-                    station={station}
-                    progress={progress}
-                    setProgress={setProgress}
-                    highlightedItems={highlightedItems as Set<string>}
-                    className="h-full"
-                  />
+                  <div key={station.id} className="transition-all duration-300">
+                    <HideoutCard
+                      station={station}
+                      progress={progress}
+                      setProgress={setProgress}
+                      highlightedItems={highlightedItems as Set<string>}
+                      className="h-full"
+                    />
+                  </div>
                 ))}
               </div>
             )}
@@ -409,17 +446,19 @@ export default function HideoutPage() {
         <div className="hidden md:block sticky top-0 h-screen z-10">
           <ItemSidebar
             progress={progress}
+            setProgress={setProgress}
             hideCompleted={hideCompleted}
             onHideCompletedChange={setHideCompleted}
+            searchTerm={searchTerm}
           />
         </div>
         {/* Botão para abrir o sidebar no mobile */}
         <button
-          className="md:hidden fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground rounded-full p-4 shadow-lg hover:bg-primary/80 transition"
+          className="md:hidden fixed bottom-8 right-8 z-50 bg-gradient-to-r from-[#5a6b4a] to-[#4a5b3a] text-white rounded-2xl p-5 shadow-2xl hover:shadow-3xl hover:scale-110 transition-all duration-300 border-2 border-white/20 backdrop-blur-sm"
           onClick={() => setSidebarOpen(true)}
           aria-label="Abrir menu"
         >
-          <Menu className="w-6 h-6" />
+          <Menu className="w-7 h-7" />
         </button>
         {/* Sidebar mobile (Sheet) */}
         <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
@@ -429,8 +468,10 @@ export default function HideoutPage() {
           >
             <ItemSidebar
               progress={progress}
+              setProgress={setProgress}
               hideCompleted={hideCompleted}
               onHideCompletedChange={setHideCompleted}
+              searchTerm={searchTerm}
             />
           </SheetContentNoClose>
         </Sheet>

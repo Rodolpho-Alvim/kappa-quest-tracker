@@ -83,26 +83,32 @@ export function HideoutCard({
   function isModuleLevelComplete(moduleName: string, level: number): boolean {
     // Stash nível 1 é sempre completo
     if (moduleName === "Stash" && level === 1) return true;
+
     const targetStation = stations.find(
       (s) =>
         s.name.toLowerCase().replace(/\s+/g, "") ===
         moduleName.toLowerCase().replace(/\s+/g, "")
     );
     if (!targetStation) return false;
+
     const targetLevel = targetStation.levels.find(
       (l: any) => l.level === level
     );
     if (!targetLevel) return false;
+
     // Itens
     const itemReqs = targetLevel.requirements.filter(
       (r: any) => r.type === "item"
     );
     const itemsOk =
-      itemReqs.length > 0 &&
+      itemReqs.length === 0 || // Se não há requisitos de item, considerar OK
       itemReqs.every((req: any) => {
         const progressKey = `${targetStation.name}-lvl${targetLevel.level}-${req.itemId}`;
-        return (progress[progressKey] || 0) >= (req.quantity || 0);
+        const currentProgress = progress[progressKey] || 0;
+        const required = req.quantity || 0;
+        return currentProgress >= required;
       });
+
     // Módulos (recursivo)
     const moduleReqs = targetLevel.requirements.filter(
       (r: any) => r.type === "module"
@@ -110,6 +116,7 @@ export function HideoutCard({
     const modulesOk = moduleReqs.every((req: any) =>
       isModuleLevelComplete(req.module, req.level)
     );
+
     // Traders
     const traderReqs = targetLevel.requirements.filter(
       (r: any) => r.type === "trader"
@@ -123,6 +130,7 @@ export function HideoutCard({
       const requiredLevel = req.level || req.quantity || 0;
       return traderLevel >= requiredLevel;
     });
+
     // Skills
     const skillReqs = targetLevel.requirements.filter(
       (r: any) => r.type === "skill"
@@ -134,6 +142,7 @@ export function HideoutCard({
         progress[globalSkillKey] ?? progress[localSkillKey] ?? 0;
       return skillLevel >= (req.level || 0);
     });
+
     return itemsOk && modulesOk && tradersOk && skillsOk;
   }
 
@@ -220,12 +229,16 @@ export function HideoutCard({
 
   return (
     <Card
-      className={`shadow-lg border-0 overflow-hidden mb-4 h-full min-h-[520px] ${
+      className={`shadow-2xl border-0 overflow-hidden mb-4 h-full min-h-[520px] transition-all duration-300 ${
         className ?? ""
       }`}
     >
-      <CardHeader className={`${headerColor} p-4`}>
-        <div className="flex items-center gap-3">
+      <CardHeader
+        className={`${headerColor} p-6 relative overflow-hidden h-32 flex flex-col justify-center`}
+      >
+        {/* Efeito de brilho sutil */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 transform -skew-x-12 -translate-x-full animate-pulse"></div>
+        <div className="flex items-center gap-4 h-full">
           {(() => {
             // Mapeamento de nomes de estação para arquivos de imagem customizados
             const imageMap: Record<string, string> = {
@@ -261,12 +274,14 @@ export function HideoutCard({
             const imagePath = imageMap[station.name];
             if (imagePath) {
               return (
-                <img
-                  src={imagePath}
-                  alt={station.name}
-                  className="w-10 h-10 rounded bg-white/20 object-contain"
-                  onError={(e) => (e.currentTarget.style.display = "none")}
-                />
+                <div className="flex-shrink-0">
+                  <img
+                    src={imagePath}
+                    alt={station.name}
+                    className="w-12 h-12 rounded-lg bg-white/20 object-contain border border-white/30 shadow-lg"
+                    onError={(e) => (e.currentTarget.style.display = "none")}
+                  />
+                </div>
               );
             } else {
               // Fallback para imagens locais se disponíveis
@@ -274,42 +289,48 @@ export function HideoutCard({
                 .toLowerCase()
                 .replace(/\s+/g, "-")}.png`;
               return (
-                <img
-                  src={fallbackImage}
-                  alt={station.name}
-                  className="w-10 h-10 rounded bg-white/20 object-contain"
-                  onError={(e) => {
-                    // Se a imagem local falhar, tentar a API do Tarkov.dev
-                    e.currentTarget.src = `https://assets.tarkov.dev/${station.id}-icon.webp`;
-                    e.currentTarget.onerror = () => {
-                      e.currentTarget.style.display = "none";
-                    };
-                  }}
-                />
+                <div className="flex-shrink-0">
+                  <img
+                    src={fallbackImage}
+                    alt={station.name}
+                    className="w-12 h-12 rounded-lg bg-white/20 object-contain border border-white/30 shadow-lg"
+                    onError={(e) => {
+                      // Se a imagem local falhar, tentar a API do Tarkov.dev
+                      e.currentTarget.src = `https://assets.tarkov.dev/${station.id}-icon.webp`;
+                      e.currentTarget.onerror = () => {
+                        e.currentTarget.style.display = "none";
+                      };
+                    }}
+                  />
+                </div>
               );
             }
           })()}
-          <div>
-            <CardTitle className="text-lg font-bold text-gray-200">
+          <div className="flex-1 min-w-0">
+            <CardTitle className="text-xl font-bold text-gray-200 mb-2 leading-tight">
               {station.name}
             </CardTitle>
-            <div className="text-xs opacity-80 text-gray-200">
+            <div className="text-sm opacity-90 text-gray-200 leading-relaxed">
               {station.description}
             </div>
           </div>
         </div>
-        {/* Mensagem de parabenização centralizada no card se nível máximo completo */}
+        {/* Mensagem de parabenização no topo direito do cabeçalho se nível máximo completo */}
         {(() => {
           const maxLevel = Math.max(...station.levels.map((l) => l.level));
           const isMaxComplete = isModuleLevelComplete(station.name, maxLevel);
           if (isMaxComplete) {
             return (
-              <div className="w-full flex justify-center mt-4">
-                <div className="flex items-center gap-2 text-yellow-200 bg-yellow-700/30 rounded px-3 py-2 font-semibold text-base shadow">
-                  <span role="img" aria-label="Troféu" className="text-2xl">
+              <div className="absolute top-3 right-3">
+                <div className="flex items-center gap-2 text-yellow-200 bg-gradient-to-r from-yellow-600/90 to-orange-600/90 backdrop-blur-sm rounded-full px-3 py-1.5 font-bold text-xs shadow-xl border border-yellow-400/40 animate-pulse">
+                  <span
+                    role="img"
+                    aria-label="Troféu"
+                    className="text-lg drop-shadow-lg"
+                  >
                     🏆
                   </span>
-                  Nível máximo da estação atingido!
+                  <span className="drop-shadow-lg">Máximo!</span>
                 </div>
               </div>
             );
@@ -317,8 +338,8 @@ export function HideoutCard({
           return null;
         })()}
       </CardHeader>
-      <CardContent className="p-4">
-        <div className="flex gap-2 mb-2 flex-wrap">
+      <CardContent className="p-6">
+        <div className="flex gap-3 mb-4 flex-wrap">
           {station.levels.map((lvl) => {
             const completed = isModuleLevelComplete(station.name, lvl.level);
             const hasHighlightedItems = levelsWithHighlightedItems.has(
@@ -330,28 +351,44 @@ export function HideoutCard({
                 key={lvl.level}
                 size="sm"
                 variant={selectedLevel === lvl.level ? "default" : "outline"}
-                className={
-                  hasHighlightedItems
-                    ? selectedLevel === lvl.level
-                      ? "bg-yellow-600 text-white border-yellow-700 hover:bg-yellow-700 hover:text-white shadow-lg"
-                      : "bg-yellow-100 text-yellow-800 border-yellow-400 hover:bg-yellow-200 hover:text-yellow-900 shadow-md"
-                    : completed
-                    ? selectedLevel === lvl.level
-                      ? "bg-green-600 text-white border-green-700 hover:bg-green-700 hover:text-white"
-                      : "bg-green-100 text-green-800 border-green-300 hover:bg-green-200 hover:text-green-900"
-                    : ""
-                }
+                className={`
+                  relative overflow-hidden transition-all duration-300 transform hover:scale-105
+                  ${
+                    hasHighlightedItems
+                      ? selectedLevel === lvl.level
+                        ? "bg-gradient-to-r from-yellow-600 to-orange-600 dark:from-yellow-700 dark:to-orange-700 text-white border-0 shadow-xl hover:shadow-2xl"
+                        : "bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 text-yellow-800 dark:text-yellow-200 border-yellow-300 dark:border-yellow-700/50 hover:from-yellow-200 hover:to-orange-200 dark:hover:from-yellow-800/40 dark:hover:to-orange-800/40 shadow-lg"
+                      : completed
+                      ? selectedLevel === lvl.level
+                        ? "bg-gradient-to-r from-[#5a6b4a] to-[#4a5b3a] dark:from-[#5a6b4a] dark:to-[#4a5b3a] text-white border-0 shadow-xl hover:shadow-2xl"
+                        : "bg-gradient-to-r from-[#5a6b4a]/20 to-[#4a5b3a]/20 dark:from-[#5a6b4a]/30 dark:to-[#4a5b3a]/30 text-[#5a6b4a] dark:text-[#5a6b4a] border-[#5a6b4a]/40 dark:border-[#5a6b4a]/50 hover:from-[#5a6b4a]/30 hover:to-[#4a5b3a]/30 dark:hover:from-[#5a6b4a]/40 dark:hover:to-[#4a5b3a]/40 shadow-lg"
+                      : "hover:shadow-md"
+                  }
+                  ${
+                    selectedLevel === lvl.level
+                      ? "ring-2 ring-white/50 ring-offset-2 ring-offset-gray-800 dark:ring-offset-gray-950"
+                      : ""
+                  }
+                `}
                 onClick={() => setSelectedLevel(lvl.level)}
               >
-                Nível {lvl.level}
+                {/* Efeito de brilho para botões selecionados */}
+                {selectedLevel === lvl.level && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 transform -skew-x-12 -translate-x-full animate-pulse"></div>
+                )}
+                <span className="relative z-10 font-semibold">
+                  Nível {lvl.level}
+                </span>
                 {hasHighlightedItems && (
-                  <span className="ml-1 text-xs">🔍</span>
+                  <span className="ml-2 text-xs bg-yellow-200 dark:bg-yellow-900/50 px-2 py-1 rounded-full text-yellow-800 dark:text-yellow-200">
+                    🔍
+                  </span>
                 )}
               </Button>
             );
           })}
 
-          {/* Botão para completar o nível selecionado - alinhado à direita */}
+          {/* Botão para completar ou resetar o nível selecionado - alinhado à direita */}
           {(() => {
             if (!levelData) return null;
 
@@ -367,21 +404,64 @@ export function HideoutCard({
               return found < required;
             });
 
-            // Se não há itens ou todos estão completos, não mostrar o botão
-            if (itemRequirements.length === 0 || !hasIncompleteItems) {
+            // Se não há itens, não mostrar botão
+            if (itemRequirements.length === 0) {
               return null;
             }
 
+            // Se há itens incompletos, mostrar botão de completar
+            if (hasIncompleteItems) {
+              return (
+                <div className="ml-auto">
+                  <Button
+                    onClick={() => {
+                      // Completar todos os itens do nível atual de uma vez
+                      const updates: Record<string, number> = {};
+                      itemRequirements.forEach((req) => {
+                        const progressKey = `${station.name}-lvl${levelData.level}-${req.itemId}`;
+                        const required = req.quantity || 0;
+                        updates[progressKey] = required;
+                      });
+
+                      // Atualizar todos os itens de uma vez usando uma função de callback
+                      setProgress((prevProgress) => {
+                        const newProgress = { ...prevProgress };
+                        Object.entries(updates).forEach(([key, value]) => {
+                          newProgress[key] = value;
+                        });
+                        return newProgress;
+                      });
+                    }}
+                    size="sm"
+                    className="bg-gradient-to-r from-[#5a6b4a] to-[#4a5b3a] dark:from-[#5a6b4a] dark:to-[#4a5b3a] hover:from-[#4a5b3a] hover:to-[#5a6b4a] dark:hover:from-[#4a5b3a] dark:hover:to-[#5a6b4a] text-white font-bold px-4 py-2 rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl transform hover:scale-105 border-2 border-white/20 dark:border-white/10 backdrop-blur-sm w-[110px]"
+                    title="Completar todos os itens necessários para este nível"
+                  >
+                    <div className="flex items-center justify-center w-full text-center">
+                      <span className="text-sm text-white flex-shrink-0">
+                        ✓
+                      </span>
+                      <span className="text-xs flex-shrink-0 ml-1">
+                        Completar
+                      </span>
+                      <span className="text-xs opacity-90 flex-shrink-0 ml-0.5">
+                        ({itemRequirements.length})
+                      </span>
+                    </div>
+                  </Button>
+                </div>
+              );
+            }
+
+            // Se todos os itens estão completos, mostrar botão de reset
             return (
               <div className="ml-auto">
                 <Button
                   onClick={() => {
-                    // Completar todos os itens do nível atual de uma vez
+                    // Resetar todos os itens do nível atual para 0
                     const updates: Record<string, number> = {};
                     itemRequirements.forEach((req) => {
                       const progressKey = `${station.name}-lvl${levelData.level}-${req.itemId}`;
-                      const required = req.quantity || 0;
-                      updates[progressKey] = required;
+                      updates[progressKey] = 0;
                     });
 
                     // Atualizar todos os itens de uma vez usando uma função de callback
@@ -394,14 +474,16 @@ export function HideoutCard({
                     });
                   }}
                   size="sm"
-                  className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold px-2 py-2 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg transform hover:scale-105"
-                  title="Completar todos os itens necessários para este nível"
+                  className="bg-gradient-to-r from-[#3a4b2a] to-[#2a3b1a] dark:from-[#3a4b2a] dark:to-[#2a3b1a] hover:from-[#2a3b1a] hover:to-[#3a4b2a] dark:hover:from-[#2a3b1a] dark:hover:to-[#3a4b2a] text-white font-bold px-4 py-2 rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl transform hover:scale-105 border-2 border-white/20 dark:border-white/10 backdrop-blur-sm w-[110px]"
+                  title="Resetar progresso deste nível para zero"
                 >
-                  <span className="text-sm">⚡</span>
-                  <span className="text-sm">Completar</span>
-                  <span className="ml-1 text-xs opacity-90">
-                    ({itemRequirements.length})
-                  </span>
+                  <div className="flex items-center justify-center w-full text-center">
+                    <span className="text-sm text-white flex-shrink-0">↺</span>
+                    <span className="text-xs flex-shrink-0 ml-1">Resetar</span>
+                    <span className="text-xs opacity-90 flex-shrink-0 ml-0.5">
+                      ({itemRequirements.length})
+                    </span>
+                  </div>
                 </Button>
               </div>
             );
@@ -413,15 +495,31 @@ export function HideoutCard({
             {levelData.level === 1 &&
             station.name === "Stash" &&
             (levelData as any).isBaseLevel ? (
-              <div className="mb-2 font-semibold text-gray-900 dark:text-gray-200">
-                Requisitos para o nível 1:
-                <div className="text-gray-500 dark:text-gray-400 mt-2">
+              <div className="mb-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#5a6b4a] to-[#4a5b3a] flex items-center justify-center shadow-lg">
+                    <span className="text-white text-sm font-bold">1</span>
+                  </div>
+                  <h3 className="font-bold text-xl text-gray-800 dark:text-gray-200">
+                    Requisitos para o Nível 1
+                  </h3>
+                </div>
+                <div className="text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 px-4 py-3 rounded-lg border-l-4 border-[#5a6b4a]">
                   Possuir a edição padrão do jogo
                 </div>
               </div>
             ) : (
-              <div className="mb-2 font-semibold text-gray-900 dark:text-gray-200">
-                Requisitos para o nível {levelData.level}:
+              <div className="mb-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#5a6b4a] to-[#4a5b3a] flex items-center justify-center shadow-lg">
+                    <span className="text-white text-sm font-bold">
+                      {levelData.level}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-xl text-gray-800 dark:text-gray-200">
+                    Requisitos para o Nível {levelData.level}
+                  </h3>
+                </div>
               </div>
             )}
             {levelData.requirements.length === 0 ? (
