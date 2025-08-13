@@ -144,53 +144,6 @@ export default function HideoutPage() {
     const percentage =
       totalLevels > 0 ? Math.round((completedLevels / totalLevels) * 100) : 0;
 
-    // Log de debug detalhado para verificar quais níveis estão sendo contados
-    if (typeof window !== "undefined") {
-      console.log("PROGRESSO ATUALIZADO:", {
-        completed: completedLevels,
-        total: totalLevels,
-        percentage,
-        progressKeys: Object.keys(progress).length,
-      });
-
-      // Log detalhado de cada estação e nível
-      console.log("DETALHAMENTO POR ESTAÇÃO:");
-      allStations.forEach((station) => {
-        console.log(`\n${station.name}:`);
-        station.levels.forEach((level: any) => {
-          if (level.requirements && level.requirements.length > 0) {
-            const itemReqs = level.requirements.filter(
-              (req: any) => req.type === "item"
-            );
-
-            let isComplete = false;
-            let reason = "";
-
-            // ULTRA SIMPLIFICADO: Só verificar itens para o log também
-            if (itemReqs.length > 0) {
-              const allItemsComplete = itemReqs.every((req: any) => {
-                const progressKey = `${station.name}-lvl${level.level}-${req.itemId}`;
-                const currentProgress = progress[progressKey] || 0;
-                return currentProgress >= (req.quantity || 0);
-              });
-
-              isComplete = allItemsComplete;
-              reason = allItemsComplete
-                ? "✅ Itens completos"
-                : "❌ Itens incompletos";
-            } else {
-              isComplete = false;
-              reason = "❌ Sem itens (só módulos)";
-            }
-
-            console.log(
-              `  Nível ${level.level}: ${isComplete ? "✅" : "❌"} - ${reason}`
-            );
-          }
-        });
-      });
-    }
-
     return {
       completed: completedLevels,
       total: totalLevels,
