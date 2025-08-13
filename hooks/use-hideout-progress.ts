@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useHideoutStations } from "./use-hideout-stations";
 import { useLocalStorage } from "./use-local-storage";
 
@@ -94,41 +95,107 @@ export function useHideoutProgress() {
     setProgress({});
   }
 
-  // Calcular progresso geral do Hideout
-  function getHideoutOverallProgress() {
+  // Calcular progresso geral do Hideout - MESMA LÓGICA DO /hideout
+  const getHideoutOverallProgress = useCallback(() => {
     if (!stations || stations.length === 0)
       return { completed: 0, total: 0, percentage: 0 };
 
-    // Usar a mesma lógica da página do Hideout
-    const allLevels = stations
-      .flatMap((s) =>
-        s.levels
-          .filter(
-            (l: any) =>
-              (l.requirements && l.requirements.length > 0) ||
-              (l.isBaseLevel && s.name === "Stash")
-          )
-          .map((l: any) => ({ ...l, station: s.name }))
-      )
-      // Remover o Stash nível 1 do progresso geral
-      .filter((l: any) => !(l.station === "Stash" && l.level === 1));
+    let totalLevels = 0;
+    let completedLevels = 0;
 
-    // Usar a mesma função isModuleLevelComplete da página do Hideout
-    const completedLevels = allLevels.filter((level) =>
-      isModuleLevelComplete(level.station, level.level, stations, progress)
-    );
+    stations.forEach((station) => {
+      station.levels.forEach((level: any) => {
+        // Contar apenas níveis que têm requisitos (excluir Stash nível 1)
+        if (level.requirements && level.requirements.length > 0) {
+          totalLevels++;
+
+          // ULTRA SIMPLES: Se o botão está verde, conta para o progresso!
+          // Verificar se o nível está visualmente completo (verde)
+          let isLevelComplete = false;
+
+          // Verificar se TODOS os requisitos estão atendidos
+          if (level.requirements && level.requirements.length > 0) {
+            isLevelComplete = level.requirements.every((req: any) => {
+              if (req.type === "item") {
+                // Verificar se o item está completo
+                const progressKey = `${station.name}-lvl${level.level}-${req.itemId}`;
+                const currentProgress = progress[progressKey] || 0;
+                return currentProgress >= (req.quantity || 0);
+              } else if (req.type === "module") {
+                // Verificar se o módulo base está completo
+                const targetStation = stations.find(
+                  (s: any) =>
+                    s.name.toLowerCase().replace(/\s+/g, "") ===
+                    req.module.toLowerCase().replace(/\s+/g, "")
+                );
+                if (!targetStation) return false;
+
+                const targetLevel = targetStation.levels.find(
+                  (l: any) => l.level === req.level
+                );
+                if (!targetLevel) return false;
+
+                // Se o módulo base tem itens, verificar se estão completos
+                const targetItemReqs = targetLevel.requirements.filter(
+                  (r: any) => r.type === "item"
+                );
+                if (targetItemReqs.length > 0) {
+                  return targetItemReqs.every((itemReq: any) => {
+                    const progressKey = `${targetStation.name}-lvl${targetLevel.level}-${itemReq.itemId}`;
+                    return (
+                      (progress[progressKey] || 0) >= (itemReq.quantity || 0)
+                    );
+                  });
+                }
+                // Se o módulo base não tem itens, verificar se está completo
+                return true;
+              } else if (req.type === "trader") {
+                // Verificar se o trader está no nível correto
+                const TRADER_DUMP_TO_ID: Record<string, string> = {
+                  Mechanic: "54cb50c76803fa8b248b4571",
+                  Skier: "54cb57776803fa99248b456e",
+                  Peacekeeper: "579dc571d53a0658a154fbec",
+                  Therapist: "58330581ace78e27b8b10cee",
+                  Prapor: "5935c25fb3acc3127c3d8cd9",
+                  Fence: "5a7c2eca46aef81a7ca2145d",
+                  Jaeger: "5ac3b934156ae10c4430e83c",
+                  Ragman: "5c0647fdd443bc2504c2d371",
+                };
+
+                const traderId =
+                  TRADER_DUMP_TO_ID[req.traderId] || req.traderId;
+                const traderProgressKey = `trader-${traderId}`;
+                const traderLevel = progress[traderProgressKey] || 1;
+                const requiredLevel = req.level || req.quantity || 0;
+                return traderLevel >= requiredLevel;
+              } else if (req.type === "skill") {
+                // Verificar se a skill está no nível correto
+                const globalSkillKey = `skill-${req.skill}`;
+                const localSkillKey = `${station.name}-lvl${level.level}-skill-${req.skill}`;
+                const skillLevel =
+                  progress[globalSkillKey] ?? progress[localSkillKey] ?? 0;
+                return skillLevel >= (req.level || 0);
+              }
+              return false;
+            });
+          }
+
+          if (isLevelComplete) {
+            completedLevels++;
+          }
+        }
+      });
+    });
 
     const percentage =
-      allLevels.length > 0
-        ? Math.round((completedLevels.length / allLevels.length) * 100)
-        : 0;
+      totalLevels > 0 ? Math.round((completedLevels / totalLevels) * 100) : 0;
 
     return {
-      completed: completedLevels.length,
-      total: allLevels.length,
+      completed: completedLevels,
+      total: totalLevels,
       percentage,
     };
-  }
+  }, [stations, progress]);
 
   return {
     progress,

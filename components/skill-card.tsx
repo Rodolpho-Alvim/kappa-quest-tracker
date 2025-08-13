@@ -1,13 +1,19 @@
 import React from "react";
 import { QuantityInput } from "./QuantityInput";
 
-const SKILLS = [
+interface Skill {
+  name: string;
+  internalName?: string;
+}
+
+const SKILLS: Skill[] = [
   { name: "Endurance" },
   { name: "Attention" },
   { name: "Health" },
   { name: "Vitality" },
   { name: "Metabolism" },
   { name: "Strength" },
+  { name: "Hideout M.", internalName: "Hideout Management" },
 ];
 
 const SKILL_IMAGES: Record<string, string> = {
@@ -23,6 +29,10 @@ const SKILL_IMAGES: Record<string, string> = {
     "https://static.wikia.nocookie.net/escapefromtarkov_gamepedia/images/7/7e/Skill_physical_metabolism.png",
   Strength:
     "https://static.wikia.nocookie.net/escapefromtarkov_gamepedia/images/c/ca/Skill_physical_strength.png",
+  "Hideout Management":
+    "https://static.wikia.nocookie.net/escapefromtarkov_gamepedia/images/5/57/Skill_practical_hideoutmanagement.png",
+  "Hideout M.":
+    "https://static.wikia.nocookie.net/escapefromtarkov_gamepedia/images/5/57/Skill_practical_hideoutmanagement.png",
 };
 
 interface SkillCardProps {
@@ -34,8 +44,9 @@ export const SkillCard: React.FC<SkillCardProps> = ({
   progress,
   setProgress,
 }) => {
-  function setSkillLevel(skill: string, level: number) {
-    setProgress({ ...progress, [`skill-${skill}`]: level });
+  function setSkillLevel(skill: Skill, level: number) {
+    const internalName = skill.internalName || skill.name;
+    setProgress({ ...progress, [`skill-${internalName}`]: level });
   }
 
   return (
@@ -53,13 +64,13 @@ export const SkillCard: React.FC<SkillCardProps> = ({
               className="w-16 h-16 rounded-full object-cover mb-2 border border-gray-300 dark:border-zinc-700"
               onError={(e) => (e.currentTarget.style.display = "none")}
             />
-            <span className="font-semibold mb-1 dark:text-gray-100">
+            <span className={`font-semibold mb-1 dark:text-gray-100`}>
               {skill.name}
             </span>
             <label className="text-xs mb-1 dark:text-gray-300">Nível:</label>
             <QuantityInput
-              value={progress[`skill-${skill.name}`] ?? 0}
-              onChange={(val) => setSkillLevel(skill.name, val)}
+              value={progress[`skill-${skill.internalName || skill.name}`] ?? 0}
+              onChange={(val) => setSkillLevel(skill, val)}
               min={0}
               max={51}
               className="w-14 text-sm"
