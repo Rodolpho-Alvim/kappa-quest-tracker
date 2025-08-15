@@ -604,7 +604,7 @@ export default function KappaQuestTracker() {
       {/* Header */}
       <HeaderBar
         imageSrc="/images/Secure_container_Kappa_image.gif"
-        title="Kappa"
+        title="Kappa Tracker"
         subtitle="Container Kappa Progress"
         showHubButton={true}
       >
@@ -691,21 +691,21 @@ export default function KappaQuestTracker() {
         <HelpSection showHelp={showHelp} setShowHelp={setShowHelp} />
 
         {/* Título principal com melhor hierarquia */}
-        <div className="mb-8 text-center">
+        {/* <div className="mb-8 text-center">
           <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-[#bfa94a] via-[#a68c2c] to-[#bfa94a] bg-clip-text text-transparent drop-shadow-sm tracking-tight mb-4 font-tarkov">
             Kappa Quest Tracker
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium max-w-3xl mx-auto leading-relaxed font-tarkov">
             Acompanhe seu progresso para o Container Kappa
           </p>
-        </div>
+        </div> */}
 
         {/* Separador visual elegante */}
         <div className="mb-10 flex items-center">
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
           <div className="px-6 py-2 bg-gradient-to-r from-[#bfa94a] to-[#a68c2c] rounded-full shadow-lg">
             <span className="text-[#181a1b] font-semibold text-sm">
-              📊 ESTATÍSTICAS
+              📊 PROGRESSO
             </span>
           </div>
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>

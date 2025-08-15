@@ -12,7 +12,7 @@ export const HelpSection: React.FC<HelpSectionProps> = ({
   <div className="mb-8 bg-card rounded-lg shadow-sm border p-6 text-card-foreground">
     <div className="flex items-center justify-between mb-4">
       <h2 className="text-lg font-semibold flex items-center gap-2 text-foreground">
-        📚 Como usar o Kappa Quest Tracker
+        📚 Como usar o Kappa Tracker
       </h2>
       <button
         onClick={() => setShowHelp((prev) => !prev)}

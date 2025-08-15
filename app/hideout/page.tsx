@@ -51,96 +51,106 @@ export default function HideoutPage() {
     let totalLevels = 0;
     let completedLevels = 0;
 
-    allStations.forEach((station) => {
-      station.levels.forEach((level: any) => {
-        // Contar apenas níveis que têm requisitos (excluir Stash nível 1)
-        if (level.requirements && level.requirements.length > 0) {
-          totalLevels++;
+    // DEBUG: Log para entender o que está sendo contado
+    console.log("=== DEBUG HIDEOUT PROGRESS ===");
+    console.log("Total de estações:", allStations.length);
 
-          // ULTRA SIMPLIFICADO: Só verificar se os itens estão completos
-          // Ignorar completamente módulos, traders e skills
-          // Se você completou os itens, o nível está completo!
-          const itemReqs = level.requirements.filter(
+    allStations.forEach((station) => {
+      console.log(`\n--- Estação: ${station.name} ---`);
+      station.levels.forEach((level: any) => {
+        console.log(
+          `  Nível ${level.level}: requirements.length = ${
+            level.requirements?.length || 0
+          }`
+        );
+
+        // Contar apenas níveis que têm requisitos E que podem ser completados
+        if (level.requirements && level.requirements.length > 0) {
+          // Filtrar apenas requisitos de ITENS (mesmo que os botões)
+          const itemRequirements = level.requirements.filter(
             (req: any) => req.type === "item"
           );
 
-          // ULTRA SIMPLES: Se o botão está verde, conta para o progresso!
-          // Verificar se o nível está visualmente completo (verde)
-          let isLevelComplete = false;
+          // SÓ contar se tem itens para completar (mesmo que os botões)
+          if (itemRequirements.length > 0) {
+            totalLevels++;
+            console.log(
+              `    ✅ CONTADO: ${station.name} nível ${level.level} (tem ${itemRequirements.length} itens)`
+            );
 
-          // Verificar se TODOS os requisitos estão atendidos
-          if (level.requirements && level.requirements.length > 0) {
-            isLevelComplete = level.requirements.every((req: any) => {
-              if (req.type === "item") {
-                // Verificar se o item está completo
+            // LÓGICA ULTRA SIMPLES: Usar EXATAMENTE a mesma lógica dos botões verdes!
+            // Se o botão está verde, conta como COMPLETO na barra de progresso
+            let isLevelComplete = false;
+
+            // MESMA lógica dos botões: verificar se há itens incompletos
+            const hasIncompleteItems = itemRequirements.some((req: any) => {
+              const progressKey = `${station.name}-lvl${level.level}-${req.itemId}`;
+              const found = progress[progressKey] || 0;
+              const required = req.quantity || 0;
+              return found < required;
+            });
+
+            // Se NÃO há itens incompletos, o nível está COMPLETO (botão verde)
+            isLevelComplete = !hasIncompleteItems;
+
+            if (isLevelComplete) {
+              completedLevels++;
+              console.log(
+                `    🎯 COMPLETO: ${station.name} nível ${level.level}`
+              );
+            } else {
+              console.log(
+                `    ❌ INCOMPLETO: ${station.name} nível ${level.level} - INVESTIGAR!`
+              );
+              // DEBUG: Mostrar quais requisitos estão falhando
+              itemRequirements.forEach((req: any, index: number) => {
                 const progressKey = `${station.name}-lvl${level.level}-${req.itemId}`;
                 const currentProgress = progress[progressKey] || 0;
-                return currentProgress >= (req.quantity || 0);
-              } else if (req.type === "module") {
-                // Verificar se o módulo base está completo
-                const targetStation = allStations.find(
-                  (s: any) =>
-                    s.name.toLowerCase().replace(/\s+/g, "") ===
-                    req.module.toLowerCase().replace(/\s+/g, "")
+                const required = req.quantity || 0;
+                const reqStatus = currentProgress >= required;
+                console.log(
+                  `      Requisito ${index + 1} (ITEM): ${
+                    req.itemId
+                  } - ${currentProgress}/${required} = ${
+                    reqStatus ? "✅" : "❌"
+                  }`
                 );
-                if (!targetStation) return false;
-
-                const targetLevel = targetStation.levels.find(
-                  (l: any) => l.level === req.level
-                );
-                if (!targetLevel) return false;
-
-                // Se o módulo base tem itens, verificar se estão completos
-                const targetItemReqs = targetLevel.requirements.filter(
-                  (r: any) => r.type === "item"
-                );
-                if (targetItemReqs.length > 0) {
-                  return targetItemReqs.every((itemReq: any) => {
-                    const progressKey = `${targetStation.name}-lvl${targetLevel.level}-${itemReq.itemId}`;
-                    return (
-                      (progress[progressKey] || 0) >= (itemReq.quantity || 0)
-                    );
-                  });
-                }
-                // Se o módulo base não tem itens, verificar se está completo
-                return true;
-              } else if (req.type === "trader") {
-                // Verificar se o trader está no nível correto
-                const TRADER_DUMP_TO_ID: Record<string, string> = {
-                  Mechanic: "54cb50c76803fa8b248b4571",
-                  Skier: "54cb57776803fa99248b456e",
-                  Peacekeeper: "579dc571d53a0658a154fbec",
-                  Therapist: "58330581ace78e27b8b10cee",
-                  Prapor: "5935c25fb3acc3127c3d8cd9",
-                  Fence: "5a7c2eca46aef81a7ca2145d",
-                  Jaeger: "5ac3b934156ae10c4430e83c",
-                  Ragman: "5c0647fdd443bc2504c2d371",
-                };
-
-                const traderId =
-                  TRADER_DUMP_TO_ID[req.traderId] || req.traderId;
-                const traderProgressKey = `trader-${traderId}`;
-                const traderLevel = progress[traderProgressKey] || 1;
-                const requiredLevel = req.level || req.quantity || 0;
-                return traderLevel >= requiredLevel;
-              } else if (req.type === "skill") {
-                // Verificar se a skill está no nível correto
-                const globalSkillKey = `skill-${req.skill}`;
-                const localSkillKey = `${station.name}-lvl${level.level}-skill-${req.skill}`;
-                const skillLevel =
-                  progress[globalSkillKey] ?? progress[localSkillKey] ?? 0;
-                return skillLevel >= (req.level || 0);
-              }
-              return false;
-            });
+              });
+            }
+          } else {
+            console.log(
+              `    ⏭️ IGNORADO: ${station.name} nível ${level.level} (sem itens, só módulos/traders/skills)`
+            );
           }
-
-          if (isLevelComplete) {
-            completedLevels++;
+        } else {
+          console.log(
+            `    ⏭️ IGNORADO: ${station.name} nível ${level.level} (sem requisitos)`
+          );
+          // DEBUG: Verificar se é o Stash nível 1
+          if (station.name === "Stash" && level.level === 1) {
+            console.log(`    🔍 STASH NÍVEL 1 DETECTADO:`);
+            console.log(`      - level.requirements:`, level.requirements);
+            console.log(
+              `      - level.requirements.length:`,
+              level.requirements?.length
+            );
+            console.log(
+              `      - level.requirements && level.requirements.length > 0:`,
+              level.requirements && level.requirements.length > 0
+            );
           }
         }
       });
     });
+
+    console.log(`\n=== RESULTADO FINAL ===`);
+    console.log(`Total de níveis contados: ${totalLevels}`);
+    console.log(`Níveis completos: ${completedLevels}`);
+    console.log(
+      `Porcentagem: ${
+        totalLevels > 0 ? Math.round((completedLevels / totalLevels) * 100) : 0
+      }%`
+    );
 
     const percentage =
       totalLevels > 0 ? Math.round((completedLevels / totalLevels) * 100) : 0;
@@ -162,7 +172,7 @@ export default function HideoutPage() {
     <div className="min-h-screen bg-background dark:bg-[#101112]">
       <HeaderBar
         imageSrc="/images/Banner_hideout.png"
-        title="Hideout"
+        title="Hideout Tracker"
         subtitle="Hideout Progress"
         showHubButton={true}
         showApiHubButton={false}
@@ -345,7 +355,15 @@ export default function HideoutPage() {
               </div>
             </div>
           </div>
-
+          <div className="mb-8 flex items-center">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+            <div className="px-6 py-2 bg-gradient-to-r from-[#5a6b4a] to-[#4a5b3a] rounded-full shadow-lg">
+              <span className="text-white font-semibold text-sm">
+                👥 TRADERS E SKILLS
+              </span>
+            </div>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+          </div>
           {/* Cards de Traders e Skills com melhor layout */}
           <div className="flex flex-col lg:flex-row gap-6 mb-10">
             <div className="flex-1">
