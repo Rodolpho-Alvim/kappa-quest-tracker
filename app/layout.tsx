@@ -1,3 +1,4 @@
+import { AutoSync } from "@/components/auto-sync";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
@@ -45,6 +46,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <AutoSync />
           {children}
           <Analytics />
         </ThemeProvider>
