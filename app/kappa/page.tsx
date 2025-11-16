@@ -609,7 +609,7 @@ export default function KappaQuestTracker() {
         showHubButton={true}
       >
         <div className="hidden md:flex w-full justify-center mt-6 mb-2">
-          <div className="w-full max-w-[1400px] px-72 flex justify-end items-center gap-2">
+          <div className="w-full md:pl-80 flex justify-end items-center gap-2 px-6">
             <SettingsDialog
               handleExport={handleExport}
               handleImport={handleImport}
@@ -656,7 +656,7 @@ export default function KappaQuestTracker() {
         </button>
       </Sheet>
       {/* Sidebar fixa desktop */}
-      <div className="hidden md:block md:w-72 md:h-screen md:fixed md:top-0 md:right-0 md:z-0 bg-background border-l border-border shadow-none overflow-y-auto">
+      <div className="hidden md:block md:w-72 md:h-screen md:fixed md:top-0 md:left-0 md:z-0 bg-background border-r border-border shadow-none overflow-y-auto">
         <NavigationSidebar
           sections={sidebarSections}
           activeSection={activeSection}
@@ -687,7 +687,7 @@ export default function KappaQuestTracker() {
         <AvisoBanner showAviso={showAviso} setShowAviso={setShowAviso} />
       </div> */}
 
-      <div className="max-w-[1400px] mx-auto px-3 py-8 md:px-6 md:pr-72">
+      <div className="w-full px-3 py-8 md:px-6 md:pl-80">
         <HelpSection showHelp={showHelp} setShowHelp={setShowHelp} />
 
         {/* Título principal com melhor hierarquia */}

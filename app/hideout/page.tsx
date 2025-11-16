@@ -178,7 +178,7 @@ export default function HideoutPage() {
         showApiHubButton={false}
       >
         <div className="hidden md:flex w-full justify-center mt-6 mb-2">
-          <div className="w-full max-w-[1400px] px-72 flex justify-end items-center gap-2">
+          <div className="w-full md:pl-80 flex justify-end items-center gap-2 px-6">
             <SettingsDialog
               handleExport={() => {
                 // Exportar progresso do Hideout
@@ -283,7 +283,7 @@ export default function HideoutPage() {
         </div>
       </HeaderBar>
 
-      <div className="max-w-[1400px] mx-auto px-3 py-8 md:px-6 md:pr-72">
+      <div className="w-full px-3 py-8 md:px-6 md:pl-80">
         <div className="space-y-6">
           {/* Separador visual para o dashboard */}
           <div className="mb-8 flex items-center">
@@ -427,7 +427,7 @@ export default function HideoutPage() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+             <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 min-[1920px]:grid-cols-4 gap-6 items-stretch">
               {filteredStations.map((station: any) => (
                 <div key={station.id} className="transition-all duration-300">
                   <HideoutCard
@@ -445,7 +445,7 @@ export default function HideoutPage() {
       </div>
       <Footer />
       {/* Sidebar de itens necessários - visível apenas em telas md+ */}
-      <div className="hidden md:block md:w-72 md:h-screen md:fixed md:top-0 md:right-0 md:z-0 bg-background border-l border-border shadow-none overflow-y-auto">
+      <div className="hidden md:block md:w-72 md:h-screen md:fixed md:top-0 md:left-0 md:z-0 bg-background border-r border-border shadow-none overflow-y-auto overflow-x-hidden">
         <ItemSidebar
           progress={progress}
           setProgress={setProgress}
