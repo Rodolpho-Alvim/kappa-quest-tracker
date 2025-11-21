@@ -234,7 +234,7 @@ export function HideoutCard({
       }`}
     >
       <CardHeader
-        className={`${headerColor} p-6 relative overflow-hidden h-32 flex flex-col justify-center`}
+        className={`${headerColor} p-4 relative overflow-hidden h-20 flex flex-col justify-center`}
       >
         {/* Efeito de brilho sutil */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 transform -skew-x-12 -translate-x-full animate-pulse"></div>
@@ -278,7 +278,7 @@ export function HideoutCard({
                   <img
                     src={imagePath}
                     alt={station.name}
-                    className="w-12 h-12 rounded-lg bg-white/20 object-contain border border-white/30 shadow-lg"
+                    className="w-10 h-10 rounded-lg bg-white/20 object-contain border border-white/30 shadow-lg"
                     onError={(e) => (e.currentTarget.style.display = "none")}
                   />
                 </div>
@@ -293,7 +293,7 @@ export function HideoutCard({
                   <img
                     src={fallbackImage}
                     alt={station.name}
-                    className="w-12 h-12 rounded-lg bg-white/20 object-contain border border-white/30 shadow-lg"
+                    className="w-10 h-10 rounded-lg bg-white/20 object-contain border border-white/30 shadow-lg"
                     onError={(e) => {
                       // Se a imagem local falhar, tentar a API do Tarkov.dev
                       e.currentTarget.src = `https://assets.tarkov.dev/${station.id}-icon.webp`;
@@ -307,10 +307,10 @@ export function HideoutCard({
             }
           })()}
           <div className="flex-1 min-w-0">
-            <CardTitle className="text-xl font-bold text-gray-200 mb-2 leading-tight">
+            <CardTitle className="text-lg font-bold text-gray-200 mb-1 leading-tight">
               {station.name}
             </CardTitle>
-            <div className="text-sm opacity-90 text-gray-200 leading-relaxed">
+            <div className="text-xs opacity-90 text-gray-200 leading-snug">
               {station.description}
             </div>
           </div>

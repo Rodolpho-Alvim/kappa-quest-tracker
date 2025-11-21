@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { HeaderBar } from "@/components/HeaderBar";
 import { HideoutCard } from "@/components/hideout-card";
 import { HideoutSearch } from "@/components/hideout-search";
+import { HideoutStationNavigation } from "@/components/hideout-station-navigation";
 import { ItemSidebar } from "@/components/item-sidebar";
 import { SettingsDialog } from "@/components/SettingsDialog";
 import { SkillCard } from "@/components/skill-card";
@@ -29,6 +30,7 @@ SheetContentNoClose.displayName = "SheetContentNoClose";
 export default function HideoutPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [hideCompleted, setHideCompleted] = useState(false);
+  const [selectedStationId, setSelectedStationId] = useState<number | null>(null);
   const { filteredStations, allStations, highlightedItems, loading } =
     useHideoutSearch(searchTerm);
   const { getHideoutOverallProgress } = useHideoutProgress();
@@ -37,6 +39,48 @@ export default function HideoutPage() {
     {}
   );
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Scroll para a estação selecionada
+  React.useEffect(() => {
+    if (selectedStationId !== null) {
+      // Delay maior para garantir que o DOM foi completamente atualizado e renderizado
+      const scrollTimeout = setTimeout(() => {
+        // Usar allStations para encontrar a estação, pois ela pode não estar no filteredStations devido ao filtro de busca
+        const selectedStation = allStations.find(
+          (station: any) => station.id === selectedStationId
+        );
+        
+        if (selectedStation) {
+          // Criar o ID do elemento da estação
+          const stationElementId = `station-${selectedStation.id}-${selectedStation.name.replace(/\s+/g, "-").toLowerCase()}`;
+          
+          // Tentar encontrar o elemento várias vezes com pequenos delays
+          const tryScroll = (attempts: number = 0) => {
+            const stationElement = document.getElementById(stationElementId);
+            
+            if (stationElement) {
+              // Calcular a posição do elemento com offset para ficar abaixo dos botões
+              const elementTop = stationElement.getBoundingClientRect().top;
+              const scrollPosition = window.pageYOffset + elementTop - 120; // 120px de offset
+              
+              // Scroll suave até a estação selecionada
+              window.scrollTo({
+                top: Math.max(0, scrollPosition),
+                behavior: "smooth"
+              });
+            } else if (attempts < 5) {
+              // Tentar novamente após um pequeno delay
+              setTimeout(() => tryScroll(attempts + 1), 100);
+            }
+          };
+          
+          tryScroll();
+        }
+      }, 300);
+      
+      return () => clearTimeout(scrollTimeout);
+    }
+  }, [selectedStationId, allStations]);
 
   function resetProgress() {
     setProgress({});
@@ -404,6 +448,12 @@ export default function HideoutPage() {
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
           </div>
 
+          {/* Navegação rápida com imagens das estações */}
+          <HideoutStationNavigation 
+            onStationSelect={setSelectedStationId}
+            selectedStationId={selectedStationId}
+          />
+
           {/* Grid de estações com melhor espaçamento */}
           {loading ? (
             <div className="text-center py-16">
@@ -428,17 +478,43 @@ export default function HideoutPage() {
             </div>
           ) : (
              <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 min-[1920px]:grid-cols-4 gap-6 items-stretch">
-              {filteredStations.map((station: any) => (
-                <div key={station.id} className="transition-all duration-300">
-                  <HideoutCard
-                    station={station}
-                    progress={progress}
-                    setProgress={setProgress}
-                    highlightedItems={highlightedItems as Set<string>}
-                    className="h-full"
-                  />
-                </div>
-              ))}
+              {(() => {
+                // Se uma estação está selecionada, garantir que ela esteja na lista
+                let stationsToShow = filteredStations;
+                if (selectedStationId !== null) {
+                  const selectedStation = allStations.find(
+                    (station: any) => station.id === selectedStationId
+                  );
+                  if (selectedStation && !filteredStations.some((s: any) => s.id === selectedStationId)) {
+                    // Se a estação selecionada não está no filteredStations, adicioná-la
+                    stationsToShow = [selectedStation];
+                  } else {
+                    // Filtrar para mostrar apenas a estação selecionada
+                    stationsToShow = filteredStations.filter(
+                      (station: any) => station.id === selectedStationId
+                    );
+                  }
+                }
+                
+                return stationsToShow.map((station: any) => {
+                  const stationElementId = `station-${station.id}-${station.name.replace(/\s+/g, "-").toLowerCase()}`;
+                  return (
+                    <div 
+                      key={station.id} 
+                      id={stationElementId}
+                      className="transition-all duration-300 scroll-mt-24"
+                    >
+                      <HideoutCard
+                        station={station}
+                        progress={progress}
+                        setProgress={setProgress}
+                        highlightedItems={highlightedItems as Set<string>}
+                        className="h-full"
+                      />
+                    </div>
+                  );
+                });
+              })()}
             </div>
           )}
         </div>
