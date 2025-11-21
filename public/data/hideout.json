@@ -14,12 +14,12 @@
             {
               "type": "item",
               "itemId": "5449016a4bdc2d6f028b456f",
-              "quantity": 200000
+              "quantity": 100000
             },
             {
               "type": "item",
               "itemId": "590a3c0a86f774385a33c450",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "module",
@@ -184,27 +184,27 @@
             {
               "type": "item",
               "itemId": "5734779624597737e04bf329",
-              "quantity": 30
+              "quantity": 15
             },
             {
               "type": "item",
               "itemId": "57347c2e24597744902c94a1",
-              "quantity": 20
+              "quantity": 10
             },
             {
               "type": "item",
               "itemId": "59e36c6f86f774176c10a2a7",
-              "quantity": 20
+              "quantity": 10
             },
             {
               "type": "item",
               "itemId": "5c05300686f7746dce784e5d",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "57347cd0245977445a2d6ff1",
-              "quantity": 10
+              "quantity": 5
             },
             {
               "type": "module",
@@ -374,12 +374,12 @@
             {
               "type": "item",
               "itemId": "5449016a4bdc2d6f028b456f",
-              "quantity": 50000
+              "quantity": 25000
             },
             {
               "type": "item",
               "itemId": "57347b8b24597737dd42e192",
-              "quantity": 4
+              "quantity": 2
             }
           ]
         },
@@ -484,12 +484,12 @@
             {
               "type": "item",
               "itemId": "5449016a4bdc2d6f028b456f",
-              "quantity": 20000
+              "quantity": 10000
             },
             {
               "type": "item",
               "itemId": "56742c284bdc2d98058b456d",
-              "quantity": 2
+              "quantity": 1
             }
           ]
         },
@@ -579,27 +579,27 @@
             {
               "type": "item",
               "itemId": "5449016a4bdc2d6f028b456f",
-              "quantity": 4000
+              "quantity": 2000
             },
             {
               "type": "item",
               "itemId": "5c13cef886f774072e618e82",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "57347c93245977448d35f6e3",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "5c13cd2486f774072c757944",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "62a0a098de7ac8199358053b",
-              "quantity": 2
+              "quantity": 1
             }
           ]
         },
@@ -764,27 +764,27 @@
             {
               "type": "item",
               "itemId": "5449016a4bdc2d6f028b456f",
-              "quantity": 100000
+              "quantity": 50000
             },
             {
               "type": "item",
               "itemId": "5d1b3f2d86f774253763b735",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "5d1b3a5d86f774252167ba22",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "544fb25a4bdc2dfb738b4567",
-              "quantity": 4
+              "quantity": 2
             },
             {
               "type": "item",
               "itemId": "62a0a043cf4a99369e2624a5",
-              "quantity": 2
+              "quantity": 1
             }
           ]
         },
@@ -827,13 +827,13 @@
               "level": 1
             },
             {
-              "type": "skill",
-              "skill": "Health",
+              "type": "trader",
+              "traderId": "Therapist",
               "level": 2
             },
             {
-              "type": "trader",
-              "traderId": "Therapist",
+              "type": "skill",
+              "skill": "Health",
               "level": 2
             }
           ]
@@ -877,11 +877,6 @@
               "level": 2
             },
             {
-              "type": "skill",
-              "skill": "Vitality",
-              "level": 3
-            },
-            {
               "type": "trader",
               "traderId": "Therapist",
               "level": 3
@@ -890,6 +885,11 @@
               "type": "trader",
               "traderId": "Skier",
               "level": 2
+            },
+            {
+              "type": "skill",
+              "skill": "Vitality",
+              "level": 3
             }
           ]
         }
@@ -909,22 +909,22 @@
             {
               "type": "item",
               "itemId": "5449016a4bdc2d6f028b456f",
-              "quantity": 50000
+              "quantity": 25000
             },
             {
               "type": "item",
               "itemId": "5d1b313086f77425227d1678",
-              "quantity": 4
+              "quantity": 2
             },
             {
               "type": "item",
               "itemId": "59e36c6f86f774176c10a2a7",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "62a09ee4cf4a99369e262453",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "module",
@@ -1034,17 +1034,17 @@
             {
               "type": "item",
               "itemId": "5449016a4bdc2d6f028b456f",
-              "quantity": 20000
+              "quantity": 10000
             },
             {
               "type": "item",
               "itemId": "57347c1124597737fb1379e3",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "57347b8b24597737dd42e192",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "module",
@@ -1059,42 +1059,32 @@
             {
               "type": "item",
               "itemId": "5449016a4bdc2d6f028b456f",
-              "quantity": 70000
+              "quantity": 75000
             },
             {
               "type": "item",
               "itemId": "5734781f24597737e04bf32a",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "590a391c86f774385a33c404",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "590a3cd386f77436f20848cb",
-              "quantity": 6
+              "quantity": 2
             },
             {
               "type": "module",
               "module": "Generator",
-              "level": 2
-            },
-            {
-              "type": "module",
-              "module": "Heating",
-              "level": 2
+              "level": 1
             },
             {
               "type": "module",
               "module": "Rest Space",
               "level": 1
-            },
-            {
-              "type": "trader",
-              "traderId": "Ragman",
-              "level": 2
             }
           ]
         },
@@ -1104,42 +1094,27 @@
             {
               "type": "item",
               "itemId": "59e36c6f86f774176c10a2a7",
-              "quantity": 8
+              "quantity": 3
             },
             {
               "type": "item",
               "itemId": "5c06782b86f77426df5407d2",
-              "quantity": 10
+              "quantity": 3
             },
             {
               "type": "item",
               "itemId": "5c06779c86f77426e00dd782",
-              "quantity": 14
+              "quantity": 5
             },
             {
               "type": "item",
               "itemId": "5e2aedd986f7746d404f3aa4",
-              "quantity": 10
-            },
-            {
-              "type": "module",
-              "module": "Generator",
-              "level": 3
-            },
-            {
-              "type": "module",
-              "module": "Heating",
-              "level": 3
+              "quantity": 4
             },
             {
               "type": "module",
               "module": "Rest Space",
               "level": 2
-            },
-            {
-              "type": "trader",
-              "traderId": "Skier",
-              "level": 3
             }
           ]
         }
@@ -1214,12 +1189,12 @@
             {
               "type": "item",
               "itemId": "5449016a4bdc2d6f028b456f",
-              "quantity": 40000
+              "quantity": 20000
             },
             {
               "type": "item",
               "itemId": "590c2c9c86f774245b1f03f2",
-              "quantity": 2
+              "quantity": 1
             }
           ]
         },
@@ -1319,22 +1294,22 @@
             {
               "type": "item",
               "itemId": "57347c77245977448d35f6e2",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "57347c5b245977448d35f6e1",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "61bf7b6302b3924be92fa8c3",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "5449016a4bdc2d6f028b456f",
-              "quantity": 40000
+              "quantity": 20000
             },
             {
               "type": "module",
@@ -1713,7 +1688,7 @@
             {
               "type": "item",
               "itemId": "5449016a4bdc2d6f028b456f",
-              "quantity": 50000
+              "quantity": 25000
             }
           ]
         },
@@ -1808,22 +1783,22 @@
             {
               "type": "item",
               "itemId": "59e35cbb86f7741778269d83",
-              "quantity": 8
+              "quantity": 4
             },
             {
               "type": "item",
               "itemId": "57347c5b245977448d35f6e1",
-              "quantity": 10
+              "quantity": 5
             },
             {
               "type": "item",
               "itemId": "57347c77245977448d35f6e2",
-              "quantity": 10
+              "quantity": 5
             },
             {
               "type": "item",
               "itemId": "57347c1124597737fb1379e3",
-              "quantity": 6
+              "quantity": 3
             },
             {
               "type": "module",
@@ -1866,14 +1841,14 @@
               "level": 1
             },
             {
-              "type": "skill",
-              "skill": "Attention",
-              "level": 3
-            },
-            {
               "type": "trader",
               "traderId": "Jaeger",
               "level": 2
+            },
+            {
+              "type": "skill",
+              "skill": "Attention",
+              "level": 3
             }
           ]
         },
@@ -1938,17 +1913,17 @@
             {
               "type": "item",
               "itemId": "57347c77245977448d35f6e2",
-              "quantity": 4
+              "quantity": 2
             },
             {
               "type": "item",
               "itemId": "57347c5b245977448d35f6e1",
-              "quantity": 4
+              "quantity": 2
             },
             {
               "type": "item",
               "itemId": "544fb5454bdc2df8738b456a",
-              "quantity": 2
+              "quantity": 1
             }
           ]
         },
@@ -2067,27 +2042,27 @@
             {
               "type": "item",
               "itemId": "5c12613b86f7743bbe2c3f76",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "62a0a124de7ac81993580542",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "574eb85c245977648157eec3",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "module",
               "module": "Security",
-              "level": 2
+              "level": 1
             },
             {
               "type": "module",
               "module": "Vents",
-              "level": 2
+              "level": 1
             }
           ]
         },
@@ -2135,14 +2110,14 @@
               "level": 1
             },
             {
-              "type": "skill",
-              "skill": "Attention",
-              "level": 3
-            },
-            {
               "type": "trader",
               "traderId": "Mechanic",
               "level": 2
+            },
+            {
+              "type": "skill",
+              "skill": "Attention",
+              "level": 3
             }
           ]
         },
@@ -2907,37 +2882,37 @@
             {
               "type": "item",
               "itemId": "5b4391a586f7745321235ab2",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "590c2c9c86f774245b1f03f2",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "5e2af37686f774755a234b65",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "item",
               "itemId": "62a09ee4cf4a99369e262453",
-              "quantity": 6
+              "quantity": 3
             },
             {
               "type": "item",
               "itemId": "5d1b392c86f77425243e98fe",
-              "quantity": 10
+              "quantity": 5
             },
             {
               "type": "item",
               "itemId": "59e3596386f774176c10a2a2",
-              "quantity": 2
+              "quantity": 1
             },
             {
               "type": "module",
               "module": "Security",
-              "level": 2
+              "level": 1
             }
           ]
         }

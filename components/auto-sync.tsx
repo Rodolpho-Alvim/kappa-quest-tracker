@@ -95,9 +95,15 @@ export function AutoSync() {
       localStorage.setItem(SYNC_CHECK_KEY, new Date().toISOString());
 
       console.log("[AutoSync] Sincronização automática concluída com sucesso");
-      console.log("[AutoSync] Estações atualizadas:", changes?.updatedStations?.length || 0);
+      console.log(
+        "[AutoSync] Estações atualizadas:",
+        changes?.updatedStations?.length || 0
+      );
       console.log("[AutoSync] Novos itens:", changes?.newItems?.length || 0);
-      console.log("[AutoSync] Ícones atualizados:", itemsSyncResult?.updatedIcons?.length || 0);
+      console.log(
+        "[AutoSync] Ícones atualizados:",
+        itemsSyncResult?.updatedIcons?.length || 0
+      );
     } catch (err) {
       console.error("[AutoSync] Erro na sincronização automática:", err);
       // Não mostrar erro ao usuário, apenas logar no console
@@ -122,4 +128,3 @@ export function AutoSync() {
   // Componente não renderiza nada na UI
   return null;
 }
-
