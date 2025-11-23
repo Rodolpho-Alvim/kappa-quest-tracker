@@ -610,24 +610,23 @@ export default function KappaQuestTracker() {
       >
         <div className="hidden md:flex w-full justify-center mt-6 mb-2">
           <div className="w-full md:pl-80 flex justify-end items-center gap-2 px-6">
+            <ThemeToggle />
             <SettingsDialog
               handleExport={handleExport}
               handleImport={handleImport}
               restoreDefaults={restoreDefaults}
               handleReset={handleReset}
             />
-            <ThemeToggle />
           </div>
         </div>
         <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
           <SettingsDialog
             handleExport={handleExport}
             handleImport={handleImport}
             restoreDefaults={restoreDefaults}
             handleReset={handleReset}
-            iconOnly
           />
-          <ThemeToggle />
         </div>
       </HeaderBar>
       {/* Sidebar mobile (Sheet) */}

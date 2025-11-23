@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { useHideoutStations } from "@/hooks/use-hideout-stations";
 import { useItemsMap } from "@/hooks/use-items-map";
 import * as React from "react";
@@ -227,6 +228,39 @@ export function HideoutCard({
     STATION_COLOR_MAP[station.name] ||
     "bg-gradient-to-r from-blue-700 to-blue-400";
 
+  // Função auxiliar para obter a imagem de uma estação
+  const getStationImage = React.useCallback((stationName: string, stationId?: number) => {
+    const imageMap: Record<string, string> = {
+      "Air Filtering Unit": "/images/air-filtering-unit.png",
+      "Bitcoin Farm": "/images/bitcoin-farm.png",
+      "Booze Generator": "/images/booze-generator.png",
+      "Cultist Circle": "/images/cultist-circle.png",
+      "Defective Wall": "https://assets.tarkov.dev/station-defective-wall.png",
+      "Gear Rack": "/images/Gear_Rack_Portrait.png",
+      Generator: "/images/Generator_Portrait.png",
+      Gym: "/images/Gym_Portrait.png",
+      "Hall of Fame": "/images/Hall_of_Fame_Portrait.png",
+      Heating: "/images/Heating_Portrait.png",
+      Illumination: "/images/Illumination_Portrait.png",
+      "Intelligence Center": "/images/Intelligence_Center_Portrait.png",
+      Lavatory: "/images/Lavatory_Portrait.png",
+      Library: "/images/Library_Portrait.png",
+      Medstation: "/images/Medstation_Portrait.png",
+      "Nutrition Unit": "/images/Nutrition_Unit_Portrait.png",
+      "Rest Space": "/images/Rest_Space_Portrait.png",
+      "Scav Case": "/images/Scav_Case_Portrait.png",
+      Security: "/images/Security_Portrait.png",
+      "Shooting Range": "/images/Shooting_Range_Portrait.png",
+      "Solar Power": "/images/Solar_power_Portrait.png",
+      Stash: "/images/Stash_Portrait.png",
+      Vents: "/images/Vents_Portrait.png",
+      "Water Collector": "/images/Water_Collector_Portrait.png",
+      "Weapon Rack": "/images/Weapon_Rack_Portrait.png",
+      Workbench: "/images/Workbench_Portrait.png",
+    };
+    return imageMap[stationName] || (stationId ? `https://assets.tarkov.dev/${stationId}-icon.webp` : "");
+  }, []);
+
   return (
     <Card
       className={`shadow-2xl border-0 overflow-hidden mb-4 h-full min-h-[520px] transition-all duration-300 ${
@@ -240,58 +274,12 @@ export function HideoutCard({
         <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 transform -skew-x-12 -translate-x-full animate-pulse"></div>
         <div className="flex items-center gap-4 h-full">
           {(() => {
-            // Mapeamento de nomes de estação para arquivos de imagem customizados
-            const imageMap: Record<string, string> = {
-              "Air Filtering Unit": "/images/air-filtering-unit.png",
-              "Bitcoin Farm": "/images/bitcoin-farm.png",
-              "Booze Generator": "/images/booze-generator.png",
-
-              "Cultist Circle": "/images/cultist-circle.png",
-              "Defective Wall":
-                "https://assets.tarkov.dev/station-defective-wall.png",
-              "Gear Rack": "/images/Gear_Rack_Portrait.png",
-              Generator: "/images/Generator_Portrait.png",
-              Gym: "/images/Gym_Portrait.png",
-              "Hall of Fame": "/images/Hall_of_Fame_Portrait.png",
-              Heating: "/images/Heating_Portrait.png",
-              Illumination: "/images/Illumination_Portrait.png",
-              "Intelligence Center": "/images/Intelligence_Center_Portrait.png",
-              Lavatory: "/images/Lavatory_Portrait.png",
-              Library: "/images/Library_Portrait.png",
-              Medstation: "/images/Medstation_Portrait.png",
-              "Nutrition Unit": "/images/Nutrition_Unit_Portrait.png",
-              "Rest Space": "/images/Rest_Space_Portrait.png",
-              "Scav Case": "/images/Scav_Case_Portrait.png",
-              Security: "/images/Security_Portrait.png",
-              "Shooting Range": "/images/Shooting_Range_Portrait.png",
-              "Solar Power": "/images/Solar_power_Portrait.png",
-              Stash: "/images/Stash_Portrait.png",
-              Vents: "/images/Vents_Portrait.png",
-              "Water Collector": "/images/Water_Collector_Portrait.png",
-              "Weapon Rack": "/images/Weapon_Rack_Portrait.png",
-              Workbench: "/images/Workbench_Portrait.png",
-            };
-            const imagePath = imageMap[station.name];
+            const imagePath = getStationImage(station.name, station.id);
             if (imagePath) {
               return (
                 <div className="flex-shrink-0">
                   <img
                     src={imagePath}
-                    alt={station.name}
-                    className="w-10 h-10 rounded-lg bg-white/20 object-contain border border-white/30 shadow-lg"
-                    onError={(e) => (e.currentTarget.style.display = "none")}
-                  />
-                </div>
-              );
-            } else {
-              // Fallback para imagens locais se disponíveis
-              const fallbackImage = `/images/${station.name
-                .toLowerCase()
-                .replace(/\s+/g, "-")}.png`;
-              return (
-                <div className="flex-shrink-0">
-                  <img
-                    src={fallbackImage}
                     alt={station.name}
                     className="w-10 h-10 rounded-lg bg-white/20 object-contain border border-white/30 shadow-lg"
                     onError={(e) => {
@@ -305,6 +293,7 @@ export function HideoutCard({
                 </div>
               );
             }
+            return null;
           })()}
           <div className="flex-1 min-w-0">
             <CardTitle className="text-lg font-bold text-gray-200 mb-1 leading-tight">
@@ -554,15 +543,39 @@ export function HideoutCard({
                       >
                         <span className="truncate text-gray-800 dark:text-gray-300">
                           Item:{" "}
-                          <span
-                            className={`font-semibold ${
-                              isHighlighted
-                                ? "text-yellow-800 dark:text-yellow-200"
-                                : ""
-                            }`}
-                          >
-                            {itemsMap[req.itemId!] || req.itemId}
-                          </span>{" "}
+                          <HoverCard>
+                            <HoverCardTrigger asChild>
+                              <span
+                                className={`font-semibold select-none ${
+                                  isHighlighted
+                                    ? "text-yellow-800 dark:text-yellow-200"
+                                    : ""
+                                }`}
+                              >
+                                {itemsMap[req.itemId!] || req.itemId}
+                              </span>
+                            </HoverCardTrigger>
+                            <HoverCardContent className="w-auto p-3">
+                              <div className="flex flex-col items-center gap-2">
+                                <img
+                                  src={`https://assets.tarkov.dev/${req.itemId}.webp`}
+                                  alt={itemsMap[req.itemId!] || req.itemId}
+                                  className="w-24 h-24 rounded bg-muted object-contain border"
+                                  onError={(e) => {
+                                    // Fallback para -icon se a imagem completa não existir
+                                    const target = e.currentTarget;
+                                    target.src = `https://assets.tarkov.dev/${req.itemId}-icon.webp`;
+                                    target.onerror = () => {
+                                      target.style.display = "none";
+                                    };
+                                  }}
+                                />
+                                <span className="text-sm font-semibold text-center">
+                                  {itemsMap[req.itemId!] || req.itemId}
+                                </span>
+                              </div>
+                            </HoverCardContent>
+                          </HoverCard>{" "}
                           x{required}
                         </span>
                         <QuantityInput
@@ -612,6 +625,13 @@ export function HideoutCard({
                         req.module!,
                         req.level!
                       );
+                      // Encontrar a estação correspondente ao módulo
+                      const moduleStation = stations.find(
+                        (s) =>
+                          s.name.toLowerCase().replace(/\s+/g, "") ===
+                          req.module!.toLowerCase().replace(/\s+/g, "")
+                      );
+                      const stationImage = moduleStation ? getStationImage(moduleStation.name, moduleStation.id) : "";
                       return (
                         <li
                           key={"module-" + idx}
@@ -619,7 +639,41 @@ export function HideoutCard({
                         >
                           <span className="truncate text-gray-800 dark:text-gray-300">
                             Módulo:{" "}
-                            <span className="font-semibold">{req.module}</span>{" "}
+                            <HoverCard>
+                              <HoverCardTrigger asChild>
+                                <span className="font-semibold select-none">
+                                  {req.module}
+                                </span>
+                              </HoverCardTrigger>
+                              {stationImage && (
+                                <HoverCardContent className="w-auto p-3">
+                                  <div className="flex flex-col items-center gap-2">
+                                    <img
+                                      src={stationImage}
+                                      alt={req.module!}
+                                      className="w-24 h-24 rounded bg-muted object-contain border"
+                                      onError={(e) => {
+                                        // Fallback para API do Tarkov.dev se a imagem local falhar
+                                        if (moduleStation) {
+                                          e.currentTarget.src = `https://assets.tarkov.dev/${moduleStation.id}-icon.webp`;
+                                          e.currentTarget.onerror = () => {
+                                            e.currentTarget.style.display = "none";
+                                          };
+                                        } else {
+                                          e.currentTarget.style.display = "none";
+                                        }
+                                      }}
+                                    />
+                                    <span className="text-sm font-semibold text-center">
+                                      {req.module}
+                                    </span>
+                                    <span className="text-xs text-muted-foreground">
+                                      Nível {req.level}
+                                    </span>
+                                  </div>
+                                </HoverCardContent>
+                              )}
+                            </HoverCard>{" "}
                             nível {req.level}
                           </span>
                           <span></span>

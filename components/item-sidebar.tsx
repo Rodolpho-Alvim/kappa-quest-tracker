@@ -11,6 +11,7 @@ const zoomStyle = `
     position: relative;
     max-width: 100%;
     overflow: visible;
+    display: block;
   }
   .item-zoom:hover {
     transform: scale(2.1);
@@ -20,6 +21,35 @@ const zoomStyle = `
   }
   .item-zoom:hover img {
     overflow: visible !important;
+  }
+  /* Permitir que o zoom apareça acima dos elementos pais */
+  .item-icon-container {
+    position: relative;
+    z-index: 1;
+    padding: 16px;
+    margin: -16px;
+    display: inline-block;
+  }
+  .item-icon-container:hover {
+    z-index: 10000;
+  }
+  /* Remover overflow-hidden do container do item quando hover no ícone */
+  .item-row:has(.item-icon-container:hover) {
+    overflow: visible !important;
+    z-index: 9998;
+  }
+  .item-row-content:has(.item-icon-container:hover) {
+    overflow: visible !important;
+  }
+  /* Fallback para navegadores que não suportam :has() */
+  @supports not selector(:has(*)) {
+    .item-row:hover {
+      overflow: visible !important;
+      z-index: 9998;
+    }
+    .item-row-content:hover {
+      overflow: visible !important;
+    }
   }
 `;
 
@@ -289,7 +319,7 @@ export const ItemSidebar: React.FC<ItemSidebarProps> = ({
   return (
     <aside className="w-72 p-4 bg-background border-r border-border h-full overflow-y-auto overflow-x-hidden max-w-[288px]">
       <style dangerouslySetInnerHTML={{ __html: zoomStyle }} />
-      <div className="w-full max-w-full overflow-x-hidden">
+      <div className="w-full max-w-full">
         <h2 className="text-lg font-bold mb-4">Itens necessários no Hideout</h2>
 
       {/* Indicador de pesquisa */}
@@ -329,7 +359,7 @@ export const ItemSidebar: React.FC<ItemSidebarProps> = ({
           <p className="text-xs mt-1">Tente um termo diferente</p>
         </div>
       ) : (
-        <ul className="space-y-2 relative overflow-x-hidden">
+        <ul className="space-y-2 relative">
           {sortedItems.map((itemId) => {
             const found = itemFound[itemId] || 0;
             const total = itemTotals[itemId] || 0;
@@ -363,7 +393,7 @@ export const ItemSidebar: React.FC<ItemSidebarProps> = ({
             return (
               <li
                 key={itemId}
-                className={`relative transition-all duration-300 ${bg} p-3 rounded-lg overflow-hidden ${
+                className={`item-row relative transition-all duration-300 ${bg} p-3 rounded-lg ${
                   searchTerm &&
                   (itemsMap[itemId] || itemId)
                     .toLowerCase()
@@ -373,17 +403,17 @@ export const ItemSidebar: React.FC<ItemSidebarProps> = ({
                 }`}
               >
                 {/* Primeira linha: Ícone + Nome do item */}
-                <div className="flex items-center gap-3 mb-2 overflow-hidden">
-                  <div className="relative flex-shrink-0 overflow-visible">
+                <div className="flex items-center gap-3 mb-2 item-row-content">
+                  <div className="item-icon-container">
                     <img
                       src={`https://assets.tarkov.dev/${itemId}-icon.webp`}
                       alt={itemsMap[itemId] || itemId}
-                      className="w-8 h-8 rounded bg-muted object-contain border item-zoom cursor-pointer max-w-full"
+                      className="w-8 h-8 rounded bg-muted object-contain border item-zoom cursor-pointer"
                       onError={(e) => (e.currentTarget.style.display = "none")}
                     />
                   </div>
 
-                  <div className="flex-1 min-w-0 overflow-hidden">
+                  <div className="flex-1 min-w-0">
                     <span className="text-sm font-medium block truncate">
                       {itemsMap[itemId] || itemId}
                     </span>

@@ -223,6 +223,7 @@ export default function HideoutPage() {
       >
         <div className="hidden md:flex w-full justify-center mt-6 mb-2">
           <div className="w-full md:pl-80 flex justify-end items-center gap-2 px-6">
+            <ThemeToggle />
             <SettingsDialog
               handleExport={() => {
                 // Exportar progresso do Hideout
@@ -269,12 +270,11 @@ export default function HideoutPage() {
                   alert("Progresso do Hideout resetado!");
                 }
               }}
-              iconOnly={false}
             />
-            <ThemeToggle />
           </div>
         </div>
         <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
           <SettingsDialog
             handleExport={() => {
               // Exportar progresso do Hideout
@@ -321,9 +321,7 @@ export default function HideoutPage() {
                 alert("Progresso do Hideout resetado!");
               }
             }}
-            iconOnly={true}
           />
-          <ThemeToggle />
         </div>
       </HeaderBar>
 

@@ -14,7 +14,6 @@ interface SettingsDialogProps {
   handleImport: (event: React.ChangeEvent<HTMLInputElement>) => void;
   restoreDefaults: () => void;
   handleReset: () => void;
-  iconOnly?: boolean;
   showRestoreDefaults?: boolean;
 }
 
@@ -23,21 +22,13 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({
   handleImport,
   restoreDefaults,
   handleReset,
-  iconOnly,
   showRestoreDefaults = true,
 }) => (
   <Dialog>
     <DialogTrigger asChild>
-      {iconOnly ? (
-        <Button variant="ghost" size="icon" aria-label="Configurações">
-          <Settings className="h-5 w-5" />
-        </Button>
-      ) : (
-        <Button variant="outline" size="sm">
-          <Settings className="h-4 w-4 mr-2" />
-          Configurações
-        </Button>
-      )}
+      <Button variant="ghost" size="icon" aria-label="Configurações">
+        <Settings className="h-5 w-5" />
+      </Button>
     </DialogTrigger>
     <DialogContent>
       <DialogHeader>
